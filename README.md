@@ -1,0 +1,2 @@
+# OriinDictionary
+Oriin dictionary
