@@ -1,0 +1,62 @@
+﻿<Addons>
+    <Addon AddonType="AddonType.Body">
+        <TextEdit Placeholder="@PlaceholderText" Text="@SearchText"
+                  TextChanged="@(async value => await OnSearch.InvokeAsync(value))" />
+    </Addon>
+
+    <Addon AddonType="AddonType.End">
+        <Buttons>
+            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@_myText.loading" MyLanguage="@_currentLanguage1" />
+            <Dropdown>
+                <Button>@CurrentLanguage1?.Name</Button>
+                <DropdownToggle Color="Color.Primary" IsSplit="true" />
+                <DropdownMenu>
+
+                   
+                    @foreach (var item in LanguagesState.Value.Languages)
+                    {
+                        <DropdownItem TValue="int" Value="@item.Id" Clicked="@(async l => await ClickedDropdownItem1(l))">@item.Name</DropdownItem>
+                        <DropdownDivider />
+                    }
+                    
+                </DropdownMenu>
+            </Dropdown>
+        </Buttons>
+    </Addon>
+    
+    <Addon AddonType="AddonType.End">
+        <Buttons>
+            <Button Clicked="@SwapLangs">
+                <span role="img">
+                    <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"></path></svg>
+                </span>
+            </Button>
+        </Buttons>
+    </Addon>
+
+    <Addon AddonType="AddonType.End">
+        <Buttons>
+            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@_myText.loading" MyLanguage="@_currentLanguage2" />
+            <Dropdown>
+                <Button>@CurrentLanguage2?.Name</Button>
+                <DropdownToggle Color="Color.Primary" IsSplit="true" />
+                <DropdownMenu>
+
+                    @foreach (var item in LanguagesState.Value.Languages)
+                    {
+                        <DropdownItem TValue="int" Value="@item.Id" Clicked="@(async l => await ClickedDropdownItem2(l))">@item.Name</DropdownItem>
+                        <DropdownDivider />
+                    }
+                    
+                </DropdownMenu>
+            </Dropdown>
+        </Buttons>
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <Button Color="Color.Success"
+                Clicked="@ButtonSearchClicked">
+            @PlaceholderText
+        </Button>
+
+    </Addon>
+</Addons>

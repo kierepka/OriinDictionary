@@ -1,0 +1,16 @@
+﻿<ListGroupItem>
+    <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
+        <FieldBody ColumnSize="ColumnSize.Is3">
+            @if (!(MyComment is null))
+            {
+                @MyComment.Date
+            }
+        </FieldBody>
+        <FieldBody ColumnSize="ColumnSize.Is9">
+            @if (MyComment != null)
+            {
+                @MyComment.Text
+            }
+        </FieldBody>
+    </Field>
+</ListGroupItem>

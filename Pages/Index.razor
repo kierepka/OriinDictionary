@@ -1,0 +1,105 @@
+﻿@page "/"
+@page "/{SearchText}"
+@inherits DicBasePage
+<PageHeader IsLoading="@isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerShowDashboard" />
+
+<h1>@SearchText</h1>
+
+<!-- Search buttons bar -->
+<MySearch SearchText="@SearchText"
+          PlaceholderText="@MyText?.search"
+          OnLangChange1="OnLangChange1"
+          OnLangChange2="OnLangChange2"
+          @bind-CurrentLanguage1="@CurrentLanguage1"
+          @bind-CurrentLanguage2="@CurrentLanguage2"
+          OnSearch="OnSearchClick">
+</MySearch>
+
+@if (!(DataModels is null))
+{
+    <Table IsStriped="true" IsHoverable="true" Theme="Theme.Dark">
+        <TableHeader>
+            <TableRow>
+                <TableHeaderCell>@MyText?.termTitle</TableHeaderCell>
+                @if (!CurrentBaseLangPl)
+                {
+                    <TableHeaderCell>@MyText?.translationTitle</TableHeaderCell>
+                }
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            @foreach (var locDic in DataModels)
+            {
+                <TableRow>
+                    <TableRowCell>
+
+
+                        @if (locDic.BaseName is null)
+                        {
+                            <div class="box @ButtonPlColor">
+                                <a href="/addbaseterm">@MyText?.addBase</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="box @ButtonPlColor">
+                                <a href="/editbaseterm/@locDic.BaseTermSlug">
+                                    "@locDic.BaseName"
+                                </a>
+                            </div>
+                        }
+
+                    </TableRowCell>
+                    @if (!CurrentBaseLangPl)
+                    {
+                        <TableRowCell>
+
+                            @if (locDic.TranslateName is null)
+                            {
+                                <div class="box @ButtonEnColor">
+                                    <a href="/addtranslation/@locDic.BaseTermId">@MyText?.addTranslation</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="box @ButtonEnColor">
+                                    <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
+                                </div>
+                            }
+
+                        </TableRowCell>
+                    }
+                </TableRow>
+            }
+        </TableBody>
+    </Table>
+}
+<!-- Information for search -->
+<Addons>
+    <Addon AddonType="AddonType.End">
+        <AddonLabel>@MyText?.loadedNrRows</AddonLabel>
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <AddonLabel>@TotalLocalTempDic</AddonLabel>
+    </Addon>
+    <Addon AddonType="AddonType.End">
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <AddonLabel>@MyText?.rowsPerPage</AddonLabel>
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <TextEdit Text="@_itemsPerPage.ToString()" TextChanged="@OnItemsPerPageChanged" InputMode="TextInputMode.Numeric" />
+    </Addon>
+</Addons>
+
+@if (PaginationShow)
+{
+    <MyPagination LocalPages="@_localPages"
+                  SearchPageNr="@_searchPageNr"
+                  LastPage="@_lastPage"
+                  PrevText="@MyText?.next"
+                  NextText="@MyText?.previous"
+                  OnClickCallback="OnPageClick">
+    </MyPagination>
+}
+<SurveyPrompt Title="@MyText?.somethingWrong" />

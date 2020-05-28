@@ -1,0 +1,23 @@
+﻿<h1>@HeaderText</h1>
+
+@if (IsLoading)
+{
+    <Button IsLoading="@IsLoading">@LoadingText</Button>
+}
+<Snackbar  Color="SnackbarColor.Info" @ref="MyAlert" Location="SnackbarLocation.Right">
+    @CurrentAlertText
+</Snackbar>
+
+<Alert Color="Color.Info"  @ref="MyAlertYesNo" Dismisable="false">
+    <Heading Size="HeadingSize.Is4" TextColor="TextColor.Danger">
+        @CurrentAlertHeader
+        <CloseButton />
+    </Heading>
+    <Paragraph>
+        @CurrentAlertText
+    </Paragraph>
+    <Paragraph>
+        <Button Color="Color.Warning">@CurrentAlertOk</Button>
+        <Button Color="Color.Info">@CurrentAlertCancel</Button>
+    </Paragraph>
+</Alert>

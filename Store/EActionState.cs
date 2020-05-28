@@ -1,0 +1,32 @@
+﻿namespace OriinDic.Store
+{
+    public enum EActionState: int
+    {
+        Adding,
+        Added,
+        Anonymizing,        
+        Anonymized,
+        Deleting,
+        Deleted,
+        FetchingData,
+        FetchedData,
+        FetchingOne,
+        FetchedOne,
+        FetchingForEdit,
+        FetchedForEdit,
+        FetchingComments,
+        FetchedComments,
+        FetchingBase,
+        FetchedBase,
+        FetchingForTranslation,
+        FetchedForTranslation,
+        Initializing,
+        Initialized,
+        Saving,
+        Saved,
+        LocalDataStoring,
+        LocalDataStored,
+        Updating,
+        Updated
+    }
+}

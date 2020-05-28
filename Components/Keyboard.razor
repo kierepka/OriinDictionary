@@ -1,0 +1,39 @@
+﻿@if (MyLanguage is null)
+{
+    <p>
+        <em>@MyTextLoading</em>
+    </p>
+}
+else
+{
+    @if (GetSpecialChars().Any())
+    {
+        <Accordion>
+            <Collapse Visible="@KeyboardVisible">
+                <CollapseHeader>
+                    <Heading Size="HeadingSize.Is5">
+                        <Button Clicked="@(() => KeyboardVisible = !KeyboardVisible)">
+                            <span class="icon">
+                                <i class="fas fa-keyboard"></i>
+                            </span>
+                        </Button>
+                    </Heading>
+                </CollapseHeader>
+                <CollapseBody>
+
+                    @foreach (var specCharRows in GetSpecialChars())
+                    {
+                        <Buttons>
+                            @foreach (var specChar in specCharRows)
+                            {
+                                <Button Color="Color.Light" Size="ButtonSize.Small" Clicked="@(async () => await OnKeyCallback.InvokeAsync(specChar))">@specChar</Button>
+                            }
+                        </Buttons>
+
+                    }
+
+                </CollapseBody>
+            </Collapse>
+        </Accordion>
+    }
+}

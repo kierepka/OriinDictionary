@@ -1,0 +1,135 @@
+﻿@using OriinDic.Helpers
+@inherits LayoutComponentBase
+<Sidebar @ref="MySidebar">
+    <SidebarContent>
+        <SidebarBrand>
+            <a href="">@_myText.shortHeader</a>
+        </SidebarBrand>
+        <SidebarNavigation>
+            <SidebarLabel>@_myText.headerMain</SidebarLabel>
+            <SidebarItem>
+                <SidebarLink To="/" Title="@_myText.headerShowDashboard">
+                    <Icon Name="IconName.Search" Margin="Margin.Is3.FromRight" />@_myText.headerDashboard
+                </SidebarLink>
+            </SidebarItem>
+            <AuthorizeView Roles="@Const.RolesEditors">
+                <Authorized>
+                    <SidebarItem>
+                        <SidebarLink To="comments" Title="@_myText.comments">
+                            <Icon Name="IconName.Mail" Margin="Margin.Is3.FromRight" />@_myText.comments
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="links" Title="@_myText.links">
+                            <Icon Name="IconName.MoreHorizontal" Margin="Margin.Is3.FromRight" />@_myText.links
+                        </SidebarLink>
+                    </SidebarItem>
+                </Authorized>
+            </AuthorizeView>
+            <AuthorizeView Roles="@Const.RolesBaseEditors">
+                <Authorized>
+                    <SidebarItem>
+                        <SidebarLink To="addbaseterm" Title="@_myText.addBase">
+                            <Icon Name="IconName.New" Margin="Margin.Is3.FromRight" />@_myText.addBase
+                        </SidebarLink>
+                    </SidebarItem>
+                </Authorized>
+            </AuthorizeView>
+            <SidebarLabel>@_myText.headerUser</SidebarLabel>
+            <AuthorizeView>
+                <Authorized>
+                    <SidebarItem>
+                        <SidebarLink To="LogOut" Title="@_myText.logOut">
+                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.logOut
+                        </SidebarLink>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <SidebarLink To="PersonalData" Title="@_myText.personalData">
+                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.personalData
+                        </SidebarLink>
+                    </SidebarItem>
+                </Authorized>
+                <NotAuthorized>
+                    <SidebarItem>
+                        <SidebarLink To="Login" Title="@_myText.logIn">
+                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.logIn
+                        </SidebarLink>
+                    </SidebarItem>
+                </NotAuthorized>
+            </AuthorizeView>
+            <AuthorizeView Roles="@Const.RolesUsersEditors">
+                <Authorized>
+                    <SidebarItem>
+                        <SidebarLink To="Users" Title="@_myText.logIn">
+                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.users
+                        </SidebarLink>
+                    </SidebarItem>
+                </Authorized>
+            </AuthorizeView>
+
+            <SidebarItem>
+                <SidebarLink To="Settings" Title="@_myText.personalSettings">
+                    <Icon Name="IconName.Dashboard" Margin="Margin.Is3.FromRight" />@_myText.personalSettings
+                </SidebarLink>
+            </SidebarItem>
+            <SidebarLabel>@_myText.headerDictionaries</SidebarLabel>
+            <SidebarItem>
+                <SidebarLink To="dictionaryLanguages" Title="@_myText.headerShowLanguages">
+                    <Icon Name="IconName.Dashboard" Margin="Margin.Is3.FromRight" />@_myText.headerLanguages
+                </SidebarLink>
+            </SidebarItem>
+        </SidebarNavigation>
+    </SidebarContent>
+</Sidebar>
+
+<div class="app-main">
+    <Bar Class="app-bar" Breakpoint="Breakpoint.Desktop" Background="Background.Primary" ThemeContrast="ThemeContrast.Dark">
+        <BarBrand>
+            <BarItem>
+                <BarLink To="">
+                    <Icon Name="IconName.Search" />
+                    @_myText.header
+                </BarLink>
+            </BarItem>
+        </BarBrand>
+        <BarToggler Clicked="@ToggleSidebar">
+
+        </BarToggler>
+        <BarMenu>
+            <BarStart>
+                <BarItem>
+                    <AuthorizeView>
+                        <Authorized>
+                            <BarLink To="PersonalData">
+                                <Icon Name="IconName.Person" /> @_myText.hello, @context?.User?.Identity?.Name!
+                            </BarLink>
+                            <BarLink To="LogOut">@_myText.logOut</BarLink>
+                        </Authorized>
+                        <NotAuthorized>
+                            <BarLink To="Login">@_myText.logIn</BarLink>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </BarItem>
+            </BarStart>
+            <BarEnd>
+                <BarItem>
+                    <BarDropdown @ref="MyDropdown">
+                        <BarDropdownToggle class="oi oi-globe" @ref="DropDownToggle">
+                            @_currentLanguage
+                        </BarDropdownToggle>
+                        <BarDropdownMenu>
+                            <BarDropdownItem Clicked="@EnUiLanguageClicked">EN</BarDropdownItem>
+                            <BarDropdownItem Clicked="@PlUiLanguageClicked">PL</BarDropdownItem>
+                        </BarDropdownMenu>
+                    </BarDropdown>
+                </BarItem>
+                <BarItem>
+                    <BarLink To="https://www.popko.pl/">Popko.pl</BarLink>
+                </BarItem>
+            </BarEnd>
+        </BarMenu>
+    </Bar>
+    <div class="app-content content px-4">
+        @Body
+    </div>
+</div>

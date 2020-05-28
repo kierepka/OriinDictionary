@@ -1,0 +1,214 @@
+﻿@page "/edittranslation/{TranslationId:long}"
+
+@using OriinDic.Helpers
+@inherits DicBasePage
+
+<PageHeader IsLoading="@TranslationsState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
+
+@if (@Translation is null)
+{
+    <a href="/">@MyText?.noData</a>
+}
+else
+{
+    <Row>
+        <Column>
+            <Card Margin="Margin.Is4.OnY">
+                <CardHeader>
+                    <CardTitle>[@TranslationLanguage]@Translation.Name</CardTitle>
+                    <CardSubtitle>@MyText?.translationHeader</CardSubtitle><br />
+                </CardHeader>
+                <CardBody>
+
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationName</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is10">
+                            <AuthorizeView Roles="@Const.RolesBaseEditors">
+                                <Authorized>
+                                    <TextEdit Placeholder="@MyText?.translationName"
+                                              @bind-Text="@Translation.Name" />
+                                </Authorized>
+                                <NotAuthorized>
+                                    <div class="field"><div class="control">@Translation.Name</div></div>
+                                </NotAuthorized>
+                            </AuthorizeView>
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationCurrent</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is10">
+                            <AuthorizeView Roles="@Const.RolesBaseEditors">
+                                <Authorized>
+                                    <Check @bind-Checked="@Translation.Current"></Check>
+                                </Authorized>
+                                <NotAuthorized>
+                                    <Check @bind-Checked="@Translation.Current" Disabled="true"></Check>
+                                </NotAuthorized>
+                            </AuthorizeView>
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationDefinition</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is10">
+                            <AuthorizeView Roles="@Const.RolesBaseEditors">
+                                <Authorized>
+                                    <TextEdit Placeholder="@MyText?.translationDefinition"
+                                              @bind-Text="@Translation.Definition" />
+                                </Authorized>
+                                <NotAuthorized>
+                                    <div class="field"><div class="control">@Translation.Definition</div></div>
+                                </NotAuthorized>
+                            </AuthorizeView>
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is10">
+                            <Label>@Information</Label>
+                        </FieldBody>
+                    </Field>
+                </CardBody>
+                <CardFooter Padding="Padding.Is3">
+                    <Field Horizontal="true">
+                        <FieldBody ColumnSize="ColumnSize.Is12">
+                            <Buttons Role="ButtonsRole.Addons">
+                                <AuthorizeView Roles="@Const.RolesEditors">
+                                    <Authorized>
+                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.save</Button>
+                                        <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
+                                    </Authorized>
+                                </AuthorizeView>
+                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.speech</Button>
+                            </Buttons>
+                        </FieldBody>
+                    </Field>
+                </CardFooter>
+
+            </Card>
+            @if (BaseTerm is null)
+            {
+                <a href="/">Base term @MyText?.noData !</a>
+            }
+            else
+            {
+
+                <Card Margin="Margin.Is4.OnY">
+                    <CardHeader>
+                        <CardTitle>[@BaseTermLanguage]@BaseTerm.Name</CardTitle>
+                        <CardSubtitle>@MyText?.baseTermHeader</CardSubtitle>
+                    </CardHeader>
+                    <CardBody>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermName</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <Label>@BaseTerm.Name</Label>
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermDefinition</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <Label>@BaseTerm.Definition</Label>
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermExamples</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                @if (BaseTerm?.Examples is null)
+                                {
+                                    <Label>@MyText?.noData</Label>
+                                }
+                                else
+                                {
+                                    @foreach (var example in BaseTerm.Examples)
+                                    {
+                                        <Label>@example</Label>
+                                    }
+                                }
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSynonyms</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                @if (BaseTerm.Synonyms is null)
+                                {
+                                    <Label>@MyText?.noData</Label>
+                                }
+                                else
+                                {
+                                    @foreach (var synonym in BaseTerm.Synonyms)
+                                    {
+                                        <Label>@synonym</Label>
+                                    }
+                                }
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSlug</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <Label>@BaseTerm.Slug</Label>
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <Label>@BaseTermInformation</Label>
+                            </FieldBody>
+                        </Field>
+                    </CardBody>
+                    <CardFooter Padding="Padding.Is3">
+                        <Field Horizontal="true">
+                            <FieldBody ColumnSize="ColumnSize.Is12">
+                                <Buttons Role="ButtonsRole.Addons">
+                                    <div class="button has-background-primary">
+                                        <a href="/editBaseTerm/@Translation.BaseTermId">@MyText?.editBaseTerm</a>
+                                    </div>
+                                    <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.speech</Button>
+                                </Buttons>
+                            </FieldBody>
+                        </Field>
+                    </CardFooter>
+
+                </Card>
+            }
+
+            @if (Comments is null)
+            {
+                <div>Comments @MyText?.noData </div>
+            }
+            else
+            {
+                <Card Margin="Margin.Is4.OnY">
+                    <CardHeader>
+                        <CardSubtitle>Komentarze</CardSubtitle>
+                    </CardHeader>
+                    <CardBody>
+                        <AuthorizeView Roles="@Const.RolesEditors">
+                            <Authorized>
+                                <ListComments Comments="@Comments.Results"  OnCommentAdd="OnCommentAdd" />
+                            </Authorized>
+                            <NotAuthorized>
+                                @if (!(Comments.Results is null))
+                                {
+                                    <ListGroup Flush="true">
+                                        @foreach (var comment in Comments.Results)
+                                        {
+                                            <ListGroupItem>
+                                                <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
+                                                    <FieldBody ColumnSize="ColumnSize.Is12">
+                                                        @if (!(comment is null))@comment.Text
+                                                    </FieldBody>
+                                                </Field>
+                                            </ListGroupItem>
+                                        }
+                                    </ListGroup>
+                                }
+                            </NotAuthorized>
+                        </AuthorizeView>
+
+
+                    </CardBody>
+                </Card>
+            }
+        </Column>
+    </Row>
+}

@@ -1,0 +1,147 @@
+﻿@page "/Users"
+@attribute [Authorize(Roles = Const.RolesUsersEditors)]
+@using OriinDic.Helpers
+@inherits DicBasePage
+
+<PageHeader IsLoading="@UsersState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.users" />
+
+<DataGrid TItem="User"
+          Data="@_usersList"
+          ReadData="@OnReadData"
+          TotalItems="@_totalUsers"
+          ShowPager="false"
+          UseInternalEditing="true"
+          Editable="true"
+          EditMode="DataGridEditMode.Form"
+          Sortable="true"
+          Filterable="true"
+          Striped="true"
+          Bordered="true"
+          Hoverable="true"
+          RowInserted="@OnRowInserted"
+          RowUpdated="@OnRowUpdated"
+          RowRemoved="@OnRowRemoved"
+          @bind-SelectedRow="@selectedUser"
+          DetailRowTrigger="@((item)=> item.Id == selectedUser?.Id)">
+    <DataGridColumns>
+        <DataGridCommandColumn TItem="User" Width="170px">
+            <NewCommandTemplate>
+                <Button Color="Color.Success" Clicked="@context.Clicked">@MyText?.newTxt</Button>
+            </NewCommandTemplate>
+            <EditCommandTemplate>
+                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.edit</Button>
+            </EditCommandTemplate>
+            <SaveCommandTemplate>
+                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.save</Button>
+            </SaveCommandTemplate>
+            <DeleteCommandTemplate>
+                <Button Color="Color.Danger" Clicked="@context.Clicked">@MyText?.delete</Button>
+            </DeleteCommandTemplate>
+            <CancelCommandTemplate>
+                <Button Color="Color.Secondary" Clicked="@context.Clicked">@MyText?.cancel</Button>
+            </CancelCommandTemplate>
+            <ClearFilterCommandTemplate>
+                <Button Color="Color.Warning" Clicked="@context.Clicked">@MyText?.clearFilter</Button>
+            </ClearFilterCommandTemplate>
+        </DataGridCommandColumn>
+        <DataGridColumn TItem="User" Field="@nameof(User.Id)" Caption="@MyText?.usersId" Sortable="true" Editable="false" />
+        <DataGridColumn TItem="User" Field="@nameof(User.UserName)" Caption="@MyText?.usersUserName" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="User" Field="@nameof(User.FirstName)" Caption="@MyText?.usersFirstName" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="User" Field="@nameof(User.LastName)" Caption="@MyText?.usersLastName" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="User" Field="@nameof(User.Email)" Caption="@MyText?.usersEmail" Editable="true" />
+        <DataGridCheckColumn TItem="User" Field="@nameof(User.IsSuperuser)" Caption="@MyText?.usersIsSuperUser" Editable="false" Filterable="false">
+            <DisplayTemplate>
+                <Check TValue="bool" Checked="context.IsSuperuser" Disabled="true" ReadOnly="true" />
+            </DisplayTemplate>
+        </DataGridCheckColumn>
+        <DataGridCheckColumn TItem="User" Field="@nameof(User.Assistant)" Caption="@MyText?.usersIsAssistant" Editable="false" Filterable="false">
+            <DisplayTemplate>
+                <Check TValue="bool" Checked="context.Assistant" Disabled="true" ReadOnly="true" />
+            </DisplayTemplate>
+        </DataGridCheckColumn>
+        <DataGridColumn TItem="User" Field="@nameof( User.TranslatingLanguages )" Caption="@MyText?.usersTranslatingLanguages" Editable="false">
+            <FilterTemplate>
+
+                <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
+                    <SelectItem Value="@("*")">@MyText?.notSet</SelectItem>
+                    @foreach (var item in LanguagesState.Value.Languages)
+                    {
+                        <SelectItem Value="@item.Id">@item.Name</SelectItem>
+                    }
+
+                </Select>
+
+            </FilterTemplate>
+
+            <DisplayTemplate>
+
+                @{
+                    var user = (context as User);
+                    <label class="checkbox">@MyText?.usersTranslatingLanguages</label>
+                    if (user.IsSuperuser)
+                    {
+                        <div class="control">@MyText?.superUserHasAll</div>
+
+                    }
+                    else
+                    {
+                        if (user.TranslatingLanguages.Count > 0)
+                        {
+                            foreach (var langT in user.TranslatingLanguages)
+                            {
+                                <div class="control">@GetLanguageName(langT);</div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="control">@MyText?.notSet</div>
+                        }
+                    }
+                }
+
+            </DisplayTemplate>
+        </DataGridColumn>
+        <DataGridColumn TItem="User" Field="@nameof( User.CoordinatingLanguages )" Caption="@MyText?.usersCoordinatingLanguages" Editable="false">
+            <FilterTemplate>
+
+                <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == " *" ? "" : e.ToString()))">
+                    <SelectItem Value="@(" *")">@MyText?.notSet</SelectItem>
+                    
+                        @foreach (var item in LanguagesState.Value.Languages)
+                        {
+                            <SelectItem Value="@item.Id">@item.Name</SelectItem>
+                        }
+                    
+                </Select>
+
+            </FilterTemplate>
+
+            <DisplayTemplate>
+                @{
+                    var user = (context as User);
+                    <label class="checkbox">@MyText?.usersCoordinatingLanguages</label>
+                    if (user.IsSuperuser)
+                    {
+                        <div class="control">@MyText?.superUserHasAll</div>
+
+                    }
+                    else
+                    {
+                        if (user.CoordinatingLanguages.Count > 0)
+                        {
+                            foreach (var langC in user.CoordinatingLanguages)
+                            {
+                                <div class="control">@GetLanguageName(langC);</div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="control">@MyText?.notSet</div>
+                        }
+                    }
+                }
+            </DisplayTemplate>
+        </DataGridColumn>
+    </DataGridColumns>
+
+</DataGrid>

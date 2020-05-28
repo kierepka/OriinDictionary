@@ -1,0 +1,116 @@
+﻿@page "/user/{UserId:long}"
+@attribute [Authorize]
+@using OriinDic.Helpers
+@inherits DicBasePage
+
+<PageHeader IsLoading="@UserState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerUser" />
+
+<Row>
+    <Column>
+        <Card Margin="Margin.Is4.OnY">
+            <CardHeader>
+                <CardTitle>@MyText?.personalDataHeader</CardTitle>
+                <CardSubtitle>@MyText?.personalDataSubtitle</CardSubtitle><br />
+
+            </CardHeader>
+            <CardBody>
+
+                <DataAnnotationsValidator />
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.email</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <div class="control"><strong>@_user.Email</strong></div>
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.username</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <div class="control"><strong>@_user.UserName</strong></div>
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.firstname</FieldLabel>
+                    <div class="control"><strong>@_user.FirstName</strong></div>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.lastname</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <div class="control"><strong>@_user.LastName</strong></div>
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.gender</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <RadioGroup TValue="string" Inline="true" Name="genderGroup" @bind-CheckedValue="@_user.Gender" ReadOnly="true">
+                            <Radio TValue="string" Value="@Const.FemaleGenderVal">@MyText?.femaleGender</Radio>
+                            <Radio TValue="string" Value="@Const.MaleGenderVal">@MyText?.maleGender</Radio>
+                            <Radio TValue="string" Value="@Const.NoGenderVal">@MyText?.noGender</Radio>
+                        </RadioGroup>
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.language</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+
+                        @foreach (var lang in LanguagesState.Value.Languages)
+                        {
+                            <div class="control"><strong>@lang.Name</strong></div>
+                        }
+
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.translating_languages</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        @if (IsSuperUser)
+                        {
+                            <div class="field"><div class="control"><strong>@MyText?.superUserHasAll</strong></div></div>
+                        }
+                        else
+                        {
+
+
+                            @foreach (var langT in LanguagesState.Value.Languages)
+                            {
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="control"><strong>@langT.Name</strong></div>
+                                    </div>
+                                </div>
+                            }
+
+
+                        }
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.coordinating_languages</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        @if (IsSuperUser)
+                        {
+                            <div class="field"><div class="control"><strong>@MyText?.superUserHasAll</strong></div></div>
+                        }
+                        else
+                        {
+
+
+                            @foreach (var langC in LanguagesState.Value.Languages)
+                            {
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="checkbox" for="@langC.Name">
+                                            <div class="control"><strong>@langC.Name</strong></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+
+
+                        }
+                    </FieldBody>
+                </Field>
+
+            </CardBody>
+        </Card>
+    </Column>
+</Row>

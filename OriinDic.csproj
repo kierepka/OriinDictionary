@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework> 
+		<RazorLangVersion>3.0</RazorLangVersion>
+		<LangVersion>8.0</LangVersion>
+		<nullable>enable</nullable>
+		<WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+		<I18nTextFallBackLanguage>pl</I18nTextFallBackLanguage>
+		<Configurations>Debug;Release;DebugLocal;Docker</Configurations>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'test' ">
+		<StartAction>Project</StartAction>
+		<ExternalConsole>true</ExternalConsole>
+		<BlazorCacheBootResources>false</BlazorCacheBootResources>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="2.1.6" />
+		<PackageReference Include="Blazorise" Version="0.9.0.3" />
+		<PackageReference Include="Blazorise.Bulma" Version="0.9.0.3" />
+		<PackageReference Include="Blazorise.Components" Version="0.9.0.3" />
+		<PackageReference Include="Blazorise.DataGrid" Version="0.9.0.3" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.0.3" />
+		<PackageReference Include="Blazorise.Sidebar" Version="0.9.0.3" />
+		<PackageReference Include="Blazorise.Snackbar" Version="0.9.0.3" />
+		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="3.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="3.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0-preview.4.20251.6" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0-preview.4.20251.6" />
+		
+		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.0.1.1" />
+		<PackageReference Include="Toolbelt.Blazor.SpeechRecognition" Version="0.0.4.6-alpha" />
+		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="8.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<TypeScriptTarget>ES2020</TypeScriptTarget>
+		<TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+		<TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+		<TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+		<TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+		<TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+		<TypeScriptOutFile />
+		<TypeScriptOutDir />
+		<TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+		<TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+		<TypeScriptSourceMap>True</TypeScriptSourceMap>
+		<TypeScriptMapRoot />
+		<TypeScriptSourceRoot />
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Docker'">
+	  <TypeScriptTarget>ES2020</TypeScriptTarget>
+	  <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+	  <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+	  <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+	  <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+	  <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+	  <TypeScriptOutFile />
+	  <TypeScriptOutDir />
+	  <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+	  <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+	  <TypeScriptSourceMap>True</TypeScriptSourceMap>
+	  <TypeScriptMapRoot />
+	  <TypeScriptSourceRoot />
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='DebugLocal'">
+	  <TypeScriptTarget>ES2020</TypeScriptTarget>
+	  <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+	  <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+	  <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+	  <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+	  <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+	  <TypeScriptOutFile />
+	  <TypeScriptOutDir />
+	  <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+	  <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+	  <TypeScriptSourceMap>True</TypeScriptSourceMap>
+	  <TypeScriptMapRoot />
+	  <TypeScriptSourceRoot />
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DefineConstants>TRACE;RELEASE;</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DefineConstants>TRACE;DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Docker|AnyCPU'">
+	  <DefineConstants>DEBUG;TRACE;DOCKER;</DefineConstants>
+	  <Optimize>false</Optimize>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugLocal|AnyCPU'">
+	  <DefineConstants>DEBUG;TRACE;DEBUGLOCAL;</DefineConstants>
+	  <Optimize>false</Optimize>
+	</PropertyGroup>
+</Project>

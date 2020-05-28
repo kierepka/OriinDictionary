@@ -1,0 +1,33 @@
+﻿<Addons>
+    <Addon AddonType="AddonType.Start">
+        <Button Color="@GetNextColor()"
+                Clicked="@(async () => await OnClickCallback.InvokeAsync(NextName))"
+                IsDisabled="@GetNextIsDisabled()">
+            @NextText
+        </Button>
+
+    </Addon>
+    <Addon AddonType="AddonType.Body">
+        @if (!(LocalPages is null))
+        {
+            foreach (var locPage in LocalPages)
+            {
+                <Button @key="locPage.Name"
+                        Color="@locPage.ButtonColor(SearchPageNr.Value)"
+                        Clicked="@(async () => await OnClickCallback.InvokeAsync(locPage.Name))"
+                        IsDisabled="@locPage.ButtonIsDisabled(SearchPageNr.Value)"
+                        IsActive="@locPage.ButtonIsDisabled(SearchPageNr.Value)">
+                    @locPage.Name
+                </Button>
+            }
+        }
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <Button Color="@GetBackColor()"
+                Clicked="@(async () => await OnClickCallback.InvokeAsync(BackName))"
+                IsDisabled="@GetBackIsDisabled()">
+            @PrevText
+        </Button>
+
+    </Addon>
+</Addons>

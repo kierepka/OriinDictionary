@@ -1,0 +1,157 @@
+﻿@page "/PersonalData"
+@attribute [Authorize]
+@using OriinDic.Helpers
+@inherits DicBasePage
+
+<PageHeader IsLoading="@UserState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerUser" />
+
+<Row>
+    <Column>
+        <Card Margin="Margin.Is4.OnY">
+            <CardHeader>
+                <CardTitle>@MyText?.personalDataHeader</CardTitle>
+                <CardSubtitle>@MyText?.personalDataSubtitle</CardSubtitle><br />
+                <AuthorizeView>
+                    <Authorized>
+                        @MyText?.yourRoles  <strong>@string.Join(",", context.User.Claims.Roles()) </strong>
+                    </Authorized>
+                </AuthorizeView>
+            </CardHeader>
+            <CardBody>
+                <EditForm Model="@_user">
+                    <DataAnnotationsValidator />
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.email</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <TextEdit @bind-Text="@_user.Email"
+                                      Role="TextRole.Email"
+                                      Placeholder="@MyText?.email" />
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.username</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <TextEdit @bind-Text="@_user.UserName"
+                                      Placeholder="@MyText?.username" />
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.firstname</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <TextEdit Placeholder="@MyText?.firstname" @bind-Text="@_user.FirstName" />
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.lastname</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <TextEdit @bind-Text="@_user.LastName" Placeholder="@MyText?.lastname" />
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.gender</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <RadioGroup TValue="string" Name="genderGroup" @bind-CheckedValue="@_user.Gender">
+                                <Radio TValue="string" Value="@Const.FemaleGenderVal">@MyText?.femaleGender</Radio>
+                                <Radio TValue="string" Value="@Const.MaleGenderVal">@MyText?.maleGender</Radio>
+                                <Radio TValue="string" Value="@Const.NoGenderVal">@MyText?.noGender</Radio>
+                            </RadioGroup>
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.language</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+
+                            <Select TValue="long?" @bind-SelectedValue="@_user.LanguageId">
+                                @foreach (var lang in LanguagesState.Value.Languages)
+                                {
+                                    <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
+                                }
+
+                            </Select>
+
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.translating_languages</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            @if (isSuperUser)
+                            {
+                                <div class="field"><div class="control">@MyText?.superUserHasAll</div></div>
+                            }
+                            else
+                            {
+
+                                @foreach (var langT in LanguagesState.Value.Languages)
+                                {
+                                    <div class="field">
+                                        <div class="control">
+                                            <label class="checkbox" for="@langT.Name">
+                                                @if (CheckTranslation(langT))
+                                                {
+                                                    <input disabled type="checkbox" id="@langT.Id" checked="checked" />
+                                                }
+                                                else
+                                                {
+                                                    <input disabled type="checkbox" id="@langT.Id" />
+                                                }
+                                                @langT.Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            }
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.coordinating_languages</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            @if (isSuperUser)
+                            {
+                                <div class="field"><div class="control">@MyText?.superUserHasAll</div></div>
+                            }
+                            else
+                            {
+
+                                @foreach (var langC in LanguagesState.Value.Languages)
+                                {
+                                    <div class="field">
+                                        <div class="control">
+                                            <label class="checkbox" for="@langC.Name">
+                                                @if (CheckCoordination(langC))
+                                                {
+                                                    <input disabled type="checkbox" id="@langC.Id" checked="checked" />
+                                                }
+                                                else
+                                                {
+                                                    <input disabled type="checkbox" id="@langC.Id" />
+                                                }
+                                                @langC.Name
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            }
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                        <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <Buttons Role="ButtonsRole.Toolbar">
+                                <Buttons Margin="Margin.Is2.FromRight">
+                                    <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.save</Button>
+                                </Buttons>
+                                <Buttons>
+                                    <Button Type="ButtonType.Button" Clicked="@HandleAnonymize" Color="Color.Warning">@MyText?.anonymize</Button>
+                                </Buttons>
+                            </Buttons>
+                        </FieldBody>
+                    </Field>
+                </EditForm>
+            </CardBody>
+        </Card>
+    </Column>
+</Row>

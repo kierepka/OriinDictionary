@@ -1,0 +1,48 @@
+﻿@page "/dictionaryLanguages"
+@inherits DicBasePage
+
+<PageHeader IsLoading="@LanguagesState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.langHeader" />
+<Row>
+    <Column>
+        <Card Margin="Margin.Is4.OnY">
+            <CardHeader>
+                <CardTitle>@MyText?.langHeader</CardTitle>
+                <CardSubtitle>@MyText?.langDesc</CardSubtitle><br />
+            </CardHeader>
+            <CardBody>
+
+                @if (LanguagesState.Value.Languages is null)
+                {
+                    <p>
+                        <em>@MyText?.loading</em>
+                    </p>
+                }
+                else
+                {
+                    <Table IsStriped="true" IsHoverable="true" Theme="Theme.Dark">
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderCell>@MyText?.langId</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.langCode</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.langName</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.langSpecialChars</TableHeaderCell>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            @foreach (var lang in LanguagesState.Value.Languages)
+                            {
+                                <TableRow>
+                                    <TableRowHeader>@lang.Id</TableRowHeader>
+                                    <TableRowCell>@lang.Code</TableRowCell>
+                                    <TableRowCell>@lang.Name</TableRowCell>
+                                    <TableRowCell>@lang.SpecialCharacters</TableRowCell>
+                                </TableRow>
+                            }
+                        </TableBody>
+                    </Table>
+                }
+                
+            </CardBody>
+        </Card>
+    </Column>
+</Row>

@@ -1,0 +1,46 @@
+﻿@page "/comments"
+@inherits DicBasePage
+
+<PageHeader IsLoading="@CommentState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.comments" />
+
+<DataGrid TItem="Comment"
+          Data="@CommentState.Value.RootObject.Results"
+          ReadData="@OnReadData"
+          TotalItems="@_totalComments"
+          ShowPager="false"          
+          Editable="false"
+          Sortable="true"
+          Filterable="false"
+          Striped="true"
+          Bordered="true"
+          Hoverable="true"       
+          RowRemoved="@OnRowRemoved"
+          @bind-SelectedRow="@_selectedComment"
+          DetailRowTrigger="@((item)=> item.Id == _selectedComment?.Id)">
+    <DataGridColumns>
+
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Id)" Caption="@MyText?.commentId" Sortable="true" Editable="false">
+            <DisplayTemplate>
+                <Button Color="Color.Danger" Clicked="@(()=> OnRowRemoved(context))">@MyText?.delete (@context.Id)</Button>
+            </DisplayTemplate>
+        </DataGridColumn>
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Text)" Caption="@MyText?.commentText" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Date)" Caption="@MyText?.commentDate" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.TranslationId)" Caption="@MyText?.commentsTranslation" Sortable="true" Editable="true">
+            <DisplayTemplate>
+                <div class="box">
+                    <a href="/edittranslation/@context.TranslationId">@context.TranslationId</a>
+                </div>
+            </DisplayTemplate>
+        </DataGridColumn>
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.User)" Caption="@MyText?.commentsUser" Editable="true">
+            <DisplayTemplate>
+                <div class="box">
+                    <a href="/user/@context.User?.Id">@context.User?.UserName</a>
+                </div>
+            </DisplayTemplate>
+        </DataGridColumn>
+
+    </DataGridColumns>
+
+</DataGrid>

@@ -1,0 +1,40 @@
+﻿@page "/login"
+@inherits DicBasePage
+
+<PageHeader IsLoading="@isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.loginHeader" />
+
+<Row>
+    <Column>
+        <Card Margin="Margin.Is4.OnY">
+            <CardHeader>
+                <CardTitle>@MyText?.loginHeader</CardTitle>
+                <CardSubtitle>@MyText?.loginSubtitle</CardSubtitle><br />
+            </CardHeader>
+            <CardBody>
+                <EditForm Model="@_loginModel">
+                    <DataAnnotationsValidator />
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.loginName</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <TextEdit @bind-Text="@_loginModel.Username"
+                                      Placeholder="@MyText?.loginName" />
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true">
+                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.loginPassword</FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <TextEdit @bind-Text="@_loginModel.Password"
+                                      Role="TextRole.Password" Placeholder="@MyText?.loginPassword" />
+                        </FieldBody>
+                    </Field>
+                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                        <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+                            <Button Type="ButtonType.Submit" Clicked="@HandleLogin" Color="Color.Primary">@MyText?.loginButton</Button>
+                        </FieldBody>
+                    </Field>
+                </EditForm>
+            </CardBody>
+        </Card>
+    </Column>
+</Row>
