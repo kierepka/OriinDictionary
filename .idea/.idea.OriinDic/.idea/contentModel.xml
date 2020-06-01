@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.0.2\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.0.3\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_OriinDic.-1167722321.00" t="ExcludeRecursive" />
     <e p="C:\Users\pc\source\obj\Debug\netstandard2.1\i18ntext" t="Include" />
@@ -17,6 +17,8 @@
         <e p="ItemComment.razor.cs" t="Include" />
         <e p="ItemExample.razor" t="Include" />
         <e p="ItemExample.razor.cs" t="Include" />
+        <e p="ItemLink.razor" t="Include" />
+        <e p="ItemLink.razor.cs" t="Include" />
         <e p="ItemSynonym.razor" t="Include" />
         <e p="ItemSynonym.razor.cs" t="Include" />
         <e p="Keyboard.razor" t="Include" />
@@ -25,14 +27,14 @@
         <e p="ListComments.razor.cs" t="Include" />
         <e p="ListExamples.razor" t="Include" />
         <e p="ListExamples.razor.cs" t="Include" />
+        <e p="ListLinks.razor" t="Include" />
+        <e p="ListLinks.razor.cs" t="Include" />
         <e p="ListSynonyms.razor" t="Include" />
         <e p="ListSynonyms.razor.cs" t="Include" />
         <e p="MainLayout.razor" t="Include" />
         <e p="MainLayout.razor.cs" t="Include" />
         <e p="MyPagination.razor" t="Include" />
         <e p="MyPagination.razor.cs" t="Include" />
-        <e p="MySearch.razor" t="Include" />
-        <e p="MySearch.razor.cs" t="Include" />
         <e p="PageHeader.razor" t="Include" />
         <e p="PageHeader.razor.cs" t="Include" />
         <e p="SurveyPrompt.razor" t="Include" />
@@ -42,6 +44,7 @@
       <e p="Helpers" t="Include">
         <e p="Const.cs" t="Include" />
         <e p="Functions.cs" t="Include" />
+        <e p="LoggingMiddleware.cs" t="Include" />
       </e>
       <e p="i18ntext\@types" t="Include">
         <e p="OriinDic.I18nText.Text.cs" t="Include" />
@@ -52,20 +55,30 @@
       <e p="libman.json" t="Include" />
       <e p="Models" t="Include">
         <e p="BaseTerm.cs" t="Include" />
+        <e p="BaseTermChange.cs" t="Include" />
+        <e p="BaseTermLastEdit.cs" t="Include" />
+        <e p="Change.cs" t="Include" />
         <e p="Comment.cs" t="Include" />
         <e p="CommentAdd.cs" t="Include" />
         <e p="DeletedObjectResponse.cs" t="Include" />
         <e p="Example.cs" t="Include" />
         <e p="IExampleSynonym.cs" t="Include" />
         <e p="Language.cs" t="Include" />
+        <e p="LastEdit.cs" t="Include" />
+        <e p="Link.cs" t="Include" />
         <e p="LocalPages.cs" t="Include" />
         <e p="LoginInputModel.cs" t="Include" />
         <e p="LoginResult.cs" t="Include" />
+        <e p="Notification.cs" t="Include" />
         <e p="ResultBaseTranslation.cs" t="Include" />
         <e p="RootObject.cs" t="Include" />
+        <e p="SearchItem.cs" t="Include" />
         <e p="Synonym.cs" t="Include" />
         <e p="Token.cs" t="Include" />
         <e p="Translation.cs" t="Include" />
+        <e p="TranslationApproval.cs" t="Include" />
+        <e p="TranslationChange.cs" t="Include" />
+        <e p="TranslationLastEdit.cs" t="Include" />
         <e p="User.cs" t="Include" />
         <e p="UserAdd.cs" t="Include" />
         <e p="UserUpdate.cs" t="Include" />
@@ -78,6 +91,7 @@
         </e>
       </e>
       <e p="OriinDic.csproj" t="IncludeRecursive" />
+      <e p="OriinDic.csproj.DotSettings" t="Include" />
       <e p="OriinDic.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Pages" t="Include">
@@ -121,8 +135,118 @@
       <e p="Services" t="Include">
         <e p="ApiAuthenticationStateProvider.cs" t="Include" />
         <e p="AuthService.cs" t="Include" />
-        <e p="DictionaryService.cs" t="Include" />
         <e p="IAuthService.cs" t="Include" />
+      </e>
+      <e p="Store" t="Include">
+        <e p="BaseTerms" t="Include">
+          <e p="BaseTermsAddAction.cs" t="Include" />
+          <e p="BaseTermsAddResultAction.cs" t="Include" />
+          <e p="BaseTermsEffects.cs" t="Include" />
+          <e p="BaseTermsFeature.cs" t="Include" />
+          <e p="BaseTermsFetchDataAction.cs" t="Include" />
+          <e p="BaseTermsFetchDataResultAction.cs" t="Include" />
+          <e p="BaseTermsFetchOneAction.cs" t="Include" />
+          <e p="BaseTermsFetchOneResultAction.cs" t="Include" />
+          <e p="BaseTermsFetchOneSlugAction.cs" t="Include" />
+          <e p="BaseTermsFetchOneSlugResultAction.cs" t="Include" />
+          <e p="BaseTermsReducers.cs" t="Include" />
+          <e p="BaseTermsState.cs" t="Include" />
+          <e p="BaseTermsUpdateAction.cs" t="Include" />
+          <e p="BaseTermsUpdateResultAction.cs" t="Include" />
+        </e>
+        <e p="Comments" t="Include">
+          <e p="CommentsAddAction.cs" t="Include" />
+          <e p="CommentsAddResultAction.cs" t="Include" />
+          <e p="CommentsDeleteAction.cs" t="Include" />
+          <e p="CommentsDeleteResultAction.cs" t="Include" />
+          <e p="CommentsEffects.cs" t="Include" />
+          <e p="CommentsFeature.cs" t="Include" />
+          <e p="CommentsFetchDataAction.cs" t="Include" />
+          <e p="CommentsFetchDataResultAction.cs" t="Include" />
+          <e p="CommentsFetchForTranslationAction.cs" t="Include" />
+          <e p="CommentsFetchForTranslationResultAction.cs" t="Include" />
+          <e p="CommentsReducers.cs" t="Include" />
+          <e p="CommentsState.cs" t="Include" />
+        </e>
+        <e p="EActionState.cs" t="Include" />
+        <e p="Languages" t="Include">
+          <e p="LanguagesEffects.cs" t="Include" />
+          <e p="LanguagesFeature.cs" t="Include" />
+          <e p="LanguagesFetchDataAction.cs" t="Include" />
+          <e p="LanguagesFetchDataResultAction.cs" t="Include" />
+          <e p="LanguagesFetchDataStoreAction.cs" t="Include" />
+          <e p="LanguagesFetchDataStoreResultAction.cs" t="Include" />
+          <e p="LanguagesReducers.cs" t="Include" />
+          <e p="LanguagesState.cs" t="Include" />
+        </e>
+        <e p="Links" t="Include">
+          <e p="LinksAddAction.cs" t="Include" />
+          <e p="LinksAddResultAction.cs" t="Include" />
+          <e p="LinksDeleteAction.cs" t="Include" />
+          <e p="LinksDeleteResultAction.cs" t="Include" />
+          <e p="LinksEffects.cs" t="Include" />
+          <e p="LinksFeature.cs" t="Include" />
+          <e p="LinksFetchDataAction.cs" t="Include" />
+          <e p="LinksFetchDataResultAction.cs" t="Include" />
+          <e p="LinksReducers.cs" t="Include" />
+          <e p="LinksState.cs" t="Include" />
+        </e>
+        <e p="Notifications" t="Include">
+          <e p="NotificationsFeature.cs" t="Include" />
+          <e p="NotificationsReducers.cs" t="Include" />
+          <e p="NotificationsState.cs" t="Include" />
+          <e p="ShowNotificationAction.cs" t="Include" />
+        </e>
+        <e p="Search" t="Include">
+          <e p="SearchBaseTermsAction.cs" t="Include" />
+          <e p="SearchBaseTermsResultAction.cs" t="Include" />
+          <e p="SearchEffects.cs" t="Include" />
+          <e p="SearchFeature.cs" t="Include" />
+          <e p="SearchPageNrChangeAction.cs" t="Include" />
+          <e p="SearchReducers.cs" t="Include" />
+          <e p="SearchState.cs" t="Include" />
+          <e p="SearchTranslationsAction.cs" t="Include" />
+          <e p="SearchTranslationsResultAction.cs" t="Include" />
+        </e>
+        <e p="StoreInitializedEffect.cs" t="Include" />
+        <e p="Translations" t="Include">
+          <e p="TranslationsAddAction.cs" t="Include" />
+          <e p="TranslationsAddResultAction.cs" t="Include" />
+          <e p="TranslationsEffects.cs" t="Include" />
+          <e p="TranslationsFeature.cs" t="Include" />
+          <e p="TranslationsFetch4EditAction.cs" t="Include" />
+          <e p="TranslationsFetch4EditResultAction.cs" t="Include" />
+          <e p="TranslationsFetchBaseTermAction.cs" t="Include" />
+          <e p="TranslationsFetchBaseTermResultAction.cs" t="Include" />
+          <e p="TranslationsFetchCommentsAction.cs" t="Include" />
+          <e p="TranslationsFetchCommentsResultAction.cs" t="Include" />
+          <e p="TranslationsFetchDataAction.cs" t="Include" />
+          <e p="TranslationsFetchDataResultAction.cs" t="Include" />
+          <e p="TranslationsFetchOneAction.cs" t="Include" />
+          <e p="TranslationsFetchOneResultAction.cs" t="Include" />
+          <e p="TranslationsReducers.cs" t="Include" />
+          <e p="TranslationsState.cs" t="Include" />
+          <e p="TranslationsUpdateAction.cs" t="Include" />
+          <e p="TranslationsUpdateResultAction.cs" t="Include" />
+        </e>
+        <e p="Users" t="Include">
+          <e p="UsersAddAction.cs" t="Include" />
+          <e p="UsersAddResultAction.cs" t="Include" />
+          <e p="UsersAnonymizeAction.cs" t="Include" />
+          <e p="UsersAnonymizeResultAction.cs" t="Include" />
+          <e p="UsersDeleteAction.cs" t="Include" />
+          <e p="UsersDeleteResultAction.cs" t="Include" />
+          <e p="UsersEffects.cs" t="Include" />
+          <e p="UsersFeature.cs" t="Include" />
+          <e p="UsersFetchDataAction.cs" t="Include" />
+          <e p="UsersFetchDataResultAction.cs" t="Include" />
+          <e p="UsersFetchOneAction.cs" t="Include" />
+          <e p="UsersFetchOneResultAction.cs" t="Include" />
+          <e p="UsersReducers.cs" t="Include" />
+          <e p="UsersState.cs" t="Include" />
+          <e p="UsersUpdateAction.cs" t="Include" />
+          <e p="UsersUpdateResultAction.cs" t="Include" />
+        </e>
       </e>
       <e p="wwwroot" t="Include">
         <e p=".htaccess" t="Include" />
@@ -148,6 +272,11 @@
             <e p="bootstrap.min.css" t="Include" />
             <e p="bootstrap.min.css.map" t="Include" />
           </e>
+          <e p="bulma" t="Include">
+            <e p="bulma.css" t="Include" />
+            <e p="bulma.css.map" t="Include" />
+            <e p="bulma.min.css" t="Include" />
+          </e>
           <e p="open-iconic" t="Include">
             <e p="font" t="Include">
               <e p="css" t="Include">
@@ -172,6 +301,12 @@
         <e p="favicon-32x32.png" t="Include" />
         <e p="favicon.ico" t="Include" />
         <e p="index.html" t="Include" />
+        <e p="js" t="Include">
+          <e p="fontawesome" t="Include">
+            <e p="all.js" t="Include" />
+            <e p="all.min.js" t="Include" />
+          </e>
+        </e>
         <e p="manifest.json" t="Include" />
         <e p="service-worker.js" t="Include" />
         <e p="service-worker.published.js" t="Include" />
