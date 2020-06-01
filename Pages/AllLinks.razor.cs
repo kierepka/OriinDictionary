@@ -17,7 +17,7 @@ namespace OriinDic.Pages
     public partial class AllLinks : DicBasePage
     {
 
-        private int _itemsPerPage = Const.DefaultItemsPerPage;
+        private long _itemsPerPage = Const.DefaultItemsPerPage;
         private int _searchPageNr = 1;
         private bool _reloadData = true;
         private string _token = string.Empty;

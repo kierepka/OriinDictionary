@@ -17,7 +17,7 @@ namespace OriinDic.Pages
     public partial class AllComments : DicBasePage
     {
 
-        private int _itemsPerPage = Const.DefaultItemsPerPage;
+        private long _itemsPerPage = Const.DefaultItemsPerPage;
 
         private bool _reloadData = true;
         private string _token = string.Empty;

@@ -1,34 +1,88 @@
 ﻿@page "/"
 @page "/{SearchText}"
 @inherits DicBasePage
-<PageHeader IsLoading="@isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerShowDashboard" />
+<PageHeader IsLoading="@SearchState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerShowDashboard" />
 
 <h1>@SearchText</h1>
 
 <!-- Search buttons bar -->
-<MySearch SearchText="@SearchText"
-          PlaceholderText="@MyText?.search"
-          OnLangChange1="OnLangChange1"
-          OnLangChange2="OnLangChange2"
-          @bind-CurrentLanguage1="@CurrentLanguage1"
-          @bind-CurrentLanguage2="@CurrentLanguage2"
-          OnSearch="OnSearchClick">
-</MySearch>
+<Addons>
+    <Addon AddonType="AddonType.Body">
+        <TextEdit Placeholder="@MyText?.search" Text="@SearchText"
+                  TextChanged="@(value => GoSearchText(value))" />
+    </Addon>
 
-@if (!(DataModels is null))
+    <Addon AddonType="AddonType.End">
+        <Buttons>
+            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.loading" MyLanguage="@_currentLanguage1" />
+            <Dropdown>
+                <Button>@MyText?.baseTermLanguage: @_currentLanguage1?.Name</Button>
+                <DropdownToggle Color="Color.Primary" IsSplit="true" />
+
+                <DropdownMenu>
+
+                    @foreach (var l in OriinDic.Helpers.Const.BaseLanguagesList)
+                    {
+                        <DropdownItem TValue="int" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState.Value.GetLanguageName(l)</DropdownItem>
+                        <DropdownDivider />
+                    }
+
+                </DropdownMenu>
+            </Dropdown>
+        </Buttons>
+    </Addon>
+
+    <Addon AddonType="AddonType.End">
+        <Buttons>
+            <Button Clicked="@SwapLanguages">
+                <span role="img">
+                    <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"></path></svg>
+                </span>
+            </Button>
+        </Buttons>
+    </Addon>
+
+    <Addon AddonType="AddonType.End">
+        <Buttons>
+            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.loading" MyLanguage="@_currentLanguage2" />
+            <Dropdown>
+                <Button>@_currentLanguage2?.Name</Button>
+                <DropdownToggle Color="Color.Primary" IsSplit="true" />
+                <DropdownMenu>
+
+                    @foreach (var l in LanguagesState.Value.TranslationLanguages)
+                    {
+                        <DropdownItem TValue="int" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
+                        <DropdownDivider />
+                    }
+
+                </DropdownMenu>
+            </Dropdown>
+        </Buttons>
+    </Addon>
+    <Addon AddonType="AddonType.End">
+        <Button Color="Color.Success"
+                Clicked="@ButtonSearchClicked">
+            @MyText?.search
+        </Button>
+
+    </Addon>
+</Addons>
+
+@if (!(SearchState.Value.SearchItems is null))
 {
     <Table IsStriped="true" IsHoverable="true" Theme="Theme.Dark">
         <TableHeader>
             <TableRow>
                 <TableHeaderCell>@MyText?.termTitle</TableHeaderCell>
-                @if (!CurrentBaseLangPl)
+                @if (!SearchState.Value.CurrentBaseLangPl)
                 {
                     <TableHeaderCell>@MyText?.translationTitle</TableHeaderCell>
                 }
             </TableRow>
         </TableHeader>
         <TableBody>
-            @foreach (var locDic in DataModels)
+            @foreach (var locDic in SearchState.Value.SearchItems)
             {
                 <TableRow>
                     <TableRowCell>
@@ -36,13 +90,13 @@
 
                         @if (locDic.BaseName is null)
                         {
-                            <div class="box @ButtonPlColor">
+                            <div class="box @SearchState.Value.ButtonPlColor">
                                 <a href="/addbaseterm">@MyText?.addBase</a>
                             </div>
                         }
                         else
                         {
-                            <div class="box @ButtonPlColor">
+                            <div class="box @SearchState.Value.ButtonPlColor">
                                 <a href="/editbaseterm/@locDic.BaseTermSlug">
                                     "@locDic.BaseName"
                                 </a>
@@ -50,19 +104,19 @@
                         }
 
                     </TableRowCell>
-                    @if (!CurrentBaseLangPl)
+                    @if (!SearchState.Value.CurrentBaseLangPl)
                     {
                         <TableRowCell>
 
                             @if (locDic.TranslateName is null)
                             {
-                                <div class="box @ButtonEnColor">
+                                <div class="box @SearchState.Value.ButtonEnColor">
                                     <a href="/addtranslation/@locDic.BaseTermId">@MyText?.addTranslation</a>
                                 </div>
                             }
                             else
                             {
-                                <div class="box @ButtonEnColor">
+                                <div class="box @SearchState.Value.ButtonEnColor">
                                     <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
                                 </div>
                             }
@@ -73,33 +127,30 @@
             }
         </TableBody>
     </Table>
+
 }
+
+@if (SearchState.Value.PaginationShow)
+{
+    <MyPagination LocalPages="@SearchState.Value.LocalPages"
+                  SearchPageNr="@_searchPageNr"
+                  TotalPages="@SearchState.Value.TotalPages"
+                  PrevText="@MyText?.next"
+                  NextText="@MyText?.previous"
+                  OnClickCallback="OnPageClick">
+    </MyPagination>
+}
+
+
 <!-- Information for search -->
 <Addons>
     <Addon AddonType="AddonType.End">
         <AddonLabel>@MyText?.loadedNrRows</AddonLabel>
     </Addon>
     <Addon AddonType="AddonType.End">
-        <AddonLabel>@TotalLocalTempDic</AddonLabel>
+        <AddonLabel>@SearchState.Value.TotalSearchItems</AddonLabel>
     </Addon>
     <Addon AddonType="AddonType.End">
-    </Addon>
-    <Addon AddonType="AddonType.End">
-        <AddonLabel>@MyText?.rowsPerPage</AddonLabel>
-    </Addon>
-    <Addon AddonType="AddonType.End">
-        <TextEdit Text="@_itemsPerPage.ToString()" TextChanged="@OnItemsPerPageChanged" InputMode="TextInputMode.Numeric" />
     </Addon>
 </Addons>
-
-@if (PaginationShow)
-{
-    <MyPagination LocalPages="@_localPages"
-                  SearchPageNr="@_searchPageNr"
-                  LastPage="@_lastPage"
-                  PrevText="@MyText?.next"
-                  NextText="@MyText?.previous"
-                  OnClickCallback="OnPageClick">
-    </MyPagination>
-}
 <SurveyPrompt Title="@MyText?.somethingWrong" />

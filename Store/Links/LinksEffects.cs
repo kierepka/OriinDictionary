@@ -13,13 +13,7 @@ namespace OriinDic.Store.Links
     public class LinksEffects
     {
         private readonly HttpClient _httpClient;
-        private static readonly System.Text.Json.JsonSerializerOptions _options =
-            new System.Text.Json.JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-                IgnoreReadOnlyProperties = true
-            };
+
 
         public LinksEffects(HttpClient http)
         {
@@ -106,8 +100,7 @@ namespace OriinDic.Store.Links
             {
 
                 userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
-                    requestUri: queryString,
-                    _options);
+                    requestUri: queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {

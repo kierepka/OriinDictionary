@@ -1,7 +1,7 @@
 ﻿<Addons>
     <Addon AddonType="AddonType.Start">
         <Button Color="@GetNextColor()"
-                Clicked="@(async () => await OnClickCallback.InvokeAsync(NextName))"
+                Clicked="@(async () => await OnClickCallback.InvokeAsync(OriinDic.Helpers.Const.PaginationBackName))"
                 IsDisabled="@GetNextIsDisabled()">
             @NextText
         </Button>
@@ -24,7 +24,7 @@
     </Addon>
     <Addon AddonType="AddonType.End">
         <Button Color="@GetBackColor()"
-                Clicked="@(async () => await OnClickCallback.InvokeAsync(BackName))"
+                Clicked="@(async () => await OnClickCallback.InvokeAsync(OriinDic.Helpers.Const.PaginationNextName))"
                 IsDisabled="@GetBackIsDisabled()">
             @PrevText
         </Button>

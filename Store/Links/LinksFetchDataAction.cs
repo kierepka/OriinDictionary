@@ -11,7 +11,7 @@
             Token = token;
         }
 
-        public LinksFetchDataAction(string token, int searchPageNr, int itemsPerPage)
+        public LinksFetchDataAction(string token, int searchPageNr, long itemsPerPage)
         {
             Token = token;
             SearchPageNr = searchPageNr;

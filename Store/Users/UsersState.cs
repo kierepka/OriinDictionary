@@ -4,19 +4,19 @@ namespace OriinDic.Store.Users
 {
     public class UsersState
     {
-        public EActionState LastActionState { get; }
-        public UserAdd UserAdd { get; }
-        public DeletedObjectResponse? DeleteResponse { get; }
-        public long UserId { get; }
-        public User? User { get; }
-        public string StatusCode { get; }
+        public EActionState LastActionState { get; private set; }
+        public UserAdd UserAdd { get; private set; }
+        public DeletedObjectResponse? DeleteResponse { get; private set; }
+        public long UserId { get; private set; }
+        public User? User { get; private set; }
+        public string StatusCode { get; private set; }
 
-        public UserUpdate? UserUpdate { get; }
-        public string Token { get; }
-        public int SearchPageNr { get; }
-        public long ItemsPerPage { get; }
-        public bool IsLoading { get; }
-        public RootObject<User>? RootObject { get; }
+        public UserUpdate? UserUpdate { get; private set; }
+        public string Token { get; private set; }
+        public int SearchPageNr { get; private set; }
+        public long ItemsPerPage { get; private set; }
+        public bool IsLoading { get; private set; }
+        public RootObject<User>? RootObject { get; private set; }
 
 
         public UsersState(bool isLoading, int searchPageNr, long itemsPerPage, long userId, string token, string statusCode,

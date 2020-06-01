@@ -12,7 +12,7 @@
             
         }
 
-        public CommentsFetchDataAction(string token, int searchPageNr, int itemsPerPage)
+        public CommentsFetchDataAction(string token, int searchPageNr, long itemsPerPage)
         {
             Token = token;
             SearchPageNr = searchPageNr;

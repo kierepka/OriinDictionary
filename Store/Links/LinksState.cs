@@ -4,17 +4,17 @@ namespace OriinDic.Store.Links
 {
     public class LinksState
     {
-        public EActionState LastActionState { get; }
-        public string Token { get; }
-        public int SearchPageNr { get; }
-        public long ItemsPerPage { get; }
-        public bool IsLoading { get; }
-        public RootObject<OriinLink>? RootObject { get; }
+        public EActionState LastActionState { get; private set; }
+        public string Token { get; private set; }
+        public int SearchPageNr { get; private set; }
+        public long ItemsPerPage { get; private set; }
+        public bool IsLoading { get; private set; }
+        public RootObject<OriinLink>? RootObject { get; private set; }
 
-        public DeletedObjectResponse? DeleteResponse { get; }
-        public string StatusCode { get; }
-        public long LinkId { get; }
-        public OriinLink? Link { get; }
+        public DeletedObjectResponse? DeleteResponse { get; private set; }
+        public string StatusCode { get; private set; }
+        public long LinkId { get; private set; }
+        public OriinLink? Link { get; private set; }
 
 
         public LinksState(bool isLoading, int searchPageNr, long itemsPerPage, string token, string statusCode,

@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 using Fluxor;
 using OriinDic.Helpers;
 using OriinDic.Models;
+using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsEffects
     {
+        private Toolbelt.Blazor.I18nText.I18nText I18NText { get; }
         private readonly HttpClient _httpClient;
-        private static readonly System.Text.Json.JsonSerializerOptions _options =
-            new System.Text.Json.JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-                IgnoreReadOnlyProperties = true
-            };
+      
 
-        public BaseTermsEffects(HttpClient http)
+        public BaseTermsEffects(HttpClient http, Toolbelt.Blazor.I18nText.I18nText i18NText)
         {
+            I18NText = i18NText;
             _httpClient = http;
         }
 
@@ -40,28 +37,35 @@ namespace OriinDic.Store.BaseTerms
             try
             {
 
-                translationResult = await _httpClient.GetFromJsonAsync<RootObject<ResultBaseTranslation>>(queryString, _options);
+                translationResult = await _httpClient.GetFromJsonAsync<RootObject<ResultBaseTranslation>>(
+                    queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
 
             dispatcher.Dispatch(new BaseTermsFetchDataResultAction(translationResult));
+            
         }
 
         [EffectMethod]
         public async Task HandleAddDataAction(BaseTermsAddAction baseTermAction, IDispatcher dispatcher)
         {
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", baseTermAction.Token);
-            var response = await _httpClient.PostAsJsonAsync(
-                requestUri: $"{Const.ApiBaseTerms}", baseTermAction.BaseTerm);
-
-            var returnData = await response.Content.ReadFromJsonAsync<BaseTerm>();
-
-
-            dispatcher.Dispatch(new BaseTermsAddResultAction(returnData));
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Token", baseTermAction.Token);
+                var response = await _httpClient.PostAsJsonAsync(
+                    requestUri: $"{Const.ApiBaseTerms}", baseTermAction.BaseTerm);
+                var returnData = await response.Content.ReadFromJsonAsync<BaseTerm>();
+                dispatcher.Dispatch(new BaseTermsAddResultAction(returnData));
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
+            }
         }
 
         [EffectMethod]
@@ -69,7 +73,7 @@ namespace OriinDic.Store.BaseTerms
         {
 
             var url = $"{Const.ApiBaseTerms}{action.BaseTermId}/";
-            var returnData = await _httpClient.GetFromJsonAsync<BaseTerm>(url);
+            var returnData = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
 
 
             dispatcher.Dispatch(new BaseTermsFetchOneResultAction(returnData));
@@ -80,7 +84,7 @@ namespace OriinDic.Store.BaseTerms
         {
 
             var url = $"{Const.ApiBaseTerms}{action.Slug}/by_slug/";
-            var returnData = await _httpClient.GetFromJsonAsync<BaseTerm>(url);
+            var returnData = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
             dispatcher.Dispatch(new BaseTermsFetchOneResultAction(returnData));
         }
 

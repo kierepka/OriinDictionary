@@ -13,13 +13,7 @@ namespace OriinDic.Store.Users
     public class UsersEffects
     {
         private readonly HttpClient _httpClient;
-        private static readonly System.Text.Json.JsonSerializerOptions _options =
-            new System.Text.Json.JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-                IgnoreReadOnlyProperties = true
-            };
+
 
         public UsersEffects(HttpClient http)
         {
@@ -125,8 +119,7 @@ namespace OriinDic.Store.Users
             {
 
                 userResult = await _httpClient.GetFromJsonAsync<RootObject<User>>(
-                    requestUri: queryString,
-                    _options);
+                    requestUri: queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {
@@ -141,7 +134,7 @@ namespace OriinDic.Store.Users
         {
 
             var url = $"{Const.ApiUsers}{action.UserId}/";
-            var returnData = await _httpClient.GetFromJsonAsync<User>(url);
+            var returnData = await _httpClient.GetFromJsonAsync<User>(url, Const.HttpClientOptions);
 
 
             dispatcher.Dispatch(new UsersFetchOneResultAction(returnData));

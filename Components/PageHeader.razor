@@ -1,14 +1,18 @@
-﻿<h1>@HeaderText</h1>
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+<h1>@HeaderText</h1>
 
 @if (IsLoading)
 {
     <Button IsLoading="@IsLoading">@LoadingText</Button>
 }
-<Snackbar  Color="SnackbarColor.Info" @ref="MyAlert" Location="SnackbarLocation.Right">
-    @CurrentAlertText
-</Snackbar>
+@if (!string.IsNullOrEmpty(State.Value.Notification))
+{
+    <Snackbar Color="SnackbarColor.Info" @ref="MyAlert" Location="SnackbarLocation.Right">
+        @State.Value.Notification
+    </Snackbar>
+}
 
-<Alert Color="Color.Info"  @ref="MyAlertYesNo" Dismisable="false">
+<Alert Color="Color.Info" @ref="MyAlertYesNo" Dismisable="false">
     <Heading Size="HeadingSize.Is4" TextColor="TextColor.Danger">
         @CurrentAlertHeader
         <CloseButton />

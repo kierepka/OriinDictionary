@@ -4,20 +4,20 @@ namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsState
     {
-        public EActionState LastActionState { get; }
-        public string BaseTermSlug { get; }
-        public long BaseTermId { get; }
-        public BaseTerm? BaseTerm { get; }
-        public string Token { get; }
-        public string SearchText { get; }
-        public long BaseTermLangId { get; }
-        public long TranslationLangId { get; }
+        public EActionState LastActionState { get; private set; }
+        public string BaseTermSlug { get; private set; }
+        public long BaseTermId { get; private set; }
+        public BaseTerm? BaseTerm { get; private set; }
+        public string Token { get; private set; }
+        public string SearchText { get; private set; }
+        public long BaseTermLangId { get; private set; }
+        public long TranslationLangId { get; private set; }
         
-        public int SearchPageNr { get; }
-        public long ItemsPerPage { get; }
-        public bool Current { get; }
-        public bool IsLoading { get; }
-        public RootObject<ResultBaseTranslation>? RootObject { get; }
+        public int SearchPageNr { get; private set; }
+        public long ItemsPerPage { get; private set; }
+        public bool Current { get; private set; }
+        public bool IsLoading { get; private set; }
+        public RootObject<ResultBaseTranslation>? RootObject { get; private set; }
 
         public BaseTermsState(bool isLoading, bool current, int searchPageNr, long baseTermLangId, 
             long translationLangId, long baseTermId, long itemsPerPage, 

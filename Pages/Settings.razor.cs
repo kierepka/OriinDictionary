@@ -20,7 +20,7 @@ namespace OriinDic.Pages
        
         private LoginInput _loginModel = new LoginInput();
 
-        private int _rowsPerPage;
+        private long _rowsPerPage;
         private int _selectedLanguage;
         private bool _currentTranslations;
         [Inject] private IState<LanguagesState> LanguagesState { get; set; }

@@ -17,14 +17,7 @@ namespace OriinDic.Store.Languages
         
 
         private readonly HttpClient _httpClient;
-        private static readonly System.Text.Json.JsonSerializerOptions Options =
-            new System.Text.Json.JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-                IgnoreReadOnlyProperties = true
-            };
-
+  
         public LanguagesEffects(HttpClient http)
         {
             _httpClient = http;
@@ -42,7 +35,7 @@ namespace OriinDic.Store.Languages
         private async Task<IEnumerable<Language>> GetLanguages()
         {
             var languageResult = await _httpClient.GetFromJsonAsync<RootObject<Language>>
-                (Const.ApiGetLanguages, Options);
+                (Const.ApiGetLanguages, Const.HttpClientOptions);
 
             if (languageResult is null) return new List<Language>();
             if (languageResult.Pages > 1)

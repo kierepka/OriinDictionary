@@ -72,7 +72,7 @@ namespace OriinDic.Services
         {
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(Const.TokenApiKey, token.AuthToken);
-            var userInfo = await _httpClient.GetFromJsonAsync<User>(Const.ApiUsersMe);
+            var userInfo = await _httpClient.GetFromJsonAsync<User>(Const.ApiUsersMe, Const.HttpClientOptions);
             await _localStorage.SetItemAsync(Const.UserKey, userInfo);
             return userInfo;
         }

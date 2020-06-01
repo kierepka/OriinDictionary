@@ -5,22 +5,22 @@ namespace OriinDic.Store.Translations
 {
     public class TranslationsState
     {
-        public EActionState LastActionState { get; }
-        public long BaseTermId { get; }
-        public long TranslationId { get; }
-        public Translation? Translation { get; }
-        public BaseTerm? BaseTerm { get; }
-        public List<OriinLink>? Links { get; }
-        public List<Comment>? Comments { get; }
-        public string Token { get; }
-        public string SearchText { get; }
-        public long BaseTermLangId { get; }
-        public long LangId { get; }
-        public int SearchPageNr { get; }
-        public long ItemsPerPage { get; }
-        public bool Current { get; }
-        public bool IsLoading { get; }
-        public RootObject<ResultBaseTranslation>? RootObject { get; }
+        public EActionState LastActionState { get; private set; }
+        public long BaseTermId { get; private set; }
+        public long TranslationId { get; private set; }
+        public Translation? Translation { get; private set; }
+        public BaseTerm? BaseTerm { get; private set; }
+        public List<OriinLink>? Links { get; private set; }
+        public List<Comment>? Comments { get; private set; }
+        public string Token { get; private set; }
+        public string SearchText { get; private set; }
+        public long BaseTermLangId { get; private set; }
+        public long LangId { get; private set; }
+        public int SearchPageNr { get; private set; }
+        public long ItemsPerPage { get; private set; }
+        public bool Current { get; private set; }
+        public bool IsLoading { get; private set; }
+        public RootObject<ResultBaseTranslation>? RootObject { get; private set; }
 
 
         public TranslationsState(bool current, bool isLoading, string searchText, string token, long translationId,

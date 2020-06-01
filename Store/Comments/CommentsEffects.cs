@@ -15,13 +15,7 @@ namespace OriinDic.Store.Comments
     public class CommentsEffects
     {
         private readonly HttpClient _httpClient;
-        private static readonly System.Text.Json.JsonSerializerOptions _options =
-            new System.Text.Json.JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-                IgnoreReadOnlyProperties = true
-            };
+        
 
         public CommentsEffects(HttpClient http)
         {
@@ -107,8 +101,7 @@ namespace OriinDic.Store.Comments
             {
 
                 userResult = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(
-                    requestUri: queryString,
-                    _options);
+                    requestUri: queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {
@@ -127,7 +120,7 @@ namespace OriinDic.Store.Comments
             var url= $"{Const.ApiComments}?translation_id={action.TranslationId}";
 
             
-            var returnData = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url);
+            var returnData = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
 
 
             dispatcher.Dispatch(new CommentsFetchForTranslationResultAction(returnData));

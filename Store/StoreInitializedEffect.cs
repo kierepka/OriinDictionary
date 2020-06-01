@@ -11,16 +11,18 @@ namespace OriinDic.Store
     public class StoreInitializedEffect : Effect<StoreInitializedAction>
     {
         private readonly HttpClient HttpClient;
-        [Inject] protected ISyncLocalStorageService? LocalStorage { get; set; }
+        private readonly ISyncLocalStorageService LocalStorage;
 
-        public StoreInitializedEffect(HttpClient httpClient)
+        public StoreInitializedEffect(HttpClient httpClient, ISyncLocalStorageService localStorage)
         {
             HttpClient = httpClient;
+            LocalStorage = localStorage;
         }
 
         protected override Task HandleAsync(StoreInitializedAction action, IDispatcher dispatcher)
         {
             dispatcher.Dispatch(new LanguagesFetchDataStoreAction(LocalStorage));
+            //dispatcher.Dispatch(new LanguagesFetchDataAction());
             return Task.CompletedTask;
         }
 

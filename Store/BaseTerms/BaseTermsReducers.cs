@@ -11,7 +11,7 @@ namespace OriinDic.Store.BaseTerms
                 baseTerm: baseTermAction.BaseTerm,
                 token: baseTermAction.Token,
                 lastActionState: EActionState.Adding);
-
+        [ReducerMethod]
         public static BaseTermsState ReduceAddResultAction(BaseTermsState state, BaseTermsAddResultAction baseTermAction) =>
             new BaseTermsState(baseTerm: baseTermAction.BaseTerm, lastActionState: EActionState.Added);
 
@@ -20,7 +20,7 @@ namespace OriinDic.Store.BaseTerms
             new BaseTermsState(searchText: action.SearchText, baseTermLangId: action.BaseTermLangId, translationLangId: action.TranslationLangId,
                             searchPageNr: action.SearchPageNr, itemsPerPage: action.ItemsPerPage, current: action.Current,
                             lastActionState: EActionState.FetchingData);
-
+        [ReducerMethod]
         public static BaseTermsState ReduceFetchDataResultAction(BaseTermsState state, BaseTermsFetchDataResultAction action) =>
             new BaseTermsState(rootObject: action.RootObject, lastActionState: EActionState.FetchedData);
 

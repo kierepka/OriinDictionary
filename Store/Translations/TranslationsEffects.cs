@@ -12,13 +12,7 @@ namespace OriinDic.Store.Translations
     public class TranslationsEffects
     {
         private readonly HttpClient _httpClient;
-        private static readonly System.Text.Json.JsonSerializerOptions _options =
-            new System.Text.Json.JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-                IgnoreReadOnlyProperties = true
-            };
+        
 
         public TranslationsEffects(HttpClient http)
         {
@@ -54,8 +48,7 @@ namespace OriinDic.Store.Translations
             {
 
                 translationResult = await _httpClient.GetFromJsonAsync<RootObject<ResultBaseTranslation>>(
-                    requestUri: queryString,
-                    _options);
+                    requestUri: queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {
@@ -70,21 +63,21 @@ namespace OriinDic.Store.Translations
         {
 
             var url = $"{Const.ApiBaseTerms}{action.TranslationId}/";
-            var translation = await _httpClient.GetFromJsonAsync<Translation>(url);
+            var translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
             
             url = $"{Const.ApiBaseTerms}{translation.BaseTermId}/";
-            var baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url);
+            var baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
             var comments = new RootObject<Comment>();
 
             if (!string.IsNullOrEmpty(action.Token))
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
                 url = $"{Const.ApiComments}?translation_id={action.TranslationId}";
-                comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url);
+                comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
             }
 
             url = $"{Const.ApiLinks}?translation_id={action.TranslationId}";
-            var links = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(url);
+            var links = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(url, Const.HttpClientOptions);
             
             dispatcher.Dispatch(new TranslationsFetch4EditResultAction(translation: translation, baseTerm: baseTerm,
                 links: links.Results, comments: comments.Results));
@@ -100,7 +93,7 @@ namespace OriinDic.Store.Translations
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
                 var url = $"{Const.ApiComments}?translation_id={action.TranslationId}";
-                comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url);
+                comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
             }
 
             dispatcher.Dispatch(new TranslationsFetchCommentsResultAction(comments.Results));
@@ -111,7 +104,7 @@ namespace OriinDic.Store.Translations
         {
 
             var url = $"{Const.ApiBaseTerms}{action.BaseTermId}/";
-            var baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url);
+            var baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
             dispatcher.Dispatch(new TranslationsFetchBaseTermResultAction(baseTerm));
         }
 
@@ -121,7 +114,7 @@ namespace OriinDic.Store.Translations
         {
 
             var url = $"{Const.ApiBaseTerms}{action.TranslationId}/";
-            var returnData = await _httpClient.GetFromJsonAsync<Translation>(url);
+            var returnData = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
 
 
             dispatcher.Dispatch(new TranslationsFetchOneResultAction(returnData));

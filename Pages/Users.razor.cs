@@ -23,7 +23,7 @@ namespace OriinDic.Pages
     public partial class Users : DicBasePage
     {
 
-        private int _itemsPerPage = Const.DefaultItemsPerPage;
+        private long _itemsPerPage = Const.DefaultItemsPerPage;
         private RootObject<User>? _localData;
         private int _searchPageNr = 1;
         private bool reloadData = true;

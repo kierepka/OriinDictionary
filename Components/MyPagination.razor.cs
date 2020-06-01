@@ -7,14 +7,13 @@ namespace OriinDic.Components
 {
     public partial class MyPagination : ComponentBase
     {
-        private const string BackName = "prev";
-        private const string NextName = "next";
+        
 
         [Parameter] public long? SearchPageNr { get; set; }
 
-        [Parameter] public long? LastPage { get; set; }
+        [Parameter] public long? TotalPages { get; set; }
 
-        [Parameter] public List<LocalPages>? LocalPages { get; set; }
+        [Parameter] public IEnumerable<LocalPages>? LocalPages { get; set; }
 
         [Parameter] public string? PrevText { get; set; }
 
@@ -35,7 +34,7 @@ namespace OriinDic.Components
 
         private bool GetNextIsDisabled()
         {
-            return SearchPageNr >= LastPage;
+            return SearchPageNr >= TotalPages;
         }
 
         private Color GetNextColor()

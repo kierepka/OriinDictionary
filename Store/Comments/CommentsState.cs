@@ -4,17 +4,17 @@ namespace OriinDic.Store.Comments
 {
     public class CommentsState
     {
-        public EActionState LastActionState { get; }
-        public DeletedObjectResponse? DeleteResponse { get; }
-        public long TranslationId { get; }
-        public long CommentId { get; }
-        public Comment Comment { get; }
-        public string StatusCode { get; }
-        public string Token { get; }
-        public int SearchPageNr { get; }
-        public long ItemsPerPage { get; }
-        public bool IsLoading { get; }
-        public RootObject<Comment> RootObject { get; }
+        public EActionState LastActionState { get; private set; }
+        public DeletedObjectResponse? DeleteResponse { get; private set; }
+        public long TranslationId { get; private set; }
+        public long CommentId { get; private set; }
+        public Comment Comment { get; private set; }
+        public string StatusCode { get; private set; }
+        public string Token { get; private set; }
+        public int SearchPageNr { get; private set; }
+        public long ItemsPerPage { get; private set; }
+        public bool IsLoading { get; private set; }
+        public RootObject<Comment> RootObject { get; private set; }
 
 
 

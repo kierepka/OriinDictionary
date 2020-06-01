@@ -1,12 +1,17 @@
 using Blazorise;
 using Blazorise.Snackbar;
+using Fluxor;
+using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
+using OriinDic.Store.Notifications;
 
 namespace OriinDic.Components
 {
-    public partial class PageHeader : ComponentBase
+    public partial class PageHeader : FluxorComponent
     {
 
+        [Inject]
+        private IState<NotificationsState> State { get; set; }
         private string currentAlertText = string.Empty;
         public PageHeader()
         {
