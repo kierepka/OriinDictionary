@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using OriinDic.Models;
+﻿using OriinDic.Models;
 
 namespace OriinDic.Store.Translations
 {

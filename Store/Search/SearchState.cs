@@ -8,28 +8,28 @@ namespace OriinDic.Store.Search
 {
     public class SearchState
     {
-        public IReadOnlyCollection<SearchItem> SearchItems { get; private set; } = new List<SearchItem>();
-        public long TotalSearchItems { get; private set; } = long.MinValue;
-        public long TotalPages { get; private set; } = long.MinValue;
-        public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } = new List<LocalPages>();
-        public Language CurrentLanguage1 { get; init; } = new Language();
-        public Language CurrentLanguage2 { get; init; } = new Language();
-        public bool ConfirmedResults { get; init; } = false;
-        public bool CurrentBaseLangPl { get; init; } = false;
-        public string ButtonEnColor { get; private set; } = string.Empty;
-        public Color ButtonPlColor { get; private set; } = Color.None;
-        public string NoBaseTermName { get; init; } = string.Empty;
-        public string NoTranslationName { get; init; } = string.Empty;
-        public string NoResults { get; init; } = string.Empty;
-        public EActionState LastActionState { get; init; }
-        public bool Current { get; init; } = false;
-        public long ItemsPerPage { get; init; } = long.MinValue;
-        public long SearchPageNr { get; init; } = long.MinValue;
-        public long TranslationLangId { get; init; } = long.MinValue;
-        public long BaseTermLangId { get; init; } = long.MinValue;
-        public string SearchText { get; init; } = string.Empty;
-        public bool IsLoading { get; init; } = false;
-        public bool PaginationShow { get; private set; } = false;
+        public IReadOnlyCollection<SearchItem> SearchItems { get; private set; } 
+        public long TotalSearchItems { get; private set; }
+        public long TotalPages { get; private set; }
+        public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } 
+        public Language CurrentLanguage1 { get; private set; }
+        public Language CurrentLanguage2 { get; private set; } 
+        public bool ConfirmedResults { get; private set; } 
+        public bool CurrentBaseLangPl { get; private set; } 
+        public string ButtonEnColor { get; private set; } 
+        public Color ButtonPlColor { get; private set; } 
+        public string NoBaseTermName { get; private set; } 
+        public string NoTranslationName { get; private set; } 
+        public string NoResults { get; private set; } 
+        public EActionState LastActionState { get; private set; }
+        public bool Current { get; private set; } 
+        public long ItemsPerPage { get; private set; } 
+        public long SearchPageNr { get; private set; } 
+        public long TranslationLangId { get; private set; } 
+        public long BaseTermLangId { get; private set; } 
+        public string SearchText { get; private set; } 
+        public bool IsLoading { get; private set; } 
+        public bool PaginationShow { get; private set; } 
 
         public SearchState(IEnumerable<SearchItem> searchItems, Language currentLanguage1, Language currentLanguage2,
             bool confirmedResults, bool currentBaseLangPl, string buttonEnColor, Color buttonPlColor, long searchPageNr,
@@ -49,6 +49,17 @@ namespace OriinDic.Store.Search
             SearchItems = (searchItems ?? Array.Empty<SearchItem>()).ToList().AsReadOnly();
             CheckButtonColors();
             IsLoading = false;
+
+
+            TotalSearchItems = long.MinValue;
+            TotalPages = long.MinValue;
+            LocalPages = new List<LocalPages>();
+            Current = false;
+            ItemsPerPage = long.MinValue;
+            TranslationLangId = long.MinValue;
+            BaseTermLangId = long.MinValue;
+            SearchText = string.Empty;
+            PaginationShow = false;
         }
 
         public SearchState(string searchText, long baseTermLangId, long translationLangId, long searchPageNr,
@@ -62,6 +73,21 @@ namespace OriinDic.Store.Search
             ItemsPerPage = itemsPerPage;
             Current = current;
             LastActionState = lastActionState;
+
+            SearchItems = new List<SearchItem>();
+            TotalSearchItems = long.MinValue;
+            TotalPages = long.MinValue;
+            LocalPages = new List<LocalPages>();
+            CurrentLanguage1 = new Language();
+            CurrentLanguage2 = new Language();
+            ConfirmedResults = false;
+            CurrentBaseLangPl = false;
+            ButtonEnColor = string.Empty;
+            ButtonPlColor = Color.None;
+            NoBaseTermName = string.Empty;
+            NoTranslationName = string.Empty;
+            NoResults = string.Empty;           
+            PaginationShow = false;
         }
 
         public SearchState(SearchState s, string pageActionName)
@@ -83,11 +109,42 @@ namespace OriinDic.Store.Search
             LocalPages = s.LocalPages;
             PaginationShow = s.PaginationShow;
 
+            Current = false;
+            ItemsPerPage = long.MinValue;
+            SearchPageNr = long.MinValue;
+            TranslationLangId = long.MinValue;
+            BaseTermLangId = long.MinValue;
+            SearchText = string.Empty;
+            IsLoading = false;
+
         }
         public SearchState(RootObject<ResultBaseTranslation> rootObject, EActionState lastActionState)
         {
             LastActionState = lastActionState;
             IsLoading = false;
+           
+
+            SearchItems = new List<SearchItem>();
+            TotalSearchItems = long.MinValue;
+            TotalPages = long.MinValue;
+            LocalPages = new List<LocalPages>();
+            CurrentLanguage1 = new Language();
+            CurrentLanguage2 = new Language();
+            ConfirmedResults = false;
+            CurrentBaseLangPl = false;
+            ButtonEnColor = string.Empty;
+            ButtonPlColor = Color.None;
+            NoBaseTermName = string.Empty;
+            NoTranslationName = string.Empty;
+            NoResults = string.Empty;
+            Current = false;
+            ItemsPerPage = long.MinValue;
+            SearchPageNr = long.MinValue;
+            TranslationLangId = long.MinValue;
+            BaseTermLangId = long.MinValue;
+            SearchText = string.Empty;
+            PaginationShow = false;
+
             UpdateTempData(rootObject);
             CheckButtonColors();
         }

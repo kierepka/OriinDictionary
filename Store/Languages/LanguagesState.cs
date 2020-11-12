@@ -8,9 +8,9 @@ namespace OriinDic.Store.Languages
 {
     public class LanguagesState
     {
-        public EActionState LastActionState { get; init; }
-        public bool IsLoading { get; init; } = false;
-        public IEnumerable<Language> Languages { get; init; } = new List<Language>();
+        public EActionState LastActionState { get; private set; }
+        public bool IsLoading { get; private set; }
+        public IEnumerable<Language> Languages { get; private set; } 
 
         public LanguagesState(bool isLoading, IEnumerable<Language> languages, EActionState lastActionState)
         {

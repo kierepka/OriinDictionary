@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-using Blazored.LocalStorage;
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Components;
@@ -11,6 +11,7 @@ using OriinDic.Models;
 using OriinDic.Store;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Translations;
+
 using Toolbelt.Blazor.SpeechSynthesis;
 
 namespace OriinDic.Pages

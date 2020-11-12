@@ -1,23 +1,22 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-
+﻿
 using OriinDic.Models;
 
 namespace OriinDic.Store.Links
 {
     public class LinksState
     {
-        public EActionState LastActionState { get; init; }
-        public long BaseTermId { get; init; } = long.MinValue;
-        public string Token { get; init; } = string.Empty;
-        public int SearchPageNr { get; init; } = int.MinValue;
-        public long ItemsPerPage { get; init; } = long.MinValue;
-        public bool IsLoading { get; init; } = false;
-        public RootObject<OriinLink> RootObject { get; init; } = new RootObject<OriinLink>();
+        public EActionState LastActionState { get; private set; }
+        public long BaseTermId { get; private set; } 
+        public string Token { get; private set; } 
+        public int SearchPageNr { get; private set; } 
+        public long ItemsPerPage { get; private set; } 
+        public bool IsLoading { get; private set; } 
+        public RootObject<OriinLink> RootObject { get; private set; } 
 
-        public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
-        public string StatusCode { get; init; } = string.Empty;
-        public long LinkId { get; init; } = long.MinValue;
-        public OriinLink Link { get; init; } = new OriinLink();
+        public DeletedObjectResponse DeleteResponse { get; private set; } 
+        public string StatusCode { get; private set; } 
+        public long LinkId { get; private set; } 
+        public OriinLink Link { get; private set; }
 
 
         public LinksState(bool isLoading, int searchPageNr, long itemsPerPage, string token, string statusCode,
@@ -33,6 +32,10 @@ namespace OriinDic.Store.Links
             RootObject = rootObject;
             DeleteResponse = deleteResponse;
             LastActionState = EActionState.Initialized;
+
+            BaseTermId = long.MinValue;
+            LinkId = long.MinValue;
+
         }
 
         public LinksState(bool isLoading, RootObject<OriinLink> rootObject, EActionState lastActionState)
@@ -40,6 +43,15 @@ namespace OriinDic.Store.Links
             IsLoading = isLoading;
             LastActionState = lastActionState;
             RootObject = rootObject ?? new RootObject<OriinLink>();
+
+            BaseTermId = long.MinValue;
+            Token = string.Empty;
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
+            Link = new OriinLink();
         }
 
         public LinksState(string token, int searchPageNr, long itemsPerPage, EActionState lastActionState)
@@ -49,6 +61,15 @@ namespace OriinDic.Store.Links
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
             LastActionState = lastActionState;
+
+            BaseTermId = long.MinValue;
+            RootObject = new RootObject<OriinLink>();
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
+            Link = new OriinLink();
+
+
         }
 
         public LinksState(int searchPageNr, long itemsPerPage, EActionState lastActionState)
@@ -56,6 +77,16 @@ namespace OriinDic.Store.Links
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
             LastActionState = lastActionState;
+
+            BaseTermId = long.MinValue;
+            Token = string.Empty;
+            IsLoading = false;
+            RootObject = new RootObject<OriinLink>();
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
+            Link = new OriinLink();
+
         }
         public LinksState(OriinLink link, string token, bool tokenAdd, EActionState lastActionState)
         {
@@ -63,6 +94,15 @@ namespace OriinDic.Store.Links
             Token = token;
             LastActionState = lastActionState;
             Link = link ?? new OriinLink();
+
+            BaseTermId = long.MinValue;
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            IsLoading = false;
+            RootObject = new RootObject<OriinLink>();
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
         }
 
         public LinksState(OriinLink link, string statusCode, EActionState lastActionState)
@@ -71,6 +111,14 @@ namespace OriinDic.Store.Links
             StatusCode = statusCode;
             LastActionState = lastActionState;
             Link = link ?? new OriinLink();
+
+            BaseTermId = long.MinValue;
+            Token = string.Empty;
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            RootObject = new RootObject<OriinLink>();
+            DeleteResponse = new DeletedObjectResponse();
+            LinkId = long.MinValue;
         }
 
         
@@ -80,6 +128,16 @@ namespace OriinDic.Store.Links
             IsLoading = true;
             LinkId = linkId;
             LastActionState = lastActionState;
+
+            BaseTermId = long.MinValue;
+            Token = string.Empty;
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            IsLoading = false;
+            RootObject = new RootObject<OriinLink>();
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            Link = new OriinLink();
         }
 
 
@@ -89,6 +147,17 @@ namespace OriinDic.Store.Links
             IsLoading = false;
             DeleteResponse = deleteResponse;
             LastActionState = lastActionState;
+
+            BaseTermId = long.MinValue;
+            Token = string.Empty;
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            IsLoading = false;
+            RootObject = new RootObject<OriinLink>();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
+            Link = new OriinLink();
+
         }
 
         public LinksState(RootObject<OriinLink> rootObject, EActionState lastActionState)
@@ -96,6 +165,15 @@ namespace OriinDic.Store.Links
             IsLoading = false;
             RootObject = rootObject;
             LastActionState = lastActionState;
+
+            BaseTermId = long.MinValue;
+            Token = string.Empty;
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
+            Link = new OriinLink();
         }
 
         public LinksState(long baseTermId, string token, EActionState lastActionState)
@@ -104,6 +182,14 @@ namespace OriinDic.Store.Links
             BaseTermId = baseTermId;
             LastActionState = lastActionState;
             Token = token;
+
+            SearchPageNr = int.MinValue;
+            ItemsPerPage = long.MinValue;
+            RootObject = new RootObject<OriinLink>();
+            DeleteResponse = new DeletedObjectResponse();
+            StatusCode = string.Empty;
+            LinkId = long.MinValue;
+            Link = new OriinLink();
         }
 
     }

@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using OriinDic.Services;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using OriinDic.Helpers;
 using Toolbelt.Blazor.I18nText;
 
 namespace OriinDic
