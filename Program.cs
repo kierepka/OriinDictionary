@@ -13,6 +13,7 @@ using OriinDic.Services;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Toolbelt.Blazor.I18nText;
+using OriinDic.Helpers;
 
 namespace OriinDic
 {
@@ -26,7 +27,9 @@ namespace OriinDic
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            
+
+
+       
 
             builder.Services
                 .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })
@@ -50,18 +53,13 @@ namespace OriinDic
             builder.Services.AddSpeechSynthesis();
 
 
-            builder.Services.AddFluxor(options =>
-            {
-                options
-                    .ScanAssemblies(typeof(Program).Assembly);
-                    //.UseReduxDevTools(); // For ReduxDevTool support. Recommended to remove this on Production
-            });
-
-            //builder.Services.AddFluxor(o => o
-            //    .ScanAssemblies(typeof(Program).Assembly)
-            //    .UseReduxDevTools()
-            //    .AddMiddleware<LoggingMiddleware>()
-            //    .UseRouting());
+            
+            
+            builder.Services.AddFluxor(o => o
+                .ScanAssemblies(typeof(Program).Assembly)
+                .UseReduxDevTools()
+                .AddMiddleware<LoggingMiddleware>()
+                .UseRouting());
            
 
             builder.RootComponents.Add<App>("app");
