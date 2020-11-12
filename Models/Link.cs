@@ -10,19 +10,20 @@ namespace OriinDic.Models
         }
 
         [JsonPropertyName("approved")]
-        public bool Approved { get; set; }
+        public bool Approved { get; set; } = false;
 
         [JsonPropertyName("base_term_id")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
-        public long BaseTermId { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public long? BaseTermId { get; set; }
 
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public long Id { get; set; } = long.MinValue;
 
         [JsonPropertyName("link")]
-        public string Link { get; set; }
+        public string Link { get; set; } = string.Empty;
+
         [JsonPropertyName("translation_id")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
-        public long TranslationId { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public long? TranslationId { get; set; }
     }
 }

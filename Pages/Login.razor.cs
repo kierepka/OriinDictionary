@@ -18,32 +18,24 @@ namespace OriinDic.Pages
         {
         }
 
-        public Login(Toolbelt.Blazor.I18nText.I18nText i18NText,
-            IAuthService authService,
-            NavigationManager navigationManager
-        ) : this()
-        {
-            I18NText = i18NText;
-            AuthService = authService;
-            NavigationManager = navigationManager;
-        }
-
-        [Inject] private IAuthService AuthService { get; set; }
-        [Inject] private NavigationManager NavigationManager { get; set; }
+        [Inject] private IAuthService? AuthService { get; set; }
+        [Inject] private NavigationManager? NavigationManager { get; set; }
 
         private async Task HandleLogin()
         {
             isLoading = true;
+            if (AuthService is null) return;
+
             var result = await AuthService.Login(_loginModel);
 
-            if (!(MyText is null)) 
-                if (result.Successful)
-                    NavigationManager.NavigateTo("/");
-                else
-                    ShowAlert(MyText.loginError + result.Error);
+
+            if (result.Successful)
+                NavigationManager?.NavigateTo("/");
+            else
+                ShowAlert((MyText?.loginError ?? string.Empty) + result.Error);
 
             isLoading = false;
         }
 
     }
-}
+}                                    

@@ -38,7 +38,7 @@ namespace OriinDic.Store.Users
             }
 
 
-            dispatcher.Dispatch(new UsersAddResultAction(returnData, returnString));
+            dispatcher.Dispatch(new UsersAddResultAction(returnData ?? new User(), returnString));
         }
 
         [EffectMethod]
@@ -59,7 +59,7 @@ namespace OriinDic.Store.Users
             }
 
 
-            dispatcher.Dispatch(new UsersAddResultAction(returnData, returnString));
+            dispatcher.Dispatch(new UsersAddResultAction(returnData ?? new User(), returnString));
         }
 
         [EffectMethod]
@@ -89,21 +89,26 @@ namespace OriinDic.Store.Users
                         response.StatusCode == HttpStatusCode.NoContent ||
                         response.StatusCode == HttpStatusCode.OK)
                     {
-                        returnObject.Deleted = true;
+                        if (!(returnObject is null))
+                            returnObject.Deleted = true;
                     }
                     else
                     {
-                        returnObject.Deleted = false;
-                        returnObject.Detail = $"Error: {response.StatusCode}";
+                        if (!(returnObject is null))
+                        {
+                            returnObject.Deleted = false;
+                            returnObject.Detail = $"Error: {response.StatusCode}";
+                        }
                     }
                 }
             }
             catch (Exception e)
             {
-                returnObject.Detail = $"Error {e}";
+                if (!(returnObject is null))
+                    returnObject.Detail = $"Error {e}";
             }
 
-            dispatcher.Dispatch(new UsersDeleteResultAction(returnObject));
+            dispatcher.Dispatch(new UsersDeleteResultAction(returnObject ?? new DeletedObjectResponse()));
         }
 
         [EffectMethod]
@@ -126,7 +131,7 @@ namespace OriinDic.Store.Users
                 var a = e;
             }
 
-            dispatcher.Dispatch(new UsersFetchDataResultAction(userResult));
+            dispatcher.Dispatch(new UsersFetchDataResultAction(userResult ?? new RootObject<User>()));
         }
 
         [EffectMethod]
@@ -137,7 +142,7 @@ namespace OriinDic.Store.Users
             var returnData = await _httpClient.GetFromJsonAsync<User>(url, Const.HttpClientOptions);
 
 
-            dispatcher.Dispatch(new UsersFetchOneResultAction(returnData));
+            dispatcher.Dispatch(new UsersFetchOneResultAction(returnData ?? new User()));
         }
 
 
@@ -153,7 +158,7 @@ namespace OriinDic.Store.Users
             var returnData = await response.Content.ReadFromJsonAsync<User>();
 
 
-            dispatcher.Dispatch(new UsersUpdateResultAction(returnData));
+            dispatcher.Dispatch(new UsersUpdateResultAction(returnData ?? new User()));
         }
     }
 }

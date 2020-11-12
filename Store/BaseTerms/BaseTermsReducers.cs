@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using OriinDic.Models;
 
 namespace OriinDic.Store.BaseTerms
 {
@@ -13,7 +14,7 @@ namespace OriinDic.Store.BaseTerms
                 lastActionState: EActionState.Adding);
         [ReducerMethod]
         public static BaseTermsState ReduceAddResultAction(BaseTermsState state, BaseTermsAddResultAction baseTermAction) =>
-            new BaseTermsState(baseTerm: baseTermAction.BaseTerm, lastActionState: EActionState.Added);
+            new BaseTermsState(baseTerm: baseTermAction.BaseTerm ?? new Models.BaseTerm(), lastActionState: EActionState.Added);
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchDataAction(BaseTermsState state, BaseTermsFetchDataAction action) =>
@@ -22,7 +23,7 @@ namespace OriinDic.Store.BaseTerms
                             lastActionState: EActionState.FetchingData);
         [ReducerMethod]
         public static BaseTermsState ReduceFetchDataResultAction(BaseTermsState state, BaseTermsFetchDataResultAction action) =>
-            new BaseTermsState(rootObject: action.RootObject, lastActionState: EActionState.FetchedData);
+            new BaseTermsState(rootObject: action.RootObject ?? new Models.RootObject<Models.ResultBaseTranslation>(), lastActionState: EActionState.FetchedData);
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneAction(BaseTermsState state, BaseTermsFetchOneAction action) =>
@@ -30,7 +31,8 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneResultAction(BaseTermsState state, BaseTermsFetchOneResultAction action) =>
-            new BaseTermsState(baseTerm: action.BaseTerm, lastActionState: EActionState.FetchedOne);
+            new BaseTermsState(resultBaseTranslation: action.BaseTranslation ?? new ResultBaseTranslation(), lastActionState: EActionState.FetchedOne);
+
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneSlugAction(BaseTermsState state, BaseTermsFetchOneSlugAction action) =>

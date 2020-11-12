@@ -4,7 +4,7 @@ namespace OriinDic.Models
 {
     public class LocalPages
     {
-        public long Number { get; set; }
+        public long Number { get; set; } = long.MinValue;
 
         public string Name => Number == 0 ? "[..]" : Number.ToString();
 

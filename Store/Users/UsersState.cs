@@ -4,23 +4,23 @@ namespace OriinDic.Store.Users
 {
     public class UsersState
     {
-        public EActionState LastActionState { get; private set; }
-        public UserAdd UserAdd { get; private set; }
-        public DeletedObjectResponse? DeleteResponse { get; private set; }
-        public long UserId { get; private set; }
-        public User? User { get; private set; }
-        public string StatusCode { get; private set; }
+        public EActionState LastActionState { get; init; }
+        public UserAdd UserAdd { get; init; } = new UserAdd();
+        public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
+        public long UserId { get; init; } = long.MinValue;
+        public User User { get; init; } = new User();
+        public string StatusCode { get; init; } = string.Empty;
 
-        public UserUpdate? UserUpdate { get; private set; }
-        public string Token { get; private set; }
-        public int SearchPageNr { get; private set; }
-        public long ItemsPerPage { get; private set; }
-        public bool IsLoading { get; private set; }
-        public RootObject<User>? RootObject { get; private set; }
+        public UserUpdate UserUpdate { get; init; } = new UserUpdate();
+        public string Token { get; init; } = string.Empty;
+        public int SearchPageNr { get; init; } = int.MinValue;
+        public long ItemsPerPage { get; init; } = long.MinValue;
+        public bool IsLoading { get; init; } = false;
+        public RootObject<User> RootObject { get; init; } = new RootObject<User>();
 
 
         public UsersState(bool isLoading, int searchPageNr, long itemsPerPage, long userId, string token, string statusCode,
-            User? user, UserAdd? userAdd, UserUpdate? userUpdate, RootObject<User>? rootObject, DeletedObjectResponse? deleteResponse)
+            User user, UserAdd userAdd, UserUpdate userUpdate, RootObject<User> rootObject, DeletedObjectResponse deleteResponse)
         {
             LastActionState = EActionState.Initializing;
             IsLoading = isLoading;

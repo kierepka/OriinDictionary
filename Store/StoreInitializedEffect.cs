@@ -21,7 +21,7 @@ namespace OriinDic.Store
 
         protected override Task HandleAsync(StoreInitializedAction action, IDispatcher dispatcher)
         {
-            dispatcher.Dispatch(new LanguagesFetchDataStoreAction(LocalStorage));
+            //dispatcher.Dispatch(new LanguagesFetchDataStoreAction(LocalStorage));
             //dispatcher.Dispatch(new LanguagesFetchDataAction());
             return Task.CompletedTask;
         }

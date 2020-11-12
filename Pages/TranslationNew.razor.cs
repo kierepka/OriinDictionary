@@ -18,62 +18,68 @@ namespace OriinDic.Pages
     public partial class TranslationNew : DicBasePage
     {
 
-        [Inject] private IState<TranslationsState> TranslationsState { get; set; }
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
-        [Inject] private IDispatcher Dispatcher { get; set; }
-
+        [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
+        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
         private Translation? _oldTranslation;
-
-
-        public TranslationNew() : base()
-        {
-            Translation = new Translation();
-        }
-
-        public TranslationNew(ISyncLocalStorageService localStorage,
-            Toolbelt.Blazor.I18nText.I18nText i18NText
-        ) : this()
-        {
-            LocalStorage = localStorage;
-            I18NText = i18NText;
-        }
 
         public BaseTerm? BaseTerm { get; set; }
         public string BaseTermInformation { get; set; } = string.Empty;
 
         public string Information { get; set; } = string.Empty;
 
-        public Translation? Translation { get; set; }
+        public Translation? Translation { get; set; } = new Translation();
+        [Parameter] public long BaseTermId { get; set; }
+
+
+        public TranslationNew() : base()
+        {
+         
+        }
+
+
+
 
 
         private string BaseTermLanguage
         {
             get
-            {
-                if (TranslationsState.Value.BaseTerm is null) return Const.PlLangShortcut;
-                return LocalStorage is null ? Const.PlLangShortcut : LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTerm.LanguageId);
+            {              
+                var retVal = Const.PlLangShortcut;
+                if (TranslationsState is null) return retVal;
+                if (TranslationsState.Value.BaseTerm is null) return retVal;
+                if (LocalStorage is null) return retVal;
+                if (LanguagesState is null) return retVal;
+
+                return LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTerm.LanguageId);
             }
         }
 
-        [Parameter] public long BaseTermId { get; set; }
-        [Inject] SpeechSynthesis SpeechSynthesis { get; set; }
+  
+
         private string TranslationLanguage
         {
             get
             {
-                if (TranslationsState.Value.Translation is null) return Const.PlLangShortcut;
-                return LocalStorage is null ? Const.PlLangShortcut : LanguagesState.Value.GetLanguageName(TranslationsState.Value.Translation.LanguageId);
+                var retVal = Const.PlLangShortcut;
+                if (TranslationsState is null) return retVal;
+                if (TranslationsState.Value.Translation is null) return retVal;
+                if (LocalStorage is null) return retVal;
+                if (LanguagesState is null) return retVal;
+
+                return LanguagesState.Value.GetLanguageName(TranslationsState.Value.Translation.LanguageId);
             }
         }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            if (!LanguagesState?.Value.Languages.Any() ?? true)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
-            Dispatcher.Dispatch(new TranslationsFetchBaseTermAction(BaseTermId));
-            TranslationsState.StateChanged += TranslationsState_StateChanged;
+            Dispatcher?.Dispatch(new TranslationsFetchBaseTermAction(BaseTermId));
+            if (TranslationsState != null) TranslationsState.StateChanged += TranslationsState_StateChanged;
         }
 
         private void TranslationsState_StateChanged(object sender, TranslationsState e)
@@ -87,7 +93,7 @@ namespace OriinDic.Pages
 
             if (e.LastActionState != EActionState.Saved) return;
 
-            if (TranslationsState.Value.BaseTerm is null) return;
+            if (TranslationsState?.Value.BaseTerm is null) return;
             BaseTerm = TranslationsState.Value.BaseTerm;
             _oldTranslation = Translation;
             CreateInformation();
@@ -163,7 +169,7 @@ namespace OriinDic.Pages
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
                 Volume = 1.0 // 0.0 ~ 1.0 (Default 1.0)
             };
-            SpeechSynthesis.Speak(utterancet);
+            SpeechSynthesis?.Speak(utterancet);
         }
 
         private void OnSpeachPlClicked()
@@ -177,7 +183,7 @@ namespace OriinDic.Pages
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
                 Volume = 1.0 // 0.0 ~ 1.0 (Default 1.0)
             };
-            SpeechSynthesis.Speak(utterancet);
+            SpeechSynthesis?.Speak(utterancet);
         }
     }
 }

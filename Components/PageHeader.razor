@@ -5,23 +5,26 @@
 {
     <Button IsLoading="@IsLoading">@LoadingText</Button>
 }
-@if (!string.IsNullOrEmpty(State.Value.Notification))
+@if (!string.IsNullOrEmpty(State?.Value.Notification))
 {
     <Snackbar Color="SnackbarColor.Info" @ref="MyAlert" Location="SnackbarLocation.Right">
         @State.Value.Notification
     </Snackbar>
 }
 
-<Alert Color="Color.Info" @ref="MyAlertYesNo" Dismisable="false">
-    <Heading Size="HeadingSize.Is4" TextColor="TextColor.Danger">
-        @CurrentAlertHeader
-        <CloseButton />
-    </Heading>
-    <Paragraph>
-        @CurrentAlertText
-    </Paragraph>
-    <Paragraph>
-        <Button Color="Color.Warning">@CurrentAlertOk</Button>
-        <Button Color="Color.Info">@CurrentAlertCancel</Button>
-    </Paragraph>
-</Alert>
+@if (!string.IsNullOrEmpty(CurrentAlertText))
+{
+    <Alert Color="Color.Info" @ref="MyAlertYesNo" Dismisable="false">
+        <Heading Size="HeadingSize.Is4" TextColor="TextColor.Danger">
+            @CurrentAlertHeader
+            <CloseButton />
+        </Heading>
+        <Paragraph>
+            @CurrentAlertText
+        </Paragraph>
+        <Paragraph>
+            <Button Color="Color.Warning">@CurrentAlertOk</Button>
+            <Button Color="Color.Info">@CurrentAlertCancel</Button>
+        </Paragraph>
+    </Alert>
+}

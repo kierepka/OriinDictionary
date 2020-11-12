@@ -3,7 +3,7 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@TranslationsState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
+<PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
 
 
 @if (@Translation is null)

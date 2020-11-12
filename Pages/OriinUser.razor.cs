@@ -17,12 +17,15 @@ namespace OriinDic.Pages
     public partial class OriinUser : DicBasePage
     {
 
-        [Inject] private IState<UsersState> UserState { get; set; }
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
+        [Inject] private IState<UsersState>? UserState { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
-        [Inject]  private IDispatcher Dispatcher { get; set; }
+        [Inject]  private IDispatcher? Dispatcher { get; set; }
 
-        
+        [Parameter] public long UserId { get; set; }
+
+        [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
+
         private List<Language> _coordinatingLanguages = new List<Language>();
 
         private string _languageSet = string.Empty;
@@ -33,35 +36,18 @@ namespace OriinDic.Pages
         }
 
 
-        public OriinUser(ISyncLocalStorageService localStorage,
-            Toolbelt.Blazor.I18nText.I18nText i18NText,
-            IAuthService authService,
-            NavigationManager navigationManager,
-            AuthenticationStateProvider authenticationStateProvider
-        ) : this()
-        {
-            LocalStorage = localStorage;
-            I18NText = i18NText;
-            AuthService = authService;
-            NavigationManager = navigationManager;
-            AuthenticationStateProvider = authenticationStateProvider;
-        }
 
         public User _user { get; set; } = new User();
         public bool IsSuperUser { get; set; }
    
-        [Parameter] public long UserId { get; set; }
 
-        [Inject] private IAuthService? AuthService { get; set; }
-        [Inject] private NavigationManager? NavigationManager { get; set; }
-        [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            if (LanguagesState is null)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             Token? token = null;
 
@@ -70,7 +56,7 @@ namespace OriinDic.Pages
                 token = LocalStorage.GetItem<Token>(Const.TokenKey);
             }
 
-            if (token != null) Dispatcher.Dispatch(new UsersFetchOneAction(UserId, token.AuthToken));
+            if (token != null) Dispatcher?.Dispatch(new UsersFetchOneAction(UserId, token.AuthToken));
 
 
 
@@ -90,6 +76,8 @@ namespace OriinDic.Pages
         {
             if (MyText is null) return;
             if (LocalStorage is null) return;
+
+            if (LanguagesState is null) return;
 
             _languageSet = user.LanguageId.HasValue ? LanguagesState.Value.GetLanguageName(user.LanguageId.Value) : MyText.noData;
 

@@ -40,7 +40,7 @@ namespace OriinDic.Store.Comments
             }
 
 
-            dispatcher.Dispatch(new CommentsAddResultAction(returnData, returnString));
+            dispatcher.Dispatch(new CommentsAddResultAction(returnData ?? new Comment(), returnString));
         }
 
 
@@ -71,21 +71,26 @@ namespace OriinDic.Store.Comments
                         response.StatusCode == HttpStatusCode.NoContent ||
                         response.StatusCode == HttpStatusCode.OK)
                     {
-                        returnObject.Deleted = true;
+                        if (!(returnObject is null))
+                            returnObject.Deleted = true;
                     }
                     else
                     {
-                        returnObject.Deleted = false;
-                        returnObject.Detail = $"Error: {response.StatusCode}";
+                        if (!(returnObject is null))
+                        {
+                            returnObject.Deleted = false;
+                            returnObject.Detail = $"Error: {response.StatusCode}";
+                        }
                     }
                 }
             }
             catch (Exception e)
             {
-                returnObject.Detail = $"Error {e}";
+                if (!(returnObject is null))
+                    returnObject.Detail = $"Error {e}";
             }
 
-            dispatcher.Dispatch(new CommentsDeleteResultAction(returnObject));
+            dispatcher.Dispatch(new CommentsDeleteResultAction(returnObject ?? new DeletedObjectResponse()));
         }
 
         [EffectMethod]
@@ -95,8 +100,12 @@ namespace OriinDic.Store.Comments
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme: "Token", action.Token);
 
             var userResult = new RootObject<Comment>();
-            var queryString =
-                $"{Const.ApiComments}?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
+
+            var queryString = Const.ApiComments;
+
+            if (action.ItemsPerPage!=0 && action.SearchPageNr!=0)
+                queryString += $"?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
+
             try
             {
 
@@ -108,7 +117,7 @@ namespace OriinDic.Store.Comments
                 var a = e;
             }
 
-            dispatcher.Dispatch(new CommentsFetchDataResultAction(userResult));
+            dispatcher.Dispatch(new CommentsFetchDataResultAction(userResult ?? new RootObject<Comment>()));
         }
 
 
@@ -123,7 +132,7 @@ namespace OriinDic.Store.Comments
             var returnData = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
 
 
-            dispatcher.Dispatch(new CommentsFetchForTranslationResultAction(returnData));
+            dispatcher.Dispatch(new CommentsFetchForTranslationResultAction(returnData ?? new RootObject<Comment>()));
         }
 
  

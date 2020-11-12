@@ -38,7 +38,7 @@ namespace OriinDic.Store.Links
             }
 
 
-            dispatcher.Dispatch(new LinksAddResultAction(returnData, returnString));
+            dispatcher.Dispatch(new LinksAddResultAction(returnData ?? new OriinLink(), returnString));
         }
 
 
@@ -69,21 +69,48 @@ namespace OriinDic.Store.Links
                         response.StatusCode == HttpStatusCode.NoContent ||
                         response.StatusCode == HttpStatusCode.OK)
                     {
-                        returnObject.Deleted = true;
+                        if (!(returnObject is null))
+                            returnObject.Deleted = true;
                     }
                     else
                     {
-                        returnObject.Deleted = false;
-                        returnObject.Detail = $"Error: {response.StatusCode}";
+                        if (!(returnObject is null))
+                        {
+                            returnObject.Deleted = false;
+                            returnObject.Detail = $"Error: {response.StatusCode}";
+                        }
                     }
                 }
             }
             catch (Exception e)
             {
-                returnObject.Detail = $"Error {e}";
+                if (!(returnObject is null))
+                    returnObject.Detail = $"Error {e}";
             }
 
-            dispatcher.Dispatch(new LinksDeleteResultAction(returnObject));
+            dispatcher.Dispatch(new LinksDeleteResultAction(returnObject ?? new DeletedObjectResponse()));
+        }
+
+        [EffectMethod]
+        public async Task HandleFetchBaseTermAction(LinksFetchForBaseTermAction action, IDispatcher dispatcher)
+        {
+            var userResult = new RootObject<OriinLink>();
+            
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme: "Token", action.Token);
+
+            var queryString = $"{Const.ApiLinks}?base_term_id={action.BaseTermId}";
+            try
+            {
+
+                userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
+                    requestUri: queryString, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                var a = e;
+            }
+
+            dispatcher.Dispatch(new LinksFetchForBaseTermResultAction(userResult ?? new RootObject<OriinLink>() ));
         }
 
         [EffectMethod]
@@ -107,11 +134,8 @@ namespace OriinDic.Store.Links
                 var a = e;
             }
 
-            dispatcher.Dispatch(new LinksFetchDataResultAction(userResult));
+            dispatcher.Dispatch(new LinksFetchDataResultAction(userResult ?? new RootObject<OriinLink>()));
         }
-
-
-       
 
  
     }

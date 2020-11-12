@@ -9,32 +9,45 @@ namespace OriinDic.Models
     public class Translation
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public long Id { get; set; } = long.MinValue;
+
         [JsonPropertyName("base_term_id")]
-        public long BaseTermId { get; set; }
+        public long BaseTermId { get; set; } = long.MinValue;
+
         [JsonPropertyName("language_id")]
-        public long LanguageId { get; set; }
+        public long LanguageId { get; set; } = long.MinValue;
+
         [JsonPropertyName("current")]
-        public bool Current { get; set; }
+        public bool Current { get; set; } = false;
+
         [JsonPropertyName("name")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
         public string Name { get; set; } = string.Empty;
+
         [JsonPropertyName("synonyms")] 
         public List<string> Synonyms { get; set; } = new List<string>();
+
         [JsonPropertyName("examples")] 
         public List<string> Examples { get; set; } = new List<string>();
+
         [JsonPropertyName("definition")]
         public string Definition { get; set; } = string.Empty;
+
         [JsonPropertyName("last_edit")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)] 
-        public TranslationLastEdit LastEdit { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public TranslationLastEdit LastEdit { get; set; } = new TranslationLastEdit();
+
         [JsonPropertyName("last_approval")]
-        public TranslationApproval LastApproval { get; set; }
+        public TranslationApproval LastApproval { get; set; } = new TranslationApproval();
+
+
         [JsonPropertyName("last_edit_id")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public long? LastEditId { get; set; }
-        [JsonPropertyName("last_approval_id")] 
+
+        [JsonPropertyName("last_approval_id")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public long? LastApprovalId { get; set; } 
 
         public Translation()
@@ -43,7 +56,6 @@ namespace OriinDic.Models
         }
 
 
-        private List<Synonym> _synonyms = new List<Synonym>();
         public List<Synonym> GetSynonyms()
         {
             return Synonyms.Select(s => new Synonym(s)).ToList();
@@ -57,7 +69,6 @@ namespace OriinDic.Models
             }
         }
 
-        private List<Example> _examples = new List<Example>();
         public List<Example> GetExamples()
         {
             return Examples.Select(e => new Example(e)).ToList();

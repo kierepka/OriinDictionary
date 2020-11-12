@@ -1,5 +1,7 @@
 ﻿using Fluxor;
 
+using OriinDic.Models;
+
 namespace OriinDic.Store.Translations
 {
     public static class TranslationsReducers

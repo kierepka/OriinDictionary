@@ -8,6 +8,7 @@ using OriinDic.Helpers;
 using Text = OriinDic.I18nText.Text;
 
 
+
 namespace OriinDic.Components
 {
     public partial class MainLayout : LayoutComponentBase
@@ -22,24 +23,15 @@ namespace OriinDic.Components
         {
         }
 
-        public MainLayout(Toolbelt.Blazor.I18nText.I18nText i18NText,
-            ISyncLocalStorageService localStorage) : this()
-        {
-            I18NText = i18NText ?? throw new ArgumentNullException(nameof(i18NText));
-            LocalStorage = localStorage ?? throw new ArgumentNullException(nameof(localStorage));
-        }
 
-        [Parameter] public BarDropdownToggle DropDownToggle { get; set; }
+        [Parameter] public BarDropdownToggle? DropDownToggle { get; set; }
 
-        [Inject] private Toolbelt.Blazor.I18nText.I18nText I18NText { get; set; }
+        [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
-        [Inject] private ISyncLocalStorageService LocalStorage { get; set; }
+        [Inject] private ISyncLocalStorageService? LocalStorage { get; set; }
 
-        public BarDropdown MyDropdown { get; set; }
-        public Sidebar MySidebar { get; set; }
-
-        private bool Disposed;
-        private IDisposable StateSubscription;
+        public BarDropdown? MyDropdown { get; set; }
+        public Sidebar? MySidebar { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -47,30 +39,23 @@ namespace OriinDic.Components
             await CheckLanguage();
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!Disposed)
-            {
-                if (disposing)
-                {
-                    StateSubscription.Dispose();
-                }
-                Disposed = true;
-            }
-        }
+ 
 
         /// <summary>
-        ///     Sprawdzenie języków - czy są poprawnie wczytane
+        /// Sprawdzenie języków - czy są poprawnie wczytane
         /// </summary>
         /// <returns></returns>
         private async Task CheckLanguage()
         {
-            _myText = await I18NText.GetTextTableAsync<Text>(this);
-            var lang = LocalStorage.GetItem<string>(Const.LanguageKey);
+            if (!(I18NText is null))
+                _myText = await I18NText.GetTextTableAsync<Text>(this);
+
+
+            var lang = LocalStorage?.GetItem<string>(Const.LanguageKey);
             if (string.IsNullOrEmpty(lang))
             {
                 lang = Const.PlLangShortcut;
-                LocalStorage.SetItem(Const.LanguageKey, lang);
+                LocalStorage?.SetItem(Const.LanguageKey, lang);
             }
 
             _currentLanguage = lang;
@@ -81,15 +66,19 @@ namespace OriinDic.Components
         private async Task EnUiLanguageClicked()
         {
             _currentLanguage = Const.EnLangShortcut;
-            LocalStorage.SetItem(Const.LanguageKey, _currentLanguage);
-            await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());
+            LocalStorage?.SetItem(Const.LanguageKey, _currentLanguage);
+
+            if (!(I18NText is null))
+                await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());
         }
 
         private async Task PlUiLanguageClicked()
         {
             _currentLanguage = Const.PlLangShortcut;
-            LocalStorage.SetItem(Const.LanguageKey, _currentLanguage);
-            await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());
+            LocalStorage?.SetItem(Const.LanguageKey, _currentLanguage);
+
+            if (!(I18NText is null))
+                await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());
         }
 
         protected void ToggleNavMenu()
@@ -99,7 +88,7 @@ namespace OriinDic.Components
 
         private void ToggleSidebar()
         {
-            MySidebar.Toggle();
+            MySidebar?.Toggle();
         }
 
         #endregion

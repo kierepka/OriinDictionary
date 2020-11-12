@@ -30,7 +30,7 @@
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="addbaseterm" Title="@_myText.addBase">
-                            <Icon Name="IconName.New" Margin="Margin.Is3.FromRight" />@_myText.addBase
+                            <Icon Name="IconName.Add" Margin="Margin.Is3.FromRight" />@_myText.addBase
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
@@ -40,19 +40,19 @@
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="LogOut" Title="@_myText.logOut">
-                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.logOut
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.logOut
                         </SidebarLink>
                     </SidebarItem>
                     <SidebarItem>
                         <SidebarLink To="PersonalData" Title="@_myText.personalData">
-                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.personalData
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.personalData
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
                 <NotAuthorized>
                     <SidebarItem>
                         <SidebarLink To="Login" Title="@_myText.logIn">
-                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.logIn
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.logIn
                         </SidebarLink>
                     </SidebarItem>
                 </NotAuthorized>
@@ -61,7 +61,7 @@
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="Users" Title="@_myText.logIn">
-                            <Icon Name="IconName.Person" Margin="Margin.Is3.FromRight" />@_myText.users
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.users
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
@@ -101,7 +101,7 @@
                     <AuthorizeView>
                         <Authorized>
                             <BarLink To="PersonalData">
-                                <Icon Name="IconName.Person" /> @_myText.hello, @context?.User?.Identity?.Name!
+                                <Icon Name="IconName.User" /> @_myText.hello, @context?.User?.Identity?.Name!
                             </BarLink>
                             <BarLink To="LogOut">@_myText.logOut</BarLink>
                         </Authorized>

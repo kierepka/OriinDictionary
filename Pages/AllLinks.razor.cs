@@ -18,16 +18,16 @@ namespace OriinDic.Pages
     {
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
-        private int _searchPageNr = 1;
         private bool _reloadData = true;
         private string _token = string.Empty;
         private int _totalOriinLinks;
         private OriinLink? selectedOriinLink;
 
         [Inject]
-        private IState<LinksState> LinksState { get; set; }
+        private IState<LinksState>? LinksState { get; set; }
+
         [Inject]
-        private IDispatcher Dispatcher { get; set; }
+        private IDispatcher? Dispatcher { get; set; }
 
         public AllLinks()
         {
@@ -38,7 +38,7 @@ namespace OriinDic.Pages
         {
             await base.OnInitializedAsync();
             ReadLocalSettings();
-            Dispatcher.Dispatch(new LinksFetchDataAction(token: _token));
+            Dispatcher?.Dispatch(new LinksFetchDataAction(token: _token));
         }
 
         private void OnRowRemoved(OriinLink oriinLink)
@@ -47,25 +47,11 @@ namespace OriinDic.Pages
 
             ReadLocalSettings();
 
-            Dispatcher.Dispatch(new LinksDeleteAction(oriinLink.Id, _token));
-            LinksState.StateChanged += LinksState_StateChanged;
+            Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token));
 
             UpdateLocalData();
         }
 
-        private void LinksState_StateChanged(object sender, LinksState e)
-        {
-            if (e.DeleteResponse is null) return;
-            if (e.DeleteResponse.Deleted)
-            {
-                ShowAlert(MyText?.youWhereDeleted ?? string.Empty);
-                _reloadData = true;
-            }
-            else
-            {
-                ShowAlert(MyText?.deletionError ?? $"error! {e.DeleteResponse.Detail}");
-            }
-        }
 
         private void OnReadData(DataGridReadDataEventArgs<OriinLink> e)
         {
@@ -73,7 +59,7 @@ namespace OriinDic.Pages
             if (!_reloadData) return;
 
             ReadLocalSettings();
-            Dispatcher.Dispatch(new LinksFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));
+            Dispatcher?.Dispatch(new LinksFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));
             UpdateLocalData();
             _reloadData = false;
 
@@ -93,8 +79,9 @@ namespace OriinDic.Pages
 
         private void UpdateLocalData()
         {
-            if (LinksState.Value is null) return;
-            if (LinksState.Value.RootObject?.Results != null) _totalOriinLinks = LinksState.Value.RootObject.Results.Count;
+            if (LinksState?.Value is null) return;
+            if (!(LinksState.Value.RootObject?.Results is null))
+                _totalOriinLinks = LinksState.Value.RootObject.Results.Count;
             // always call StateHasChanged!
             StateHasChanged();
         }

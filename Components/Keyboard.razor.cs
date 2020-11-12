@@ -11,10 +11,10 @@ namespace OriinDic.Components
     {
 
         [Parameter]
-        public Language MyLanguage { get; set; }
+        public Language MyLanguage { get; set; } = new Language();
 
         [Parameter]
-        public string MyTextLoading { get; set; }
+        public string MyTextLoading { get; set; } = string.Empty;
 
         [Parameter] 
         public EventCallback<string> OnKeyCallback { get; set; }

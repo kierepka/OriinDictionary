@@ -12,19 +12,21 @@ namespace OriinDic.Components
 {
     public class DicBasePage : FluxorComponent
     {
-        public I18nText.Text MyText;
+        public I18nText.Text? MyText;
 
 
-        [Inject] protected Toolbelt.Blazor.I18nText.I18nText I18NText { get; set; }
+        [Inject] protected Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
-        [Inject] protected ISyncLocalStorageService LocalStorage { get; set; }
+        [Inject] protected ISyncLocalStorageService? LocalStorage { get; set; }
         public string CurrentAlert { get; set; } = string.Empty;
         public Alert? MyAlert { get; set; }
 
         protected override async Task OnInitializedAsync() 
         {
             await base.OnInitializedAsync();
-            MyText = await I18NText.GetTextTableAsync<I18nText.Text>(this);
+            
+            if (!(I18NText is null))
+                MyText = await I18NText.GetTextTableAsync<I18nText.Text>(this);
 
         }
 

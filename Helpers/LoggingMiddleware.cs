@@ -7,7 +7,7 @@ namespace OriinDic.Helpers
 {
     public class LoggingMiddleware : Middleware
     {
-        private IStore Store;
+        private IStore? Store;
 
         public override Task InitializeAsync(IStore store)
         {
@@ -37,7 +37,7 @@ namespace OriinDic.Helpers
             Debug.WriteLine(nameof(AfterDispatch) + ObjectInfo(action));
         }
 
-        private string ObjectInfo(object obj)
+        private static string ObjectInfo(object obj)
             => ": " + obj.GetType().Name + " " + JsonConvert.SerializeObject(obj);
     }
 }

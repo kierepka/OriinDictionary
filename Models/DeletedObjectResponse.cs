@@ -5,7 +5,8 @@ namespace OriinDic.Models
     public class DeletedObjectResponse
     {
         [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }
+        public bool Deleted { get; set; } = false;
+
         [JsonPropertyName("detail")]
         public string Detail { get; set; } = string.Empty;
 

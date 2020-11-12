@@ -6,24 +6,24 @@ namespace OriinDic.Models
     public class TranslationLastEdit
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public long Id { get; set; } = long.MinValue;
 
         [JsonPropertyName("object_type")]
-        public string ObjectType { get; set; }
+        public string ObjectType { get; set; } = string.Empty;
 
         [JsonPropertyName("object_id")]
-        public long ObjectId { get; set; }
+        public long ObjectId { get; set; } = long.MinValue;
 
         [JsonPropertyName("action")]
-        public string Action { get; set; }
+        public string Action { get; set; } = string.Empty;
 
         [JsonPropertyName("date")]
-        public DateTimeOffset Date { get; set; }
+        public DateTimeOffset Date { get; set; } = DateTime.Now;
 
         [JsonPropertyName("user")]
-        public User User { get; set; }
+        public User User { get; set; } = new User();
 
         [JsonPropertyName("change")]
-        public TranslationChange Change { get; set; }
+        public TranslationChange Change { get; set; } = new TranslationChange();
     }
 }

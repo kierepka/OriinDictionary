@@ -1,7 +1,7 @@
 ﻿@page "/dictionaryLanguages"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@LanguagesState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.langHeader" />
+<PageHeader IsLoading="@(LanguagesState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.langHeader" />
 <Row>
     <Column>
         <Card Margin="Margin.Is4.OnY">
@@ -11,7 +11,7 @@
             </CardHeader>
             <CardBody>
 
-                @if (LanguagesState.Value.Languages is null)
+                @if (LanguagesState?.Value.Languages is null)
                 {
                     <p>
                         <em>@MyText?.loading</em>

@@ -5,9 +5,9 @@ namespace OriinDic.Models
     public class TranslationChange
     {
         [JsonPropertyName("after")]
-        public Translation After { get; set; }
+        public Translation After { get; set; } = new Translation();
 
         [JsonPropertyName("before")]
-        public object Before { get; set; }
+        public Translation Before { get; set; } = new Translation();
     }
 }

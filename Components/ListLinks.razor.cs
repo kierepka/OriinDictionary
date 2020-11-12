@@ -15,7 +15,7 @@ namespace OriinDic.Components
 
         private string _myValue = string.Empty;
 
-        [Inject] private Toolbelt.Blazor.I18nText.I18nText I18NText { get; set; }
+        [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
         private List<OriinLink> _links = new List<OriinLink>();
         private Text _myText = new Text();
@@ -49,6 +49,6 @@ namespace OriinDic.Components
         {
         }
 
-        protected override async Task OnInitializedAsync() => _myText = await I18NText.GetTextTableAsync<Text>(this);
+        protected override async Task OnInitializedAsync() => _myText = await I18NText!.GetTextTableAsync<Text>(this);
     }
 }

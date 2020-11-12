@@ -13,17 +13,7 @@ namespace OriinDic.Pages
         public Logout()
         {
         }
-        [Inject] protected ISyncLocalStorageService? LocalStorage { get; set; }
-
-        public Logout(IAuthService authService,
-            Toolbelt.Blazor.I18nText.I18nText i18NText,
-            NavigationManager navigationManager
-        ) : this()
-        {
-            AuthService = authService;
-            I18NText = i18NText;
-            NavigationManager = navigationManager;
-        }
+        
 
         [Inject] private IAuthService? AuthService { get; set; }
         [Inject] private NavigationManager? NavigationManager { get; set; }

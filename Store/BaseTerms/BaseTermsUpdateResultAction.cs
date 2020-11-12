@@ -4,7 +4,7 @@ namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsUpdateResultAction
     {
-        public BaseTerm BaseTerm { get; }
+        public BaseTerm BaseTerm { get; init; }
 
         public BaseTermsUpdateResultAction(BaseTerm baseTerm)
         {

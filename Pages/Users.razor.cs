@@ -25,40 +25,36 @@ namespace OriinDic.Pages
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
         private RootObject<User>? _localData;
-        private int _searchPageNr = 1;
-        private bool reloadData = true;
+
+        private bool _reloadData = true;
         private string _token = string.Empty;
         private int _totalUsers;
         private List<User>? _usersList;
-        private User? selectedUser;
+        private User? _selectedUser;
 
-        [Inject] private IDispatcher Dispatcher { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
+        [Inject] private IState<UsersState>? UsersState { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
-        [Inject] private IState<UsersState> UsersState { get; set; }
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
-
-        public Users() : base()
+        public Users(RootObject<User>? localData) : base()
         {
+            _localData = localData;
         }
 
-        private string GetLanguageName(int langId) => LanguagesState.Value.GetLanguageName(langId);
-
-        public Users(Toolbelt.Blazor.I18nText.I18nText i18NText,
-           ISyncLocalStorageService localStorage) : this()
+        private string GetLanguageName(int langId)
         {
-            I18NText = i18NText ?? throw new ArgumentNullException(nameof(i18NText));
-            LocalStorage = localStorage ?? throw new ArgumentNullException(nameof(localStorage));
+            return LanguagesState?.Value.GetLanguageName(langId) ?? string.Empty;
         }
 
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            if (!LanguagesState?.Value.Languages.Any() ?? true)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             ReadLocalSettings();
-            UsersState.StateChanged += UsersState_StateChanged;
+            if (UsersState != null) UsersState.StateChanged += UsersState_StateChanged;
         }
 
         private void UsersState_StateChanged(object sender, UsersState e)
@@ -73,7 +69,7 @@ namespace OriinDic.Pages
                         if (e.DeleteResponse.Deleted)
                         {
                             ShowAlert(MyText?.youWhereDeleted ?? string.Empty);
-                            reloadData = true;
+                            _reloadData = true;
                         }
                         else
                         {
@@ -91,7 +87,7 @@ namespace OriinDic.Pages
                         else
                         {
                             ShowAlert(MyText.dataSavedOk);
-                            reloadData = true;
+                            _reloadData = true;
                         }
                     }
 
@@ -109,12 +105,12 @@ namespace OriinDic.Pages
                         else
                         {
                             ShowAlert(MyText.dataSavedOk);
-                            reloadData = true;
+                            _reloadData = true;
                         }
                     }
                     break;
                 case EActionState.FetchedData:
-                    reloadData = false;
+                    _reloadData = false;
 
                     if (!(MyText is null))
                         ShowAlert($"{MyText.loaded}");
@@ -132,7 +128,7 @@ namespace OriinDic.Pages
 
             if (user is null) return;
 
-            selectedUser = user;
+            _selectedUser = user;
 
             if (MyText is null) return;
 
@@ -155,7 +151,7 @@ namespace OriinDic.Pages
             var user = e.Item;
             if (user is null) return;
 
-            selectedUser = user;
+            _selectedUser = user;
 
             if (MyText is null) return;
 
@@ -167,19 +163,19 @@ namespace OriinDic.Pages
 
         void OnRowRemoved(User user)
         {
-            selectedUser = user;
+            _selectedUser = user;
 
-            if (selectedUser is null) return;
+            if (_selectedUser is null) return;
             ReadLocalSettings();
 
-            if (selectedUser != null) Dispatcher?.Dispatch(new UsersDeleteAction(selectedUser.Id, _token));
+            if (_selectedUser != null) Dispatcher?.Dispatch(new UsersDeleteAction(_selectedUser.Id, _token));
         }
 
 
 
         void OnReadData(DataGridReadDataEventArgs<User> e)
         {
-            if (!reloadData) return;
+            if (!_reloadData) return;
             ReadLocalSettings();
 
             Dispatcher?.Dispatch(new UsersFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));

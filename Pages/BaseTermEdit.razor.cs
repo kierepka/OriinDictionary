@@ -1,113 +1,126 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
-
 using OriinDic.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.BaseTerms;
 using OriinDic.Store.Languages;
+using OriinDic.Store.Links;
+
 using Toolbelt.Blazor.SpeechSynthesis;
 
 namespace OriinDic.Pages
 {
     public partial class BaseTermEdit : DicBasePage
     {
-        private BaseTerm baseTerm;
+        
+        private Token _token = new Token();
 
         public BaseTermEdit() : base()
         {
-
         }
 
-        public BaseTermEdit(ISyncLocalStorageService localStorage,
-            Toolbelt.Blazor.I18nText.I18nText i18NText, 
-            SpeechSynthesis speechSynthesis
-        ) : this()
-        {
-            LocalStorage = localStorage;
-            I18NText = i18NText;
-            SpeechSynthesis = speechSynthesis;
-        }
         [Parameter] public long? BaseTermId { get; set; }
-        [Parameter] public string BaseTermSlug { get; set; }
+        [Parameter] public string? BaseTermSlug { get; set; }
 
-        public string Information { get; set; } = string.Empty;
         private string BaseTermLanguage
         {
             get
             {
-                if (BaseTermsState.Value.BaseTerm is null)
-                    return Const.PlLangShortcut;
-                return LocalStorage is null ? Const.PlLangShortcut : LanguagesState.Value.GetLanguageName(BaseTermsState.Value.BaseTerm.LanguageId);
+                var retValue = Const.PlLangShortcut;
+                if (BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null)
+                    return retValue;
+
+                BaseTerm baseTerm1 = BaseTermsState.Value.ResultBaseTranslation.BaseTerm;
+                retValue = LanguagesState?.Value.GetLanguageName(baseTerm1.LanguageId);
+                if (string.IsNullOrEmpty(retValue)) retValue = Const.PlLangShortcut;
+                return retValue;
             }
         }
 
-        [Inject] private IState<BaseTermsState> BaseTermsState { get; set; }
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
-        [Inject] private IDispatcher Dispatcher { get; set; }
+        [Inject] private IState<BaseTermsState>? BaseTermsState { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IState<LinksState>? LinksState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
-        private List<OriinLink> Links { get; set; }
+        private List<OriinLink>? Links { get; set; }
         [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
+            bool doLangFetch = LanguagesState is null;
+            if (LanguagesState != null) doLangFetch = !LanguagesState.Value.Languages.Any();
+            if (doLangFetch)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            if (LocalStorage is null) return;
 
-            Dispatcher.Dispatch(BaseTermId is null
-                ? new BaseTermsFetchDataAction(slug: BaseTermSlug)
-                : new BaseTermsFetchDataAction(baseTermId: BaseTermId.Value));
+            _token = LocalStorage.GetItem<Token>(Const.TokenKey);
 
-            BaseTermsState.StateChanged += BaseTermsState_StateChanged;
+            
+            var token = _token?.AuthToken ?? string.Empty;
+
+            Dispatcher?.Dispatch(BaseTermId is null
+                ? new BaseTermsFetchOneSlugAction(slug: BaseTermSlug ?? string.Empty, token: token)
+                : new BaseTermsFetchOneAction(baseTermId: BaseTermId.Value, token: token));
+            
 
         }
 
-        private void BaseTermsState_StateChanged(object sender, BaseTermsState e)
-        {
-            if (BaseTermsState.Value.BaseTerm is null) return;
-            baseTerm = BaseTermsState.Value.BaseTerm;
-            GetLinks();
 
-            ShowAlert($"{MyText?.translationSaved} {BaseTermsState.Value.BaseTerm.Id}");
+        private void OnExampleAdd(Example example)
+        {
+
+            if (BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null) return;
+
+            if (BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples is null)
+                BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples = new List<string>();
+
+            BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples.Add(example.Value);
         }
 
-        private void GetLinks()
+        private void OnLinkAdd(OriinLink link)
         {
-             
+            if (BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null) return;
+
+            var baseId = BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Id;
+            link.BaseTermId = baseId;
+
+
+            var token = _token.AuthToken ?? string.Empty;
+
+            Dispatcher?.Dispatch(new LinksAddAction(link, token));
+
+
+            Dispatcher?.Dispatch(
+                    new LinksFetchForBaseTermAction(baseId, token));
+
         }
 
-        private async Task OnExampleAdd(Example example)
+        private void OnSaveClicked()
         {
-            baseTerm?.Examples.Add(example.Value);
-        }
-
-        private async Task OnLinkAdd(OriinLink link)
-        {
-            //link
-        }
-
-        private async Task OnSaveClicked()
-        {
-
             if (MyText is null) return;
             if (LocalStorage is null) return;
 
-            if (BaseTermsState.Value.BaseTerm is null) {
+            if (BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null)
+            {
                 ShowAlert(MyText.saveError);
                 return;
             }
+
+            var bt = BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm;
+
             var token = LocalStorage.GetItem<Token>(Const.TokenKey);
-            if (BaseTermId != null)
-            {
-                Dispatcher?.Dispatch(new BaseTermsUpdateAction(baseTermId: BaseTermId.Value, baseTerm: baseTerm,
+
+            if (!(bt is null))
+                Dispatcher?.Dispatch(
+                    new BaseTermsUpdateAction(baseTermId: bt.Id, baseTerm: bt,
                     token: token.AuthToken));
-            }
 
         }
 
@@ -116,7 +129,7 @@ namespace OriinDic.Pages
             if (SpeechSynthesis is null) return;
             var utterance = new SpeechSynthesisUtterance
             {
-                Text = baseTerm?.Name,
+                Text = BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm?.Name,
                 Lang = Const.PlLangSpeechCode, // BCP 47 language tag
                 Pitch = 1.0, // 0.0 ~ 2.0 (Default 1.0)
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
@@ -124,9 +137,15 @@ namespace OriinDic.Pages
             };
             SpeechSynthesis.Speak(utterance);
         }
-        private async Task OnSynonymAdd(Synonym synonym)
+
+        private void OnSynonymAdd(Synonym synonym)
         {
-            baseTerm?.Synonyms.Add(synonym.Value);
+
+            if (BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null) return;
+            if (BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms is null)
+                BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms = new List<string>();
+
+            BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms.Add(synonym.Value);
         }
     }
 }

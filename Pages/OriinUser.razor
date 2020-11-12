@@ -3,7 +3,7 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@UserState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerUser" />
+<PageHeader IsLoading="@(UserState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerUser" />
 
 <Row>
     <Column>
@@ -51,12 +51,13 @@
                 <Field IsHorizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.language</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-
-                        @foreach (var lang in LanguagesState.Value.Languages)
+                        @if (!(LanguagesState is null))
                         {
-                            <div class="control"><strong>@lang.Name</strong></div>
+                            @foreach (var lang in LanguagesState.Value.Languages)
+                            {
+                                <div class="control"><strong>@lang.Name</strong></div>
+                            }
                         }
-
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
@@ -69,16 +70,17 @@
                         else
                         {
 
-
-                            @foreach (var langT in LanguagesState.Value.Languages)
+                            @if (!(LanguagesState is null))
                             {
-                                <div class="field">
-                                    <div class="control">
-                                        <div class="control"><strong>@langT.Name</strong></div>
+                                @foreach (var langT in LanguagesState.Value.Languages)
+                                {
+                                    <div class="field">
+                                        <div class="control">
+                                            <div class="control"><strong>@langT.Name</strong></div>
+                                        </div>
                                     </div>
-                                </div>
+                                }
                             }
-
 
                         }
                     </FieldBody>
@@ -93,18 +95,18 @@
                         else
                         {
 
-
-                            @foreach (var langC in LanguagesState.Value.Languages)
+                            @if (!(LanguagesState is null))
                             {
-                                <div class="field">
-                                    <div class="control">
-                                        <label class="checkbox" for="@langC.Name">
+                                @foreach (var langC in LanguagesState.Value.Languages)
+                                {
+                                    <div class="field">
+                                        <div class="control">
+                                            <label class="checkbox" for="@langC.Name"></label>
                                             <div class="control"><strong>@langC.Name</strong></div>
-                                        </label>
+                                        </div>
                                     </div>
-                                </div>
+                                }
                             }
-
 
                         }
                     </FieldBody>

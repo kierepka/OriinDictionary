@@ -4,8 +4,8 @@ namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsAddAction
     {
-        public string Token { get; }
-        public BaseTerm BaseTerm { get; }
+        public string Token { get; init; }
+        public BaseTerm BaseTerm { get; init; }
 
         public BaseTermsAddAction(BaseTerm baseTerm, string token)
         {

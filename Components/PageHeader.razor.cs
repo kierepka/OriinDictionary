@@ -11,7 +11,7 @@ namespace OriinDic.Components
     {
 
         [Inject]
-        private IState<NotificationsState> State { get; set; }
+        private IState<NotificationsState>? State { get; set; }
         private string currentAlertText = string.Empty;
         public PageHeader()
         {

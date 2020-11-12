@@ -3,7 +3,7 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@UsersState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.users" />
+<PageHeader IsLoading="@(UsersState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.users" />
 
 <DataGrid TItem="User"
           Data="@_usersList"
@@ -21,8 +21,8 @@
           RowInserted="@OnRowInserted"
           RowUpdated="@OnRowUpdated"
           RowRemoved="@OnRowRemoved"
-          @bind-SelectedRow="@selectedUser"
-          DetailRowTrigger="@((item)=> item.Id == selectedUser?.Id)">
+          @bind-SelectedRow="@_selectedUser"
+          DetailRowTrigger="@((item)=> item.Id == _selectedUser?.Id)">
     <DataGridColumns>
         <DataGridCommandColumn TItem="User" Width="170px">
             <NewCommandTemplate>
@@ -64,11 +64,13 @@
 
                 <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
                     <SelectItem Value="@("*")">@MyText?.notSet</SelectItem>
-                    @foreach (var item in LanguagesState.Value.Languages)
+                    @if (!(LanguagesState is null))
                     {
-                        <SelectItem Value="@item.Id">@item.Name</SelectItem>
+                        @foreach (var item in LanguagesState.Value.Languages)
+                        {
+                            <SelectItem Value="@item.Id">@item.Name</SelectItem>
+                        }
                     }
-
                 </Select>
 
             </FilterTemplate>
@@ -106,12 +108,13 @@
 
                 <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == " *" ? "" : e.ToString()))">
                     <SelectItem Value="@(" *")">@MyText?.notSet</SelectItem>
-                    
+                    @if (!(LanguagesState is null))
+                    {
                         @foreach (var item in LanguagesState.Value.Languages)
                         {
                             <SelectItem Value="@item.Id">@item.Name</SelectItem>
                         }
-                    
+                    }
                 </Select>
 
             </FilterTemplate>

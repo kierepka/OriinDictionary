@@ -4,19 +4,15 @@
 @using OriinDic.Store.BaseTerms
 @inherits DicBasePage
 
-<PageHeader IsLoading="@BaseTermsState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerBaseTermEdit" />
+<PageHeader IsLoading="@(BaseTermsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerBaseTermEdit" />
 
 <Row>
     <Column>
-        @if (BaseTermsState.Value.BaseTerm is null)
-        {
-            <a href="/">Base term @MyText?.noData !</a>
-        }
-        else
+        @if (!(BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null))
         {
             <Card Margin="Margin.Is4.OnY">
                 <CardHeader>
-                    <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.BaseTerm.Name</CardTitle>
+                    <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</CardTitle>
                     <CardSubtitle>@MyText?.baseTermHeader</CardSubtitle>
                 </CardHeader>
                 <CardBody>
@@ -27,10 +23,10 @@
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
                                     <TextEdit Placeholder="@MyText?.baseTermName"
-                                              @bind-Text="@baseTerm.Name" />
+                                              @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    <div class="field"><div class="control">@BaseTermsState.Value.BaseTerm.Name</div></div>
+                                    <div class="field"><div class="control">@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</div></div>
                                 </NotAuthorized>
                             </AuthorizeView>
                         </FieldBody>
@@ -41,10 +37,10 @@
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
                                     <TextEdit Placeholder="@MyText?.baseTermDefinition"
-                                              @bind-Text="@baseTerm.Definition" />
+                                              @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Definition" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    <div class="field"><div class="control">@BaseTermsState.Value.BaseTerm.Definition</div></div>
+                                    <div class="field"><div class="control">@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Definition</div></div>
                                 </NotAuthorized>
                             </AuthorizeView>
                         </FieldBody>
@@ -54,15 +50,18 @@
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
-                                    <ListExamples Examples="@BaseTermsState.Value.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
+                                    <ListExamples Examples="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    <ListGroup Flush="true">
-                                        @foreach (var e in baseTerm.Examples)
-                                        {
-                                            <div class="field"><div class="control">@e</div></div>
-                                        }
-                                    </ListGroup>
+                                    @if (!(BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples is null))
+                                    {
+                                        <ListGroup Flush="true">
+                                            @foreach (var e in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples)
+                                            {
+                                                <div class="field"><div class="control">@e</div></div>
+                                            }
+                                        </ListGroup>
+                                    }
                                 </NotAuthorized>
                             </AuthorizeView>
                         </FieldBody>
@@ -72,15 +71,17 @@
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
-                                    <ListSynonyms Synonyms="@BaseTermsState.Value.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
+                                    <ListSynonyms Synonyms="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    <ListGroup Flush="true">
-                                        @foreach (var s in baseTerm.Synonyms)
-                                        {
-                                            <div class="field"><div class="control">@s</div></div>
-                                        }
-                                    </ListGroup>
+                                    @if (!(BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms is null)) {
+                                        <ListGroup Flush="true">
+                                            @foreach (var s in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms)
+                                            {
+                                                <div class="field"><div class="control">@s</div></div>
+                                            }
+                                        </ListGroup>
+                                    }
                                 </NotAuthorized>
                             </AuthorizeView>
                         </FieldBody>
@@ -88,7 +89,7 @@
                     <Field IsHorizontal="true">
                         <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSlug</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
-                            @BaseTermsState.Value.BaseTerm.Slug
+                            @BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Slug
                         </FieldBody>
                     </Field>
                 </CardBody>
@@ -118,12 +119,15 @@
                             <ListLinks Links="@Links" OnLinkCallback="OnLinkAdd" />
                         </Authorized>
                         <NotAuthorized>
-                            <ListGroup Flush="true">
-                                @foreach (var link in Links)
-                                {
-                                    <div class="field"><div class="control"><a href="context.Link">@link</a></div></div>
-                                }
-                            </ListGroup>
+                            @if (!(LinksState?.Value?.RootObject?.Results is null))
+                            {
+                                <ListGroup Flush="true">
+                                    @foreach (var link in LinksState.Value.RootObject.Results)
+                                    {
+                                        <div class="field"><div class="control"><a href="context.Link">@link</a></div></div>
+                                    }
+                                </ListGroup>
+                            }
                         </NotAuthorized>
                     </AuthorizeView>
                 </CardBody>

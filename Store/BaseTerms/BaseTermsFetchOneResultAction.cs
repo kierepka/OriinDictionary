@@ -4,11 +4,11 @@ namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsFetchOneResultAction
     {
-        public BaseTerm BaseTerm { get; }
+        public ResultBaseTranslation? BaseTranslation { get; init; }
 
-        public BaseTermsFetchOneResultAction(BaseTerm baseTerm)
+        public BaseTermsFetchOneResultAction(ResultBaseTranslation? baseTranslation)
         {
-            BaseTerm = baseTerm;
+            BaseTranslation = baseTranslation;
         }
     }
 }

@@ -6,11 +6,13 @@ namespace OriinDic.Models
     public class Comment : CommentAdd
     {
         [JsonPropertyName("user")]
-        public User User { get; set; }
-        [JsonPropertyName("id")]        
-        public long Id { get; set; }
+        public User User { get; set; } = new User();
+
+        [JsonPropertyName("id")]
+        public long Id { get; set; } = long.MinValue;
+
         [JsonPropertyName("date")]
-        public DateTimeOffset Date { get; set; }
+        public DateTimeOffset Date { get; set; } = DateTime.Now;
 
         public Comment()
         {

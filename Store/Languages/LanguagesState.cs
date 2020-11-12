@@ -8,9 +8,9 @@ namespace OriinDic.Store.Languages
 {
     public class LanguagesState
     {
-        public EActionState LastActionState { get; private set; }
-        public bool IsLoading { get; }
-        public IEnumerable<Language> Languages { get; private set; }
+        public EActionState LastActionState { get; init; }
+        public bool IsLoading { get; init; } = false;
+        public IEnumerable<Language> Languages { get; init; } = new List<Language>();
 
         public LanguagesState(bool isLoading, IEnumerable<Language> languages, EActionState lastActionState)
         {
@@ -22,8 +22,11 @@ namespace OriinDic.Store.Languages
 
 
         public Language GetLanguage(long langId)
-        {
-            return Languages.FirstOrDefault(l => l.Id == langId);
+
+        { 
+            var retValue = Languages.FirstOrDefault(l => l.Id == langId);
+            return retValue ?? new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };                
+
         }
 
 

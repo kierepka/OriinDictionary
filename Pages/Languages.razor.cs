@@ -9,10 +9,8 @@ namespace OriinDic.Pages
 {
     public partial class Languages : DicBasePage
     {
-        [Inject]
-        private IState<LanguagesState> LanguagesState { get; set; }
-        [Inject]
-        private IDispatcher Dispatcher { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
         public Languages()
         {
@@ -21,7 +19,7 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            Dispatcher?.Dispatch(new LanguagesFetchDataAction());
         }
     }
 }

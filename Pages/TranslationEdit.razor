@@ -3,9 +3,9 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@TranslationsState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
+<PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
 
-@if (@Translation is null)
+@if (Translation is null)
 {
     <a href="/">@MyText?.noData</a>
 }
@@ -184,13 +184,13 @@ else
                     <CardBody>
                         <AuthorizeView Roles="@Const.RolesEditors">
                             <Authorized>
-                                <ListComments Comments="@Comments.Results"  OnCommentAdd="OnCommentAdd" />
+                                <ListComments Comments="@Comments"  OnCommentAdd="OnCommentAdd" />
                             </Authorized>
                             <NotAuthorized>
-                                @if (!(Comments.Results is null))
+                                @if (!(Comments is null))
                                 {
                                     <ListGroup Flush="true">
-                                        @foreach (var comment in Comments.Results)
+                                        @foreach (var comment in Comments)
                                         {
                                             <ListGroupItem>
                                                 <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">

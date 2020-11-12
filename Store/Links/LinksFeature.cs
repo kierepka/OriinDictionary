@@ -8,6 +8,6 @@ namespace OriinDic.Store.Links
 
         protected override LinksState GetInitialState() => new LinksState(isLoading: false, searchPageNr: 0,
             itemsPerPage: 0, token: string.Empty, statusCode: string.Empty,
-            link: null, rootObject: null, deleteResponse: null);
+            link: new Models.OriinLink(), rootObject: new Models.RootObject<Models.OriinLink>(), deleteResponse: new Models.DeletedObjectResponse());
     }
 }

@@ -5,7 +5,8 @@ namespace OriinDic.Models
     public class CommentAdd
     {
         [JsonPropertyName("translation_id")]
-        public long TranslationId { get; set; }
+        public long TranslationId { get; set; } = long.MinValue;
+
         [JsonPropertyName("text")]
         public string Text { get; set; } = string.Empty;
 

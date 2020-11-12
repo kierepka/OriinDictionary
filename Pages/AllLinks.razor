@@ -1,11 +1,11 @@
 ﻿@page "/links"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@LinksState.Value.IsLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.comments" />
+<PageHeader IsLoading="@(LinksState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.links" />
 
 
 <DataGrid TItem="OriinLink"
-          Data="@LinksState.Value.RootObject?.Results"
+          Data="@LinksState?.Value.RootObject?.Results"
           ReadData="@OnReadData"
           TotalItems="@_totalOriinLinks"
           ShowPager="false"

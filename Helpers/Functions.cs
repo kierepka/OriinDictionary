@@ -18,8 +18,6 @@ namespace OriinDic.Helpers
             localStorage.GetItem<User>(Const.UserKey);
         
 
-
-
         public static List<string> Roles(this IEnumerable<Claim> claims)
         {
             return claims.Where(c => c.Type == ClaimTypes.Role)
@@ -27,7 +25,6 @@ namespace OriinDic.Helpers
                 .ToList();
         }
 
-  
 
         public enum EnumPasswordOptions
         {
@@ -36,21 +33,13 @@ namespace OriinDic.Helpers
         }    
         public static string CreatePassword(int length, EnumPasswordOptions options)
         {
-            RNGCryptoServiceProvider rProvider = new RNGCryptoServiceProvider();
+    
+            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             StringBuilder res = new StringBuilder();
-            byte[] random = new byte[1];
-            using (rProvider)
+            Random rnd = new Random();
+            while (0 < length--)
             {
-                while (0 < length--)
-                {
-                    var rndChar = '\0';
-                    do
-                    {
-                        rProvider.GetBytes(random);
-                        rndChar = (char)((random[0] % 92) + 33);
-                    } while (options == EnumPasswordOptions.Alphanum && !char.IsLetterOrDigit(rndChar));
-                    res.Append(rndChar);
-                }
+                res.Append(valid[rnd.Next(valid.Length)]);
             }
             return res.ToString();
         }

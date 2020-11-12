@@ -18,25 +18,18 @@ namespace OriinDic.Pages
         private bool _currentBaseLangPl;
         private bool isLoading = false;
        
-        private LoginInput _loginModel = new LoginInput();
 
         private long _rowsPerPage;
         private int _selectedLanguage;
         private bool _currentTranslations;
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
-        [Inject] private IDispatcher Dispatcher { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
         public Settings()
         {
         }
 
-        public Settings(ISyncLocalStorageService localStorage,
-            Toolbelt.Blazor.I18nText.I18nText i18NText
-        ) : this()
-        {
-            LocalStorage = localStorage;
-            I18NText = i18NText;
-        }
+
 
 
         protected override async Task OnInitializedAsync()
@@ -44,8 +37,8 @@ namespace OriinDic.Pages
             await base.OnInitializedAsync();
             isLoading = true;
 
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            if (!LanguagesState?.Value.Languages.Any() ?? true)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             if (!(LocalStorage is null))
             {

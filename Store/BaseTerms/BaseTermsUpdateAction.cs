@@ -4,9 +4,9 @@ namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsUpdateAction
     {
-        public long BaseTermId { get; }
-        public string Token { get; }
-        public BaseTerm BaseTerm { get; }
+        public long BaseTermId { get; init; }
+        public string Token { get; init; }
+        public BaseTerm BaseTerm { get; init; }
 
         public BaseTermsUpdateAction(long baseTermId, BaseTerm baseTerm, string token)
         {

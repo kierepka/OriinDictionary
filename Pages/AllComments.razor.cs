@@ -26,9 +26,9 @@ namespace OriinDic.Pages
         private Comment? _selectedComment;
 
         [Inject]
-        private IState<CommentsState> CommentState { get; set; }
+        private IState<CommentsState>? CommentState { get; set; } 
         [Inject]
-        private IDispatcher Dispatcher { get; set; }
+        private IDispatcher? Dispatcher { get; set; }
 
         public AllComments()
         {
@@ -38,8 +38,9 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            Dispatcher.Dispatch(new CommentsFetchDataAction());
             ReadLocalSettings();
+            Dispatcher?.Dispatch(new CommentsFetchDataAction(_token));
+
         }
 
         private void OnRowRemoved(Comment comment)
@@ -47,32 +48,17 @@ namespace OriinDic.Pages
             _selectedComment = comment;
 
             ReadLocalSettings();
-            Dispatcher.Dispatch(new CommentsDeleteAction(comment.Id, _token));
-            CommentState.StateChanged += CommentState_StateChanged;
+            Dispatcher?.Dispatch(new CommentsDeleteAction(comment.Id, _token));
 
             UpdateLocalData();
         }
 
-        private void CommentState_StateChanged(object sender, CommentsState e)
-        {
-            if (e.DeleteResponse is null) return;
-            if (e.DeleteResponse.Deleted)
-            {
-                ShowAlert(MyText?.youWhereDeleted ?? string.Empty);
-                _reloadData = true;
-            }
-            else
-            {
-                ShowAlert(MyText?.deletionError ?? $"error! {e.DeleteResponse.Detail}");
-            }
-
-        }
 
         private void OnReadData(DataGridReadDataEventArgs<Comment> e)
         {
             if (!_reloadData) return;
             ReadLocalSettings();
-            Dispatcher.Dispatch(new CommentsFetchDataAction(_token, e.Page, _itemsPerPage));
+            Dispatcher?.Dispatch(new CommentsFetchDataAction(_token, e.Page, _itemsPerPage));
             UpdateLocalData();
             _reloadData = false;
         }
@@ -90,10 +76,12 @@ namespace OriinDic.Pages
 
         private void UpdateLocalData()
         {
-            if (CommentState.Value is null) return;
-            if (CommentState.Value.RootObject.Results != null) _totalComments = CommentState.Value.RootObject.Results.Count;
+            if (CommentState?.Value is null) return; 
+            _totalComments = CommentState.Value.RootObject.Results.Count;
             // always call StateHasChanged!
             StateHasChanged();
         }
+
+        
     }
 }

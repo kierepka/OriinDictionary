@@ -1,5 +1,9 @@
 ﻿using Fluxor;
 
+using OriinDic.Models;
+
+using System.Collections.Generic;
+
 namespace OriinDic.Store.Languages
 {
     public static class LanguagesReducers
@@ -8,7 +12,7 @@ namespace OriinDic.Store.Languages
         public static LanguagesState ReduceFetchDataAction(LanguagesState state, LanguagesFetchDataAction action) =>
             new LanguagesState(
                 isLoading: true,
-                languages: null,
+                languages: new List<Language>(),
                 lastActionState: EActionState.FetchingData);
 
         [ReducerMethod]
@@ -17,7 +21,7 @@ namespace OriinDic.Store.Languages
 
         [ReducerMethod]
         public static LanguagesState ReduceStoreLocalDataAction(LanguagesState state, LanguagesFetchDataStoreAction action) =>
-            new LanguagesState(isLoading: false, languages: null, lastActionState:EActionState.LocalDataStoring );
+            new LanguagesState(isLoading: false, languages: new List<Language>(), lastActionState:EActionState.LocalDataStoring );
 
         [ReducerMethod]
         public static LanguagesState ReduceStoreLocalDataResultAction(LanguagesState state, LanguagesFetchDataStoreResultAction action) =>

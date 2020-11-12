@@ -66,7 +66,7 @@ namespace OriinDic.Services
         }
 
         //autoryzuje użytkownika i pobiera token
-        public async Task<Token> GetAuthToken(string user, string pwd)
+        public async Task<Token?> GetAuthToken(string user, string pwd)
         {
             var json = "{\"username\": \"" + user + "\",\"password\": \"" + pwd + "\"}";
             

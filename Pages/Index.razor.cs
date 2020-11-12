@@ -28,11 +28,12 @@ namespace OriinDic.Pages
         }
 
         public bool ConfirmedResults { get; set; }
-        [Parameter] public string SearchText { get; set; }
+        [Parameter] public string SearchText { get; set; } = string.Empty;
 
-        [Inject] private IDispatcher Dispatcher { get; set; }
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
-        [Inject] private IState<SearchState> SearchState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IState<SearchState>? SearchState { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
 
@@ -44,10 +45,9 @@ namespace OriinDic.Pages
                     : Const.DefaultItemsPerPage;
             }
 
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
-            //SearchState.StateChanged += SearchState_StateChanged;
-
+            if (LanguagesState?.Value.Languages.Any() ?? true)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+            
         }
 
         private void ButtonSearchClicked()
@@ -58,14 +58,14 @@ namespace OriinDic.Pages
         private void ClickedDropdownItem1(object l)
         {
             var langId = (long)l;
-            _currentLanguage1 = LanguagesState.Value.GetLanguage(langId);
+            _currentLanguage1 = LanguagesState?.Value.GetLanguage(langId);
             GoSearch();
         }
 
         private void ClickedDropdownItem2(object l)
         {
             var langId = (long)l;
-            _currentLanguage2 = LanguagesState.Value.GetLanguage(langId);
+            _currentLanguage2 = LanguagesState?.Value.GetLanguage(langId);
             GoSearch();
         }
 
@@ -77,14 +77,14 @@ namespace OriinDic.Pages
             if (!(_currentLanguage2 is null)) currLang2Id = _currentLanguage2.Id;
 
             if (Const.BaseLanguagesList.Contains(currLang1Id))
-                Dispatcher.Dispatch(new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
-                    translationLangId: currLang2Id, 1, itemsPerPage: _itemsPerPage,
-                    current: ConfirmedResults, MyText.noResults));
+                Dispatcher?.Dispatch(new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
+                    translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
+                    current: ConfirmedResults, MyText?.noResults ?? string.Empty));
             else
             {
-                Dispatcher.Dispatch(new SearchTranslationsAction(searchText: SearchText, baseTermLangId: currLang1Id,
-                    translationLangId: currLang2Id, 1, itemsPerPage: _itemsPerPage,
-                    current: ConfirmedResults, MyText.noResults));
+                Dispatcher?.Dispatch(new SearchTranslationsAction(searchText: SearchText, baseTermLangId: currLang2Id,
+                    translationLangId: currLang1Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
+                    current: ConfirmedResults, MyText?.noResults ?? string.Empty));
             }
         }
 
@@ -125,14 +125,11 @@ namespace OriinDic.Pages
             if (_searchPageNr < 1) _searchPageNr = 1;
 
             
-            Dispatcher.Dispatch(new SearchPageNrChangeAction(pageActionName, searchText: SearchText, baseTermLangId: currLang1Id,
-                    translationLangId: currLang2Id,  itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr,  current: ConfirmedResults, MyText.noResults));
+            Dispatcher?.Dispatch(new SearchPageNrChangeAction(pageActionName, searchText: SearchText, baseTermLangId: currLang1Id,
+                    translationLangId: currLang2Id,  itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr,  current: ConfirmedResults, MyText?.noResults ?? string.Empty));
         }
 
-        private void SearchState_StateChanged(object sender, SearchState e)
-        {
-            StateHasChanged();
-        }
+       
         private void SwapLanguages()
         {
 

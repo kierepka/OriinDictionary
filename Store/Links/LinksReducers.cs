@@ -37,5 +37,18 @@ namespace OriinDic.Store.Links
         public static LinksState ReduceFetchDataResultAction(LinksState state, LinksFetchDataResultAction action) =>
             new LinksState(rootObject: action.RootObject, lastActionState: EActionState.FetchedData);
 
+        [ReducerMethod]
+        public static LinksState ReduceFetchForBaseTermAction(LinksState state, LinksFetchForBaseTermAction action) =>
+            new LinksState(
+                baseTermId: action.BaseTermId,
+                token: action.Token,
+                lastActionState: EActionState.FetchingData
+                );
+
+        [ReducerMethod]
+        public static LinksState ReduceFetchForBaseTermResultAction(LinksState state, LinksFetchForBaseTermResultAction action) =>
+            new LinksState(rootObject: action.RootObject, lastActionState: EActionState.FetchedData);
+
+
     }
 }

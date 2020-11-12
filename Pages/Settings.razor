@@ -28,9 +28,12 @@
                     <FieldBody ColumnSize="ColumnSize.Is9">
 
                         <Select @bind-SelectedValue="@_selectedLanguage">
-                            @foreach (var lang in LanguagesState.Value.Languages)
+                            @if (!(LanguagesState is null))
                             {
-                                <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
+                                @foreach (var lang in LanguagesState.Value.Languages)
+                                {
+                                    <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
+                                }
                             }
                         </Select>
 

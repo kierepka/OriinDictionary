@@ -4,23 +4,23 @@ namespace OriinDic.Store.Comments
 {
     public class CommentsState
     {
-        public EActionState LastActionState { get; private set; }
-        public DeletedObjectResponse? DeleteResponse { get; private set; }
-        public long TranslationId { get; private set; }
-        public long CommentId { get; private set; }
-        public Comment Comment { get; private set; }
-        public string StatusCode { get; private set; }
-        public string Token { get; private set; }
-        public int SearchPageNr { get; private set; }
-        public long ItemsPerPage { get; private set; }
-        public bool IsLoading { get; private set; }
-        public RootObject<Comment> RootObject { get; private set; }
+        public EActionState LastActionState { get; init; }
+        public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
+        public long TranslationId { get; init; } = long.MinValue;
+        public long CommentId { get; init; } = long.MinValue;
+        public Comment Comment { get; init; } = new Comment();
+        public string StatusCode { get; init; } = string.Empty;
+        public string Token { get; init; } = string.Empty;
+        public int SearchPageNr { get; init; } = int.MinValue;
+        public long ItemsPerPage { get; init; } = long.MinValue;
+        public bool IsLoading { get; init; } = false;
+        public RootObject<Comment> RootObject { get; init; } = new RootObject<Comment>();
 
 
 
         public CommentsState(bool isLoading, int searchPageNr, long itemsPerPage, long commentId, long translationId,
             string token, string statusCode, Comment comment, RootObject<Comment> rootObject,
-            DeletedObjectResponse? deleteResponse)
+            DeletedObjectResponse deleteResponse)
         {
             LastActionState = EActionState.Initializing;
             IsLoading = isLoading;

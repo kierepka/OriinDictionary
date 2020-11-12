@@ -7,9 +7,10 @@
         public long ItemsPerPage { get; }
 
         
-        public CommentsFetchDataAction()
+        public CommentsFetchDataAction(string token)
         {
-            
+            Token = token;
+
         }
 
         public CommentsFetchDataAction(string token, int searchPageNr, long itemsPerPage)

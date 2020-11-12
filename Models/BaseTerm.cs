@@ -10,42 +10,46 @@ namespace OriinDic.Models
     {
 
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public long Id { get; set; } = long.MinValue;
+
         [JsonPropertyName("language_id")]
-        public long LanguageId { get; set; }
+        public long LanguageId { get; set; } = long.MinValue;
+
         [JsonPropertyName("slug")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
         public string Slug { get; set; } = string.Empty;
+
         [JsonPropertyName("name")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
         public string Name { get; set; } = string.Empty;
+
         [JsonPropertyName("synonyms")]
         public List<string> Synonyms { get; set; } = new List<string>();
+
         [JsonPropertyName("examples")]
         public List<string> Examples { get; set; } = new List<string>();
+
         [JsonPropertyName("definition")]
         public string Definition { get; set; } = string.Empty;
+
         [JsonPropertyName("last_edit")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
-        public BaseTermLastEdit LastEdit { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public BaseTermLastEdit LastEdit { get; set; } = new BaseTermLastEdit();
+
         [JsonPropertyName("last_edit_id")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
-        public long? LastEditId { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public long LastEditId { get; set; } = long.MinValue;
 
         public BaseTerm()
         {
             
         }
 
-
-
-        private List<Synonym> _synonyms = new List<Synonym>();
-
         public List<Synonym> GetSynonyms()
         {
-            return Synonyms.Select(s => new Synonym(s)).ToList();
+            return (Synonyms is null) ? new List<Synonym>() : Synonyms.Select(s => new Synonym(s)).ToList();
         }
         public void SetSynonyms(List<Synonym> l)
         {
@@ -56,10 +60,10 @@ namespace OriinDic.Models
             }
         }
 
-        private List<Example> _examples = new List<Example>();
+       
         public List<Example> GetExamples()
         {
-            return Examples.Select(e => new Example(e)).ToList();
+            return (Examples is null) ? new List<Example>() : Examples.Select(e => new Example(e)).ToList();
         }
         public void SetExamples(List<Example> l)
         {

@@ -2,20 +2,18 @@
 
 namespace OriinDic.Models
 {
-  public class Notification
-  {
-    public Guid Id { get; private set; } = Guid.NewGuid();
-    public string Text { get; private set; }
-
-    [Obsolete]
-    public Notification() { }
-
-    public Notification(string text)
+    public class Notification
     {
-      if (string.IsNullOrWhiteSpace(text))
-        throw new ArgumentNullException(nameof(text));
+        public Guid Id { get; private set; } = Guid.NewGuid();
+        public string Text { get; private set; } = string.Empty;
 
-      Text = text;
+
+        public Notification(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                throw new ArgumentNullException(nameof(text));
+
+            Text = text;
+        }
     }
-  }
 }

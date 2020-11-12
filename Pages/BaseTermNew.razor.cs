@@ -33,22 +33,26 @@ namespace OriinDic.Pages
         public bool isLoading = false;
         private BaseTerm baseTerm { get; set; } = new BaseTerm();
 
-        private List<OriinLink> Links { get; set; }
+        private List<OriinLink> Links { get; set; } = new List<OriinLink>();
 
-        [Inject]
-        private IState<BaseTermsState> BaseTermsState { get; set; }
-        [Inject] private IState<LanguagesState> LanguagesState { get; set; }
-        [Inject]
-        private IDispatcher Dispatcher { get; set; }
-        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
+        [Inject] private IState<BaseTermsState>? BaseTermsState { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
+        [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
 
         private string BaseTermLanguage
         {
             get
             {
-                if (BaseTermsState.Value.BaseTerm is null)
+                if (BaseTermsState?.Value.BaseTerm is null)
                     return Const.PlLangShortcut;
-                return LocalStorage is null ? Const.PlLangShortcut : LanguagesState.Value.GetLanguageName(BaseTermsState.Value.BaseTerm.LanguageId);
+
+                var retStr = Const.PlLangShortcut;
+
+                if (LocalStorage is null) return retStr;
+                if (LanguagesState is null) return retStr;
+
+                return LanguagesState.Value.GetLanguageName(BaseTermsState.Value.BaseTerm.LanguageId);
             }
         }
 
@@ -57,16 +61,17 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            if (!LanguagesState.Value.Languages.Any())
-                Dispatcher.Dispatch(new LanguagesFetchDataAction());
+            
+            if (LanguagesState is null)
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
         }
 
-        private async Task OnSaveClicked()
+        private void OnSaveClicked()
         {
             if (MyText is null) return;
             if (LocalStorage is null) return;
 
-            if (BaseTermsState.Value.BaseTerm is null)
+            if (BaseTermsState?.Value.BaseTerm is null)
             {
                 ShowAlert(MyText.saveError);
                 return;
@@ -93,12 +98,12 @@ namespace OriinDic.Pages
             SpeechSynthesis.Speak(utterance);
         }
 
-        private async Task OnExampleAdd(Example example)
+        private void OnExampleAdd(Example example)
         {
             baseTerm?.Examples.Add(example.Value);
         }
 
-        private async Task OnSynonymAdd(Synonym synonym)
+        private void OnSynonymAdd(Synonym synonym)
         {
             baseTerm?.Synonyms.Add(synonym.Value);
         }
