@@ -6,13 +6,13 @@ namespace OriinDic.Models
     public class TranslationLastEdit
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
+        public long Id { get; set; } = 0;
 
         [JsonPropertyName("object_type")]
         public string ObjectType { get; set; } = string.Empty;
 
         [JsonPropertyName("object_id")]
-        public long ObjectId { get; set; } = long.MinValue;
+        public long ObjectId { get; set; } = 0;
 
         [JsonPropertyName("action")]
         public string Action { get; set; } = string.Empty;
@@ -24,6 +24,6 @@ namespace OriinDic.Models
         public User User { get; set; } = new User();
 
         [JsonPropertyName("change")]
-        public TranslationChange Change { get; set; } = new TranslationChange();
+        public TranslationChange? Change { get; set; } 
     }
 }

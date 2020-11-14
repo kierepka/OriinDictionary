@@ -2,9 +2,9 @@
 {
     public class TranslationsFetch4EditAction
     {
-        public long TranslationId { get; private set; }
-        public string Token { get; private set; }
-        public string NoData { get; private set; }
+        public long TranslationId { get; init; } = 0;
+        public string Token { get; init; } = string.Empty;
+        public string NoData { get; init; } = string.Empty;
 
         public TranslationsFetch4EditAction(long translationId, string token, string noData)
         {

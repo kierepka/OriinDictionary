@@ -6,10 +6,9 @@ namespace OriinDic.Models
     public class User : UserUpdate
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
-
+        public long Id { get; set; }
         [JsonPropertyName("is_superuser")]
-        public bool IsSuperuser { get; set; } = false;
+        public bool IsSuperuser { get; set; }
 
         public User()
         {

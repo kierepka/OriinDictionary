@@ -12,24 +12,17 @@ using Microsoft.Extensions.DependencyInjection;
 using OriinDic.Services;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Toolbelt.Blazor.I18nText;
 using OriinDic.Helpers;
+using Toolbelt.Blazor.I18nText;
 
 namespace OriinDic
 {
     public class Program
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-
-       
+            
 
             builder.Services
                 .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })
@@ -51,16 +44,13 @@ namespace OriinDic
             builder.Services.AddAuthorizationCore();
             builder.Services.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Debug));
             builder.Services.AddSpeechSynthesis();
-
-
-            
             
             builder.Services.AddFluxor(o => o
                 .ScanAssemblies(typeof(Program).Assembly)
                 .UseReduxDevTools()
                 .AddMiddleware<LoggingMiddleware>()
                 .UseRouting());
-           
+
 
             builder.RootComponents.Add<App>("app");
 

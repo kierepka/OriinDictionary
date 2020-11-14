@@ -5,9 +5,9 @@ namespace OriinDic.Store.Users
     public class UsersUpdateAction
     {
 
-        public long UserId { get; }
-        public UserUpdate User { get; }
-        public string Token { get; }
+        public long UserId { get; init; } = 0;
+        public UserUpdate User { get; init; } = new UserUpdate();
+        public string Token { get; init; } = string.Empty;
 
         public UsersUpdateAction(long userId, UserUpdate user, string token)
         {

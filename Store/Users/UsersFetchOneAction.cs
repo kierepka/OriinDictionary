@@ -2,8 +2,8 @@
 {
     public class UsersFetchOneAction
     {
-        public long UserId { get; }
-        public string Token { get; }
+        public long UserId { get; init; } = 0;
+        public string Token { get; init; } = string.Empty;
 
 
         public UsersFetchOneAction(long userId, string token)

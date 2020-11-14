@@ -8,8 +8,8 @@
 
 <Row>
     <Column>
-        @if (!(BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null))
-        {
+        @if (!(BaseTermsState?.Value.ResultBaseTranslation.BaseTerm is null)) 
+        { 
             <Card Margin="Margin.Is4.OnY">
                 <CardHeader>
                     <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</CardTitle>
@@ -53,7 +53,7 @@
                                     <ListExamples Examples="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    @if (!(BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples is null))
+                                    @if (!(BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Examples is null))
                                     {
                                         <ListGroup Flush="true">
                                             @foreach (var e in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples)
@@ -74,7 +74,7 @@
                                     <ListSynonyms Synonyms="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    @if (!(BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms is null)) {
+                                    @if (!(BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is null)) {
                                         <ListGroup Flush="true">
                                             @foreach (var s in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms)
                                             {
@@ -100,9 +100,9 @@
                                 <AuthorizeView Roles="@Const.RolesBaseEditors">
                                     <Authorized>
                                         <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.save</Button>
-                                        <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
                                     </Authorized>
                                 </AuthorizeView>
+                                <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
                                 <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.speech</Button>
                             </Buttons>
                         </FieldBody>
@@ -116,15 +116,15 @@
                 <CardBody>
                     <AuthorizeView Roles="@Const.RolesBaseEditors">
                         <Authorized>
-                            <ListLinks Links="@Links" OnLinkCallback="OnLinkAdd" />
+                            <ListLinks Links="@BaseTermsState?.Value?.Links" OnLinkCallback="OnLinkAdd" />
                         </Authorized>
                         <NotAuthorized>
-                            @if (!(LinksState?.Value?.RootObject?.Results is null))
+                            @if (!(BaseTermsState?.Value?.Links is null))
                             {
                                 <ListGroup Flush="true">
-                                    @foreach (var link in LinksState.Value.RootObject.Results)
+                                    @foreach (var link in BaseTermsState.Value.Links)
                                     {
-                                        <div class="field"><div class="control"><a href="context.Link">@link</a></div></div>
+                                        <div class="field"><div class="control"><a href="@link.Link" target="_blank">@link.Link</a></div></div>
                                     }
                                 </ListGroup>
                             }

@@ -2,17 +2,17 @@
 
 namespace OriinDic.Store.Notifications
 {
-  public class ShowNotificationAction
-  {
-    public string Text { get; }
-
-    public ShowNotificationAction(string text)
+    public class ShowNotificationAction
     {
+        public string Text { get; init; } = string.Empty;
 
-      if (string.IsNullOrWhiteSpace(text))
-        throw new ArgumentNullException(nameof(text));
+        public ShowNotificationAction(string text)
+        {
 
-      Text = text;
+            if (string.IsNullOrWhiteSpace(text))
+                throw new ArgumentNullException(nameof(text));
+
+            Text = text;
+        }
     }
-  }
 }

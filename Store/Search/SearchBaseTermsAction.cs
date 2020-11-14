@@ -2,13 +2,13 @@
 {
     public class SearchBaseTermsAction
     {
-        public string SearchText { get; }
-        public long BaseTermLangId { get; }
-        public long TranslationLangId { get; }
-        public long SearchPageNr { get; }
-        public long ItemsPerPage { get; }
-        public bool Current { get; }
-        public string NoResults { get; }
+        public string SearchText { get; init; } = string.Empty;
+        public long BaseTermLangId { get; init; } = 0;
+        public long TranslationLangId { get; init; } = 0;
+        public long SearchPageNr { get; init; } = 0;
+        public long ItemsPerPage { get; init; } = 0;
+        public bool Current { get; init; } = false;
+        public string NoResults { get; init; } = string.Empty;
 
         public SearchBaseTermsAction(string searchText, long baseTermLangId, long translationLangId, long searchPageNr,
             long itemsPerPage, bool current, string noResults)

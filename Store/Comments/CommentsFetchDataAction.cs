@@ -2,9 +2,9 @@
 {
     public class CommentsFetchDataAction
     {
-        public string Token { get; }
-        public int SearchPageNr { get; }
-        public long ItemsPerPage { get; }
+        public string Token { get; init; } = string.Empty;
+        public int SearchPageNr { get; init; } = 0;
+        public long ItemsPerPage { get; init; } = 0;
 
         
         public CommentsFetchDataAction(string token)

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Blazored.LocalStorage;
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
-
 using OriinDic.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
@@ -29,6 +27,11 @@ namespace OriinDic.Pages
         [Parameter] public long? BaseTermId { get; set; }
         [Parameter] public string? BaseTermSlug { get; set; }
 
+        [Inject] private IState<BaseTermsState>? BaseTermsState { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
+        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
+
         private string BaseTermLanguage
         {
             get
@@ -44,13 +47,9 @@ namespace OriinDic.Pages
             }
         }
 
-        [Inject] private IState<BaseTermsState>? BaseTermsState { get; set; }
-        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
-        [Inject] private IState<LinksState>? LinksState { get; set; }
-        [Inject] private IDispatcher? Dispatcher { get; set; }
-
-        private List<OriinLink>? Links { get; set; }
-        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
+        
+        
+        
 
         protected override async Task OnInitializedAsync()
         {
@@ -90,9 +89,7 @@ namespace OriinDic.Pages
         {
             if (BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm is null) return;
 
-            var baseId = BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Id;
-            link.BaseTermId = baseId;
-
+            link.BaseTermId = BaseTermsState?.Value.ResultBaseTranslation?.BaseTerm.Id;
 
             var token = _token.AuthToken ?? string.Empty;
 
@@ -100,7 +97,7 @@ namespace OriinDic.Pages
 
 
             Dispatcher?.Dispatch(
-                    new LinksFetchForBaseTermAction(baseId, token));
+                    new LinksFetchForBaseTermAction(link?.BaseTermId ?? 0, token));
 
         }
 

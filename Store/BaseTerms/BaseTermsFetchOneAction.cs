@@ -2,9 +2,8 @@
 {
     public class BaseTermsFetchOneAction
     {
-        public long BaseTermId { get; init;
-        }
-        public string Token { get; init; }
+        public long BaseTermId { get; init; } = 0;
+        public string Token { get; init; } = string.Empty;  
 
         public BaseTermsFetchOneAction(long baseTermId, string token)
         {

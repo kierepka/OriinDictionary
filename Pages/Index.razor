@@ -20,13 +20,14 @@
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
 
                 <DropdownMenu>
-
-                    @foreach (var l in OriinDic.Helpers.Const.BaseLanguagesList)
+                    @if (!(LanguagesState is null))
                     {
-                        <DropdownItem TValue="int" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
-                        <DropdownDivider />
+                        @foreach (var l in OriinDic.Helpers.Const.BaseLanguagesList)
+                        {
+                            <DropdownItem TValue="int" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
+                            <DropdownDivider />
+                        }
                     }
-
                 </DropdownMenu>
             </Dropdown>
         </Buttons>
@@ -77,7 +78,7 @@
         <TableHeader>
             <TableRow>
                 <TableHeaderCell>@MyText?.termTitle</TableHeaderCell>
-                @if (!SearchState.Value.CurrentBaseLangPl)
+                @if (!SearchState?.Value.CurrentBaseLangPl ?? false)
                 {
                     <TableHeaderCell>@MyText?.translationTitle</TableHeaderCell>
                 }
@@ -134,9 +135,9 @@
 
 @if (SearchState?.Value.PaginationShow ?? false)
 {
-    <MyPagination LocalPages="@(SearchState?.Value.LocalPages ?? new List<LocalPages>())"
+    <MyPagination LocalPages="@SearchState.Value.LocalPages"
                   SearchPageNr="@_searchPageNr"
-                  TotalPages="@(SearchState?.Value.TotalPages ?? 0)"
+                  TotalPages="@SearchState.Value.TotalPages"
                   PrevText="@MyText?.next"
                   NextText="@MyText?.previous"
                   OnClickCallback="OnPageClick">

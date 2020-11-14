@@ -58,6 +58,7 @@
                                 <div class="control"><strong>@lang.Name</strong></div>
                             }
                         }
+
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
@@ -69,9 +70,9 @@
                         }
                         else
                         {
-
                             @if (!(LanguagesState is null))
                             {
+
                                 @foreach (var langT in LanguagesState.Value.Languages)
                                 {
                                     <div class="field">

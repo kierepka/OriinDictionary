@@ -75,9 +75,9 @@ else
                                 <AuthorizeView Roles="@Const.RolesEditors">
                                     <Authorized>
                                         <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.save</Button>
-                                        <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
                                     </Authorized>
                                 </AuthorizeView>
+                                <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
                                 <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.speech</Button>
                             </Buttons>
                         </FieldBody>

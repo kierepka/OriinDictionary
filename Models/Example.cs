@@ -2,8 +2,7 @@ namespace OriinDic.Models
 {
     public class Example : IExampleSynonym
     {
-        public string Value { get; set; } = string.Empty;
-
+        public string Value { get; set; }
         public Example(string val)
         {
             Value = val;

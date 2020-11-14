@@ -4,8 +4,8 @@ namespace OriinDic.Store.Translations
 {
     public class TranslationsAddAction
     {
-        public string Token { get; }
-        public Translation Translation { get; }
+        public string Token { get; init; } = string.Empty;
+        public Translation Translation { get; init; } = new Translation();
 
         public TranslationsAddAction(Translation translation, string token)
         {

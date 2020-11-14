@@ -45,7 +45,7 @@ namespace OriinDic.Store.BaseTerms
                 dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
 
-            dispatcher.Dispatch(new BaseTermsFetchDataResultAction(translationResult));
+            dispatcher.Dispatch(new BaseTermsFetchDataResultAction(translationResult ?? new RootObject<ResultBaseTranslation>()));
             
         }
 
@@ -60,7 +60,7 @@ namespace OriinDic.Store.BaseTerms
                 var response = await _httpClient.PostAsJsonAsync(
                     requestUri: $"{Const.ApiBaseTerms}", baseTermAction.BaseTerm);
                 var returnData = await response.Content.ReadFromJsonAsync<BaseTerm>();
-                dispatcher.Dispatch(new BaseTermsAddResultAction(returnData));
+                dispatcher.Dispatch(new BaseTermsAddResultAction(returnData ?? new BaseTerm()));
             }
             catch (Exception e)
             {
@@ -75,11 +75,27 @@ namespace OriinDic.Store.BaseTerms
             var url = $"{Const.ApiBaseTerms}{action.BaseTermId}/";
             var returnData = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
 
+            RootObject<OriinLink>? userResult = null;
 
-            dispatcher.Dispatch(new BaseTermsFetchOneResultAction(returnData));
             if (!(returnData?.BaseTerm is null))
-                dispatcher.Dispatch(
-                    new LinksFetchForBaseTermAction(returnData.BaseTerm.Id, action.Token));
+                url = $"{Const.ApiLinks}?base_term_id={returnData.BaseTerm.Id}";
+            try
+            {
+
+                userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
+                    requestUri: url, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                var a = e;
+            }
+
+
+            dispatcher.Dispatch(
+                new BaseTermsFetchOneResultAction(
+                    returnData ?? new ResultBaseTranslation(),
+                    links: userResult?.Results ?? new System.Collections.Generic.List<OriinLink>()));
+          
         }
 
         [EffectMethod]
@@ -88,11 +104,28 @@ namespace OriinDic.Store.BaseTerms
 
             var url = $"{Const.ApiBaseTerms}{action.Slug}/by_slug/";
             var returnData = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
-            dispatcher.Dispatch(new BaseTermsFetchOneResultAction(returnData));
-            
+
+            RootObject<OriinLink>? userResult = null;
+
             if (!(returnData?.BaseTerm is null))
-                dispatcher.Dispatch(
-                    new LinksFetchForBaseTermAction(returnData.BaseTerm.Id, action.Token));
+                url = $"{Const.ApiLinks}?base_term_id={returnData.BaseTerm.Id}";
+            try
+            {
+
+                userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
+                    requestUri: url, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                var a = e;
+            }
+
+
+            dispatcher.Dispatch(
+                new BaseTermsFetchOneResultAction(
+                        returnData ?? new ResultBaseTranslation(),
+                        links: userResult?.Results ?? new System.Collections.Generic.List<OriinLink>()));
+           
         }
 
         [EffectMethod]

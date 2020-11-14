@@ -10,17 +10,13 @@ namespace OriinDic.Components
     public partial class Keyboard
     {
 
-        [Parameter]
-        public Language MyLanguage { get; set; } = new Language();
+        [Parameter] public Language? MyLanguage { get; set; } = new Language();
 
-        [Parameter]
-        public string MyTextLoading { get; set; } = string.Empty;
+        [Parameter] public string MyTextLoading { get; set; } = string.Empty;
 
-        [Parameter] 
-        public EventCallback<string> OnKeyCallback { get; set; }
+        [Parameter] public EventCallback<string> OnKeyCallback { get; set; }
 
-        [Parameter]
-        public bool KeyboardVisible { get; set; }
+        [Parameter] public bool KeyboardVisible { get; set; } = false;
 
 
         private IEnumerable<List<string>> GetSpecialChars()

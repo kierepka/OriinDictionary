@@ -6,13 +6,13 @@ namespace OriinDic.Models
     public class LastEdit
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
+        public long Id { get; set; } = 0;
 
         [JsonPropertyName("object_type")]
         public string ObjectType { get; set; } = string.Empty;
 
         [JsonPropertyName("object_id")]
-        public long ObjectId { get; set; } = long.MinValue;
+        public long ObjectId { get; set; } = 0;
 
         [JsonPropertyName("action")]
         public string Action { get; set; } = string.Empty;
@@ -30,6 +30,5 @@ namespace OriinDic.Models
         {
 
         }
-
     }
 }

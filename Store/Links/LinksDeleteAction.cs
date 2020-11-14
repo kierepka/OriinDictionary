@@ -2,8 +2,8 @@
 {
     public class LinksDeleteAction
     {
-        public string Token { get; }
-        public long LinkId { get; }
+        public string Token { get; init; } = string.Empty;
+        public long LinkId { get; init; } = 0;
 
         public LinksDeleteAction(long linkId, string token)
         {

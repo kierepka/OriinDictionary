@@ -2,8 +2,8 @@
 {
     public class BaseTermsFetchOneSlugAction
     {
-        public string Slug { get; init; }
-        public string Token { get; init; }
+        public string Slug { get; init; } = string.Empty;
+        public string Token { get; init; } = string.Empty;
 
         public BaseTermsFetchOneSlugAction(string slug, string token)
         {

@@ -1,40 +1,47 @@
 ﻿using OriinDic.Models;
 
+using System.Collections.Generic;
+
 namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsState
     {
-        public EActionState LastActionState { get; private set; } 
-        public string BaseTermSlug { get; private set; }
-        public long BaseTermId { get; private set; } 
-        public ResultBaseTranslation ResultBaseTranslation { get; private set; }
-        public string Token { get; private set; } 
-        public string SearchText { get; private set; } 
-        public long BaseTermLangId { get; private set; } 
-        public long TranslationLangId { get; private set; } 
+        public EActionState LastActionState { get; init; } = EActionState.Initializing;
+        public ResultBaseTranslation ResultBaseTranslation { get; init; } = new ResultBaseTranslation();
+        public BaseTerm BaseTerm { get; init; } = new BaseTerm();
+        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new RootObject<ResultBaseTranslation>();
+        public List<OriinLink> Links { get; init; } = new List<OriinLink>();
 
-        public int SearchPageNr { get; private set; } 
-        public long ItemsPerPage { get; private set; } 
-        public bool Current { get; private set; }
-        public bool IsLoading { get; private set; } 
-        public BaseTerm BaseTerm { get; private set; } 
-        public RootObject<ResultBaseTranslation> RootObject { get; private set; } 
+        public string BaseTermSlug { get; init; } = string.Empty;
+        public long BaseTermId { get; init; } = 0;
+        public string Token { get; init; } = string.Empty;
+        public string SearchText { get; init; } = string.Empty;
+        public long BaseTermLangId { get; init; } = 0;
+        public long TranslationLangId { get; init; } = 0;
+        public int SearchPageNr { get; init; } = 0;
+        public long ItemsPerPage { get; init; } = 0;
+        public bool Current { get; init; } = false;
+        public bool IsLoading { get; init; } = false;
 
-        public BaseTermsState()
+        public BaseTermsState(bool isLoading, bool current, int searchPageNr, long baseTermLangId, 
+            long translationLangId, long baseTermId, long itemsPerPage, 
+            string searchText, string token, string baseTermSlug,
+            RootObject<ResultBaseTranslation> rootObject, ResultBaseTranslation resultBaseTranslation, EActionState lastActionState)
         {
-            BaseTermSlug = string.Empty;
-            BaseTermId = long.MinValue;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            IsLoading = false;
-            BaseTerm = new BaseTerm();
-            RootObject = new RootObject<ResultBaseTranslation>();
+            LastActionState = EActionState.Initializing;
+            IsLoading = isLoading;
+            Current = current;
+            SearchPageNr = searchPageNr;
+            BaseTermLangId = baseTermLangId;
+            TranslationLangId = translationLangId;
+            BaseTermId = baseTermId;
+            ItemsPerPage = itemsPerPage;
+            SearchText = searchText;
+            Token = token;
+            BaseTermSlug = baseTermSlug;
+            RootObject = rootObject;
+            ResultBaseTranslation = resultBaseTranslation;
+            LastActionState = EActionState.Initialized;
         }
 
         public BaseTermsState(RootObject<ResultBaseTranslation> rootObject, EActionState lastActionState)
@@ -42,21 +49,9 @@ namespace OriinDic.Store.BaseTerms
             LastActionState = lastActionState;
             IsLoading = false;
             RootObject = rootObject ?? new RootObject<ResultBaseTranslation>();
-
-            BaseTermSlug = string.Empty;
-            BaseTermId = long.MinValue;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            BaseTerm = new BaseTerm();
         }
 
-        public BaseTermsState(string searchText, long baseTermLangId, long translationLangId,
+        public BaseTermsState(string searchText, long baseTermLangId, long translationLangId, 
             int searchPageNr, long itemsPerPage, bool current, EActionState lastActionState)
         {
             IsLoading = true;
@@ -67,13 +62,6 @@ namespace OriinDic.Store.BaseTerms
             ItemsPerPage = itemsPerPage;
             Current = current;
             LastActionState = lastActionState;
-
-            BaseTermSlug = string.Empty;
-            BaseTermId = long.MinValue;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            BaseTerm = new BaseTerm();
-            RootObject = new RootObject<ResultBaseTranslation>();
         }
 
         public BaseTermsState(BaseTerm baseTerm, string token, EActionState lastActionState)
@@ -82,19 +70,6 @@ namespace OriinDic.Store.BaseTerms
             BaseTerm = baseTerm;
             Token = token;
             LastActionState = lastActionState;
-
-            BaseTermSlug = string.Empty;
-            BaseTermId = long.MinValue;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            RootObject = new RootObject<ResultBaseTranslation>();
-
         }
 
         public BaseTermsState(long baseTermId, EActionState lastActionState)
@@ -102,19 +77,6 @@ namespace OriinDic.Store.BaseTerms
             IsLoading = true;
             BaseTermId = baseTermId;
             LastActionState = lastActionState;
-
-            BaseTermSlug = string.Empty;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            BaseTerm = new BaseTerm();
-            RootObject = new RootObject<ResultBaseTranslation>();
-
         }
 
         public BaseTermsState(string baseTermSlug, EActionState lastActionState)
@@ -122,59 +84,23 @@ namespace OriinDic.Store.BaseTerms
             IsLoading = true;
             BaseTermSlug = baseTermSlug;
             LastActionState = lastActionState;
-
-            BaseTermId = long.MinValue;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            BaseTerm = new BaseTerm();
-            RootObject = new RootObject<ResultBaseTranslation>();
-
         }
-        public BaseTermsState(BaseTerm baseTerm, EActionState lastActionState)
+        public BaseTermsState(BaseTerm baseTerm, List<OriinLink> links, EActionState lastActionState)
         {
             IsLoading = (lastActionState == EActionState.Updating || lastActionState == EActionState.FetchingOne);
 
+            Links = links;
             BaseTerm = baseTerm;
             LastActionState = lastActionState;
-
-            BaseTermSlug = string.Empty;
-            BaseTermId = long.MinValue;
-            ResultBaseTranslation = new ResultBaseTranslation();
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            RootObject = new RootObject<ResultBaseTranslation>();
         }
 
-        public BaseTermsState(ResultBaseTranslation resultBaseTranslation, EActionState lastActionState)
+        public BaseTermsState(ResultBaseTranslation resultBaseTranslation, List<OriinLink> links, EActionState lastActionState)
         {
             IsLoading = (lastActionState == EActionState.Updating || lastActionState == EActionState.FetchingOne);
 
             ResultBaseTranslation = resultBaseTranslation;
+            Links = links;
             LastActionState = lastActionState;
-
-            BaseTermSlug = string.Empty;
-            BaseTermId = long.MinValue;
-            Token = string.Empty;
-            SearchText = string.Empty;
-            BaseTermLangId = long.MinValue;
-            TranslationLangId = long.MinValue;
-            SearchPageNr = int.MinValue;
-            ItemsPerPage = long.MinValue;
-            Current = false;
-            BaseTerm = new BaseTerm();
-            RootObject = new RootObject<ResultBaseTranslation>();
-
         }
 
 

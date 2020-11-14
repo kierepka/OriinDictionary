@@ -9,7 +9,7 @@ namespace OriinDic.Models
         public User User { get; set; } = new User();
 
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
+        public long Id { get; set; } = 0;
 
         [JsonPropertyName("date")]
         public DateTimeOffset Date { get; set; } = DateTime.Now;

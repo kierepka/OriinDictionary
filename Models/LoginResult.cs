@@ -2,7 +2,7 @@ namespace OriinDic.Models
 {
     public class LoginResult
     {
-        public bool Successful { get; set; } = false;
+        public bool Successful { get; set; }
 
         public string Error { get; set; } = string.Empty;
 

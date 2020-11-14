@@ -10,37 +10,37 @@ namespace OriinDic.Models
     {
 
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
-
+        public long Id { get; set; } = 0;
+        
         [JsonPropertyName("language_id")]
-        public long LanguageId { get; set; } = long.MinValue;
-
+        public long LanguageId { get; set; } = 0;
+        
         [JsonPropertyName("slug")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
         public string Slug { get; set; } = string.Empty;
-
+        
         [JsonPropertyName("name")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
         public string Name { get; set; } = string.Empty;
-
+        
         [JsonPropertyName("synonyms")]
         public List<string> Synonyms { get; set; } = new List<string>();
 
         [JsonPropertyName("examples")]
         public List<string> Examples { get; set; } = new List<string>();
-
+        
         [JsonPropertyName("definition")]
         public string Definition { get; set; } = string.Empty;
 
         [JsonPropertyName("last_edit")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public BaseTermLastEdit LastEdit { get; set; } = new BaseTermLastEdit();
-
+        public BaseTermLastEdit? LastEdit { get; set; } = new BaseTermLastEdit();
+        
         [JsonPropertyName("last_edit_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public long LastEditId { get; set; } = long.MinValue;
+        public long? LastEditId { get; set; } = 0;
 
         public BaseTerm()
         {

@@ -25,10 +25,8 @@ namespace OriinDic.Pages
 
         private Comment? _selectedComment;
 
-        [Inject]
-        private IState<CommentsState>? CommentState { get; set; } 
-        [Inject]
-        private IDispatcher? Dispatcher { get; set; }
+        [Inject] private IState<CommentsState>? CommentState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
         public AllComments()
         {
@@ -49,9 +47,10 @@ namespace OriinDic.Pages
 
             ReadLocalSettings();
             Dispatcher?.Dispatch(new CommentsDeleteAction(comment.Id, _token));
-
+          
             UpdateLocalData();
         }
+
 
 
         private void OnReadData(DataGridReadDataEventArgs<Comment> e)

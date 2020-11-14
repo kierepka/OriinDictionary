@@ -9,13 +9,13 @@ namespace OriinDic.Models
     public class Translation
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
+        public long Id { get; set; } = 0;
 
         [JsonPropertyName("base_term_id")]
-        public long BaseTermId { get; set; } = long.MinValue;
+        public long BaseTermId { get; set; } = 0;
 
         [JsonPropertyName("language_id")]
-        public long LanguageId { get; set; } = long.MinValue;
+        public long LanguageId { get; set; } = 0;
 
         [JsonPropertyName("current")]
         public bool Current { get; set; } = false;
@@ -41,20 +41,17 @@ namespace OriinDic.Models
         [JsonPropertyName("last_approval")]
         public TranslationApproval LastApproval { get; set; } = new TranslationApproval();
 
-
         [JsonPropertyName("last_edit_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public long? LastEditId { get; set; }
+        public long? LastEditId { get; set; } = 0;
 
         [JsonPropertyName("last_approval_id")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public long? LastApprovalId { get; set; } 
+        public long? LastApprovalId { get; set; } = 0;
 
         public Translation()
         {
 
         }
-
 
         public List<Synonym> GetSynonyms()
         {
@@ -68,7 +65,6 @@ namespace OriinDic.Models
                 Synonyms.Add(s.Value);
             }
         }
-
         public List<Example> GetExamples()
         {
             return Examples.Select(e => new Example(e)).ToList();

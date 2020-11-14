@@ -66,7 +66,7 @@ namespace OriinDic.Services
         }
 
         //autoryzuje użytkownika i pobiera token
-        public async Task<Token?> GetAuthToken(string user, string pwd)
+        public async Task<Token> GetAuthToken(string user, string pwd)
         {
             var json = "{\"username\": \"" + user + "\",\"password\": \"" + pwd + "\"}";
             
@@ -76,7 +76,7 @@ namespace OriinDic.Services
             //Console.WriteLine(response.Content);            
             var ret = await response.Content.ReadFromJsonAsync<Token>();
             //Console.WriteLine(ret.ToString());
-            return ret;
+            return ret ?? new Token();
         }
     }
 }

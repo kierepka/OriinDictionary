@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Blazored.LocalStorage;
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
-
 using OriinDic.Components;
 using OriinDic.Helpers;
+using OriinDic.Models;
 using OriinDic.Store.Languages;
 
 namespace OriinDic.Pages
@@ -17,6 +18,7 @@ namespace OriinDic.Pages
         private bool _currentBaseLangPl;
         private bool isLoading = false;
        
+        private LoginInput _loginModel = new LoginInput();
 
         private long _rowsPerPage;
         private int _selectedLanguage;
@@ -28,7 +30,13 @@ namespace OriinDic.Pages
         {
         }
 
-
+        public Settings(ISyncLocalStorageService localStorage,
+            Toolbelt.Blazor.I18nText.I18nText i18NText
+        ) : this()
+        {
+            LocalStorage = localStorage;
+            I18NText = i18NText;
+        }
 
 
         protected override async Task OnInitializedAsync()

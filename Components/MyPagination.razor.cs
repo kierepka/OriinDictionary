@@ -7,17 +7,17 @@ namespace OriinDic.Components
 {
     public partial class MyPagination : ComponentBase
     {
-        
 
-        [Parameter] public long? SearchPageNr { get; set; }
 
-        [Parameter] public long? TotalPages { get; set; }
+        [Parameter] public long SearchPageNr { get; set; } = 0;
 
-        [Parameter] public IEnumerable<LocalPages>? LocalPages { get; set; }
+        [Parameter] public long TotalPages { get; set; } = 0;
 
-        [Parameter] public string? PrevText { get; set; }
+        [Parameter] public IEnumerable<LocalPages> LocalPages { get; set; } = new List<LocalPages>();
 
-        [Parameter] public string? NextText { get; set; }
+        [Parameter] public string PrevText { get; set; } = string.Empty;
+
+        [Parameter] public string NextText { get; set; } = string.Empty;
 
         [Parameter] public EventCallback<string> OnClickCallback { get; set; }
 

@@ -18,6 +18,7 @@ namespace OriinDic.Pages
         {
         }
 
+
         [Inject] private IAuthService? AuthService { get; set; }
         [Inject] private NavigationManager? NavigationManager { get; set; }
 
@@ -28,14 +29,14 @@ namespace OriinDic.Pages
 
             var result = await AuthService.Login(_loginModel);
 
-
-            if (result.Successful)
-                NavigationManager?.NavigateTo("/");
-            else
-                ShowAlert((MyText?.loginError ?? string.Empty) + result.Error);
+            if (!(MyText is null)) 
+                if (result.Successful)
+                    NavigationManager?.NavigateTo("/");
+                else
+                    ShowAlert(MyText.loginError + result.Error);
 
             isLoading = false;
         }
 
     }
-}                                    
+}

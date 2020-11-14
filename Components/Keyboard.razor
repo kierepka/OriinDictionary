@@ -26,7 +26,7 @@ else
                         <Buttons>
                             @foreach (var specChar in specCharRows)
                             {
-                                <Button Color="Color.Light" Size="ButtonSize.Small" Clicked="@(async () => await OnKeyCallback.InvokeAsync(specChar))">@specChar</Button>
+                                <Button Color="Color.Light" Clicked="@(async () => await OnKeyCallback.InvokeAsync(specChar))">@specChar</Button>
                             }
                         </Buttons>
 

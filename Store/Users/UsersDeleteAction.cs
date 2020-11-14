@@ -2,8 +2,8 @@
 {
     public class UsersDeleteAction
     {
-        public string Token { get; }
-        public long UserId { get; }
+        public string Token { get; init; } = string.Empty;
+        public long UserId { get; init; } = 0;
 
         public UsersDeleteAction(long userId, string token)
         {
