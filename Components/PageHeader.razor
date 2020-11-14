@@ -23,8 +23,8 @@
             @CurrentAlertText
         </Paragraph>
         <Paragraph>
-            <Button Color="Color.Warning">@CurrentAlertOk</Button>
-            <Button Color="Color.Info">@CurrentAlertCancel</Button>
+            <Button Color="Color.Warning" @onclick="OnOk" >@CurrentAlertOk</Button>
+            <Button Color="Color.Info" @onclick="OnCancel" >@CurrentAlertCancel</Button>
         </Paragraph>
     </Alert>
 }

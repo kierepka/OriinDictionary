@@ -11,19 +11,20 @@
                 <Button>@CurrentLanguage1?.Name</Button>
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
                 <DropdownMenu>
-
-                   
-                    @foreach (var item in LanguagesState.Value.Languages)
+                    @if (!(LanguagesState?.Value?.Languages is null))
                     {
-                        <DropdownItem TValue="int" Value="@item.Id" Clicked="@(async l => await ClickedDropdownItem1(l))">@item.Name</DropdownItem>
-                        <DropdownDivider />
+
+                        @foreach (var item in LanguagesState.Value.Languages)
+                        {
+                            <DropdownItem TValue="int" Value="@item.Id" Clicked="@(async l => await ClickedDropdownItem1(l))">@item.Name</DropdownItem>
+                            <DropdownDivider />
+                        }
                     }
-                    
                 </DropdownMenu>
             </Dropdown>
         </Buttons>
     </Addon>
-    
+
     <Addon AddonType="AddonType.End">
         <Buttons>
             <Button Clicked="@SwapLangs">
@@ -41,13 +42,14 @@
                 <Button>@CurrentLanguage2?.Name</Button>
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
                 <DropdownMenu>
-
-                    @foreach (var item in LanguagesState.Value.Languages)
+                    @if (!(LanguagesState?.Value?.Languages is null))
                     {
-                        <DropdownItem TValue="int" Value="@item.Id" Clicked="@(async l => await ClickedDropdownItem2(l))">@item.Name</DropdownItem>
-                        <DropdownDivider />
+                        @foreach (var item in LanguagesState.Value.Languages)
+                        {
+                            <DropdownItem TValue="int" Value="@item.Id" Clicked="@(async l => await ClickedDropdownItem2(l))">@item.Name</DropdownItem>
+                            <DropdownDivider />
+                        }
                     }
-                    
                 </DropdownMenu>
             </Dropdown>
         </Buttons>

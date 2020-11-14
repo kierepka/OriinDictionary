@@ -21,7 +21,7 @@ namespace OriinDic.Pages
 {
     public partial class TranslationEdit : DicBasePage
     {
-        private Translation? _oldTranslation;
+        private Translation _oldTranslation = new Translation();
         private Token _token = new Token();
 
         public TranslationEdit()
@@ -29,15 +29,7 @@ namespace OriinDic.Pages
         }
 
 
-        public BaseTerm? BaseTerm { get; set; }
-
         public string BaseTermInformation { get; set; } = string.Empty;
-
-        public List<Comment>? Comments { get; set; } = new List<Comment>();
-
-        public string Information { get; set; } = string.Empty;
-
-        public Translation? Translation { get; set; }
 
         [Parameter] public long TranslationId { get; set; }
         [Inject] private IDispatcher? Dispatcher { get; set; }
@@ -88,74 +80,62 @@ namespace OriinDic.Pages
                 token = _token?.AuthToken ?? string.Empty;
             }
 
-            Dispatcher?.Dispatch(new TranslationsFetch4EditAction(TranslationId, token, MyText?.noData ?? string.Empty));
+            Dispatcher?.Dispatch(new TranslationsFetch4EditAction(TranslationId, token,
+                MyText?.noData ?? string.Empty,
+                MyText?.loaded ?? string.Empty));
 
             //todo remove
-            if (TranslationsState is null) return;
-            TranslationsState.StateChanged += TranslationsState_StateChanged;
+       
 
         }
 
-        private void CreateBaseInformation()
-        {
 
-            if (MyText is null) return;
-            if (BaseTerm is null) return;
-            var langName = BaseTermLanguage;
-            var lastEdit = BaseTerm?.LastEdit?.User?.UserName;
 
-            BaseTermInformation = $"{MyText.baseTermLanguage}:{langName}, {MyText.baseTermLastEdit}:{lastEdit}";
-        }
-
-        private void CreateInformation()
-        {
-            if (MyText is null) return;
-            if (!(Translation is null))
-                Information =
-                    $"{MyText.translationLastEdit}:{Translation?.LastEdit?.User?.UserName}, {MyText.translationLastApproval}:{Translation?.LastApproval.User.UserName}, {MyText.translationTitle}:{Translation?.Id}";
-        }
+ 
 
         private void OnCommentAdd(Comment comment)
         {
-            if (Translation == null) return;
-            comment.TranslationId = Translation.Id;
+            if (TranslationsState?.Value?.Translation == null) return;
+            comment.TranslationId = TranslationsState.Value.Translation.Id;
             if (!(LocalStorage is null))
                 comment.User = Func.GetCurrentUser(LocalStorage);
 
             if (_token == null) return;
             Dispatcher?.Dispatch(new CommentsAddAction(comment, _token.AuthToken));
-            Dispatcher?.Dispatch(new TranslationsFetchCommentsAction(Translation.Id, _token.AuthToken));
+            Dispatcher?.Dispatch(new TranslationsFetchCommentsAction(TranslationsState.Value.Translation.Id, _token.AuthToken));
         }
 
         private void OnResetClicked()
         {
-            if (Translation is null) return;
+            if (TranslationsState?.Value?.Translation == null) return;
 
-            Translation.Name = _oldTranslation?.Name ?? string.Empty;
-            Translation.Definition = _oldTranslation?.Definition ?? string.Empty;
-            Translation.Current = _oldTranslation?.Current ?? false;
+            TranslationsState.Value.Translation.Name = _oldTranslation?.Name ?? string.Empty;
+            TranslationsState.Value.Translation.Definition = _oldTranslation?.Definition ?? string.Empty;
+            TranslationsState.Value.Translation.Current = _oldTranslation?.Current ?? false;
             StateHasChanged();
         }
 
         private void OnSaveClicked()
         {
             if (MyText is null) return;
-            if (Translation is null)
+            if (TranslationsState?.Value?.Translation == null)
             {
                 ShowAlert(MyText.saveError);
                 return;
             }
-            _oldTranslation = Translation;
-            Dispatcher?.Dispatch(new TranslationsUpdateAction(TranslationId, Translation, _token.AuthToken));
+
+            _oldTranslation = TranslationsState.Value.Translation;
+            Dispatcher?.Dispatch(new TranslationsUpdateAction(TranslationId, TranslationsState.Value.Translation, _token.AuthToken));
 
         }
 
         private void OnSpeechEnClicked()
         {
+            if (TranslationsState?.Value?.Translation is null) return;
             var utterancet = new SpeechSynthesisUtterance
             {
-                Text = Translation?.Name,
-                Lang = Func.GetLangSpeech(Translation?.LanguageId), // BCP 47 language tag
+                Text = TranslationsState.Value.Translation.Name,
+                Lang = Func.GetLangSpeech(TranslationsState.Value.Translation.LanguageId), // BCP 47 language tag
                 Pitch = 1.0, // 0.0 ~ 2.0 (Default 1.0)
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
                 Volume = 1.0 // 0.0 ~ 1.0 (Default 1.0)
@@ -167,7 +147,7 @@ namespace OriinDic.Pages
         {
             var utterancet = new SpeechSynthesisUtterance
             {
-                Text = BaseTerm?.Name,
+                Text = TranslationsState?.Value.BaseTerm?.Name,
                 Lang = Const.PlLangSpeechCode, // BCP 47 language tag
                 Pitch = 1.0, // 0.0 ~ 2.0 (Default 1.0)
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
@@ -176,34 +156,6 @@ namespace OriinDic.Pages
             SpeechSynthesis?.Speak(utterancet);
         }
 
-        private void TranslationsState_StateChanged(object sender, TranslationsState e)
-        {
 
-            Translation = TranslationsState?.Value.Translation;
-
-
-            BaseTerm = TranslationsState?.Value.BaseTerm;
-            Comments = TranslationsState?.Value.Comments;
-
-            CreateInformation();
-            CreateBaseInformation();
-
-            switch (e.LastActionState)
-            {
-                case EActionState.Updated:
-                    if (MyText is null) return;
-                    ShowAlert($"{MyText.translationSaved} {Translation?.Id}");
-                    break;
-                case EActionState.FetchedComments:
-                    if (MyText is null) return;
-                    ShowAlert($"{MyText.addedComment} {Translation?.Id}");
-                    break;
-                case EActionState.FetchedForEdit:
-                    if (MyText is null) return;
-                    ShowAlert($"{MyText.loaded} {Translation?.Id}");
-                    break;
-            }
-            StateHasChanged();
-        }
     }
 }

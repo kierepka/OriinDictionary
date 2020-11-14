@@ -24,11 +24,9 @@ namespace OriinDic.Pages
     {
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
-        private RootObject<User>? _localData;
         private bool _reloadData = true;
         private string _token = string.Empty;
-        private int _totalUsers;
-        private List<User>? _usersList;
+
         private User? _selectedUser;
 
         [Inject] private IDispatcher? Dispatcher { get; set; }
@@ -36,19 +34,12 @@ namespace OriinDic.Pages
         [Inject] private IState<UsersState>? UsersState { get; set; }
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
-        public Users(RootObject<User>? localData) : base()
+        public Users() : base()
         {
-            _localData = localData;
+
         }
 
         private string GetLanguageName(int langId) => (LanguagesState?.Value.GetLanguageName(langId) ?? string.Empty);
-
-        public Users(Toolbelt.Blazor.I18nText.I18nText i18NText,
-           ISyncLocalStorageService localStorage, RootObject<User>? localData) : this(localData)
-        {
-            I18NText = i18NText ?? throw new ArgumentNullException(nameof(i18NText));
-            LocalStorage = localStorage ?? throw new ArgumentNullException(nameof(localStorage));
-        }
 
 
         protected override async Task OnInitializedAsync()
@@ -59,74 +50,10 @@ namespace OriinDic.Pages
 
             ReadLocalSettings();
 
-            if (UsersState is null) return;
-            UsersState.StateChanged += UsersState_StateChanged;
+            Dispatcher?.Dispatch(new UsersFetchDataAction(_token, searchPageNr: 1, _itemsPerPage));
+
         }
 
-        private void UsersState_StateChanged(object sender, UsersState e)
-        {
-
-            switch (e.LastActionState)
-            {
-                
-                case EActionState.Deleted:
-                    if (!(e.DeleteResponse is null))
-                    {
-                        if (e.DeleteResponse.Deleted)
-                        {
-                            ShowAlert(MyText?.youWhereDeleted ?? string.Empty);
-                            _reloadData = true;
-                        }
-                        else
-                        {
-                            ShowAlert(MyText?.userDeletionError ?? $"error! {e.DeleteResponse.Detail}");
-                        }
-                    }
-                    break;
-                case EActionState.Added:
-                    if (!(MyText is null))
-                    {
-                        if (e.User is null)
-                        {
-                            ShowAlert(MyText.dataSavedNOk);
-                        }
-                        else
-                        {
-                            ShowAlert(MyText.dataSavedOk);
-                            _reloadData = true;
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(e.StatusCode))
-                            ShowAlert(e.StatusCode);
-
-                    break;
-                case EActionState.Updated:
-                    if (!(MyText is null))
-                    {
-                        if (e.User is null)
-                        {
-                            ShowAlert(MyText.dataSavedNOk);
-                        }
-                        else
-                        {
-                            ShowAlert(MyText.dataSavedOk);
-                            _reloadData = true;
-                        }
-                    }
-                    break;
-                case EActionState.FetchedData:
-                    _reloadData = false;
-
-                    if (!(MyText is null))
-                        ShowAlert($"{MyText.loaded}");
-                    
-                    break;
-                
-            }
-
-            UpdateLocalData();
-        }
 
         void OnRowInserted(SavedRowItem<User, Dictionary<string, object>> e)
         {
@@ -202,14 +129,5 @@ namespace OriinDic.Pages
 
         }
 
-        private void UpdateLocalData()
-        {
-            if (_localData is null) return;
-
-            _usersList = _localData.Results;
-            _totalUsers = (int)_localData.Count;
-            // always call StateHasChanged!
-            StateHasChanged();
-        }
     }
 }

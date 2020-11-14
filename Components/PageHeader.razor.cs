@@ -5,6 +5,8 @@ using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using OriinDic.Store.Notifications;
 
+using System.Threading.Tasks;
+
 namespace OriinDic.Components
 {
     public partial class PageHeader : FluxorComponent
@@ -18,7 +20,7 @@ namespace OriinDic.Components
         }
 
         [Parameter]
-        public string CurrentAlertText 
+        public string CurrentAlertText
         {
             get => currentAlertText;
             set
@@ -43,6 +45,21 @@ namespace OriinDic.Components
         [Parameter] public string LoadingText { get; set; } = string.Empty;
         public Snackbar? MyAlert { get; set; } = null;
         public Alert? MyAlertYesNo { get; set; } = null;
-        
+        [Parameter] public EventCallback<long> OnOkEvent { get; set; }
+        [Parameter] public EventCallback<long> OnCancelEvent { get; set; }
+
+        private async Task OnOk()
+        {
+            MyAlertYesNo?.Hide();
+            if (OnOkEvent.HasDelegate)
+                await OnOkEvent.InvokeAsync();
+        }
+
+        private async Task OnCancel()
+        {
+            MyAlertYesNo?.Hide();
+            if (OnCancelEvent.HasDelegate)
+                await OnCancelEvent.InvokeAsync();
+        }
     }
 }

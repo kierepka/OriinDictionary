@@ -10,7 +10,15 @@
         public long ItemsPerPage { get; init; } = 0;
         public bool Current { get; init; } = false;
 
-        public TranslationsFetchDataAction(string searchText, long baseTermLangId, long langId, int searchPageNr, long itemsPerPage, bool current)
+        public string DataLoadedMessage { get; init; } = string.Empty;
+
+        public TranslationsFetchDataAction(string searchText, 
+                long baseTermLangId, 
+                long langId, 
+                int searchPageNr, 
+                long itemsPerPage, 
+                bool current,
+                string dataLoadedMessage)
         {
             SearchText = searchText;
             BaseTermLangId = baseTermLangId;
@@ -18,6 +26,7 @@
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
             Current = current;
+            DataLoadedMessage = dataLoadedMessage;
         }
 
         

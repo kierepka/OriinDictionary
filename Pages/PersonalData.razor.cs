@@ -83,19 +83,6 @@ namespace OriinDic.Pages
         private void UserState_StateChanged(object sender, UsersState e)
         {
 
-            switch (e.LastActionState)
-            {
-                case EActionState.Anonymized:
-                    ShowAlert(MyText?.anonimized ?? string.Empty);
-                    break;
-                case EActionState.Updated:
-                    ShowAlert(MyText?.updated ?? string.Empty);
-                    break;
-            }
-
-
-            if (!string.IsNullOrEmpty(UserState?.Value.StatusCode))
-                ShowAlert(UserState.Value.StatusCode);
             
             if (UserState?.Value.User != null) _user = UserState.Value.User;
 
