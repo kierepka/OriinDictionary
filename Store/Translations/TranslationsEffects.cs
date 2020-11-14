@@ -55,7 +55,10 @@ namespace OriinDic.Store.Translations
             {
                 dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
-
+            finally
+            {
+                dispatcher.Dispatch(new ShowNotificationAction(action.DataLoadedMessage));
+            }
             dispatcher.Dispatch(new TranslationsFetchDataResultAction(translationResult ?? new RootObject<ResultBaseTranslation>()));
         }
 
@@ -90,6 +93,8 @@ namespace OriinDic.Store.Translations
                 baseTerm: baseTerm ?? new BaseTerm(), 
                 links: links?.Results ?? new System.Collections.Generic.List<OriinLink>(),
                 comments: comments?.Results ?? new System.Collections.Generic.List<Comment>()));
+
+            dispatcher.Dispatch(new ShowNotificationAction(action.DataLoadedMessage));
         }
 
         [EffectMethod]

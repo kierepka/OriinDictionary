@@ -6,9 +6,9 @@
 <PageHeader IsLoading="@(UsersState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.users" />
 
 <DataGrid TItem="User"
-          Data="@_usersList"
+          Data="@UsersState?.Value?.RootObject?.Results"
           ReadData="@OnReadData"
-          TotalItems="@_totalUsers"
+          TotalItems="@UsersState?.Value?.RootObject?.Results.Count"
           ShowPager="false"
           UseInternalEditing="true"
           Editable="true"
