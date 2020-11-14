@@ -78,10 +78,7 @@
         <TableHeader>
             <TableRow>
                 <TableHeaderCell>@MyText?.termTitle</TableHeaderCell>
-                @if (!SearchState?.Value.CurrentBaseLangPl ?? false)
-                {
-                    <TableHeaderCell>@MyText?.translationTitle</TableHeaderCell>
-                }
+                <TableHeaderCell>@MyText?.translationTitle</TableHeaderCell>                
             </TableRow>
         </TableHeader>
         <TableBody>
@@ -107,25 +104,24 @@
                         }
 
                     </TableRowCell>
-                    @if (!SearchState.Value.CurrentBaseLangPl)
-                    {
-                        <TableRowCell>
+                    
+                    <TableRowCell>
 
-                            @if (locDic.TranslateName is null)
-                            {
-                                <div class="box @SearchState.Value.ButtonEnColor">
-                                    <a href="/addtranslation/@locDic.BaseTermId">@MyText?.addTranslation</a>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="box @SearchState.Value.ButtonEnColor">
-                                    <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
-                                </div>
-                            }
+                        @if (locDic.TranslateName is null)
+                        {
+                            <div class="box @SearchState.Value.ButtonEnColor">
+                                <a href="/addtranslation/@locDic.BaseTermId">@MyText?.addTranslation</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="box @SearchState.Value.ButtonEnColor">
+                                <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
+                            </div>
+                        }
 
-                        </TableRowCell>
-                    }
+                    </TableRowCell>
+                    
                 </TableRow>
             }
         </TableBody>

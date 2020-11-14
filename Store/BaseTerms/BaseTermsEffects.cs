@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Fluxor;
 using OriinDic.Helpers;
 using OriinDic.Models;
-using OriinDic.Store.Links;
 using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.BaseTerms
@@ -87,7 +86,7 @@ namespace OriinDic.Store.BaseTerms
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
 
 
@@ -117,7 +116,7 @@ namespace OriinDic.Store.BaseTerms
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
 
 

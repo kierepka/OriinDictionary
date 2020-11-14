@@ -13,6 +13,9 @@ namespace OriinDic.Store.Comments
             token: string.Empty, statusCode: string.Empty,
             comment: new Comment(),
             rootObject: new RootObject<Comment>(),
-            deleteResponse: new DeletedObjectResponse());
+            deleteResponse: new DeletedObjectResponse(),
+            lastActionState: EActionState.Initializing);
+
+
     }
 }

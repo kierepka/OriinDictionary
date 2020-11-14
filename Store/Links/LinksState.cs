@@ -18,10 +18,20 @@ namespace OriinDic.Store.Links
         public RootObject<OriinLink> RootObject { get; init; } = new RootObject<OriinLink>();
         public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
 
-        public LinksState(bool isLoading, int searchPageNr, long itemsPerPage, string token, string statusCode,
-            OriinLink link, RootObject<OriinLink> rootObject, DeletedObjectResponse deleteResponse)
+        public LinksState(
+            bool isLoading, 
+            int searchPageNr, 
+            long itemsPerPage, 
+            string token, 
+            string statusCode,
+            long linkId,
+            long baseTermId,
+            OriinLink link, 
+            RootObject<OriinLink> rootObject, 
+            DeletedObjectResponse deleteResponse, 
+            EActionState lastActionState)
         {
-            LastActionState = EActionState.Initializing;
+            
             IsLoading = isLoading;
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
@@ -30,79 +40,12 @@ namespace OriinDic.Store.Links
             Link = link;
             RootObject = rootObject;
             DeleteResponse = deleteResponse;
-            LastActionState = EActionState.Initialized;
-        }
-
-        public LinksState(bool isLoading, RootObject<OriinLink> rootObject, EActionState lastActionState)
-        {
-            IsLoading = isLoading;
             LastActionState = lastActionState;
-            RootObject = rootObject ?? new RootObject<OriinLink>();
-        }
-
-        public LinksState(string token, int searchPageNr, long itemsPerPage, EActionState lastActionState)
-        {
-            IsLoading = true;
-            Token = token;
-            SearchPageNr = searchPageNr;
-            ItemsPerPage = itemsPerPage;
-            LastActionState = lastActionState;
-        }
-
-        public LinksState(int searchPageNr, long itemsPerPage, EActionState lastActionState)
-        {
-            SearchPageNr = searchPageNr;
-            ItemsPerPage = itemsPerPage;
-            LastActionState = lastActionState;
-        }
-        public LinksState(OriinLink link, string token, bool tokenAdd, EActionState lastActionState)
-        {
-            IsLoading = true;
-            Token = token;
-            LastActionState = lastActionState;
-            Link = link ?? new OriinLink();
-        }
-
-        public LinksState(OriinLink link, string statusCode, EActionState lastActionState)
-        {
-            IsLoading = false;
-            StatusCode = statusCode;
-            LastActionState = lastActionState;
-            Link = link ?? new OriinLink();
-        }
-
-        
-
-        public LinksState(long linkId, EActionState lastActionState)
-        {
-            IsLoading = true;
             LinkId = linkId;
-            LastActionState = lastActionState;
-        }
-
-
-
-        public LinksState(DeletedObjectResponse deleteResponse, EActionState lastActionState)
-        {
-            IsLoading = false;
-            DeleteResponse = deleteResponse;
-            LastActionState = lastActionState;
-        }
-
-        public LinksState(RootObject<OriinLink> rootObject, EActionState lastActionState)
-        {
-            IsLoading = false;
-            RootObject = rootObject;
-            LastActionState = lastActionState;
-        }
-
-        public LinksState(long baseTermId, string token, EActionState lastActionState)
-        {
-            IsLoading = true;
             BaseTermId = baseTermId;
-            LastActionState = lastActionState;
-            Token = token;
         }
+
+  
 
     }
 }

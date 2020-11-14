@@ -8,8 +8,8 @@ namespace OriinDic.Store.Search
 {
     public class SearchState
     {
-        public IReadOnlyCollection<SearchItem> SearchItems { get; private set; } = new List<SearchItem>();
-        public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } = new List<LocalPages>();
+        public IReadOnlyCollection<SearchItem> SearchItems { get; private set; } = (Array.Empty<SearchItem>()).ToList().AsReadOnly();
+        public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } = (Array.Empty<LocalPages>()).ToList().AsReadOnly();
         public Language CurrentLanguage1 { get; init; } = new Language();
         public Language CurrentLanguage2 { get; init; } = new Language();
         public long TotalSearchItems { get; private set; } = 0;
@@ -31,11 +31,31 @@ namespace OriinDic.Store.Search
         public bool IsLoading { get; init; } = false;
         public bool PaginationShow { get; private set; } = false;
 
-        public SearchState(IEnumerable<SearchItem> searchItems, Language currentLanguage1, Language currentLanguage2,
-            bool confirmedResults, bool currentBaseLangPl, string buttonEnColor, Color buttonPlColor, long searchPageNr,
-            string noBaseTermName, string noTranslationName, string noResults)
+        public SearchState(
+            RootObject<ResultBaseTranslation>? rootObject,
+            IEnumerable<SearchItem> searchItems,
+            IEnumerable<LocalPages> localPages,
+            Language currentLanguage1, 
+            Language currentLanguage2,
+            bool confirmedResults, 
+            bool currentBaseLangPl, 
+            string buttonEnColor, 
+            Color buttonPlColor, 
+            long searchPageNr,
+            long totalSearchItems,
+            long totalPages,
+            long itemsPerPage,
+            long translationLangId,
+            long baseTermLangId,
+            string searchText,
+            string noBaseTermName, 
+            string noTranslationName, 
+            string noResults,
+            bool isLoading,
+            bool current,
+            bool paginationShow,
+            EActionState lastActionState)
         {
-            IsLoading = true;
             CurrentLanguage1 = currentLanguage1;
             CurrentLanguage2 = currentLanguage2;
             ConfirmedResults = confirmedResults;
@@ -46,51 +66,26 @@ namespace OriinDic.Store.Search
             NoBaseTermName = noBaseTermName;
             NoTranslationName = noTranslationName;
             NoResults = noResults;
-            SearchItems = (searchItems ?? Array.Empty<SearchItem>()).ToList().AsReadOnly();
-            CheckButtonColors();
-            IsLoading = false;
-        }
-
-        public SearchState(string searchText, long baseTermLangId, long translationLangId, long searchPageNr,
-            long itemsPerPage, bool current, EActionState lastActionState)
-        {
-            IsLoading = true;
-            SearchText = searchText;
-            BaseTermLangId = baseTermLangId;
-            TranslationLangId = translationLangId;
-            SearchPageNr = searchPageNr;
-            ItemsPerPage = itemsPerPage;
+            SearchItems = searchItems.ToList().AsReadOnly();
+            LocalPages = localPages.ToList().AsReadOnly();
+            TotalSearchItems = totalSearchItems;
+            TotalPages = totalPages;            
             Current = current;
+            ItemsPerPage = itemsPerPage;
+            TranslationLangId = translationLangId;
+            BaseTermLangId = baseTermLangId;
+            SearchText = searchText;
+            IsLoading = isLoading;
+            PaginationShow = paginationShow;
             LastActionState = lastActionState;
-        }
 
-        public SearchState(SearchState s, string pageActionName)
-        {
-
-            
-            CurrentLanguage1 = s.CurrentLanguage1;
-            CurrentLanguage2 = s.CurrentLanguage2;
-            ConfirmedResults = s.ConfirmedResults;
-            CurrentBaseLangPl = s.CurrentBaseLangPl;
-            ButtonEnColor = s.ButtonEnColor;
-            ButtonPlColor = s.ButtonPlColor;
-            NoBaseTermName = s.NoBaseTermName;
-            NoTranslationName = s.NoTranslationName;
-            NoResults = s.NoResults;
-            SearchItems = s.SearchItems;
-            TotalSearchItems = s.TotalSearchItems;
-            TotalPages = s.TotalPages;
-            LocalPages = s.LocalPages;
-            PaginationShow = s.PaginationShow;
-
-        }
-        public SearchState(RootObject<ResultBaseTranslation> rootObject, EActionState lastActionState)
-        {
-            LastActionState = lastActionState;
-            IsLoading = false;
-            UpdateTempData(rootObject);
+            if (!(rootObject is null)) UpdateTempData(rootObject);
             CheckButtonColors();
         }
+
+
+
+ 
 
         private void CheckButtonColors()
         {
