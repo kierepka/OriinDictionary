@@ -16,7 +16,7 @@ jobs:
       with:
         dotnet-version: '5.0.100'
     - name: Publish with dotnet
-      run: dotnet publish --configuration Release -o release --nologo --output build
+      run: dotnet publish --configuration Release --output build
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
