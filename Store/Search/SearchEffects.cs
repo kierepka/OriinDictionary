@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-
 using Fluxor;
-
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Notifications;
@@ -25,7 +24,7 @@ namespace OriinDic.Store.Search
         [EffectMethod]
         public async Task HandleSearchPageNrChange(SearchPageNrChangeAction action, IDispatcher dispatcher)
         {
-
+            
             if (Const.BaseLanguagesList.Contains(action.BaseTermLangId))
                 dispatcher.Dispatch(new SearchBaseTermsAction(searchText: action.SearchText,
                     baseTermLangId: action.BaseTermLangId, translationLangId: action.TranslationLangId, action.SearchPageNr,
@@ -36,8 +35,8 @@ namespace OriinDic.Store.Search
                     baseTermLangId: action.BaseTermLangId, translationLangId: action.TranslationLangId, action.SearchPageNr,
                     itemsPerPage: action.ItemsPerPage, current: action.Current, action.NoResults));
             }
-
-
+            
+            
         }
 
         [EffectMethod]
@@ -62,14 +61,23 @@ namespace OriinDic.Store.Search
             {
                 dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
-            if (translationResult?.Count == 0)
-            {
-                //brakuje danych
-                dispatcher.Dispatch(new ShowNotificationAction(action.NoResults));
-                return;
-            }
 
-            dispatcher.Dispatch(new SearchBaseTermsResultAction(translationResult ?? new RootObject<ResultBaseTranslation>()));
+            if (translationResult is null)
+            {
+                dispatcher.Dispatch(new SearchBaseTermsResultAction(new RootObject<ResultBaseTranslation>()));
+            }
+            else
+            {
+
+                if (translationResult.Count == 0)
+                {
+                    //brakuje danych
+                    dispatcher.Dispatch(new ShowNotificationAction(action.NoResults));
+                    return;
+                }
+
+                dispatcher.Dispatch(new SearchBaseTermsResultAction(translationResult));
+            }
             
         }
 
@@ -90,7 +98,7 @@ namespace OriinDic.Store.Search
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
+                dispatcher.Dispatch(new ShowNotificationAction(e.ToString())); 
             }
 
             dispatcher.Dispatch(new SearchTranslationsResultAction(translationResult ?? new RootObject<ResultBaseTranslation>()));

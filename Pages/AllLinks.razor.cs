@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Blazorise.DataGrid;
@@ -22,11 +23,8 @@ namespace OriinDic.Pages
         private int _totalOriinLinks;
         private OriinLink? selectedOriinLink;
 
-        [Inject]
-        private IState<LinksState>? LinksState { get; set; }
-
-        [Inject]
-        private IDispatcher? Dispatcher { get; set; }
+        [Inject] private IState<LinksState>? LinksState { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
         public AllLinks()
         {
@@ -47,7 +45,7 @@ namespace OriinDic.Pages
             ReadLocalSettings();
 
             Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token));
-
+ 
             UpdateLocalData();
         }
 
@@ -61,7 +59,6 @@ namespace OriinDic.Pages
             Dispatcher?.Dispatch(new LinksFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));
             UpdateLocalData();
             _reloadData = false;
-
 
         }
 
@@ -79,8 +76,7 @@ namespace OriinDic.Pages
         private void UpdateLocalData()
         {
             if (LinksState?.Value is null) return;
-            if (!(LinksState.Value.RootObject?.Results is null))
-                _totalOriinLinks = LinksState.Value.RootObject.Results.Count;
+            if (LinksState?.Value.RootObject?.Results != null) _totalOriinLinks = LinksState.Value.RootObject.Results.Count;
             // always call StateHasChanged!
             StateHasChanged();
         }

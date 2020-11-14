@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Components;
@@ -13,7 +13,6 @@ namespace OriinDic.Pages
         public Logout()
         {
         }
-        
 
         [Inject] private IAuthService? AuthService { get; set; }
         [Inject] private NavigationManager? NavigationManager { get; set; }

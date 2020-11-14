@@ -12,8 +12,8 @@ namespace OriinDic.Store.Translations
             baseTermLangId: 0, langId: 0, searchPageNr: 0, itemsPerPage: 0,
             rootObject: new Models.RootObject<Models.ResultBaseTranslation>(),
             translation: new Models.Translation(),
-            baseTerm: new Models.BaseTerm(),
-            links: new System.Collections.Generic.List<Models.OriinLink>(),
+            baseTerm: new Models.BaseTerm(), 
+            links: new System.Collections.Generic.List<Models.OriinLink>(), 
             comments: new System.Collections.Generic.List<Models.Comment>());
     }
 }

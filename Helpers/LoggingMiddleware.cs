@@ -7,7 +7,7 @@ namespace OriinDic.Helpers
 {
     public class LoggingMiddleware : Middleware
     {
-        private IStore? Store;
+        private IStore? Store { get; set; } 
 
         public override Task InitializeAsync(IStore store)
         {

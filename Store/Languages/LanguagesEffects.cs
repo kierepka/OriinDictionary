@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-
+using Blazored.LocalStorage;
 using Fluxor;
-
+using Microsoft.AspNetCore.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
 

@@ -90,6 +90,7 @@ namespace OriinDic.Store.Comments
                     returnObject.Detail = $"Error {e}";
             }
 
+
             dispatcher.Dispatch(new CommentsDeleteResultAction(returnObject ?? new DeletedObjectResponse()));
         }
 

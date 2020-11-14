@@ -2,7 +2,7 @@
 {
     public class TranslationsFetchOneAction
     {
-        public long TranslationId { get; }
+        public long TranslationId { get; init; } = 0;
 
         public TranslationsFetchOneAction(long translationId)
         {

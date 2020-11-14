@@ -2,8 +2,8 @@
 {
     public class TranslationsFetchCommentsAction
     {
-        public long TranslationId { get; }
-        public string Token { get; }
+        public long TranslationId { get; init; } = 0;
+        public string Token { get; init; } = string.Empty;
 
         public TranslationsFetchCommentsAction(long translationId, string token)
         {

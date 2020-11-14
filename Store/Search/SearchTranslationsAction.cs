@@ -3,16 +3,16 @@
     
     public class SearchTranslationsAction
     {
-        
-        public string SearchText { get; private set; }
 
-        public long BaseTermLangId { get; private set; }
-        public long TranslationLangId { get; private set; }
-        public long SearchPageNr { get; private set; }
-        public long ItemsPerPage { get; private set; }
+        public string SearchText { get; init; } = string.Empty;
 
-        public bool Current { get; private set; }
-        public string NoResults { get; private set; }
+        public long BaseTermLangId { get; init; } = 0;
+        public long TranslationLangId { get; init; } = 0;
+        public long SearchPageNr { get; init; } = 0;
+        public long ItemsPerPage { get; init; } = 0;
+
+        public bool Current { get; init; } = false;
+        public string NoResults { get; init; } = string.Empty;
 
         public SearchTranslationsAction(string searchText, long baseTermLangId, long translationLangId, long searchPageNr,
             long itemsPerPage, bool current, string noResults)

@@ -89,12 +89,12 @@ namespace OriinDic.Store.Users
                         response.StatusCode == HttpStatusCode.NoContent ||
                         response.StatusCode == HttpStatusCode.OK)
                     {
-                        if (!(returnObject is null))
+                        if (returnObject != null)
                             returnObject.Deleted = true;
                     }
                     else
                     {
-                        if (!(returnObject is null))
+                        if (returnObject != null)
                         {
                             returnObject.Deleted = false;
                             returnObject.Detail = $"Error: {response.StatusCode}";
@@ -104,7 +104,7 @@ namespace OriinDic.Store.Users
             }
             catch (Exception e)
             {
-                if (!(returnObject is null))
+                if (returnObject!=null)
                     returnObject.Detail = $"Error {e}";
             }
 
@@ -131,7 +131,7 @@ namespace OriinDic.Store.Users
                 var a = e;
             }
 
-            dispatcher.Dispatch(new UsersFetchDataResultAction(userResult ?? new RootObject<User>()));
+            dispatcher.Dispatch(new UsersFetchDataResultAction(userResult ??  new RootObject<User>()));
         }
 
         [EffectMethod]

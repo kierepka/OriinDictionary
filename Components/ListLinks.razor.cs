@@ -49,6 +49,10 @@ namespace OriinDic.Components
         {
         }
 
-        protected override async Task OnInitializedAsync() => _myText = await I18NText!.GetTextTableAsync<Text>(this);
+        protected override async Task OnInitializedAsync()
+        {
+            if (I18NText !=null)
+                _myText = await I18NText.GetTextTableAsync<Text>(this);
+        }
     }
 }

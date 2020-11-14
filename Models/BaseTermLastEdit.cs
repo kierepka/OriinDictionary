@@ -6,21 +6,21 @@ namespace OriinDic.Models
     public class BaseTermLastEdit
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
+        public long Id { get; set; } = 0;
 
         [JsonPropertyName("object_type")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string ObjectType { get; set; } = string.Empty;
 
         [JsonPropertyName("object_id")]
-        public long ObjectId { get; set; } = long.MinValue;
+        public long ObjectId { get; set; } = 0;
 
         [JsonPropertyName("action")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string Action { get; set; } = string.Empty;
 
         [JsonPropertyName("date")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTimeOffset Date { get; set; } = DateTime.Now;
 
         [JsonPropertyName("user")]
@@ -29,6 +29,6 @@ namespace OriinDic.Models
 
         [JsonPropertyName("change")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public BaseTermChange Change { get; set; } = new BaseTermChange();
+        public BaseTermChange? Change { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,21 +33,24 @@ namespace OriinDic.Pages
 
         public string BaseTermInformation { get; set; } = string.Empty;
 
-        public List<Comment> Comments { get; set; } = new List<Comment>();
+        public List<Comment>? Comments { get; set; } = new List<Comment>();
 
         public string Information { get; set; } = string.Empty;
 
         public Translation? Translation { get; set; }
 
-        [Parameter] public long TranslationId { get; set; } = long.MinValue;
+        [Parameter] public long TranslationId { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
+        [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
 
         private string BaseTermLanguage
         {
             get
             {
                 var retVal = Const.PlLangShortcut;
-                if (TranslationsState is null) return retVal;
-                if (TranslationsState.Value.BaseTerm is null) return retVal;
+                if (TranslationsState?.Value.BaseTerm is null) return retVal;
                 if (LocalStorage is null) return retVal;
                 if (LanguagesState is null) return retVal;
 
@@ -54,18 +58,14 @@ namespace OriinDic.Pages
             }
         }
 
-        [Inject] private IDispatcher? Dispatcher { get; set; }
-        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
-        [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }        
-        [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
+
 
         private string TranslationLanguage
         {
             get
             {
                 var retVal = Const.PlLangShortcut;
-                if (TranslationsState is null) return retVal;
-                if (TranslationsState.Value.Translation is null) return retVal;
+                if (TranslationsState?.Value.Translation is null) return retVal;
                 if (LocalStorage is null) return retVal;
                 if (LanguagesState is null) return retVal;
 
@@ -73,23 +73,27 @@ namespace OriinDic.Pages
             }
         }
 
-        
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
-            if (!LanguagesState?.Value.Languages.Any() ?? true)
+            if (!LanguagesState?.Value.Languages?.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
-            if (LocalStorage is null) return;
-
-            _token = LocalStorage.GetItem<Token>(Const.TokenKey);
-
-            var token = _token.AuthToken ?? string.Empty;
+            var token = string.Empty;
+            if (!(LocalStorage is null))
+            {
+                _token = LocalStorage.GetItem<Token>(Const.TokenKey);
+                token = _token?.AuthToken ?? string.Empty;
+            }
 
             Dispatcher?.Dispatch(new TranslationsFetch4EditAction(TranslationId, token, MyText?.noData ?? string.Empty));
 
-            if (TranslationsState != null) TranslationsState.StateChanged += TranslationsState_StateChanged;
+            //todo remove
+            if (TranslationsState is null) return;
+            TranslationsState.StateChanged += TranslationsState_StateChanged;
+
         }
 
         private void CreateBaseInformation()
@@ -174,13 +178,13 @@ namespace OriinDic.Pages
 
         private void TranslationsState_StateChanged(object sender, TranslationsState e)
         {
-            
+
             Translation = TranslationsState?.Value.Translation;
-            
-            
+
+
             BaseTerm = TranslationsState?.Value.BaseTerm;
-            Comments = TranslationsState?.Value.Comments ?? new List<Comment>();
-            
+            Comments = TranslationsState?.Value.Comments;
+
             CreateInformation();
             CreateBaseInformation();
 

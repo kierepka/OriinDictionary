@@ -1,14 +1,14 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-
+using Blazored.LocalStorage;
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-
 using OriinDic.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
+using OriinDic.Services;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Users;
 
@@ -22,10 +22,7 @@ namespace OriinDic.Pages
 
         [Inject]  private IDispatcher? Dispatcher { get; set; }
 
-        [Parameter] public long UserId { get; set; }
-
-        [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
-
+        
         private List<Language> _coordinatingLanguages = new List<Language>();
 
         private string _languageSet = string.Empty;
@@ -36,17 +33,18 @@ namespace OriinDic.Pages
         }
 
 
-
         public User _user { get; set; } = new User();
         public bool IsSuperUser { get; set; }
    
+        [Parameter] public long UserId { get; set; }
 
+        [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
-            if (LanguagesState is null)
+            if (!LanguagesState?.Value.Languages.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             Token? token = null;
@@ -77,9 +75,8 @@ namespace OriinDic.Pages
             if (MyText is null) return;
             if (LocalStorage is null) return;
 
-            if (LanguagesState is null) return;
-
-            _languageSet = user.LanguageId.HasValue ? LanguagesState.Value.GetLanguageName(user.LanguageId.Value) : MyText.noData;
+            _languageSet = user.LanguageId.HasValue ? 
+                LanguagesState?.Value.GetLanguageName(user.LanguageId.Value) ?? string.Empty : MyText.noData;
 
             
 
@@ -87,14 +84,14 @@ namespace OriinDic.Pages
             _coordinatingLanguages = new List<Language>();
             foreach (var lt in user.TranslatingLanguages)
             {
-                var lang = LanguagesState.Value.GetLanguage(lt);
+                var lang = LanguagesState?.Value.GetLanguage(lt);
                 if (!(lang is null))
                     _translatingLanguages.Add(lang);
             }
 
             foreach (var lt in user.CoordinatingLanguages)
             {
-                var lang = LanguagesState.Value.GetLanguage(lt);
+                var lang = LanguagesState?.Value.GetLanguage(lt);
                 if (!(lang is null))
                     _coordinatingLanguages.Add(lang);
             }

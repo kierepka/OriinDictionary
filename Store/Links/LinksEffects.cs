@@ -110,7 +110,7 @@ namespace OriinDic.Store.Links
                 var a = e;
             }
 
-            dispatcher.Dispatch(new LinksFetchForBaseTermResultAction(userResult ?? new RootObject<OriinLink>() ));
+            dispatcher.Dispatch(new LinksFetchForBaseTermResultAction(userResult ?? new RootObject<OriinLink>()));
         }
 
         [EffectMethod]

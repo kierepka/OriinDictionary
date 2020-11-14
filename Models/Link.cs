@@ -14,16 +14,16 @@ namespace OriinDic.Models
 
         [JsonPropertyName("base_term_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public long? BaseTermId { get; set; }
+        public long? BaseTermId { get; set; } = 0;
 
         [JsonPropertyName("id")]
-        public long Id { get; set; } = long.MinValue;
+        public long Id { get; set; } = 0;
 
         [JsonPropertyName("link")]
         public string Link { get; set; } = string.Empty;
 
         [JsonPropertyName("translation_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-        public long? TranslationId { get; set; }
+        public long? TranslationId { get; set; } = 0;
     }
 }

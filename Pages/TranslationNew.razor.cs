@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 
+using Blazored.LocalStorage;
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Components;
@@ -11,64 +11,57 @@ using OriinDic.Models;
 using OriinDic.Store;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Translations;
-
 using Toolbelt.Blazor.SpeechSynthesis;
 
 namespace OriinDic.Pages
 {
     public partial class TranslationNew : DicBasePage
     {
-
+        [Parameter] public long BaseTermId { get; set; } =0;
         [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
-        [Inject] private IDispatcher? Dispatcher { get; set; }
-        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
-        private Translation? _oldTranslation;
+        [Inject] private IDispatcher? Dispatcher { get; set; }        
+        [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
 
+        private Translation? _oldTranslation;
         public BaseTerm? BaseTerm { get; set; }
         public string BaseTermInformation { get; set; } = string.Empty;
 
         public string Information { get; set; } = string.Empty;
 
-        public Translation? Translation { get; set; } = new Translation();
-        [Parameter] public long BaseTermId { get; set; }
-
+        public Translation? Translation { get; set; }
 
         public TranslationNew() : base()
         {
-         
+            Translation = new Translation();
         }
-
-
-
 
 
         private string BaseTermLanguage
         {
             get
-            {              
+            {
                 var retVal = Const.PlLangShortcut;
-                if (TranslationsState is null) return retVal;
-                if (TranslationsState.Value.BaseTerm is null) return retVal;
+                if (TranslationsState?.Value.BaseTerm is null) return retVal;
                 if (LocalStorage is null) return retVal;
                 if (LanguagesState is null) return retVal;
 
+               
                 return LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTerm.LanguageId);
             }
         }
 
-  
-
+      
         private string TranslationLanguage
         {
             get
             {
                 var retVal = Const.PlLangShortcut;
-                if (TranslationsState is null) return retVal;
-                if (TranslationsState.Value.Translation is null) return retVal;
+                if (TranslationsState?.Value.Translation is null) return retVal;
                 if (LocalStorage is null) return retVal;
                 if (LanguagesState is null) return retVal;
 
+               
                 return LanguagesState.Value.GetLanguageName(TranslationsState.Value.Translation.LanguageId);
             }
         }
@@ -80,7 +73,8 @@ namespace OriinDic.Pages
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             Dispatcher?.Dispatch(new TranslationsFetchBaseTermAction(BaseTermId));
-            if (TranslationsState != null) TranslationsState.StateChanged += TranslationsState_StateChanged;
+            if (TranslationsState is null) return;
+            TranslationsState.StateChanged += TranslationsState_StateChanged;
         }
 
         private void TranslationsState_StateChanged(object sender, TranslationsState e)

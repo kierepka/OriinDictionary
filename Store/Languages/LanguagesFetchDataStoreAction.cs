@@ -4,7 +4,7 @@ namespace OriinDic.Store.Languages
 {
     public class LanguagesFetchDataStoreAction
     {
-        public ISyncLocalStorageService LocalStorage { get; }
+        public ISyncLocalStorageService LocalStorage { get; init; } 
 
         public LanguagesFetchDataStoreAction(ISyncLocalStorageService localStorage)
         {

@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Blazored.LocalStorage;
 
 using Blazorise.DataGrid;
 
@@ -22,7 +25,6 @@ namespace OriinDic.Pages
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
         private RootObject<User>? _localData;
-
         private bool _reloadData = true;
         private string _token = string.Empty;
         private int _totalUsers;
@@ -30,6 +32,7 @@ namespace OriinDic.Pages
         private User? _selectedUser;
 
         [Inject] private IDispatcher? Dispatcher { get; set; }
+
         [Inject] private IState<UsersState>? UsersState { get; set; }
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
@@ -38,9 +41,13 @@ namespace OriinDic.Pages
             _localData = localData;
         }
 
-        private string GetLanguageName(int langId)
+        private string GetLanguageName(int langId) => (LanguagesState?.Value.GetLanguageName(langId) ?? string.Empty);
+
+        public Users(Toolbelt.Blazor.I18nText.I18nText i18NText,
+           ISyncLocalStorageService localStorage, RootObject<User>? localData) : this(localData)
         {
-            return LanguagesState?.Value.GetLanguageName(langId) ?? string.Empty;
+            I18NText = i18NText ?? throw new ArgumentNullException(nameof(i18NText));
+            LocalStorage = localStorage ?? throw new ArgumentNullException(nameof(localStorage));
         }
 
 
@@ -51,7 +58,9 @@ namespace OriinDic.Pages
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             ReadLocalSettings();
-            if (UsersState != null) UsersState.StateChanged += UsersState_StateChanged;
+
+            if (UsersState is null) return;
+            UsersState.StateChanged += UsersState_StateChanged;
         }
 
         private void UsersState_StateChanged(object sender, UsersState e)

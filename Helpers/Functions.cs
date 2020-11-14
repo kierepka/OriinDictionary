@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
-
 using Blazored.LocalStorage;
-
+using Fluxor;
 using OriinDic.Models;
 
 namespace OriinDic.Helpers
@@ -18,6 +18,8 @@ namespace OriinDic.Helpers
             localStorage.GetItem<User>(Const.UserKey);
         
 
+
+
         public static List<string> Roles(this IEnumerable<Claim> claims)
         {
             return claims.Where(c => c.Type == ClaimTypes.Role)
@@ -25,6 +27,7 @@ namespace OriinDic.Helpers
                 .ToList();
         }
 
+  
 
         public enum EnumPasswordOptions
         {
@@ -33,13 +36,21 @@ namespace OriinDic.Helpers
         }    
         public static string CreatePassword(int length, EnumPasswordOptions options)
         {
-    
-            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            RNGCryptoServiceProvider rProvider = new RNGCryptoServiceProvider();
             StringBuilder res = new StringBuilder();
-            Random rnd = new Random();
-            while (0 < length--)
+            byte[] random = new byte[1];
+            using (rProvider)
             {
-                res.Append(valid[rnd.Next(valid.Length)]);
+                while (0 < length--)
+                {
+                    var rndChar = '\0';
+                    do
+                    {
+                        rProvider.GetBytes(random);
+                        rndChar = (char)((random[0] % 92) + 33);
+                    } while (options == EnumPasswordOptions.Alphanum && !char.IsLetterOrDigit(rndChar));
+                    res.Append(rndChar);
+                }
             }
             return res.ToString();
         }

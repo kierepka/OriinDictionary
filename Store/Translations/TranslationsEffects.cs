@@ -7,14 +7,13 @@ using Fluxor;
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Notifications;
-using System.Collections.Generic;
 
 namespace OriinDic.Store.Translations
 {
     public class TranslationsEffects
     {
         private readonly HttpClient _httpClient;
-
+        
 
         public TranslationsEffects(HttpClient http)
         {
@@ -66,12 +65,13 @@ namespace OriinDic.Store.Translations
 
             var url = $"{Const.ApiTranslations}{action.TranslationId}/";
             var translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
-
-            if (translation is null) return;
-
-            url = $"{Const.ApiBaseTerms}{translation.BaseTermId}/";
-            var baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
-
+            
+            BaseTerm? baseTerm = null;
+            if (translation != null)
+            {
+                url = $"{Const.ApiBaseTerms}{translation.BaseTermId}/";
+                baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
+            }
 
             var comments = new RootObject<Comment>();
 
@@ -84,11 +84,12 @@ namespace OriinDic.Store.Translations
 
             url = $"{Const.ApiLinks}?translation_id={action.TranslationId}";
             var links = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(url, Const.HttpClientOptions);
-
-            dispatcher.Dispatch(new TranslationsFetch4EditResultAction(translation: translation,
-                                                                        baseTerm: baseTerm ?? new BaseTerm(),
-                                                                        links: links?.Results ?? new List<OriinLink>(),
-                                                                        comments: comments?.Results ?? new List<Comment>()));
+            
+            dispatcher.Dispatch(new TranslationsFetch4EditResultAction(
+                translation: translation ?? new Translation(), 
+                baseTerm: baseTerm ?? new BaseTerm(), 
+                links: links?.Results ?? new System.Collections.Generic.List<OriinLink>(),
+                comments: comments?.Results ?? new System.Collections.Generic.List<Comment>()));
         }
 
         [EffectMethod]
@@ -104,10 +105,7 @@ namespace OriinDic.Store.Translations
                 comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
             }
 
-            if (comments is null)
-                dispatcher.Dispatch(new TranslationsFetchCommentsResultAction(new List<Comment>()));
-            else
-                dispatcher.Dispatch(new TranslationsFetchCommentsResultAction(comments.Results));
+            dispatcher.Dispatch(new TranslationsFetchCommentsResultAction(comments?.Results ?? new System.Collections.Generic.List<Comment>()));
         }
 
         [EffectMethod]

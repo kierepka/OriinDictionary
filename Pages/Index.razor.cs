@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 
 using Microsoft.AspNetCore.Components;
 using OriinDic.Components;
@@ -26,13 +27,12 @@ namespace OriinDic.Pages
             _currentLanguage2 = new Language { Code = Const.EnLangShortcut, Id = Const.EnLangId, Name = Const.EnLangName, SpecialCharacters = Const.EnSpecialChars };
         }
 
-        public bool ConfirmedResults { get; set; }
+        public bool ConfirmedResults { get; set; } = false;
         [Parameter] public string SearchText { get; set; } = string.Empty;
 
         [Inject] private IDispatcher? Dispatcher { get; set; }
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
         [Inject] private IState<SearchState>? SearchState { get; set; }
-
         protected override async Task OnInitializedAsync()
         {
 
@@ -43,10 +43,9 @@ namespace OriinDic.Pages
                     ? LocalStorage.GetItem<long>(Const.ItemsPerPageKey)
                     : Const.DefaultItemsPerPage;
             }
-
-            if (LanguagesState?.Value.Languages.Any() ?? true)
+            if (!LanguagesState?.Value?.Languages?.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
-            
+
         }
 
         private void ButtonSearchClicked()
@@ -57,6 +56,7 @@ namespace OriinDic.Pages
         private void ClickedDropdownItem1(object l)
         {
             var langId = (long)l;
+
             _currentLanguage1 = LanguagesState?.Value.GetLanguage(langId);
             GoSearch();
         }
@@ -125,10 +125,11 @@ namespace OriinDic.Pages
 
             
             Dispatcher?.Dispatch(new SearchPageNrChangeAction(pageActionName, searchText: SearchText, baseTermLangId: currLang1Id,
-                    translationLangId: currLang2Id,  itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr,  current: ConfirmedResults, MyText?.noResults ?? string.Empty));
+                    translationLangId: currLang2Id,  itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr,  current: ConfirmedResults, 
+                    MyText?.noResults ?? string.Empty));
         }
 
-       
+
         private void SwapLanguages()
         {
 

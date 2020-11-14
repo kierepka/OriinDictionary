@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Blazored.LocalStorage;
@@ -37,19 +38,18 @@ namespace OriinDic.Pages
         [Inject] private IState<BaseTermsState>? BaseTermsState { get; set; }
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
         [Inject] private IDispatcher? Dispatcher { get; set; }
-        [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
+        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
 
         private string BaseTermLanguage
         {
             get
             {
+                var retVal = Const.PlLangShortcut;
+
                 if (BaseTermsState?.Value.BaseTerm is null)
-                    return Const.PlLangShortcut;
-
-                var retStr = Const.PlLangShortcut;
-
-                if (LocalStorage is null) return retStr;
-                if (LanguagesState is null) return retStr;
+                    return retVal;
+                if (LocalStorage is null) return retVal;
+                if (LanguagesState is null) return retVal;
 
                 return LanguagesState.Value.GetLanguageName(BaseTermsState.Value.BaseTerm.LanguageId);
             }
@@ -60,8 +60,8 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            
-            if (LanguagesState is null)
+
+            if (!LanguagesState?.Value.Languages.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
         }
 

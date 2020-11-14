@@ -1,9 +1,9 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-
 using Blazored.LocalStorage;
-
 using Fluxor;
+using Microsoft.AspNetCore.Components;
+using OriinDic.Store.Languages;
 
 
 namespace OriinDic.Store
@@ -21,7 +21,7 @@ namespace OriinDic.Store
 
         protected override Task HandleAsync(StoreInitializedAction action, IDispatcher dispatcher)
         {
-            //dispatcher.Dispatch(new LanguagesFetchDataStoreAction(LocalStorage));
+            dispatcher.Dispatch(new LanguagesFetchDataStoreAction(LocalStorage));
             //dispatcher.Dispatch(new LanguagesFetchDataAction());
             return Task.CompletedTask;
         }

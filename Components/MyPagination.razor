@@ -13,10 +13,10 @@
             foreach (var locPage in LocalPages)
             {
                 <Button @key="locPage.Name"
-                        Color="@locPage.ButtonColor(SearchPageNr.Value)"
+                        Color="@locPage.ButtonColor(SearchPageNr)"
                         Clicked="@(async () => await OnClickCallback.InvokeAsync(locPage.Name))"
-                        IsDisabled="@locPage.ButtonIsDisabled(SearchPageNr.Value)"
-                        IsActive="@locPage.ButtonIsDisabled(SearchPageNr.Value)">
+                        IsDisabled="@locPage.ButtonIsDisabled(SearchPageNr)"
+                        IsActive="@locPage.ButtonIsDisabled(SearchPageNr)">
                     @locPage.Name
                 </Button>
             }

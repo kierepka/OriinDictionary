@@ -4,7 +4,7 @@ namespace OriinDic.Store.Users
 {
     public class UsersFetchDataResultAction
     {
-        public RootObject<User> RootObject { get; }
+        public RootObject<User> RootObject { get; init; } = new RootObject<User>();
 
         public UsersFetchDataResultAction(RootObject<User> rootObject)
         {

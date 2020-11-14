@@ -4,7 +4,7 @@ namespace OriinDic.Store.Users
 {
     public class UsersFetchOneResultAction
     {
-        public User User { get; }
+        public User User { get; init; } = new User();
 
         public UsersFetchOneResultAction(User user)
         {
