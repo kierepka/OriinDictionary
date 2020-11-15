@@ -63,7 +63,7 @@ namespace OriinDic.Store.Links
                 linkId: state.LinkId,
                 baseTermId: state.BaseTermId,
                 link: state.Link,
-                rootObject: state.RootObject,
+                rootObject: action.RootObject,
                 deleteResponse: action.DelteResponse,
                 lastActionState: EActionState.Deleted);
 

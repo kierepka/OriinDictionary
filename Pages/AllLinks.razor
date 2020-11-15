@@ -5,9 +5,9 @@
 
 
 <DataGrid TItem="OriinLink"
-          Data="@LinksState?.Value.RootObject?.Results"
+          Data="@LinksState?.Value?.RootObject?.Results"
           ReadData="@OnReadData"
-          TotalItems="@_totalOriinLinks"
+          TotalItems="@LinksState?.Value?.RootObject?.Results?.Count"
           ShowPager="false"
           Editable="false"
           Sortable="true"

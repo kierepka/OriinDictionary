@@ -84,9 +84,6 @@ namespace OriinDic.Pages
                 MyText?.noData ?? string.Empty,
                 MyText?.loaded ?? string.Empty));
 
-            //todo remove
-       
-
         }
 
 

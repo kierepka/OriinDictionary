@@ -68,12 +68,12 @@ namespace OriinDic.Store.Translations
 
             var url = $"{Const.ApiTranslations}{action.TranslationId}/";
             var translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
-            
-            BaseTerm? baseTerm = null;
+
+            ResultBaseTranslation? baseTermResult = null;
             if (translation != null)
             {
                 url = $"{Const.ApiBaseTerms}{translation.BaseTermId}/";
-                baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
+                baseTermResult = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
             }
 
             var comments = new RootObject<Comment>();
@@ -90,7 +90,7 @@ namespace OriinDic.Store.Translations
             
             dispatcher.Dispatch(new TranslationsFetch4EditResultAction(
                 translation: translation ?? new Translation(), 
-                baseTerm: baseTerm ?? new BaseTerm(), 
+                baseTerm: baseTermResult?.BaseTerm ?? new BaseTerm(), 
                 links: links?.Results ?? new System.Collections.Generic.List<OriinLink>(),
                 comments: comments?.Results ?? new System.Collections.Generic.List<Comment>()));
 

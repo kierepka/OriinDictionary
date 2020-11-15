@@ -32,7 +32,7 @@ namespace OriinDic.Store.Comments
                 token: state.Token,
                 statusCode: action.StatusCode,
                 comment: action.Comment,
-                rootObject: state.RootObject,
+                rootObject: action.RootObject,
                 deleteResponse: state.DeleteResponse,
                 lastActionState: EActionState.Added);
 
@@ -65,7 +65,7 @@ namespace OriinDic.Store.Comments
                 token: state.Token,
                 statusCode: state.StatusCode,
                 comment: state.Comment,
-                rootObject: state.RootObject,
+                rootObject: action.RootObject,
                 deleteResponse: action.DeleteResponse,
                 lastActionState: EActionState.Deleted);
 

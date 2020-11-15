@@ -8,7 +8,7 @@
 <DataGrid TItem="User"
           Data="@UsersState?.Value?.RootObject?.Results"
           ReadData="@OnReadData"
-          TotalItems="@UsersState?.Value?.RootObject?.Results.Count"
+          TotalItems="@UsersState?.Value?.RootObject?.Results?.Count"
           ShowPager="false"
           UseInternalEditing="true"
           Editable="true"

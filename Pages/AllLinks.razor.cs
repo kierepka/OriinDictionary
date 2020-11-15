@@ -18,9 +18,7 @@ namespace OriinDic.Pages
     {
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
-        private bool _reloadData = true;
         private string _token = string.Empty;
-        private int _totalOriinLinks;
         private OriinLink? selectedOriinLink;
 
         [Inject] private IState<LinksState>? LinksState { get; set; }
@@ -36,30 +34,26 @@ namespace OriinDic.Pages
             await base.OnInitializedAsync();
             ReadLocalSettings();
             Dispatcher?.Dispatch(new LinksFetchDataAction(token: _token));
+            StateHasChanged();
         }
 
         private void OnRowRemoved(OriinLink oriinLink)
         {
             selectedOriinLink = oriinLink;
-
             ReadLocalSettings();
+            Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token ));
 
-            Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token));
- 
-            UpdateLocalData();
+            StateHasChanged();
         }
 
 
         private void OnReadData(DataGridReadDataEventArgs<OriinLink> e)
         {
 
-            if (!_reloadData) return;
-
             ReadLocalSettings();
             Dispatcher?.Dispatch(new LinksFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));
-            UpdateLocalData();
-            _reloadData = false;
 
+            StateHasChanged();
         }
 
         private void ReadLocalSettings()
@@ -73,12 +67,5 @@ namespace OriinDic.Pages
             if (_itemsPerPage == 0) _itemsPerPage = Const.DefaultItemsPerPage;
         }
 
-        private void UpdateLocalData()
-        {
-            if (LinksState?.Value is null) return;
-            if (LinksState?.Value.RootObject?.Results != null) _totalOriinLinks = LinksState.Value.RootObject.Results.Count;
-            // always call StateHasChanged!
-            StateHasChanged();
-        }
     }
 }
