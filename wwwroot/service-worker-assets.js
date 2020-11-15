@@ -17,6 +17,10 @@
       "url": ".htaccess"
     },
     {
+      "hash": "sha256-mGkdXKK17ZWASfTRLkEAjaJV3aM6jNkjvWwnwqaqOjI=",
+      "url": "404.html"
+    },
+    {
       "hash": "sha256-PjiLA40FzvT9WPee5x6Vy\/sTXkL8xL7At1GIXPkANWE=",
       "url": "android-chrome-192x192.png"
     },
@@ -137,7 +141,7 @@
       "url": "favicon.ico"
     },
     {
-      "hash": "sha256-CHc7tn602+QH58CZMYeOb7JTDKEwFQ0\/JagStUS9xXQ=",
+      "hash": "sha256-dvBXqpyyQ5dQu86irp1WOCS1vO0J2edfFM42IP1VMwA=",
       "url": "index.html"
     },
     {
@@ -369,7 +373,7 @@
       "url": "_framework\/Toolbelt.Blazor.SpeechSynthesis.dll"
     },
     {
-      "hash": "sha256-Cq8DbLC8\/T+75iXt+XyEHwvD0+4m5SiAwKlPDwqBbyg=",
+      "hash": "sha256-1Mw6lxQHnSH3uBKXd9j2NsW0Ropw+UgfDME6CkceqGg=",
       "url": "_framework\/OriinDic.dll"
     },
     {
@@ -525,7 +529,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-jf406b0+6SMk4QiIlD0xuNma4OOqGWBbY+4Muyvw8u4=",
+      "hash": "sha256-+CI7cKuDzgqcXdIe2pjaBOXCN6fn9EYIVb816PSp\/wA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -533,5 +537,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "vnkXPiDF"
+  "version": "XCjt5ndn"
 };
