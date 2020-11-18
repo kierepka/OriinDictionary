@@ -25,11 +25,11 @@ namespace OriinDic
             
 
             builder.Services
-                .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })
                 .AddI18nText(options =>
                 {
-                     options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
+                    options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
                 })
+                .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })                       //jak jest true to dzia³a za wolno :(
                 .AddBulmaProviders()
                 .AddFontAwesomeIcons();
             //builder.Services.AddSingleton(new HttpClient {BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)});

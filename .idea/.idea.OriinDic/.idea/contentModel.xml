@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.1.2\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.-625878304.00" t="ExcludeRecursive" />
     <e p="E:\source\repos\oriin_dictionary\oriin-dictionary-client" t="IncludeRecursive">
@@ -34,6 +33,8 @@
         <e p="MainLayout.razor.cs" t="Include" />
         <e p="MyPagination.razor" t="Include" />
         <e p="MyPagination.razor.cs" t="Include" />
+        <e p="MySearch.razor" t="Include" />
+        <e p="MySearch.razor.cs" t="Include" />
         <e p="PageHeader.razor" t="Include" />
         <e p="PageHeader.razor.cs" t="Include" />
         <e p="RedirectToLogin.razor" t="Include" />
@@ -56,6 +57,7 @@
         <e p="Text.pl.json" t="Include" />
       </e>
       <e p="libman.json" t="Include" />
+      <e p="LICENSE" t="Include" />
       <e p="Models" t="Include">
         <e p="BaseTerm.cs" t="Include" />
         <e p="BaseTermChange.cs" t="Include" />
@@ -135,6 +137,7 @@
           <e p="FTPProfile.pubxml" t="Include" />
         </e>
       </e>
+      <e p="README.md" t="Include" />
       <e p="Services" t="Include">
         <e p="ApiAuthenticationStateProvider.cs" t="Include" />
         <e p="AuthService.cs" t="Include" />
@@ -255,6 +258,7 @@
       </e>
       <e p="wwwroot" t="Include">
         <e p=".htaccess" t="Include" />
+        <e p="404.html" t="Include" />
         <e p="android-chrome-192x192.png" t="Include" />
         <e p="android-chrome-512x512.png" t="Include" />
         <e p="apple-touch-icon.png" t="Include" />

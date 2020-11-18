@@ -63,8 +63,8 @@ namespace OriinDic.Pages
 
         private void ClickedDropdownItem2(object l)
         {
-            var langId = (long)l;
-            _currentLanguage2 = LanguagesState?.Value.GetLanguage(langId);
+            
+            _currentLanguage2 = (Language)l;
             GoSearch();
         }
 

@@ -3,7 +3,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+
 using Fluxor;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Notifications;
@@ -13,7 +15,7 @@ namespace OriinDic.Store.Translations
     public class TranslationsEffects
     {
         private readonly HttpClient _httpClient;
-        
+
 
         public TranslationsEffects(HttpClient http)
         {
@@ -87,14 +89,38 @@ namespace OriinDic.Store.Translations
 
             url = $"{Const.ApiLinks}?translation_id={action.TranslationId}";
             var links = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(url, Const.HttpClientOptions);
-            
+
             dispatcher.Dispatch(new TranslationsFetch4EditResultAction(
-                translation: translation ?? new Translation(), 
-                baseTerm: baseTermResult?.BaseTerm ?? new BaseTerm(), 
+                translation: translation ?? new Translation(),
+                baseTerm: baseTermResult?.BaseTerm ?? new BaseTerm(),
                 links: links?.Results ?? new System.Collections.Generic.List<OriinLink>(),
                 comments: comments?.Results ?? new System.Collections.Generic.List<Comment>()));
 
             dispatcher.Dispatch(new ShowNotificationAction(action.DataLoadedMessage));
+        }
+
+        [EffectMethod]
+        public async Task HandleAddCommentsAction(TranslationsCommentAddAction action, IDispatcher dispatcher)
+        {
+            var comments = new RootObject<Comment>();
+
+            if (!string.IsNullOrEmpty(action.Token))
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+
+                var response = await _httpClient.PostAsJsonAsync(
+                    $"{Const.ApiComments}", action.Comment);
+
+                if (!(response.Content is null))
+                {
+                    _ = await response.Content.ReadFromJsonAsync<Comment>();
+                }
+
+                var url = $"{Const.ApiComments}?translation_id={action.TranslationId}";
+                comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
+            }
+
+            dispatcher.Dispatch(new TranslationsFetchCommentsResultAction(comments?.Results ?? new System.Collections.Generic.List<Comment>()));
         }
 
         [EffectMethod]

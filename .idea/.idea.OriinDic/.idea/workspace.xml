@@ -20,12 +20,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/wwwroot/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MySearch.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MySearch.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MySearch.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MySearch.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllLinks.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllLinks.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllLinks.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllLinks.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Users.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Users.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsAddResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsAddResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsDeleteResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsDeleteResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Languages/LanguagesReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Languages/LanguagesReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksDeleteResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksDeleteResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +66,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Store/Search/SearchTranslationsResultAction.cs" root0="FORCE_HIGHLIGHTING" />
@@ -94,6 +127,8 @@
       <option value="$PROJECT_DIR$/Store/Search/SearchEffects.cs" />
       <option value="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" />
       <option value="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" />
+      <option value="$PROJECT_DIR$/Components/MySearch.razor" />
+      <option value="$PROJECT_DIR$/Components/MySearch.razor.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
@@ -189,6 +224,7 @@
       <workItem from="1604841351190" duration="625000" />
       <workItem from="1604946342424" duration="913000" />
       <workItem from="1605210778750" duration="328000" />
+      <workItem from="1605643386733" duration="322000" />
     </task>
     <servers />
   </component>

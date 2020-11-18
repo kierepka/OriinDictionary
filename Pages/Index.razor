@@ -24,7 +24,7 @@
                     {
                         @foreach (var l in OriinDic.Helpers.Const.BaseLanguagesList)
                         {
-                            <DropdownItem TValue="int" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
+                            <DropdownItem TValue="long" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
                             <DropdownDivider />
                         }
                     }
@@ -54,7 +54,7 @@
                     {
                         @foreach (var l in LanguagesState.Value.TranslationLanguages)
                         {
-                            <DropdownItem TValue="int" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
+                            <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
                             <DropdownDivider />
                         }
                     }

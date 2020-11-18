@@ -86,20 +86,21 @@ namespace OriinDic.Pages
 
         }
 
-
-
- 
-
         private void OnCommentAdd(Comment comment)
         {
             if (TranslationsState?.Value?.Translation == null) return;
+            
             comment.TranslationId = TranslationsState.Value.Translation.Id;
+
             if (!(LocalStorage is null))
                 comment.User = Func.GetCurrentUser(LocalStorage);
 
             if (_token == null) return;
-            Dispatcher?.Dispatch(new CommentsAddAction(comment, _token.AuthToken));
-            Dispatcher?.Dispatch(new TranslationsFetchCommentsAction(TranslationsState.Value.Translation.Id, _token.AuthToken));
+            
+            Dispatcher?.Dispatch(
+                new TranslationsCommentAddAction(
+                    comment, _token.AuthToken, TranslationsState.Value.Translation.Id));
+
         }
 
         private void OnResetClicked()
