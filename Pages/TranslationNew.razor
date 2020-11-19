@@ -6,146 +6,151 @@
 <PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
 
 
-@if (@Translation is null)
+@if (TranslationsState?.Value?.BaseTranslation?.BaseTerm is null)
 {
     <a href="/">@MyText?.noData</a>
 }
 else
 {
-    <Row>
-        <Column>
-            <h1>@MyText?.addTranslation</h1>
-            <Card Margin="Margin.Is4.OnY">
-                <CardHeader>
-                    <CardTitle>[@TranslationLanguage]@Translation.Name</CardTitle>
-                    <CardSubtitle>@MyText?.translationHeader</CardSubtitle><br />
-                </CardHeader>
-                <CardBody>
-
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <TextEdit Placeholder="@MyText?.translationName"
-                                      @bind-Text="@Translation.Name" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationCurrent</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <Check @bind-Checked="@Translation.Current"></Check>
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationDefinition</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <TextEdit Placeholder="@MyText?.translationDefinition"
-                                      @bind-Text="@Translation.Definition" />
-                        </FieldBody>
-                    </Field>
-                </CardBody>
-                <CardFooter Padding="Padding.Is3">
-                    <Field Horizontal="true">
-                        <FieldBody ColumnSize="ColumnSize.Is12">
-                            <Buttons Role="ButtonsRole.Addons">
-                                <AuthorizeView Roles="@Const.RolesEditors">
-                                    <Authorized>
-                                        <Button Color="Color.Primary" Type="ButtonType.Submit" Clicked="@OnSaveClicked">@MyText?.create</Button>
-                                        <Button Color="Color.Secondary" Type="ButtonType.Reset" Clicked="@OnResetClicked">@MyText?.reset</Button>
-                                        <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
-                                    </Authorized>
-                                </AuthorizeView>
-                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeachEnClicked">@MyText?.speech</Button>
-                            </Buttons>
-                        </FieldBody>
-                    </Field>
-                </CardFooter>
-            </Card>
-            @if (BaseTerm is null)
-            {
-                <a href="/">Base term @MyText?.noData !</a>
-            }
-            else
-            {
-
+    @if (TranslationsState?.Value?.BaseTranslation?.Translation is null)
+    {
+        <a href="/">@MyText?.noData</a>
+    }
+    else
+    {
+        <Row>
+            <Column>
+                <h1>@MyText?.addTranslation</h1>
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
-                        <CardTitle>[@BaseTermLanguage]@BaseTerm.Name</CardTitle>
-                        <CardSubtitle>@MyText?.baseTermHeader</CardSubtitle>
+                        <CardTitle>[@TranslationLanguage]@TranslationsState.Value.BaseTranslation.Translation.Name</CardTitle>
+                        <CardSubtitle>@MyText?.translationHeader</CardSubtitle><br />
                     </CardHeader>
                     <CardBody>
-                        <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermName</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <Label>@BaseTerm.Name</Label>
-                            </FieldBody>
-                        </Field>
-                        <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermDefinition</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <Label>@BaseTerm.Definition</Label>
-                            </FieldBody>
-                        </Field>
-                        <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermExamples</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                @if (BaseTerm.Examples is null)
-                                {
-                                    <Label>@MyText?.noData</Label>
-                                }
-                                else
-                                {
-                                    @foreach (var example in BaseTerm.Examples)
-                                    {
-                                        <Label>@example</Label>
-                                    }
-                                }
-                            </FieldBody>
-                        </Field>
-                        <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSynonyms</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                @if (BaseTerm.Synonyms is null)
-                                {
-                                    <Label>@MyText?.noData</Label>
-                                }
-                                else
-                                {
-                                    @foreach (var synonym in BaseTerm.Synonyms)
-                                    {
-                                        <Label>@synonym</Label>
-                                    }
-                                }
-                            </FieldBody>
-                        </Field>
-                        <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSlug</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <Label>@BaseTerm.Slug</Label>
-                            </FieldBody>
-                        </Field>
-                        <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <Label>@BaseTermInformation</Label>
-                            </FieldBody>
-                        </Field>
 
-                    
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationName</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <TextEdit Placeholder="@MyText?.translationName"
+                                          @bind-Text="@TranslationsState.Value.BaseTranslation.Translation.Name" />
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationCurrent</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <Check @bind-Checked="@TranslationsState.Value.BaseTranslation.Translation.Current"></Check>
+                            </FieldBody>
+                        </Field>
+                        <Field IsHorizontal="true">
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationDefinition</FieldLabel>
+                            <FieldBody ColumnSize="ColumnSize.Is10">
+                                <TextEdit Placeholder="@MyText?.translationDefinition"
+                                          @bind-Text="@TranslationsState.Value.BaseTranslation.Translation.Definition" />
+                            </FieldBody>
+                        </Field>
                     </CardBody>
                     <CardFooter Padding="Padding.Is3">
                         <Field Horizontal="true">
                             <FieldBody ColumnSize="ColumnSize.Is12">
                                 <Buttons Role="ButtonsRole.Addons">
-                                    <div class="box has-background-primary">
-                                        <a href="/editBaseTerm/@Translation.BaseTermId">@MyText?.editBaseTerm</a>
-                                    </div>
-                                    <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeachPlClicked">@MyText?.speech</Button>
+                                    <AuthorizeView Roles="@Const.RolesEditors">
+                                        <Authorized>
+                                            <Button Color="Color.Primary" Type="ButtonType.Submit" Clicked="@OnSaveClicked">@MyText?.create</Button>
+                                            <Button Color="Color.Secondary" Type="ButtonType.Reset" Clicked="@OnResetClicked">@MyText?.reset</Button>
+                                            <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
+                                        </Authorized>
+                                    </AuthorizeView>
+                                    <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeachEnClicked">@MyText?.speech</Button>
                                 </Buttons>
                             </FieldBody>
                         </Field>
                     </CardFooter>
                 </Card>
-            }
-        </Column>
-    </Row>
+                @if (TranslationsState?.Value?.BaseTranslation?.BaseTerm is null)
+                {
+                    <a href="/">Base term @MyText?.noData !</a>
+                }
+                else
+                {
+
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTranslation.BaseTerm.Name</CardTitle>
+                            <CardSubtitle>@MyText?.baseTermHeader</CardSubtitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field IsHorizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermName</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Label>@TranslationsState.Value.BaseTranslation.BaseTerm.Name</Label>
+                                </FieldBody>
+                            </Field>
+                            <Field IsHorizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermDefinition</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Label>@TranslationsState.Value.BaseTranslation.BaseTerm.Definition</Label>
+                                </FieldBody>
+                            </Field>
+                            <Field IsHorizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermExamples</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    @if (TranslationsState.Value.BaseTranslation.BaseTerm.Examples is null)
+                                    {
+                                        <Label>@MyText?.noData</Label>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var example in TranslationsState.Value.BaseTranslation.BaseTerm.Examples)
+                                        {
+                                            <Label>@example</Label>
+                                        }
+                                    }
+                                </FieldBody>
+                            </Field>
+                            <Field IsHorizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSynonyms</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    @if (TranslationsState.Value.BaseTranslation.BaseTerm.Synonyms is null)
+                                    {
+                                        <Label>@MyText?.noData</Label>
+                                    }
+                                    else
+                                    {
+                                        @foreach (var synonym in TranslationsState.Value.BaseTranslation.BaseTerm.Synonyms)
+                                        {
+                                            <Label>@synonym</Label>
+                                        }
+                                    }
+                                </FieldBody>
+                            </Field>
+                            <Field IsHorizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSlug</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Label>@TranslationsState.Value.BaseTranslation.BaseTerm.Slug</Label>
+                                </FieldBody>
+                            </Field>
+                            <Field IsHorizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Label>@MyText?.baseTermLanguage: @BaseTermLanguage, @MyText?.baseTermLastEdit: @TranslationsState.Value.BaseTranslation.BaseTerm.LastEdit?.User?.UserName</Label>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                        <CardFooter Padding="Padding.Is3">
+                            <Field Horizontal="true">
+                                <FieldBody ColumnSize="ColumnSize.Is12">
+                                    <Buttons Role="ButtonsRole.Addons">
+                                        <div class="box has-background-primary">
+                                            <a href="/editBaseTerm/@TranslationsState.Value.BaseTranslation.Translation.BaseTermId">@MyText?.editBaseTerm</a>
+                                        </div>
+                                        <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeachPlClicked">@MyText?.speech</Button>
+                                    </Buttons>
+                                </FieldBody>
+                            </Field>
+                        </CardFooter>
+                    </Card>
+                }
+            </Column>
+        </Row>
+    }
 }

@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-using Blazored.LocalStorage;
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Components;
@@ -11,6 +11,7 @@ using OriinDic.Models;
 using OriinDic.Store;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Translations;
+
 using Toolbelt.Blazor.SpeechSynthesis;
 
 namespace OriinDic.Pages
@@ -24,16 +25,9 @@ namespace OriinDic.Pages
         [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
 
         private Translation? _oldTranslation;
-        public BaseTerm? BaseTerm { get; set; }
-        public string BaseTermInformation { get; set; } = string.Empty;
-
-        public string Information { get; set; } = string.Empty;
-
-        public Translation? Translation { get; set; }
 
         public TranslationNew() : base()
         {
-            Translation = new Translation();
         }
 
 
@@ -42,12 +36,12 @@ namespace OriinDic.Pages
             get
             {
                 var retVal = Const.PlLangShortcut;
-                if (TranslationsState?.Value.BaseTerm is null) return retVal;
+                if (TranslationsState?.Value?.BaseTranslation?.BaseTerm is null) return retVal;
                 if (LocalStorage is null) return retVal;
                 if (LanguagesState is null) return retVal;
 
                
-                return LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTerm.LanguageId);
+                return LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.BaseTerm.LanguageId);
             }
         }
 
@@ -57,12 +51,12 @@ namespace OriinDic.Pages
             get
             {
                 var retVal = Const.PlLangShortcut;
-                if (TranslationsState?.Value.Translation is null) return retVal;
+                if (TranslationsState?.Value?.BaseTranslation?.Translation is null) return retVal;
                 if (LocalStorage is null) return retVal;
                 if (LanguagesState is null) return retVal;
 
                
-                return LanguagesState.Value.GetLanguageName(TranslationsState.Value.Translation.LanguageId);
+                return LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.Translation.LanguageId);
             }
         }
 
@@ -73,65 +67,25 @@ namespace OriinDic.Pages
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
 
             Dispatcher?.Dispatch(new TranslationsFetchBaseTermAction(BaseTermId));
-            if (TranslationsState is null) return;
-            TranslationsState.StateChanged += TranslationsState_StateChanged;
         }
 
-        private void TranslationsState_StateChanged(object sender, TranslationsState e)
-        {
-            if (e.LastActionState == EActionState.FetchedBase)
-            {
-                if (MyText is null) return;
-                ShowAlert($"{MyText.loaded} {Translation?.Id}");
-            }
-
-
-            if (e.LastActionState != EActionState.Saved) return;
-
-            if (TranslationsState?.Value.BaseTerm is null) return;
-            BaseTerm = TranslationsState.Value.BaseTerm;
-            _oldTranslation = Translation;
-            CreateInformation();
-            CreateBaseInformation();
-
-            if (MyText is null) return;
-            ShowAlert($"{MyText.translationSaved} {Translation?.Id}");
-        }
-
-        private void CreateBaseInformation()
-        {
-            if (MyText is null) return;
-            if (BaseTerm is null) return;
-            var langName = BaseTermLanguage;
-            var lastEdit = BaseTerm?.LastEdit?.User?.UserName;
-
-            BaseTermInformation = $"{MyText.baseTermLanguage}:{langName}, {MyText.baseTermLastEdit}:{lastEdit}";
-        }
-
-        private void CreateInformation()
-        {
-            if (MyText is null) return;
-            if (!(Translation is null))
-                Information =
-                    $"{MyText.translationLastEdit}:{Translation?.LastEdit?.User?.UserName}, {MyText.translationLastApproval}:{Translation?.LastApproval.User.UserName}, {MyText.translationTitle}:{Translation?.Id}";
-        }
 
         private void OnResetClicked()
         {
+            if (TranslationsState?.Value?.BaseTranslation?.Translation is null) return;
+
             if (_oldTranslation is null)
             {
-                if (Translation is null) return;
-                Translation.Name = string.Empty;
-                Translation.Definition = string.Empty;
-                Translation.Current = false;
+                
+                TranslationsState.Value.BaseTranslation.Translation.Name = string.Empty;
+                TranslationsState.Value.BaseTranslation.Translation.Definition = string.Empty;
+                TranslationsState.Value.BaseTranslation.Translation.Current = false;
                 return;
             }
 
-            if (Translation is null) return;
-
-            Translation.Name = _oldTranslation.Name;
-            Translation.Definition = _oldTranslation.Definition;
-            Translation.Current = _oldTranslation.Current;
+            TranslationsState.Value.BaseTranslation.Translation.Name = _oldTranslation.Name;
+            TranslationsState.Value.BaseTranslation.Translation.Definition = _oldTranslation.Definition;
+            TranslationsState.Value.BaseTranslation.Translation.Current = _oldTranslation.Current;
 
             StateHasChanged();
         }
@@ -143,23 +97,30 @@ namespace OriinDic.Pages
             if (MyText is null) return;
             if (LocalStorage is null) return;
 
-            if (Translation is null)
+            if (TranslationsState?.Value?.BaseTranslation?.Translation is null) 
             {
                 ShowAlert(MyText.saveError);
                 return;
             }
             var token = LocalStorage.GetItem<Token>(Const.TokenKey);
+            
+            _oldTranslation = TranslationsState.Value.BaseTranslation.Translation;
 
-            Dispatcher?.Dispatch(new TranslationsAddAction(Translation, token.AuthToken));
+
+            Dispatcher?.Dispatch(
+                new TranslationsAddAction(TranslationsState.Value.BaseTranslation.Translation, 
+                    token.AuthToken));
 
 
         }
         private void OnSpeachEnClicked()
         {
+            if (TranslationsState?.Value?.BaseTranslation?.Translation is null) return;
+
             var utterancet = new SpeechSynthesisUtterance
             {
-                Text = Translation?.Name,
-                Lang = Func.GetLangSpeech(Translation?.LanguageId), // BCP 47 language tag
+                Text = TranslationsState.Value.Translation.Name,
+                Lang = Func.GetLangSpeech(TranslationsState.Value.Translation.LanguageId), // BCP 47 language tag
                 Pitch = 1.0, // 0.0 ~ 2.0 (Default 1.0)
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
                 Volume = 1.0 // 0.0 ~ 1.0 (Default 1.0)
@@ -169,10 +130,11 @@ namespace OriinDic.Pages
 
         private void OnSpeachPlClicked()
         {
+            if (TranslationsState?.Value?.BaseTranslation?.BaseTerm is null) return;
 
             var utterancet = new SpeechSynthesisUtterance
             {
-                Text = BaseTerm?.Name,
+                Text = TranslationsState.Value.BaseTerm.Name,
                 Lang = Const.PlLangSpeechCode, // BCP 47 language tag
                 Pitch = 1.0, // 0.0 ~ 2.0 (Default 1.0)
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)

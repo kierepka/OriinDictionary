@@ -1,7 +1,5 @@
 ﻿using Fluxor;
 
-using OriinDic.Models;
-
 namespace OriinDic.Store.Translations
 {
     public static class TranslationsReducers
@@ -126,9 +124,9 @@ namespace OriinDic.Store.Translations
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
                 rootObject: state.RootObject,
-                baseTranslation: state.BaseTranslation,
+                baseTranslation: action.BaseTranslation,
                 translation: state.Translation,
-                baseTerm: action.BaseTerm,
+                baseTerm: state.BaseTerm,
                 links: state.Links,
                 comments: state.Comments,
                 lastActionState: EActionState.FetchedBase);

@@ -1,9 +1,5 @@
 ﻿using Fluxor;
 
-using OriinDic.Models;
-
-using System.Collections.Generic;
-
 namespace OriinDic.Store.Languages
 {
     public static class LanguagesReducers

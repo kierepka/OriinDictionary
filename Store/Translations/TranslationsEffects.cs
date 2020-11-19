@@ -28,7 +28,7 @@ namespace OriinDic.Store.Translations
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
             var response = await _httpClient.PostAsJsonAsync(
-                requestUri: $"{Const.ApiBaseTerms}", action.Translation);
+                requestUri: $"{Const.ApiTranslations}", action.Translation);
 
             var returnData = await response.Content.ReadFromJsonAsync<Translation>();
 
@@ -144,8 +144,29 @@ namespace OriinDic.Store.Translations
         {
 
             var url = $"{Const.ApiBaseTerms}{action.BaseTermId}/";
-            var baseTerm = await _httpClient.GetFromJsonAsync<BaseTerm>(url, Const.HttpClientOptions);
-            dispatcher.Dispatch(new TranslationsFetchBaseTermResultAction(baseTerm ?? new BaseTerm()));
+            var resBaseTransl = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
+
+            if (resBaseTransl is null) resBaseTransl = new ResultBaseTranslation();
+
+            if (resBaseTransl.BaseTerm is null) 
+                resBaseTransl.BaseTerm = new BaseTerm { 
+                    LanguageId = Const.PlLangId,
+                    Id = action.BaseTermId
+                };
+
+            if (resBaseTransl.Translation is null)
+            {
+                resBaseTransl.Translation = new Translation
+                {
+                    LanguageId = resBaseTransl.BaseTerm.LanguageId,
+                    BaseTermId = resBaseTransl.BaseTerm.Id
+                };
+            }
+            if (resBaseTransl.Translations is null) {
+                resBaseTransl.Translations = new System.Collections.Generic.List<Translation> { resBaseTransl.Translation };
+            }
+
+            dispatcher.Dispatch(new TranslationsFetchBaseTermResultAction(resBaseTransl));
         }
 
 

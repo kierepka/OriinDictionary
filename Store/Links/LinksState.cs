@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-
+﻿
 using OriinDic.Models;
 
 namespace OriinDic.Store.Links

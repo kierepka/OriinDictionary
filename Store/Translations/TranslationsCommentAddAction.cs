@@ -1,13 +1,8 @@
 ﻿using OriinDic.Models;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace OriinDic.Store.Translations
 {
-    
+
     public class TranslationsCommentAddAction
     {
         public string Token { get; init; } = string.Empty;
