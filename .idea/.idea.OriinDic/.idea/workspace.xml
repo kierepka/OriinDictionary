@@ -100,59 +100,11 @@
       <change beforePath="$PROJECT_DIR$/Pages/Settings.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/TranslationNew.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationNew.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Users.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/Users.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsAddResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsAddResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsDeleteResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsDeleteResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/EActionState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/EActionState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Languages/LanguagesReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Languages/LanguagesReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksDeleteResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksDeleteResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksFetchDataAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksFetchDataAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Links/LinksState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Notifications/NotificationsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Notifications/NotificationsState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsAddResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsAddResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetch4EditResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetch4EditResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchCommentsResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchCommentsResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchDataResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchDataResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchOneResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchOneResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsUpdateResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsUpdateResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.en.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,61 +157,24 @@
     <setting file="file://$PROJECT_DIR$/Store/Users/UsersEffects.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Pages/OriinUser.razor" />
-        <option value="$PROJECT_DIR$/Pages/PersonalData.razor" />
-        <option value="$PROJECT_DIR$/Components/ListComments.razor" />
-        <option value="$PROJECT_DIR$/Components/DicBasePage.cs" />
-        <option value="$PROJECT_DIR$/Components/Keyboard.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/ListComments.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/ListExamples.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/ListLinks.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/ListSynonyms.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/MainLayout.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/MyPagination.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/PageHeader.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/RedirectToLogin.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/SurveyPrompt.razor.cs" />
-        <option value="$PROJECT_DIR$/Components/MainLayout.razor" />
-        <option value="$PROJECT_DIR$/Models/BaseTermChange.cs" />
-        <option value="$PROJECT_DIR$/Models/BaseTermLastEdit.cs" />
-        <option value="$PROJECT_DIR$/Models/Change.cs" />
-        <option value="$PROJECT_DIR$/Models/Comment.cs" />
-        <option value="$PROJECT_DIR$/Models/CommentAdd.cs" />
-        <option value="$PROJECT_DIR$/Models/DeletedObjectResponse.cs" />
-        <option value="$PROJECT_DIR$/Models/IExampleSynonym.cs" />
-        <option value="$PROJECT_DIR$/Models/Link.cs" />
-        <option value="$PROJECT_DIR$/Models/LastEdit.cs" />
-        <option value="$PROJECT_DIR$/Models/LoginInputModel.cs" />
-        <option value="$PROJECT_DIR$/Models/LoginResult.cs" />
-        <option value="$PROJECT_DIR$/Models/Notification.cs" />
-        <option value="$PROJECT_DIR$/Models/RootObject.cs" />
-        <option value="$PROJECT_DIR$/Models/Token.cs" />
-        <option value="$PROJECT_DIR$/Models/Translation.cs" />
-        <option value="$PROJECT_DIR$/Models/TranslationApproval.cs" />
-        <option value="$PROJECT_DIR$/Models/TranslationChange.cs" />
-        <option value="$PROJECT_DIR$/Models/TranslationLastEdit.cs" />
-        <option value="$PROJECT_DIR$/Models/UserAdd.cs" />
-        <option value="$PROJECT_DIR$/Pages/AllComments.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/AllLinks.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/BaseTermNew.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Index.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Languages.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Login.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Logout.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/OriinUser.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/PersonalData.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Settings.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
-        <option value="$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" />
-        <option value="$PROJECT_DIR$/Services/AuthService.cs" />
-        <option value="$PROJECT_DIR$/Store/EActionState.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/_Imports.razor" />
+      <option value="$PROJECT_DIR$/Pages/AllComments.razor.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFetchOneResultAction.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsUpdateResultAction.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsAddResultAction.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFetchDataResultAction.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" />
+      <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor" />
+      <option value="$PROJECT_DIR$/Models/BaseTerm.cs" />
+      <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" />
+      <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" />
+      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" />
+      <option value="$PROJECT_DIR$/Store/Search/SearchEffects.cs" />
+      <option value="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" />
+      <option value="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -354,8 +269,6 @@
       <workItem from="1604841351190" duration="625000" />
       <workItem from="1604946342424" duration="913000" />
       <workItem from="1605210778750" duration="328000" />
-      <workItem from="1605643386733" duration="322000" />
-      <workItem from="1606926165029" duration="5823000" />
     </task>
     <servers />
   </component>
