@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Blazorise.DataGrid;
@@ -6,60 +5,51 @@ using Blazorise.DataGrid;
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
-
-using OriinDic.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Links;
 
 namespace OriinDic.Pages
 {
-    public partial class AllLinks : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class AllLinks
     {
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
-        private bool _reloadData = true;
         private string _token = string.Empty;
-        private int _totalOriinLinks;
-        private OriinLink? selectedOriinLink;
+        private OriinLink? _selectedOriinLink;
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LinksState>? LinksState { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
-
-        public AllLinks()
-        {
-        }
 
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new LinksFetchDataAction(token: _token));
+            Dispatcher?.Dispatch(new LinksFetchDataAction(0,0));
+            StateHasChanged();
         }
 
         private void OnRowRemoved(OriinLink oriinLink)
         {
-            selectedOriinLink = oriinLink;
-
+            _selectedOriinLink = oriinLink;
             ReadLocalSettings();
+            Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token ));
 
-            Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token));
- 
-            UpdateLocalData();
+            StateHasChanged();
         }
 
 
         private void OnReadData(DataGridReadDataEventArgs<OriinLink> e)
         {
 
-            if (!_reloadData) return;
-
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new LinksFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));
-            UpdateLocalData();
-            _reloadData = false;
+            Dispatcher?.Dispatch(new LinksFetchDataAction(searchPageNr: e.Page, _itemsPerPage));
 
+            StateHasChanged();
         }
 
         private void ReadLocalSettings()
@@ -73,12 +63,5 @@ namespace OriinDic.Pages
             if (_itemsPerPage == 0) _itemsPerPage = Const.DefaultItemsPerPage;
         }
 
-        private void UpdateLocalData()
-        {
-            if (LinksState?.Value is null) return;
-            if (LinksState?.Value.RootObject?.Results != null) _totalOriinLinks = LinksState.Value.RootObject.Results.Count;
-            // always call StateHasChanged!
-            StateHasChanged();
-        }
     }
 }

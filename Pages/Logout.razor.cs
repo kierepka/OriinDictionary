@@ -1,26 +1,24 @@
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components;
 
-using OriinDic.Components;
+using Microsoft.AspNetCore.Components;
 using OriinDic.Services;
 
 namespace OriinDic.Pages
 {
-    public partial class Logout : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class Logout
     {
-        public bool isLoading = false;
-        public Logout()
-        {
-        }
+        private bool _isLoading;
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IAuthService? AuthService { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private NavigationManager? NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            isLoading = true;
+            _isLoading = true;
 
             if (AuthService is null) return;
             await AuthService.Logout();
@@ -30,7 +28,7 @@ namespace OriinDic.Pages
             if (NavigationManager is null) return;
             NavigationManager.NavigateTo("/");
 
-            isLoading = false;
+            _isLoading = false;
         }
     }
 }

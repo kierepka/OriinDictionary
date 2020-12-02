@@ -1,28 +1,27 @@
 ﻿@page "/editbaseterm/{BaseTermId:long}"
 @page "/editbaseterm/{BaseTermSlug}"
 @using OriinDic.Helpers
-@using OriinDic.Store.BaseTerms
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(BaseTermsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerBaseTermEdit" />
+<PageHeader IsLoading="@(BaseTermsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.HeaderBaseTermEdit" />
 
 <Row>
     <Column>
-        @if (!(BaseTermsState?.Value.ResultBaseTranslation.BaseTerm is null)) 
+        @if (!(BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is null)) 
         { 
             <Card Margin="Margin.Is4.OnY">
                 <CardHeader>
                     <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</CardTitle>
-                    <CardSubtitle>@MyText?.baseTermHeader</CardSubtitle>
+                    <CardSubtitle>@MyText?.BaseTermHeader</CardSubtitle>
                 </CardHeader>
                 <CardBody>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermName</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
 
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
-                                    <TextEdit Placeholder="@MyText?.baseTermName"
+                                    <TextEdit Placeholder="@MyText?.BaseTermName"
                                               @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name" />
                                 </Authorized>
                                 <NotAuthorized>
@@ -32,11 +31,11 @@
                         </FieldBody>
                     </Field>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermDefinition</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
-                                    <TextEdit Placeholder="@MyText?.baseTermDefinition"
+                                    <TextEdit Placeholder="@MyText?.BaseTermDefinition"
                                               @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Definition" />
                                 </Authorized>
                                 <NotAuthorized>
@@ -46,7 +45,7 @@
                         </FieldBody>
                     </Field>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermExamples</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
@@ -67,7 +66,7 @@
                         </FieldBody>
                     </Field>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSynonyms</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
@@ -87,7 +86,7 @@
                         </FieldBody>
                     </Field>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSlug</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSlug</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             @BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Slug
                         </FieldBody>
@@ -99,11 +98,11 @@
                             <Buttons Role="ButtonsRole.Addons">
                                 <AuthorizeView Roles="@Const.RolesBaseEditors">
                                     <Authorized>
-                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.save</Button>
+                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
                                     </Authorized>
                                 </AuthorizeView>
-                                <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
-                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.speech</Button>
+                                <input class="button" type="button" value="@MyText?.Back" onClick="history.back();">
+                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
                             </Buttons>
                         </FieldBody>
                     </Field>
@@ -111,7 +110,7 @@
             </Card>
             <Card Margin="Margin.Is4.FromBottom">
                 <CardHeader>
-                    <CardTitle>@MyText?.links</CardTitle>
+                    <CardTitle>@MyText?.Links</CardTitle>
                 </CardHeader>
                 <CardBody>
                     <AuthorizeView Roles="@Const.RolesBaseEditors">

@@ -41,10 +41,6 @@ namespace OriinDic.Components
             _validations.ClearAll();
         }
 
-        public ListSynonyms()
-        {
-        }
-
         protected override async Task OnInitializedAsync()
         {
             if (I18NText!=null) 

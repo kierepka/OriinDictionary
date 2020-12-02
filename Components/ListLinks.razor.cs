@@ -9,7 +9,7 @@ using Text = OriinDic.I18nText.Text;
 
 namespace OriinDic.Components
 {
-    public partial class ListLinks : ComponentBase
+    public partial class ListLinks
     {
         private Validations? _validations;
 
@@ -26,11 +26,7 @@ namespace OriinDic.Components
         public IEnumerable<OriinLink> Links
         {
             get => from t in _links select t;
-            set
-            {
-                if (value is null) return;
-                _links = value.ToList();
-            }
+            set => _links = value.ToList();
         }
 
         private void OnAddObject()
@@ -43,10 +39,6 @@ namespace OriinDic.Components
 
             OnLinkCallback.InvokeAsync(link);
             _validations.ClearAll();
-        }
-
-        public ListLinks()
-        {
         }
 
         protected override async Task OnInitializedAsync()

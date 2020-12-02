@@ -17,10 +17,5 @@ namespace OriinDic.Models
         [JsonPropertyName("coordinating_languages")]
         ////[JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
         public List<int> CoordinatingLanguages { get; set; } = new List<int>();
-
-        public UserUpdate()
-        {
-            
-        }
     }
 }

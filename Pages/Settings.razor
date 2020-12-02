@@ -1,30 +1,30 @@
 ﻿@page "/settings"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.users" />
+<PageHeader IsLoading="@_isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.Users" />
 
 <Row>
     <Column>
         <Card Margin="Margin.Is4.OnY">
             <CardHeader>
-                <CardTitle>@MyText?.settingsHeader</CardTitle>
-                <CardSubtitle>@MyText?.settingsSubtitle</CardSubtitle><br />
+                <CardTitle>@MyText?.SettingsHeader</CardTitle>
+                <CardSubtitle>@MyText?.SettingsSubtitle</CardSubtitle><br />
             </CardHeader>
             <CardBody>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.rowsPerPage</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.RowsPerPage</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         <NumericEdit TValue="long" @bind-Value="@_rowsPerPage" />
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.currentTranslations</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CurrentTranslations</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <Check TValue="bool" @bind-Checked="@_currentTranslations">All</Check>
+                        <Check TValue="bool" @bind-Checked="@_currentTranslations">@MyText?.Approved</Check>
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.settingsCurrentLang</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsCurrentLang</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
 
                         <Select @bind-SelectedValue="@_selectedLanguage">
@@ -44,7 +44,7 @@
                 <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
                     <FieldBody ColumnSize="ColumnSize.Is12">
                         <Buttons Role="ButtonsRole.Addons">
-                            <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.save</Button>
+                            <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
                         </Buttons>
                     </FieldBody>
                 </Field>

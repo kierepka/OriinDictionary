@@ -1,48 +1,32 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
-using OriinDic.Components;
 using OriinDic.Helpers;
-using OriinDic.Models;
 using OriinDic.Store.Languages;
 
 namespace OriinDic.Pages
 {
-    public partial class Settings : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class Settings
     {
 
         private bool _currentBaseLangPl;
-        private bool isLoading = false;
-       
-        private LoginInput _loginModel = new LoginInput();
+        private bool _isLoading;
 
         private long _rowsPerPage;
         private int _selectedLanguage;
         private bool _currentTranslations;
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
-
-        public Settings()
-        {
-        }
-
-        public Settings(ISyncLocalStorageService localStorage,
-            Toolbelt.Blazor.I18nText.I18nText i18NText
-        ) : this()
-        {
-            LocalStorage = localStorage;
-            I18NText = i18NText;
-        }
-
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            isLoading = true;
+            _isLoading = true;
 
             if (!LanguagesState?.Value.Languages.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
@@ -57,13 +41,13 @@ namespace OriinDic.Pages
             if (_currentBaseLangPl) _selectedLanguage = 1;
             if (_rowsPerPage == 0) _rowsPerPage = Const.DefaultItemsPerPage;
 
-            isLoading = false;
+            _isLoading = false;
         }
 
 
         private void HandleSave()
         {
-            isLoading = true;
+            _isLoading = true;
             if (!(LocalStorage is null))
             {
                 LocalStorage!.SetItem(Const.CurrentBaseLangKey, _selectedLanguage == 1);
@@ -71,7 +55,7 @@ namespace OriinDic.Pages
                 LocalStorage!.SetItem(Const.CurrentTranslations, _currentTranslations);
                 
             }
-            isLoading = false;
+            _isLoading = false;
         }
     }
 }

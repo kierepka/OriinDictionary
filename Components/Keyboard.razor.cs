@@ -16,7 +16,7 @@ namespace OriinDic.Components
 
         [Parameter] public EventCallback<string> OnKeyCallback { get; set; }
 
-        [Parameter] public bool KeyboardVisible { get; set; } = false;
+        [Parameter] public bool KeyboardVisible { get; set; }
 
 
         private IEnumerable<List<string>> GetSpecialChars()
@@ -38,12 +38,6 @@ namespace OriinDic.Components
             }
           
             return returnList;
-
-
         }
-        public Keyboard()
-        {
-        }
-
     }
 }

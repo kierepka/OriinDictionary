@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Fluxor;
 using OriinDic.Helpers;
 using OriinDic.Models;
-using OriinDic.Store.Links;
 using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.BaseTerms
@@ -31,7 +30,7 @@ namespace OriinDic.Store.BaseTerms
 
 
             var queryString =
-                $"{Const.ApiBaseTerms}?text={action.SearchText}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}&base_term_language_id={action.BaseTermLangId}";
+                $"{Const.BaseTerms}?text={action.SearchText}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}&base_term_language_id={action.BaseTermLangId}";
             if (action.TranslationLangId != Const.PlLangId) queryString += $"&translation_language_id={action.TranslationLangId}";
 
             try
@@ -58,7 +57,7 @@ namespace OriinDic.Store.BaseTerms
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Token", baseTermAction.Token);
                 var response = await _httpClient.PostAsJsonAsync(
-                    requestUri: $"{Const.ApiBaseTerms}", baseTermAction.BaseTerm);
+                    requestUri: $"{Const.BaseTerms}", baseTermAction.BaseTerm);
                 var returnData = await response.Content.ReadFromJsonAsync<BaseTerm>();
                 dispatcher.Dispatch(new BaseTermsAddResultAction(returnData ?? new BaseTerm()));
             }
@@ -72,13 +71,13 @@ namespace OriinDic.Store.BaseTerms
         public async Task HandleFetchOneAction(BaseTermsFetchOneAction action, IDispatcher dispatcher)
         {
 
-            var url = $"{Const.ApiBaseTerms}{action.BaseTermId}/";
+            var url = $"{Const.BaseTerms}{action.BaseTermId}/";
             var returnData = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
 
             RootObject<OriinLink>? userResult = null;
 
             if (!(returnData?.BaseTerm is null))
-                url = $"{Const.ApiLinks}?base_term_id={returnData.BaseTerm.Id}";
+                url = $"{Const.Links}?base_term_id={returnData.BaseTerm.Id}";
             try
             {
 
@@ -87,7 +86,7 @@ namespace OriinDic.Store.BaseTerms
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
 
 
@@ -102,13 +101,13 @@ namespace OriinDic.Store.BaseTerms
         public async Task HandleFetchOneSlugAction(BaseTermsFetchOneSlugAction action, IDispatcher dispatcher)
         {
 
-            var url = $"{Const.ApiBaseTerms}{action.Slug}/by_slug/";
+            var url = $"{Const.BaseTerms}{action.Slug}/by_slug/";
             var returnData = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
 
             RootObject<OriinLink>? userResult = null;
 
             if (!(returnData?.BaseTerm is null))
-                url = $"{Const.ApiLinks}?base_term_id={returnData.BaseTerm.Id}";
+                url = $"{Const.Links}?base_term_id={returnData.BaseTerm.Id}";
             try
             {
 
@@ -117,7 +116,7 @@ namespace OriinDic.Store.BaseTerms
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
             }
 
 
@@ -134,7 +133,7 @@ namespace OriinDic.Store.BaseTerms
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
             var response = await _httpClient.PutAsJsonAsync(
-                $"{Const.ApiBaseTerms}{action.BaseTermId}/",
+                $"{Const.BaseTerms}{action.BaseTermId}/",
                 action.BaseTerm);
 
             var returnData = await response.Content.ReadFromJsonAsync<BaseTerm>();

@@ -5,13 +5,13 @@ using OriinDic.Models;
 
 namespace OriinDic.Components
 {
-    public partial class MyPagination : ComponentBase
+    public partial class MyPagination
     {
 
 
-        [Parameter] public long SearchPageNr { get; set; } = 0;
+        [Parameter] public long SearchPageNr { get; set; }
 
-        [Parameter] public long TotalPages { get; set; } = 0;
+        [Parameter] public long TotalPages { get; set; }
 
         [Parameter] public IEnumerable<LocalPages> LocalPages { get; set; } = new List<LocalPages>();
 

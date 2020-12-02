@@ -1,94 +1,58 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Models;
-using OriinDic.Components;
 using OriinDic.Helpers;
 using Toolbelt.Blazor.SpeechSynthesis;
 using OriinDic.Store.BaseTerms;
-using OriinDic.Store.Languages;
 
 namespace OriinDic.Pages
 {
-    public partial class BaseTermNew : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class BaseTermNew
     {
-        public BaseTermNew() : base()
-        {
-            
-        }
 
-        public BaseTermNew(ISyncLocalStorageService localStorage,
-            Toolbelt.Blazor.I18nText.I18nText i18NText
-        ) : this()
-        {
-            LocalStorage = localStorage;
-            I18NText = i18NText;
-        }
 
-        public bool isLoading = false;
-        private BaseTerm baseTerm { get; set; } = new BaseTerm();
 
-        private List<OriinLink> Links { get; set; } = new List<OriinLink>();
-
-        [Inject] private IState<BaseTermsState>? BaseTermsState { get; set; }
-        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        [Inject]
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        private IState<BaseTermsState>? BaseTermsState { get; set; } 
+        
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
 
-        private string BaseTermLanguage
-        {
-            get
-            {
-                var retVal = Const.PlLangShortcut;
+        private string BaseTermLanguage => _baseLanguage.Name;
 
-                if (BaseTermsState?.Value.BaseTerm is null)
-                    return retVal;
-                if (LocalStorage is null) return retVal;
-                if (LanguagesState is null) return retVal;
-
-                return LanguagesState.Value.GetLanguageName(BaseTermsState.Value.BaseTerm.LanguageId);
-            }
-        }
-
-        public long BaseTermId { get; set; }
-
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
-        }
+        private readonly Language _baseLanguage = new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
 
         private void OnSaveClicked()
         {
             if (MyText is null) return;
             if (LocalStorage is null) return;
 
-            if (BaseTermsState?.Value.BaseTerm is null)
+            if (BaseTermsState?.Value?.BaseTerm is null)
             {
-                ShowAlert(MyText.saveError);
+                ShowAlert(MyText.SaveError);
                 return;
             }
             var token = LocalStorage.GetItem<Token>(Const.TokenKey);
+            var baseTerm = BaseTermsState.Value.BaseTerm;
 
-            if (baseTerm != null)
-            {
-                Dispatcher?.Dispatch(new BaseTermsAddAction(baseTerm: baseTerm, token: token.AuthToken));
-            }
+            baseTerm.LanguageId = _baseLanguage.Id;
+
+            Dispatcher?.Dispatch(new BaseTermsAddAction(baseTerm: baseTerm, token: token.AuthToken));
         }
 
         private void OnSpeechPlClicked()
         {
             if (SpeechSynthesis is null) return;
-            var utterance = new SpeechSynthesisUtterance
+            if (BaseTermsState?.Value?.BaseTerm is null) return;
+            
+                var utterance = new SpeechSynthesisUtterance
             {
-                Text = baseTerm.Name,
+                Text = BaseTermsState?.Value?.BaseTerm.Name,
                 Lang = Const.PlLangSpeechCode, // BCP 47 language tag
                 Pitch = 1.0, // 0.0 ~ 2.0 (Default 1.0)
                 Rate = 1.0, // 0.1 ~ 10.0 (Default 1.0)
@@ -99,12 +63,12 @@ namespace OriinDic.Pages
 
         private void OnExampleAdd(Example example)
         {
-            baseTerm?.Examples.Add(example.Value);
+            BaseTermsState?.Value?.BaseTerm.Examples.Add(example.Value);
         }
 
         private void OnSynonymAdd(Synonym synonym)
         {
-            baseTerm?.Synonyms.Add(synonym.Value);
+            BaseTermsState?.Value?.BaseTerm.Synonyms.Add(synonym.Value);
         }
     }
 }

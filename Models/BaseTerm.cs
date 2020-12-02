@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,48 +9,59 @@ namespace OriinDic.Models
     {
 
         [JsonPropertyName("id")]
-        public long Id { get; set; } = 0;
+        public long Id { get; set; }
         
         [JsonPropertyName("language_id")]
-        public long LanguageId { get; set; } = 0;
+        public long LanguageId { get; set; }
         
         [JsonPropertyName("slug")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public string Slug { get; set; } = string.Empty;
         
         [JsonPropertyName("name")]
         [Required]
         [StringLength(255, ErrorMessage = "Field too long (255 character limit).")]
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public string Name { get; set; } = string.Empty;
         
         [JsonPropertyName("synonyms")]
+        // ReSharper disable once MemberCanBePrivate.Global
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public List<string> Synonyms { get; set; } = new List<string>();
 
         [JsonPropertyName("examples")]
+        // ReSharper disable once MemberCanBePrivate.Global
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public List<string> Examples { get; set; } = new List<string>();
         
         [JsonPropertyName("definition")]
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public string Definition { get; set; } = string.Empty;
 
         [JsonPropertyName("last_edit")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public BaseTermLastEdit? LastEdit { get; set; } = new BaseTermLastEdit();
         
         [JsonPropertyName("last_edit_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        // ReSharper disable once UnusedMember.Global
         public long? LastEditId { get; set; } = 0;
 
+        // ReSharper disable once EmptyConstructor
         public BaseTerm()
         {
             
         }
 
-        public List<Synonym> GetSynonyms()
+        public IEnumerable<Synonym> GetSynonyms()
         {
-            return (Synonyms is null) ? new List<Synonym>() : Synonyms.Select(s => new Synonym(s)).ToList();
+            return Synonyms.Select(s => new Synonym(s)).ToList();
         }
-        public void SetSynonyms(List<Synonym> l)
+/*
+        public void SetSynonyms(IEnumerable<Synonym> l)
         {
             Synonyms = new List<string>();
             foreach (var s in l)
@@ -59,12 +69,14 @@ namespace OriinDic.Models
                 Synonyms.Add(s.Value);
             }
         }
+*/
 
        
-        public List<Example> GetExamples()
+        public IEnumerable<Example> GetExamples()
         {
-            return (Examples is null) ? new List<Example>() : Examples.Select(e => new Example(e)).ToList();
+            return Examples.Select(e => new Example(e)).ToList();
         }
+/*
         public void SetExamples(List<Example> l)
         {
             if (l == null) throw new ArgumentNullException(nameof(l));
@@ -74,5 +86,6 @@ namespace OriinDic.Models
                 Examples.Add(e.Value);
             }
         }
+*/
     }
 }

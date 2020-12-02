@@ -7,55 +7,196 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceAddAction(UsersState state, UsersAddAction action) =>
-            new UsersState(userAdd: action.User, token: action.Token, lastActionState: EActionState.Adding);
+            new UsersState(
+                 isLoading: state.IsLoading,
+                 itemsPerPage: state.ItemsPerPage,
+                 searchPageNr: state.SearchPageNr,
+                 userId: state.UserId,
+                 token: action.Token,
+                 statusCode: state.StatusCode,
+                 user: state.User,
+                 rootObject: state.RootObject,
+                 userUpdate: state.UserUpdate,
+                 deleteResponse: state.DeleteResponse,
+                 userAdd: action.User,
+                 lastActionState: EActionState.Adding);
 
         [ReducerMethod]
         public static UsersState ReduceAddResultAction(UsersState state, UsersAddResultAction action) =>
-            new UsersState(user: action.User, statusCode: action.StatusCode, lastActionState: EActionState.Added);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: action.StatusCode,
+                user: action.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Added);
+
 
         [ReducerMethod]
         public static UsersState ReduceAnonymizeAction(UsersState state, UsersAnonymizeAction action) =>
-            new UsersState(user: action.User, EActionState.Anonymizing);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: state.StatusCode,
+                user: action.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Anonymization);
 
         [ReducerMethod]
         public static UsersState ReduceAnonymizeResultAction(UsersState state, UsersAnonymizeResultAction action) =>
-            new UsersState(user: action.User, statusCode: action.StatusCode, lastActionState: EActionState.Anonymized);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: action.StatusCode,
+                user: action.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Anonymized);
 
         [ReducerMethod]
         public static UsersState ReduceDeleteAction(UsersState state, UsersDeleteAction action) =>
-            new UsersState(userId: action.UserId, lastActionState: EActionState.Deleting);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: action.UserId,
+                token: state.Token,
+                statusCode: state.StatusCode,
+                user: state.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Deleting);
 
         [ReducerMethod]
         public static UsersState ReduceDeleteResultAction(UsersState state, UsersDeleteResultAction action) =>
-            new UsersState(deleteResponse: action.DeleteResponse, lastActionState: EActionState.Deleted );
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: state.StatusCode,
+                user: state.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: action.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Deleted);
 
         [ReducerMethod]
         public static UsersState ReduceFetchOneAction(UsersState state, UsersFetchOneAction action) =>
-            new UsersState(userId: action.UserId, token: action.Token, lastActionState: EActionState.FetchingOne);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: action.UserId,
+                token: action.Token,
+                statusCode: state.StatusCode,
+                user: state.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.FetchingOne);
 
         [ReducerMethod]
         public static UsersState ReduceFetchOneResultAction(UsersState state, UsersFetchOneResultAction action) =>
-            new UsersState(user: action.User, lastActionState: EActionState.FetchedOne);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: state.StatusCode,
+                user: action.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.FetchedOne);
 
         [ReducerMethod]
         public static UsersState ReduceFetchDataAction(UsersState state, UsersFetchDataAction action) =>
             new UsersState(
-                token: action.Token,
-                searchPageNr: action.SearchPageNr,
+                isLoading: state.IsLoading,
                 itemsPerPage: action.ItemsPerPage,
-                lastActionState: EActionState.FetchingData
-            );
+                searchPageNr: action.SearchPageNr,
+                userId: state.UserId,
+                token: action.Token,
+                statusCode: state.StatusCode,
+                user: state.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.FetchingData);
 
         [ReducerMethod]
         public static UsersState ReduceFetchDataResultAction(UsersState state, UsersFetchDataResultAction action) =>
-            new UsersState(rootObject: action.RootObject, lastActionState: EActionState.FetchedData);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: state.StatusCode,
+                user: state.User,
+                rootObject: action.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.FetchedData);
 
         [ReducerMethod]
         public static UsersState ReduceUpdateAction(UsersState state, UsersUpdateAction action) =>
-            new UsersState(userId: action.UserId, userUpdate: action.User, token: action.Token, lastActionState: EActionState.Updating);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: action.UserId,
+                token: action.Token,
+                statusCode: state.StatusCode,
+                user: state.User,
+                rootObject: state.RootObject,
+                userUpdate: action.User,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Updating);
 
         [ReducerMethod]
         public static UsersState ReduceUpdateResultAction(UsersState state, UsersUpdateResultAction action) =>
-            new UsersState(user: action.User, lastActionState: EActionState.Updated);
+            new UsersState(
+                isLoading: state.IsLoading,
+                itemsPerPage: state.ItemsPerPage,
+                searchPageNr: state.SearchPageNr,
+                userId: state.UserId,
+                token: state.Token,
+                statusCode: state.StatusCode,
+                user: action.User,
+                rootObject: state.RootObject,
+                userUpdate: state.UserUpdate,
+                deleteResponse: state.DeleteResponse,
+                userAdd: state.UserAdd,
+                lastActionState: EActionState.Updated);
+
     }
 }

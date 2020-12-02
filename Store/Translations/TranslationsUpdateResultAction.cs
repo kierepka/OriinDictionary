@@ -1,14 +1,17 @@
 ﻿using OriinDic.Models;
 
+using System.Net;
+
 namespace OriinDic.Store.Translations
 {
     public class TranslationsUpdateResultAction
     {
         public Translation Translation { get; init; } = new Translation();
-
-        public TranslationsUpdateResultAction(Translation translation)
+        public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
+        public TranslationsUpdateResultAction(Translation translation, HttpStatusCode httpStatusCode)
         {
             Translation = translation;
+            ResultCode = httpStatusCode;
         }
     }
 }

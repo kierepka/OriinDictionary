@@ -1,30 +1,27 @@
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Components;
-
-using OriinDic.Components;
 using OriinDic.Models;
 using OriinDic.Services;
 
 namespace OriinDic.Pages
 {
-    public partial class Login : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class Login
     {
         private readonly LoginInput _loginModel = new LoginInput();
 
-        public bool isLoading = false;
-
-        public Login()   : base()
-        {
-        }
+        private bool _isLoading;
 
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IAuthService? AuthService { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private NavigationManager? NavigationManager { get; set; }
 
         private async Task HandleLogin()
         {
-            isLoading = true;
+            _isLoading = true;
             if (AuthService is null) return;
 
             var result = await AuthService.Login(_loginModel);
@@ -33,9 +30,9 @@ namespace OriinDic.Pages
                 if (result.Successful)
                     NavigationManager?.NavigateTo("/");
                 else
-                    ShowAlert(MyText.loginError + result.Error);
+                    ShowAlert(MyText.LoginError + result.Error);
 
-            isLoading = false;
+            _isLoading = false;
         }
 
     }

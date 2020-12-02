@@ -27,7 +27,7 @@ namespace OriinDic.Store.Users
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
             var response = await _httpClient.PostAsJsonAsync(
-                $"{Const.ApiAddUser}", action.User);
+                $"{Const.AddUser}", action.User);
 
             var returnData = new User();
             var returnString = string.Empty;
@@ -48,7 +48,7 @@ namespace OriinDic.Store.Users
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
             var response = await _httpClient.PostAsJsonAsync(
-                $"{Const.ApiUsers}{action.User.Id}/anonymize/", action.User);
+                $"{Const.Users}{action.User.Id}/anonymize/", action.User);
 
             var returnData = new User();
             var returnString = string.Empty;
@@ -79,7 +79,7 @@ namespace OriinDic.Store.Users
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Token", action.Token);
                 var response = await _httpClient.DeleteAsync(
-                    $"{Const.ApiUsers}{action.UserId}/");
+                    $"{Const.Users}{action.UserId}/");
 
                 if (!(response is null))
                 {
@@ -119,7 +119,7 @@ namespace OriinDic.Store.Users
 
             var userResult = new RootObject<User>();
             var queryString =
-                $"{Const.ApiUsers}?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
+                $"{Const.Users}?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
             try
             {
 
@@ -138,7 +138,7 @@ namespace OriinDic.Store.Users
         public async Task HandleFetchOneAction(UsersFetchOneAction action, IDispatcher dispatcher)
         {
 
-            var url = $"{Const.ApiUsers}{action.UserId}/";
+            var url = $"{Const.Users}{action.UserId}/";
             var returnData = await _httpClient.GetFromJsonAsync<User>(url, Const.HttpClientOptions);
 
 
@@ -152,7 +152,7 @@ namespace OriinDic.Store.Users
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
             var response = await _httpClient.PutAsJsonAsync(
-                $"{Const.ApiUsers}{action.UserId}/",
+                $"{Const.Users}{action.UserId}/",
                 action.User);
 
             var returnData = await response.Content.ReadFromJsonAsync<User>();

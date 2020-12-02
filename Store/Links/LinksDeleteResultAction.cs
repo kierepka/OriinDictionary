@@ -6,9 +6,12 @@ namespace OriinDic.Store.Links
     {
         public DeletedObjectResponse DelteResponse { get; init; } = new DeletedObjectResponse();
 
-        public LinksDeleteResultAction(DeletedObjectResponse delteResponse)
+        public RootObject<OriinLink> RootObject { get; init; } = new RootObject<OriinLink>();
+
+        public LinksDeleteResultAction(DeletedObjectResponse delteResponse, RootObject<OriinLink> rootObject)
         {
             DelteResponse = delteResponse;
+            RootObject = rootObject;
         }
     }
 }

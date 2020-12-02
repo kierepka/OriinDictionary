@@ -8,10 +8,5 @@ namespace OriinDic.Models
         public long TranslationId { get; set; }
         [JsonPropertyName("text")]
         public string Text { get; set; } = string.Empty;
-
-        public CommentAdd()
-        {
-            
-        }
     }
 }

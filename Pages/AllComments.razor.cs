@@ -5,8 +5,6 @@ using Blazorise.DataGrid;
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
-
-using OriinDic.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Comments;
@@ -14,7 +12,8 @@ using OriinDic.Store.Comments;
 
 namespace OriinDic.Pages
 {
-    public partial class AllComments : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class AllComments
     {
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
@@ -25,12 +24,10 @@ namespace OriinDic.Pages
 
         private Comment? _selectedComment;
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<CommentsState>? CommentState { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
-
-        public AllComments()
-        {
-        }
 
 
         protected override async Task OnInitializedAsync()

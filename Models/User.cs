@@ -9,10 +9,5 @@ namespace OriinDic.Models
         public long Id { get; set; }
         [JsonPropertyName("is_superuser")]
         public bool IsSuperuser { get; set; }
-
-        public User()
-        {
-            
-        }
     }
 }

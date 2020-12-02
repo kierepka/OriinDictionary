@@ -2,12 +2,15 @@
 
 namespace OriinDic.Models
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class TranslationChange
     {
         [JsonPropertyName("after")]
+        // ReSharper disable once UnusedMember.Global
         public Translation After { get; set; } = new Translation();
 
         [JsonPropertyName("before")]
+        // ReSharper disable once UnusedMember.Global
         public Translation Before { get; set; } = new Translation();
     }
 }

@@ -13,10 +13,5 @@ namespace OriinDic.Models
 
         [JsonPropertyName("date")]
         public DateTimeOffset Date { get; set; } = DateTime.Now;
-
-        public Comment()
-        {
-                
-        }
     }
 }

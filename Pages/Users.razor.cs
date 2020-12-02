@@ -1,26 +1,21 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
 
 using Blazorise.DataGrid;
 
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
-
-using OriinDic.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
-using OriinDic.Store;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Users;
 
 namespace OriinDic.Pages
 {
-    public partial class Users : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class Users
     {
 
         private long _itemsPerPage = Const.DefaultItemsPerPage;
@@ -29,17 +24,14 @@ namespace OriinDic.Pages
 
         private User? _selectedUser;
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
-
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<UsersState>? UsersState { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
-        public Users() : base()
-        {
-
-        }
-
-        private string GetLanguageName(int langId) => (LanguagesState?.Value.GetLanguageName(langId) ?? string.Empty);
+        private string GetLanguageName(int langId) => LanguagesState?.Value.GetLanguageName(langId) ?? string.Empty;
 
 
         protected override async Task OnInitializedAsync()

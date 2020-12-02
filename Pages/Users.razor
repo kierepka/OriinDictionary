@@ -3,12 +3,12 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(UsersState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.users" />
+<PageHeader IsLoading="@(UsersState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.Users" />
 
 <DataGrid TItem="User"
           Data="@UsersState?.Value?.RootObject?.Results"
           ReadData="@OnReadData"
-          TotalItems="@UsersState?.Value?.RootObject?.Results.Count"
+          TotalItems="@UsersState?.Value?.RootObject?.Results?.Count"
           ShowPager="false"
           UseInternalEditing="true"
           Editable="true"
@@ -26,44 +26,44 @@
     <DataGridColumns>
         <DataGridCommandColumn TItem="User" Width="170px">
             <NewCommandTemplate>
-                <Button Color="Color.Success" Clicked="@context.Clicked">@MyText?.newTxt</Button>
+                <Button Color="Color.Success" Clicked="@context.Clicked">@MyText?.NewTxt</Button>
             </NewCommandTemplate>
             <EditCommandTemplate>
-                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.edit</Button>
+                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.Edit</Button>
             </EditCommandTemplate>
             <SaveCommandTemplate>
-                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.save</Button>
+                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.Save</Button>
             </SaveCommandTemplate>
             <DeleteCommandTemplate>
-                <Button Color="Color.Danger" Clicked="@context.Clicked">@MyText?.delete</Button>
+                <Button Color="Color.Danger" Clicked="@context.Clicked">@MyText?.Delete</Button>
             </DeleteCommandTemplate>
             <CancelCommandTemplate>
-                <Button Color="Color.Secondary" Clicked="@context.Clicked">@MyText?.cancel</Button>
+                <Button Color="Color.Secondary" Clicked="@context.Clicked">@MyText?.Cancel</Button>
             </CancelCommandTemplate>
             <ClearFilterCommandTemplate>
-                <Button Color="Color.Warning" Clicked="@context.Clicked">@MyText?.clearFilter</Button>
+                <Button Color="Color.Warning" Clicked="@context.Clicked">@MyText?.ClearFilter</Button>
             </ClearFilterCommandTemplate>
         </DataGridCommandColumn>
-        <DataGridColumn TItem="User" Field="@nameof(User.Id)" Caption="@MyText?.usersId" Sortable="true" Editable="false" />
-        <DataGridColumn TItem="User" Field="@nameof(User.UserName)" Caption="@MyText?.usersUserName" Sortable="true" Editable="true" />
-        <DataGridColumn TItem="User" Field="@nameof(User.FirstName)" Caption="@MyText?.usersFirstName" Sortable="true" Editable="true" />
-        <DataGridColumn TItem="User" Field="@nameof(User.LastName)" Caption="@MyText?.usersLastName" Sortable="true" Editable="true" />
-        <DataGridColumn TItem="User" Field="@nameof(User.Email)" Caption="@MyText?.usersEmail" Editable="true" />
-        <DataGridCheckColumn TItem="User" Field="@nameof(User.IsSuperuser)" Caption="@MyText?.usersIsSuperUser" Editable="false" Filterable="false">
+        <DataGridColumn TItem="User" Field="@nameof(User.Id)" Caption="@MyText?.UsersId" Sortable="true" Editable="false" />
+        <DataGridColumn TItem="User" Field="@nameof(User.UserName)" Caption="@MyText?.UsersUserName" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="User" Field="@nameof(User.FirstName)" Caption="@MyText?.UsersFirstName" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="User" Field="@nameof(User.LastName)" Caption="@MyText?.UsersLastName" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="User" Field="@nameof(User.Email)" Caption="@MyText?.UsersEmail" Editable="true" />
+        <DataGridCheckColumn TItem="User" Field="@nameof(User.IsSuperuser)" Caption="@MyText?.UsersIsSuperUser" Editable="false" Filterable="false">
             <DisplayTemplate>
                 <Check TValue="bool" Checked="context.IsSuperuser" Disabled="true" ReadOnly="true" />
             </DisplayTemplate>
         </DataGridCheckColumn>
-        <DataGridCheckColumn TItem="User" Field="@nameof(User.Assistant)" Caption="@MyText?.usersIsAssistant" Editable="false" Filterable="false">
+        <DataGridCheckColumn TItem="User" Field="@nameof(User.Assistant)" Caption="@MyText?.UsersIsAssistant" Editable="false" Filterable="false">
             <DisplayTemplate>
                 <Check TValue="bool" Checked="context.Assistant" Disabled="true" ReadOnly="true" />
             </DisplayTemplate>
         </DataGridCheckColumn>
-        <DataGridColumn TItem="User" Field="@nameof( User.TranslatingLanguages )" Caption="@MyText?.usersTranslatingLanguages" Editable="false">
+        <DataGridColumn TItem="User" Field="@nameof( User.TranslatingLanguages )" Caption="@MyText?.UsersTranslatingLanguages" Editable="false">
             <FilterTemplate>
 
                 <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                    <SelectItem Value="@("*")">@MyText?.notSet</SelectItem>
+                    <SelectItem Value="@("*")">@MyText?.NotSet</SelectItem>
                     @if (!(LanguagesState is null))
                     {
                         @foreach (var item in LanguagesState.Value.Languages)
@@ -79,10 +79,10 @@
 
                 @{
                     var user = (context as User);
-                    <label class="checkbox">@MyText?.usersTranslatingLanguages</label>
+                    <label class="checkbox">@MyText?.UsersTranslatingLanguages</label>
                     if (user.IsSuperuser)
                     {
-                        <div class="control">@MyText?.superUserHasAll</div>
+                        <div class="control">@MyText?.SuperUserHasAll</div>
 
                     }
                     else
@@ -96,18 +96,18 @@
                         }
                         else
                         {
-                            <div class="control">@MyText?.notSet</div>
+                            <div class="control">@MyText?.NotSet</div>
                         }
                     }
                 }
 
             </DisplayTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="User" Field="@nameof( User.CoordinatingLanguages )" Caption="@MyText?.usersCoordinatingLanguages" Editable="false">
+        <DataGridColumn TItem="User" Field="@nameof( User.CoordinatingLanguages )" Caption="@MyText?.UsersCoordinatingLanguages" Editable="false">
             <FilterTemplate>
 
                 <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == " *" ? "" : e.ToString()))">
-                    <SelectItem Value="@(" *")">@MyText?.notSet</SelectItem>
+                    <SelectItem Value="@(" *")">@MyText?.NotSet</SelectItem>
                     @if (!(LanguagesState is null))
                     {
                         @foreach (var item in LanguagesState.Value.Languages)
@@ -123,10 +123,10 @@
             <DisplayTemplate>
                 @{
                     var user = (context as User);
-                    <label class="checkbox">@MyText?.usersCoordinatingLanguages</label>
+                    <label class="checkbox">@MyText?.UsersCoordinatingLanguages</label>
                     if (user.IsSuperuser)
                     {
-                        <div class="control">@MyText?.superUserHasAll</div>
+                        <div class="control">@MyText?.SuperUserHasAll</div>
 
                     }
                     else
@@ -140,7 +140,7 @@
                         }
                         else
                         {
-                            <div class="control">@MyText?.notSet</div>
+                            <div class="control">@MyText?.NotSet</div>
                         }
                     }
                 }

@@ -12,10 +12,5 @@ namespace OriinDic.Models
         public string Code { get; set; } = string.Empty;
         [JsonPropertyName("special_characters")]
         public string SpecialCharacters { get; set; } = string.Empty;
-
-        public Language()
-        {
-            
-        }
     }
 }

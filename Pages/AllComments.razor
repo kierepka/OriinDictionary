@@ -1,7 +1,7 @@
 ﻿@page "/comments"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(CommentState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.comments" />
+<PageHeader IsLoading="@(CommentState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.Comments" />
 
 <DataGrid TItem="Comment"
     Data="@CommentState?.Value.RootObject?.Results"
@@ -19,21 +19,21 @@
     DetailRowTrigger="@((item)=> item.Id == _selectedComment?.Id)">
     <DataGridColumns>
 
-        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Id)" Caption="@MyText?.commentId" Sortable="true" Editable="false">
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Id)" Caption="@MyText?.CommentId" Sortable="true" Editable="false">
             <DisplayTemplate>
-                <Button Color="Color.Danger" Clicked="@(()=> OnRowRemoved(context))">@MyText?.delete (@context.Id)</Button>
+                <Button Color="Color.Danger" Clicked="@(()=> OnRowRemoved(context))">@MyText?.Delete (@context.Id)</Button>
             </DisplayTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Text)" Caption="@MyText?.commentText" Sortable="true" Editable="true" />
-        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Date)" Caption="@MyText?.commentDate" Sortable="true" Editable="true" />
-        <DataGridColumn TItem="Comment" Field="@nameof(Comment.TranslationId)" Caption="@MyText?.commentsTranslation" Sortable="true" Editable="true">
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Text)" Caption="@MyText?.CommentText" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.Date)" Caption="@MyText?.CommentDate" Sortable="true" Editable="true" />
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.TranslationId)" Caption="@MyText?.CommentsTranslation" Sortable="true" Editable="true">
             <DisplayTemplate>
                 <div class="box">
                     <a href="/edittranslation/@context.TranslationId">@context.TranslationId</a>
                 </div>
             </DisplayTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="Comment" Field="@nameof(Comment.User)" Caption="@MyText?.commentsUser" Editable="true">
+        <DataGridColumn TItem="Comment" Field="@nameof(Comment.User)" Caption="@MyText?.CommentsUser" Editable="true">
             <DisplayTemplate>
                 <div class="box">
                     <a href="/user/@context.User?.Id">@context.User?.UserName</a>

@@ -3,11 +3,11 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="" />
+<PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="" />
 
 @if (TranslationsState?.Value?.Translation is null)
 {
-    <a href="/">@MyText?.noData</a>
+    <a href="/">@MyText?.NoData</a>
 }
 else
 {
@@ -16,16 +16,16 @@ else
             <Card Margin="Margin.Is4.OnY">
                 <CardHeader>
                     <CardTitle>[@TranslationLanguage] @TranslationsState.Value.Translation.Name</CardTitle>
-                    <CardSubtitle>@MyText?.translationHeader</CardSubtitle><br />
+                    <CardSubtitle>@MyText?.TranslationHeader</CardSubtitle><br />
                 </CardHeader>
                 <CardBody>
 
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationName</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationName</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
-                                    <TextEdit Placeholder="@MyText?.translationName"
+                                    <TextEdit Placeholder="@MyText?.TranslationName"
                                               @bind-Text="@TranslationsState.Value.Translation.Name" />
                                 </Authorized>
                                 <NotAuthorized>
@@ -35,7 +35,7 @@ else
                         </FieldBody>
                     </Field>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationCurrent</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
@@ -48,11 +48,11 @@ else
                         </FieldBody>
                     </Field>
                     <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.translationDefinition</FieldLabel>
+                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <AuthorizeView Roles="@Const.RolesBaseEditors">
                                 <Authorized>
-                                    <TextEdit Placeholder="@MyText?.translationDefinition"
+                                    <TextEdit Placeholder="@MyText?.TranslationDefinition"
                                               @bind-Text="@TranslationsState.Value.Translation.Definition" />
                                 </Authorized>
                                 <NotAuthorized>
@@ -65,9 +65,9 @@ else
                         <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <Label>
-                                @MyText?.translationLastEdit: @TranslationsState.Value.Translation.LastEdit.User.UserName,
-                                @MyText?.translationLastApproval: @TranslationsState.Value.Translation.LastApproval.User.UserName,
-                                @MyText?.translationTitle: @TranslationsState.Value.Translation.Id
+                                @MyText?.TranslationLastEdit: @TranslationsState.Value.Translation.LastEdit.User.UserName,
+                                @MyText?.TranslationLastApproval: @TranslationsState.Value.Translation.LastApproval.User.UserName,
+                                @MyText?.TranslationTitle: @TranslationsState.Value.Translation.Id
                             </Label>
                         </FieldBody>
                     </Field>
@@ -78,11 +78,20 @@ else
                             <Buttons Role="ButtonsRole.Addons">
                                 <AuthorizeView Roles="@Const.RolesEditors">
                                     <Authorized>
-                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.save</Button>
+                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
                                     </Authorized>
                                 </AuthorizeView>
-                                <input class="button" type="button" value="@MyText?.back" onClick="history.back();">
-                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.speech</Button>
+
+                                @if (!TranslationsState.Value.Translation.Current)
+                                {
+                                    <AuthorizeView Roles="@Const.RolesUsersEditors">
+                                        <Authorized>
+                                            <Button Type="ButtonType.Button" Color="Color.Dark" Clicked="@OnApprove">@MyText?.TranslationApproval</Button>
+                                        </Authorized>
+                                    </AuthorizeView>
+                                }
+                                <input class="button" type="button" value="@MyText?.Back" onClick="history.back();">
+                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.Speech</Button>
                             </Buttons>
                         </FieldBody>
                     </Field>
@@ -91,7 +100,7 @@ else
             </Card>
             @if (TranslationsState?.Value?.BaseTerm is null)
             {
-                <a href="/">Base term @MyText?.noData !</a>
+                <a href="/">Base term @MyText?.NoData !</a>
             }
             else
             {
@@ -99,27 +108,27 @@ else
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
                         <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTerm.Name</CardTitle>
-                        <CardSubtitle>@MyText?.baseTermHeader</CardSubtitle>
+                        <CardSubtitle>@MyText?.BaseTermHeader</CardSubtitle>
                     </CardHeader>
                     <CardBody>
                         <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermName</FieldLabel>
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
                             <FieldBody ColumnSize="ColumnSize.Is10">
                                 <Label>@TranslationsState.Value.BaseTerm.Name</Label>
                             </FieldBody>
                         </Field>
                         <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermDefinition</FieldLabel>
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
                             <FieldBody ColumnSize="ColumnSize.Is10">
                                 <Label>@TranslationsState.Value.BaseTerm.Definition</Label>
                             </FieldBody>
                         </Field>
                         <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermExamples</FieldLabel>
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
                             <FieldBody ColumnSize="ColumnSize.Is10">
                                 @if (TranslationsState?.Value?.BaseTerm?.Examples is null)
                                 {
-                                    <Label>@MyText?.noData</Label>
+                                    <Label>@MyText?.NoData</Label>
                                 }
                                 else
                                 {
@@ -131,11 +140,11 @@ else
                             </FieldBody>
                         </Field>
                         <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSynonyms</FieldLabel>
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
                             <FieldBody ColumnSize="ColumnSize.Is10">
                                 @if (TranslationsState?.Value?.BaseTerm?.Synonyms is null)
                                 {
-                                    <Label>@MyText?.noData</Label>
+                                    <Label>@MyText?.NoData</Label>
                                 }
                                 else
                                 {
@@ -147,7 +156,7 @@ else
                             </FieldBody>
                         </Field>
                         <Field IsHorizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.baseTermSlug</FieldLabel>
+                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSlug</FieldLabel>
                             <FieldBody ColumnSize="ColumnSize.Is10">
                                 <Label>@TranslationsState.Value.BaseTerm.Slug</Label>
                             </FieldBody>
@@ -156,8 +165,8 @@ else
                             <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
                             <FieldBody ColumnSize="ColumnSize.Is10">
                                 <Label>
-                                    @MyText?.baseTermLanguage: @BaseTermLanguage,
-                                    @MyText?.baseTermLastEdit: @(TranslationsState.Value.BaseTerm?.LastEdit?.User.UserName ?? string.Empty)
+                                    @MyText?.BaseTermLanguage: @BaseTermLanguage,
+                                    @MyText?.BaseTermLastEdit: @(TranslationsState.Value.BaseTerm?.LastEdit?.User.UserName ?? string.Empty)
                                 </Label>
                             </FieldBody>
                         </Field>
@@ -170,15 +179,15 @@ else
                                         <a href="/editBaseTerm/@TranslationsState.Value.Translation.BaseTermId">
                                             <AuthorizeView Roles="@Const.RolesEditors">
                                                 <Authorized>
-                                                    @MyText?.editBaseTerm
+                                                    @MyText?.EditBaseTerm
                                                 </Authorized>
                                                 <NotAuthorized>
-                                                    @MyText?.linkBaseTerm
+                                                    @MyText?.LinkBaseTerm
                                                 </NotAuthorized>
                                             </AuthorizeView>
                                         </a>
                                     </div>
-                                    <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.speech</Button>
+                                    <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
                                 </Buttons>
                             </FieldBody>
                         </Field>
@@ -189,7 +198,7 @@ else
 
             @if (TranslationsState?.Value?.Comments is null)
             {
-                <div>Comments @MyText?.noData </div>
+                <div>Comments @MyText?.NoData </div>
             }
             else
             {

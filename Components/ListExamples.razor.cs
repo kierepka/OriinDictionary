@@ -9,7 +9,7 @@ using Text = OriinDic.I18nText.Text;
 
 namespace OriinDic.Components
 {
-    public partial class ListExamples : ComponentBase
+    public partial class ListExamples
     {
         private Validations? _validations;
 
@@ -41,10 +41,6 @@ namespace OriinDic.Components
             _validations.ClearAll();
         }
 
-
-        public ListExamples()
-        {
-        }
 
         protected override async Task OnInitializedAsync()
         {

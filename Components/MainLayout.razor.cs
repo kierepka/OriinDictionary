@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 
 using Blazored.LocalStorage;
@@ -15,7 +14,7 @@ using Text = OriinDic.I18nText.Text;
 
 namespace OriinDic.Components
 {
-    public partial class MainLayout : LayoutComponentBase
+    public partial class MainLayout
     {
         private bool _collapseNavMenu = true;
 
@@ -23,19 +22,17 @@ namespace OriinDic.Components
 
         private Text _myText = new Text();
 
-        public MainLayout() : base()
-        {
-        }
-
 
         [Parameter] public BarDropdownToggle DropDownToggle { get; set; } = new BarDropdownToggle();
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private ISyncLocalStorageService? LocalStorage { get; set; }
 
-        public BarDropdown MyDropdown { get; set; } = new BarDropdown();
-        public Sidebar MySidebar { get; set; } = new Sidebar();
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+        private Sidebar MySidebar { get; set; } = new Sidebar();
 
   
         protected override async Task OnInitializedAsync()
@@ -46,7 +43,7 @@ namespace OriinDic.Components
 
  
         /// <summary>
-        ///     Sprawdzenie języków - czy są poprawnie wczytane
+        /// Checking languages - are they proper loaded?
         /// </summary>
         /// <returns></returns>
         private async Task CheckLanguage()
@@ -71,8 +68,7 @@ namespace OriinDic.Components
         {
             _currentLanguage = Const.EnLangShortcut;
 
-            if (!(LocalStorage is null))
-                LocalStorage.SetItem(Const.LanguageKey, _currentLanguage);
+            LocalStorage?.SetItem(Const.LanguageKey, _currentLanguage);
 
             if (!(I18NText is null))
                 await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());

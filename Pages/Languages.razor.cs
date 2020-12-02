@@ -7,16 +7,14 @@ using OriinDic.Store.Languages;
 
 namespace OriinDic.Pages
 {
-    public partial class Languages : DicBasePage
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public partial class Languages
     {
-        [Inject]
-        private IState<LanguagesState>? LanguagesState { get; set; }
-        [Inject]
-        private IDispatcher? Dispatcher { get; set; }
-
-        public Languages()
-        {
-        }
+        
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

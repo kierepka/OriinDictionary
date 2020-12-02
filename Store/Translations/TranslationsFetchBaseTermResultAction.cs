@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Translations
 {
     public class TranslationsFetchBaseTermResultAction
     {
-        public BaseTerm BaseTerm { get; init; } = new BaseTerm();
+        public ResultBaseTranslation BaseTranslation { get; init; } = new ResultBaseTranslation();
+        public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
 
-        public TranslationsFetchBaseTermResultAction(BaseTerm baseTerm)
+        public TranslationsFetchBaseTermResultAction(ResultBaseTranslation baseTranslation, HttpStatusCode httpStatusCode)
         {
-            BaseTerm = baseTerm;
+            BaseTranslation = baseTranslation;
+            ResultCode = httpStatusCode; 
         }
     }
 }

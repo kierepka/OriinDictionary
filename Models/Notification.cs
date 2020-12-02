@@ -2,19 +2,22 @@
 
 namespace OriinDic.Models
 {
+    // ReSharper disable once UnusedType.Global
     public class Notification
     {
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public string Text { get; private set; } = string.Empty;
+        // ReSharper disable once UnusedMember.Global
+        public Guid Id { get; set; } = Guid.NewGuid();
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+        private string Text { get; set; }
 
-        [Obsolete]
-        public Notification() { }
-
+        
         public Notification(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
                 throw new ArgumentNullException(nameof(text));
 
+            Text = text;
             Text = text;
         }
     }

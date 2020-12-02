@@ -4,7 +4,7 @@
     {
         Adding,
         Added,
-        Anonymizing,        
+        Anonymization,        
         Anonymized,
         Deleting,
         Deleted,

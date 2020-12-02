@@ -9,24 +9,21 @@ using System.Threading.Tasks;
 
 namespace OriinDic.Components
 {
-    public partial class PageHeader : FluxorComponent
+    public partial class PageHeader
     {
 
         [Inject]
         private IState<NotificationsState>? State { get; set; }
-        private string currentAlertText = string.Empty;
-        public PageHeader()
-        {
-        }
+        private string _currentAlertText = string.Empty;
 
         [Parameter]
         public string CurrentAlertText
         {
-            get => currentAlertText;
+            get => _currentAlertText;
             set
             {
-                currentAlertText = value;
-                if (string.IsNullOrEmpty(currentAlertText))
+                _currentAlertText = value;
+                if (string.IsNullOrEmpty(_currentAlertText))
                     MyAlert?.Hide();
                 else
                 {
@@ -43,8 +40,10 @@ namespace OriinDic.Components
         [Parameter] public string HeaderText { get; set; } = string.Empty;
         [Parameter] public bool IsLoading { get; set; }
         [Parameter] public string LoadingText { get; set; } = string.Empty;
-        public Snackbar? MyAlert { get; set; } = null;
-        public Alert? MyAlertYesNo { get; set; } = null;
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
+        private Snackbar? MyAlert { get; set; } = null;
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
+        private Alert? MyAlertYesNo { get; set; } = null;
         [Parameter] public EventCallback<long> OnOkEvent { get; set; }
         [Parameter] public EventCallback<long> OnCancelEvent { get; set; }
 

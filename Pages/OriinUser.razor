@@ -3,53 +3,53 @@
 @using OriinDic.Helpers
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(UserState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerUser" />
+<PageHeader IsLoading="@(UserState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.HeaderUser" />
 
 <Row>
     <Column>
         <Card Margin="Margin.Is4.OnY">
             <CardHeader>
-                <CardTitle>@MyText?.personalDataHeader</CardTitle>
-                <CardSubtitle>@MyText?.personalDataSubtitle</CardSubtitle><br />
+                <CardTitle>@MyText?.PersonalDataHeader</CardTitle>
+                <CardSubtitle>@MyText?.PersonalDataSubtitle</CardSubtitle><br />
 
             </CardHeader>
             <CardBody>
 
                 <DataAnnotationsValidator />
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.email</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Email</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <div class="control"><strong>@_user.Email</strong></div>
+                        <div class="control"><strong>@User.Email</strong></div>
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.username</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UserName</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <div class="control"><strong>@_user.UserName</strong></div>
+                        <div class="control"><strong>@User.UserName</strong></div>
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.firstname</FieldLabel>
-                    <div class="control"><strong>@_user.FirstName</strong></div>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.FirstName</FieldLabel>
+                    <div class="control"><strong>@User.FirstName</strong></div>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.lastname</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LastName</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <div class="control"><strong>@_user.LastName</strong></div>
+                        <div class="control"><strong>@User.LastName</strong></div>
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.gender</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Gender</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <RadioGroup TValue="string" Inline="true" Name="genderGroup" @bind-CheckedValue="@_user.Gender" ReadOnly="true">
-                            <Radio TValue="string" Value="@Const.FemaleGenderVal">@MyText?.femaleGender</Radio>
-                            <Radio TValue="string" Value="@Const.MaleGenderVal">@MyText?.maleGender</Radio>
-                            <Radio TValue="string" Value="@Const.NoGenderVal">@MyText?.noGender</Radio>
+                        <RadioGroup TValue="string" Inline="true" Name="genderGroup" @bind-CheckedValue="@User.Gender" ReadOnly="true">
+                            <Radio TValue="string" Value="@Const.FemaleGenderVal">@MyText?.FemaleGender</Radio>
+                            <Radio TValue="string" Value="@Const.MaleGenderVal">@MyText?.MaleGender</Radio>
+                            <Radio TValue="string" Value="@Const.NoGenderVal">@MyText?.NoGender</Radio>
                         </RadioGroup>
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.language</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Language</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (!(LanguagesState is null))
                         {
@@ -62,11 +62,11 @@
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.translating_languages</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.TranslatingLanguages</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
                         {
-                            <div class="field"><div class="control"><strong>@MyText?.superUserHasAll</strong></div></div>
+                            <div class="field"><div class="control"><strong>@MyText?.SuperUserHasAll</strong></div></div>
                         }
                         else
                         {
@@ -87,11 +87,11 @@
                     </FieldBody>
                 </Field>
                 <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.coordinating_languages</FieldLabel>
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CoordinatingLanguages</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
                         {
-                            <div class="field"><div class="control"><strong>@MyText?.superUserHasAll</strong></div></div>
+                            <div class="field"><div class="control"><strong>@MyText?.SuperUserHasAll</strong></div></div>
                         }
                         else
                         {

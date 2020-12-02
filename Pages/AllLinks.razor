@@ -1,13 +1,13 @@
 ﻿@page "/links"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(LinksState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.links" />
+<PageHeader IsLoading="@(LinksState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.Links" />
 
 
 <DataGrid TItem="OriinLink"
-          Data="@LinksState?.Value.RootObject?.Results"
+          Data="@LinksState?.Value?.RootObject?.Results"
           ReadData="@OnReadData"
-          TotalItems="@_totalOriinLinks"
+          TotalItems="@LinksState?.Value?.RootObject?.Results?.Count"
           ShowPager="false"
           Editable="false"
           Sortable="true"
@@ -16,30 +16,30 @@
           Bordered="true"
           Hoverable="true"
           RowRemoved="@OnRowRemoved"
-          @bind-SelectedRow="@selectedOriinLink"
-          DetailRowTrigger="@((item)=> item.Id == selectedOriinLink?.Id)">
+          @bind-SelectedRow="@_selectedOriinLink"
+          DetailRowTrigger="@((item)=> item.Id == _selectedOriinLink?.Id)">
     <DataGridColumns>
 
-        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.Id)" Caption="@MyText?.linkId" Sortable="true" Editable="false">
+        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.Id)" Caption="@MyText?.LinkId" Sortable="true" Editable="false">
             <DisplayTemplate>
-                <Button Color="Color.Danger" Clicked="@(() => OnRowRemoved(context))">@MyText?.delete (@context.Id)</Button>
+                <Button Color="Color.Danger" Clicked="@(() => OnRowRemoved(context))">@MyText?.Delete (@context.Id)</Button>
             </DisplayTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.Link)" Caption="@MyText?.linkLink" Sortable="true" Editable="true">
+        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.Link)" Caption="@MyText?.LinkLink" Sortable="true" Editable="true">
             <DisplayTemplate>
                 <div class="box">
                     <a href="context.Link">@context.Link</a>
                 </div>
             </DisplayTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.BaseTermId)" Caption="@MyText?.linkBaseTerm" Sortable="true" Editable="true">
+        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.BaseTermId)" Caption="@MyText?.LinkBaseTerm" Sortable="true" Editable="true">
             <DisplayTemplate>
                 <div class="box">
                     <a href="/editbaseterm/@context.BaseTermId">@context.BaseTermId</a>
                 </div>
             </DisplayTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.TranslationId)" Caption="@MyText?.linkTranslation" Sortable="true" Editable="true">
+        <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.TranslationId)" Caption="@MyText?.LinkTranslation" Sortable="true" Editable="true">
             <DisplayTemplate>
                 <div class="box">
                     <a href="/edittranslation/@context.TranslationId">@context.TranslationId</a>

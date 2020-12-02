@@ -6,10 +6,17 @@ namespace OriinDic.Store.Links
     {
         public override string GetName() => "Links";
 
-        protected override LinksState GetInitialState() => new LinksState(isLoading: false, searchPageNr: 0,
-            itemsPerPage: 0, token: string.Empty, statusCode: string.Empty,
+        protected override LinksState GetInitialState() => new LinksState(
+            isLoading: false,
+            searchPageNr: 0,
+            itemsPerPage: 0,
+            linkId: 0,
+            baseTermId: 0,
+            token: string.Empty,
+            statusCode: string.Empty,
             link: new Models.OriinLink(),
-            rootObject: new Models.RootObject<Models.OriinLink>(), 
-            deleteResponse: new Models.DeletedObjectResponse());
+            rootObject: new Models.RootObject<Models.OriinLink>(),
+            deleteResponse: new Models.DeletedObjectResponse(),
+            lastActionState: EActionState.Initializing);
     }
 }

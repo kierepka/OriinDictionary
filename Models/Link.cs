@@ -4,12 +4,8 @@ namespace OriinDic.Models
 {
     public class OriinLink
     {
-        public OriinLink()
-        {
-
-        }
-
         [JsonPropertyName("approved")]
+        // ReSharper disable once UnusedMember.Global
         public bool Approved { get; set; } = false;
 
         [JsonPropertyName("base_term_id")]

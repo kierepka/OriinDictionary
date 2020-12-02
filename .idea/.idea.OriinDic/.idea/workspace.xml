@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,12 +23,136 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/wwwroot/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/DicBasePage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/DicBasePage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/Keyboard.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Keyboard.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListExamples.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListExamples.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListExamples.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListExamples.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListLinks.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListLinks.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListLinks.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListLinks.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListSynonyms.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListSynonyms.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListSynonyms.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListSynonyms.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MainLayout.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MainLayout.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MyPagination.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MyPagination.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MySearch.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MySearch.razor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/PageHeader.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/PageHeader.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/RedirectToLogin.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/RedirectToLogin.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/SurveyPrompt.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/SurveyPrompt.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/Const.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Const.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Functions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/BaseTerm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/BaseTerm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/BaseTermLastEdit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/BaseTermLastEdit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Change.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Change.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Comment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/CommentAdd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/CommentAdd.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/DeletedObjectResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/DeletedObjectResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/IExampleSynonym.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/IExampleSynonym.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Language.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Language.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LastEdit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LastEdit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Link.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Link.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LocalPages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LocalPages.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LoginInputModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LoginInputModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/LoginResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/LoginResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Notification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Notification.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ResultBaseTranslation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ResultBaseTranslation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/RootObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/RootObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/SearchItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/SearchItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Token.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Token.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Translation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Translation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/TranslationApproval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/TranslationApproval.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/TranslationChange.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/TranslationChange.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/TranslationLastEdit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/TranslationLastEdit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UserAdd.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UserAdd.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/UserUpdate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UserUpdate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OriinDic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllComments.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllComments.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllComments.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllLinks.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllLinks.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllLinks.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllLinks.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/BaseTermEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/BaseTermEdit.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/BaseTermNew.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/BaseTermNew.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/BaseTermNew.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/BaseTermNew.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Index.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Languages.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Languages.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Languages.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Languages.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Logout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Logout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Logout.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Logout.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/OriinUser.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/OriinUser.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/OriinUser.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/OriinUser.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/TranslationNew.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationNew.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Users.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/Users.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/AuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/BaseTerms/BaseTermsState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsAddResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsAddResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsDeleteResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsDeleteResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Comments/CommentsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Comments/CommentsState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/EActionState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/EActionState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Languages/LanguagesReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Languages/LanguagesReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksDeleteResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksDeleteResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksFetchDataAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksFetchDataAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Links/LinksState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Links/LinksState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Notifications/NotificationsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Notifications/NotificationsState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsAddResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsAddResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetch4EditResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetch4EditResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchCommentsResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchCommentsResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchDataResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchDataResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsFetchOneResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsFetchOneResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Translations/TranslationsUpdateResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Translations/TranslationsUpdateResultAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersReducers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Users/UsersState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18ntext/Text.en.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,68 +160,106 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchDataAction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Search/SearchTranslationsResultAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/TranslationNew.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchTranslationsAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchBaseTermsResultAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchFeature.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchBaseTermsAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchReducers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/Settings.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/TranslationEdit.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/Index.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/PersonalData.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Pages/PersonalData.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Components/MainLayout.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Components/MyPagination.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Helpers/Const.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Components/SurveyPrompt.razor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Languages/LanguagesState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Components/MyPagination.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/PersonalData.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Components/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchDataResultAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Components/MainLayout.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Comments/CommentsEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Components/Keyboard.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Links/LinksEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Components/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Users/UsersEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchDataResultAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchDataAction.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchEffects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Store/Search/SearchPageNrChangeAction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Pages/TranslationNew.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchFeature.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchTranslationsAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchBaseTermsResultAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/Index.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchReducers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Helpers/Const.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/PersonalData.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Components/MyPagination.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/TranslationNew.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/TranslationEdit.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Languages/LanguagesState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchEffects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Components/MyPagination.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchBaseTermsAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Search/SearchPageNrChangeAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Components/SurveyPrompt.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/Settings.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Pages/PersonalData.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Store/Users/UsersEffects.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
-    <changedPaths>
-      <option value="$PROJECT_DIR$/_Imports.razor" />
-      <option value="$PROJECT_DIR$/Pages/AllComments.razor.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFetchOneResultAction.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsUpdateResultAction.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsAddResultAction.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFetchDataResultAction.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsEffects.cs" />
-      <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor" />
-      <option value="$PROJECT_DIR$/Models/BaseTerm.cs" />
-      <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" />
-      <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFeature.cs" />
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsReducers.cs" />
-      <option value="$PROJECT_DIR$/Store/Search/SearchEffects.cs" />
-      <option value="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" />
-      <option value="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" />
-    </changedPaths>
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Pages/OriinUser.razor" />
+        <option value="$PROJECT_DIR$/Pages/PersonalData.razor" />
+        <option value="$PROJECT_DIR$/Components/ListComments.razor" />
+        <option value="$PROJECT_DIR$/Components/DicBasePage.cs" />
+        <option value="$PROJECT_DIR$/Components/Keyboard.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/ListComments.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/ListExamples.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/ListLinks.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/ListSynonyms.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/MainLayout.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/MyPagination.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/PageHeader.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/RedirectToLogin.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/SurveyPrompt.razor.cs" />
+        <option value="$PROJECT_DIR$/Components/MainLayout.razor" />
+        <option value="$PROJECT_DIR$/Models/BaseTermChange.cs" />
+        <option value="$PROJECT_DIR$/Models/BaseTermLastEdit.cs" />
+        <option value="$PROJECT_DIR$/Models/Change.cs" />
+        <option value="$PROJECT_DIR$/Models/Comment.cs" />
+        <option value="$PROJECT_DIR$/Models/CommentAdd.cs" />
+        <option value="$PROJECT_DIR$/Models/DeletedObjectResponse.cs" />
+        <option value="$PROJECT_DIR$/Models/IExampleSynonym.cs" />
+        <option value="$PROJECT_DIR$/Models/Link.cs" />
+        <option value="$PROJECT_DIR$/Models/LastEdit.cs" />
+        <option value="$PROJECT_DIR$/Models/LoginInputModel.cs" />
+        <option value="$PROJECT_DIR$/Models/LoginResult.cs" />
+        <option value="$PROJECT_DIR$/Models/Notification.cs" />
+        <option value="$PROJECT_DIR$/Models/RootObject.cs" />
+        <option value="$PROJECT_DIR$/Models/Token.cs" />
+        <option value="$PROJECT_DIR$/Models/Translation.cs" />
+        <option value="$PROJECT_DIR$/Models/TranslationApproval.cs" />
+        <option value="$PROJECT_DIR$/Models/TranslationChange.cs" />
+        <option value="$PROJECT_DIR$/Models/TranslationLastEdit.cs" />
+        <option value="$PROJECT_DIR$/Models/UserAdd.cs" />
+        <option value="$PROJECT_DIR$/Pages/AllComments.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/AllLinks.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/BaseTermNew.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/Index.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/Languages.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/Login.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/Logout.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/OriinUser.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/PersonalData.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/Settings.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/TranslationEdit.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/TranslationNew.razor.cs" />
+        <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
+        <option value="$PROJECT_DIR$/Services/ApiAuthenticationStateProvider.cs" />
+        <option value="$PROJECT_DIR$/Services/AuthService.cs" />
+        <option value="$PROJECT_DIR$/Store/EActionState.cs" />
+      </list>
+    </option>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -189,6 +354,8 @@
       <workItem from="1604841351190" duration="625000" />
       <workItem from="1604946342424" duration="913000" />
       <workItem from="1605210778750" duration="328000" />
+      <workItem from="1605643386733" duration="322000" />
+      <workItem from="1606926165029" duration="5823000" />
     </task>
     <servers />
   </component>
@@ -214,26 +381,25 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="991" y="239" key="#Dockerfile" timestamp="1590834936098">
+    <state width="2517" height="405" key="GridCell.Tab.0.bottom" timestamp="1606926300293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="991" y="239" key="#Dockerfile/0.0.2560.1400/3840.0.2560.1080@0.0.2560.1400" timestamp="1590834936098" />
-    <state x="1029" y="546" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1" timestamp="1587576795457">
+    <state width="2517" height="405" key="GridCell.Tab.0.bottom/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1606926300293" />
+    <state width="2517" height="405" key="GridCell.Tab.0.center" timestamp="1606926300293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1029" y="546" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.0.2560.1400@0.0.2560.1400" timestamp="1587576795457" />
-    <state x="782" y="346" key="SettingsEditor" timestamp="1590988814091">
+    <state width="2517" height="405" key="GridCell.Tab.0.center/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1606926300293" />
+    <state width="2517" height="405" key="GridCell.Tab.0.left" timestamp="1606926300293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="782" y="346" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1590988814091" />
-    <state x="782" y="346" key="SettingsEditor/0.0.2560.1400/3840.0.2560.1080@0.0.2560.1400" timestamp="1590835472114" />
-    <state x="3840" y="0" width="2167" height="959" key="dock-window-1" timestamp="1595955902910">
-      <screen x="3840" y="0" width="2560" height="1040" />
+    <state width="2517" height="405" key="GridCell.Tab.0.left/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1606926300293" />
+    <state width="2517" height="405" key="GridCell.Tab.0.right" timestamp="1606926300293">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="3840" y="0" width="2167" height="959" key="dock-window-1/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1595955902910" />
-    <state x="4089" y="117" width="642" height="801" key="find.popup" timestamp="1590924590331">
-      <screen x="3840" y="0" width="2560" height="1040" />
+    <state width="2517" height="405" key="GridCell.Tab.0.right/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1606926300293" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1606927007392">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="4089" y="117" width="642" height="801" key="find.popup/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1590924590331" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/3840.0.2560.1040@0.0.2560.1400" timestamp="1606927007392" />
   </component>
 </project>

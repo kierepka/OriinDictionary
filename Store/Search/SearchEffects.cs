@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+
 using Fluxor;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Notifications;
@@ -24,19 +24,11 @@ namespace OriinDic.Store.Search
         [EffectMethod]
         public async Task HandleSearchPageNrChange(SearchPageNrChangeAction action, IDispatcher dispatcher)
         {
-            
-            if (Const.BaseLanguagesList.Contains(action.BaseTermLangId))
-                dispatcher.Dispatch(new SearchBaseTermsAction(searchText: action.SearchText,
+            await HandleSearchTranslationsAction(
+                new SearchTranslationsAction (searchText: action.SearchText,
                     baseTermLangId: action.BaseTermLangId, translationLangId: action.TranslationLangId, action.SearchPageNr,
-                    itemsPerPage: action.ItemsPerPage, current: action.Current, action.NoResults));
-            else
-            {
-                dispatcher.Dispatch(new SearchTranslationsAction(searchText: action.SearchText,
-                    baseTermLangId: action.BaseTermLangId, translationLangId: action.TranslationLangId, action.SearchPageNr,
-                    itemsPerPage: action.ItemsPerPage, current: action.Current, action.NoResults));
-            }
-            
-            
+                    itemsPerPage: action.ItemsPerPage, current: action.Current, action.NoResults), dispatcher);
+
         }
 
         [EffectMethod]
@@ -48,7 +40,7 @@ namespace OriinDic.Store.Search
             var translationResult = new RootObject<ResultBaseTranslation>();
 
             var queryString =
-                $"{Const.ApiBaseTerms}?text={action.SearchText}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}&base_term_language_id={action.BaseTermLangId}";
+                $"{Const.BaseTerms}?text={action.SearchText}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}&base_term_language_id={action.BaseTermLangId}";
             if (action.TranslationLangId != Const.PlLangId) queryString += $"&translation_language_id={action.TranslationLangId}";
 
             try
@@ -78,7 +70,7 @@ namespace OriinDic.Store.Search
 
                 dispatcher.Dispatch(new SearchBaseTermsResultAction(translationResult));
             }
-            
+
         }
 
         [EffectMethod]
@@ -89,7 +81,7 @@ namespace OriinDic.Store.Search
             if (!action.Current) currentString = "false";
             var translationResult = new RootObject<ResultBaseTranslation>();
             var queryString =
-                $"{Const.ApiTranslations}?text={action.SearchText}&language_id={action.TranslationLangId}&base_term_language_id={action.BaseTermLangId}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}";
+                $"{Const.Translations}?text={action.SearchText}&language_id={action.TranslationLangId}&base_term_language_id={action.BaseTermLangId}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}";
             try
             {
 
@@ -98,14 +90,14 @@ namespace OriinDic.Store.Search
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction(e.ToString())); 
+                dispatcher.Dispatch(new ShowNotificationAction(e.ToString()));
             }
 
             dispatcher.Dispatch(new SearchTranslationsResultAction(translationResult ?? new RootObject<ResultBaseTranslation>()));
         }
 
 
-      
+
 
     }
 }

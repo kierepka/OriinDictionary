@@ -10,13 +10,13 @@
                                 <Addon AddonType="AddonType.Body">
                                     <Validations @ref="_validations" Mode="ValidationMode.Manual">
                                         <Validation Validator="@ValidationRule.IsNotEmpty">
-                                            <TextEdit Role="TextRole.Url" @bind-Text="@_myValue" Placeholder="@_myText.addLink"></TextEdit>
+                                            <TextEdit Role="TextRole.Url" @bind-Text="@_myValue" Placeholder="@_myText.AddLink"></TextEdit>
                                         </Validation>
                                     </Validations>
                                 </Addon>
                                 <Addon AddonType="AddonType.End">
                                     <Button Color="Color.Primary" Clicked="@OnAddObject">
-                                        <Icon Name="IconName.Add" />@_myText.add
+                                        <Icon Name="IconName.Add" />@_myText.Add
                                     </Button>
                                 </Addon>
                             </Addons>

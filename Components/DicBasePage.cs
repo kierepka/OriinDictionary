@@ -12,14 +12,16 @@ namespace OriinDic.Components
 {
     public class DicBasePage : FluxorComponent
     {
-        public I18nText.Text? MyText;
+        protected I18nText.Text? MyText;
 
 
         [Inject] protected Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
         [Inject] protected ISyncLocalStorageService? LocalStorage { get; set; }
-        public string CurrentAlert { get; set; } = string.Empty;
-        public Alert? MyAlert { get; set; }
+        // ReSharper disable once MemberCanBePrivate.Global
+        protected string CurrentAlert { get; set; } = string.Empty;
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        private Alert? MyAlert { get; set; }
 
         protected override async Task OnInitializedAsync() 
         {

@@ -1,20 +1,20 @@
 ﻿@page "/dictionaryLanguages"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@(LanguagesState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.langHeader" />
+<PageHeader IsLoading="@(LanguagesState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.LangHeader" />
 <Row>
     <Column>
         <Card Margin="Margin.Is4.OnY">
             <CardHeader>
-                <CardTitle>@MyText?.langHeader</CardTitle>
-                <CardSubtitle>@MyText?.langDesc</CardSubtitle><br />
+                <CardTitle>@MyText?.LangHeader</CardTitle>
+                <CardSubtitle>@MyText?.LangDesc</CardSubtitle><br />
             </CardHeader>
             <CardBody>
 
                 @if (LanguagesState?.Value.Languages is null)
                 {
                     <p>
-                        <em>@MyText?.loading</em>
+                        <em>@MyText?.Loading</em>
                     </p>
                 }
                 else
@@ -22,10 +22,10 @@
                     <Table IsStriped="true" IsHoverable="true" Theme="Theme.Dark">
                         <TableHeader>
                             <TableRow>
-                                <TableHeaderCell>@MyText?.langId</TableHeaderCell>
-                                <TableHeaderCell>@MyText?.langCode</TableHeaderCell>
-                                <TableHeaderCell>@MyText?.langName</TableHeaderCell>
-                                <TableHeaderCell>@MyText?.langSpecialChars</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.LangId</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.LangCode</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.LangName</TableHeaderCell>
+                                <TableHeaderCell>@MyText?.LangSpecialChars</TableHeaderCell>
                             </TableRow>
                         </TableHeader>
                         <TableBody>

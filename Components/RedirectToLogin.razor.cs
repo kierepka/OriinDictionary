@@ -1,20 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OriinDic.Components
 {
-    public partial class RedirectToLogin : ComponentBase
+    public partial class RedirectToLogin
     {
-        [Inject]
-        protected NavigationManager? NavigationManager { get; set; }
+        [Inject] private NavigationManager? NavigationManager { get; set; }
 
         protected override void OnInitialized()
         {
             NavigationManager?.NavigateTo("login");
         }
     }
+
 }

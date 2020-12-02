@@ -5,6 +5,8 @@ namespace OriinDic.Helpers
 {
     public static class Const
     {
+        
+        // ReSharper disable CommentTypo
         //For tests koordynator, uzytkownik, tlumacz, super_user                               
 #if RELEASE
     private const string ApiDomain = "https://slownik-oriin.kropleduszy.pl:8000/";
@@ -20,15 +22,15 @@ namespace OriinDic.Helpers
         private const string ApiNoVersion = "api/";
         private const string ApiDomainNoVersion = ApiDomain + ApiNoVersion;
 
-        internal const string ApiGetLanguages = ApiDomainVersion + "languages/";
-        internal const string ApiUsers = ApiDomainVersion + "users/";
-        internal const string ApiAddUser = ApiDomainNoVersion + "users/";
-        internal const string ApiUsersMe = ApiUsers + "me/";
-        internal const string ApiBaseTerms = ApiDomainVersion + "base_terms/";
-        internal const string ApiComments = ApiDomainVersion + "comments/";
-        internal const string ApiLinks = ApiDomainVersion + "links/";
-        internal const string ApiTranslations = ApiDomainVersion + "translations/";
-        internal const string ApiToken = ApiDomainNoVersion + "auth/token/login/";
+        internal const string GetLanguages = ApiDomainVersion + "languages/";
+        internal const string Users = ApiDomainVersion + "users/";
+        internal const string AddUser = ApiDomainNoVersion + "users/";
+        internal const string UsersMe = Users + "me/";
+        internal const string BaseTerms = ApiDomainVersion + "base_terms/";
+        internal const string Comments = ApiDomainVersion + "comments/";
+        internal const string Links = ApiDomainVersion + "links/";
+        internal const string Translations = ApiDomainVersion + "translations/";
+        internal const string Token = ApiDomainNoVersion + "auth/token/login/";
 
         internal static readonly IEnumerable<long> BaseLanguagesList = new ReadOnlyCollectionBuilder<long>{PlLangId};                                         
 
@@ -52,31 +54,31 @@ namespace OriinDic.Helpers
         internal const long DeLangId = 3;
         internal const long DefaultItemsPerPage = 50;
         /// <summary>
-        ///     Token zapisywany lokalnie
+        ///     Local stored token
         /// </summary>
         internal const string TokenKey = "Token";
 
         /// <summary>
-        ///     Token na serwerze
+        ///     Token on server side
         /// </summary>
         internal const string TokenApiKey = "Token";
 
         /// <summary>
-        ///     Użytkownik
+        ///     User
         /// </summary>
         internal const string UserKey = "User";
 
         /// <summary>
-        ///     Język aplikacji (UI)
+        ///     Language set for UI 
         /// </summary>
         internal const string LanguageKey = "Language";
 
         /// <summary>
-        /// Języki aplikacji (pobrane)
+        ///  Stored languages from server
         /// </summary>
         internal const string LanguagesKey = "Languages";
         /// <summary>
-        ///     Czy oktualny jest język bazowy
+        ///     Is actual language set
         /// </summary>
         internal const string CurrentBaseLangKey = "CurrentBaseLang";
 
@@ -84,7 +86,7 @@ namespace OriinDic.Helpers
         
 
         /// <summary>
-        ///     Ilość wierszy na stronę
+        ///     How many items per page
         /// </summary>
         internal const string ItemsPerPageKey = "ItemsPerPage";
 
@@ -95,7 +97,7 @@ namespace OriinDic.Helpers
         internal const string RoleAssistant = "Assistant";
 
         internal const string RolesEditors = RoleTranslator + ", " + RoleCoordinator + ", " + RoleSuperUser;
-        internal const string RolesBaseEditors = RoleSuperUser;     //zmiana zgodnie uwagą Przemka
+        internal const string RolesBaseEditors = RoleSuperUser;     
         internal const string RolesUsersEditors = RoleCoordinator + ", " + RoleSuperUser;
         internal const string EnLangSpeechCode = "en-GB";
         internal const string DeLangSpeechCode = "de-DE";

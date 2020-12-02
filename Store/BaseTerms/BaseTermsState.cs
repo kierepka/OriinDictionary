@@ -23,12 +23,25 @@ namespace OriinDic.Store.BaseTerms
         public bool Current { get; init; } = false;
         public bool IsLoading { get; init; } = false;
 
-        public BaseTermsState(bool isLoading, bool current, int searchPageNr, long baseTermLangId, 
-            long translationLangId, long baseTermId, long itemsPerPage, 
-            string searchText, string token, string baseTermSlug,
-            RootObject<ResultBaseTranslation> rootObject, ResultBaseTranslation resultBaseTranslation, EActionState lastActionState)
+        public BaseTermsState(
+            bool isLoading, 
+            bool current, 
+            int searchPageNr, 
+            long baseTermLangId, 
+            long translationLangId, 
+            long baseTermId, 
+            long itemsPerPage, 
+            string searchText, 
+            string token, 
+            string baseTermSlug,
+            BaseTerm baseTerm,
+            RootObject<ResultBaseTranslation> rootObject, 
+            ResultBaseTranslation resultBaseTranslation,
+            List<OriinLink> links,
+            EActionState lastActionState)
         {
-            LastActionState = EActionState.Initializing;
+
+            LastActionState = lastActionState;
             IsLoading = isLoading;
             Current = current;
             SearchPageNr = searchPageNr;
@@ -38,71 +51,12 @@ namespace OriinDic.Store.BaseTerms
             ItemsPerPage = itemsPerPage;
             SearchText = searchText;
             Token = token;
+            BaseTerm = baseTerm;
             BaseTermSlug = baseTermSlug;
             RootObject = rootObject;
             ResultBaseTranslation = resultBaseTranslation;
-            LastActionState = EActionState.Initialized;
-        }
-
-        public BaseTermsState(RootObject<ResultBaseTranslation> rootObject, EActionState lastActionState)
-        {
-            LastActionState = lastActionState;
-            IsLoading = false;
-            RootObject = rootObject ?? new RootObject<ResultBaseTranslation>();
-        }
-
-        public BaseTermsState(string searchText, long baseTermLangId, long translationLangId, 
-            int searchPageNr, long itemsPerPage, bool current, EActionState lastActionState)
-        {
-            IsLoading = true;
-            SearchText = searchText;
-            BaseTermLangId = baseTermLangId;
-            TranslationLangId = translationLangId;
-            SearchPageNr = searchPageNr;
-            ItemsPerPage = itemsPerPage;
-            Current = current;
-            LastActionState = lastActionState;
-        }
-
-        public BaseTermsState(BaseTerm baseTerm, string token, EActionState lastActionState)
-        {
-            IsLoading = true;
-            BaseTerm = baseTerm;
-            Token = token;
-            LastActionState = lastActionState;
-        }
-
-        public BaseTermsState(long baseTermId, EActionState lastActionState)
-        {
-            IsLoading = true;
-            BaseTermId = baseTermId;
-            LastActionState = lastActionState;
-        }
-
-        public BaseTermsState(string baseTermSlug, EActionState lastActionState)
-        {
-            IsLoading = true;
-            BaseTermSlug = baseTermSlug;
-            LastActionState = lastActionState;
-        }
-        public BaseTermsState(BaseTerm baseTerm, List<OriinLink> links, EActionState lastActionState)
-        {
-            IsLoading = (lastActionState == EActionState.Updating || lastActionState == EActionState.FetchingOne);
-
             Links = links;
-            BaseTerm = baseTerm;
-            LastActionState = lastActionState;
         }
-
-        public BaseTermsState(ResultBaseTranslation resultBaseTranslation, List<OriinLink> links, EActionState lastActionState)
-        {
-            IsLoading = (lastActionState == EActionState.Updating || lastActionState == EActionState.FetchingOne);
-
-            ResultBaseTranslation = resultBaseTranslation;
-            Links = links;
-            LastActionState = lastActionState;
-        }
-
 
     }
 

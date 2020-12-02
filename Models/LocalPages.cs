@@ -24,10 +24,5 @@ namespace OriinDic.Models
                 ? Color.Primary
                 : Color.None;
         }
-
-        public LocalPages()
-        {
-            
-        }
     }
 }

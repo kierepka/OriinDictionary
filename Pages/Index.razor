@@ -1,22 +1,35 @@
 ﻿@page "/"
 @page "/{SearchText}"
 @inherits DicBasePage
-<PageHeader IsLoading="@(SearchState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.loading" HeaderText="@MyText?.headerShowDashboard" />
+<PageHeader IsLoading="@(SearchState?.Value.IsLoading ?? true)" 
+            CurrentAlertText="@CurrentAlert" 
+            LoadingText="@MyText?.Loading" 
+            HeaderText="@_currentHeader" />
 
 <h1>@SearchText</h1>
 
 <!-- Search buttons bar -->
 <Addons>
+    
+    <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
+        <Authorized>
+            <Addon AddonType="AddonType.Start">
+                <AddonLabel>@MyText?.Approved</AddonLabel>
+                <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
+            </Addon>
+        </Authorized>
+    </AuthorizeView>
+
     <Addon AddonType="AddonType.Body">
-        <TextEdit Placeholder="@MyText?.search" Text="@SearchText"
+        <TextEdit Placeholder="@MyText?.Search" Text="@SearchText"
                   TextChanged="@(value => GoSearchText(value))" />
     </Addon>
 
     <Addon AddonType="AddonType.End">
         <Buttons>
-            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.loading" MyLanguage="@_currentLanguage1" />
+            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.Loading" MyLanguage="@_currentLanguage1" />
             <Dropdown>
-                <Button>@MyText?.baseTermLanguage: @_currentLanguage1?.Name</Button>
+                <Button>@MyText?.BaseTermLanguage: @_currentLanguage1?.Name</Button>
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
 
                 <DropdownMenu>
@@ -24,7 +37,7 @@
                     {
                         @foreach (var l in OriinDic.Helpers.Const.BaseLanguagesList)
                         {
-                            <DropdownItem TValue="int" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
+                            <DropdownItem TValue="long" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
                             <DropdownDivider />
                         }
                     }
@@ -45,7 +58,7 @@
 
     <Addon AddonType="AddonType.End">
         <Buttons>
-            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.loading" MyLanguage="@_currentLanguage2" />
+            <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.Loading" MyLanguage="@_currentLanguage2" />
             <Dropdown>
                 <Button>@_currentLanguage2?.Name</Button>
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
@@ -54,7 +67,7 @@
                     {
                         @foreach (var l in LanguagesState.Value.TranslationLanguages)
                         {
-                            <DropdownItem TValue="int" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
+                            <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
                             <DropdownDivider />
                         }
                     }
@@ -66,7 +79,7 @@
     <Addon AddonType="AddonType.End">
         <Button Color="Color.Success"
                 Clicked="@ButtonSearchClicked">
-            @MyText?.search
+            @MyText?.Search
         </Button>
 
     </Addon>
@@ -77,11 +90,8 @@
     <Table IsStriped="true" IsHoverable="true" Theme="Theme.Dark">
         <TableHeader>
             <TableRow>
-                <TableHeaderCell>@MyText?.termTitle</TableHeaderCell>
-                @if (!SearchState?.Value.CurrentBaseLangPl ?? false)
-                {
-                    <TableHeaderCell>@MyText?.translationTitle</TableHeaderCell>
-                }
+                <TableHeaderCell>@MyText?.TermTitle</TableHeaderCell>
+                <TableHeaderCell>@MyText?.TranslationTitle</TableHeaderCell>
             </TableRow>
         </TableHeader>
         <TableBody>
@@ -94,7 +104,7 @@
                         @if (locDic.BaseName is null)
                         {
                             <div class="box @SearchState.Value.ButtonPlColor">
-                                <a href="/addbaseterm">@MyText?.addBase</a>
+                                <a href="/addbaseterm">@MyText?.AddBase</a>
                             </div>
                         }
                         else
@@ -107,25 +117,24 @@
                         }
 
                     </TableRowCell>
-                    @if (!SearchState.Value.CurrentBaseLangPl)
-                    {
-                        <TableRowCell>
 
-                            @if (locDic.TranslateName is null)
-                            {
-                                <div class="box @SearchState.Value.ButtonEnColor">
-                                    <a href="/addtranslation/@locDic.BaseTermId">@MyText?.addTranslation</a>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="box @SearchState.Value.ButtonEnColor">
-                                    <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
-                                </div>
-                            }
+                    <TableRowCell>
 
-                        </TableRowCell>
-                    }
+                        @if (locDic.TranslateName is null)
+                        {
+                            <div class="box @SearchState.Value.ButtonEnColor">
+                                <a href="/addtranslation/@locDic.BaseTermId">@MyText?.AddTranslation</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="box @SearchState.Value.ButtonEnColor">
+                                <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
+                            </div>
+                        }
+
+                    </TableRowCell>
+
                 </TableRow>
             }
         </TableBody>
@@ -138,8 +147,8 @@
     <MyPagination LocalPages="@SearchState.Value.LocalPages"
                   SearchPageNr="@_searchPageNr"
                   TotalPages="@SearchState.Value.TotalPages"
-                  PrevText="@MyText?.next"
-                  NextText="@MyText?.previous"
+                  PrevText="@MyText?.Next"
+                  NextText="@MyText?.Previous"
                   OnClickCallback="OnPageClick">
     </MyPagination>
 }
@@ -148,7 +157,7 @@
 <!-- Information for search -->
 <Addons>
     <Addon AddonType="AddonType.End">
-        <AddonLabel>@MyText?.loadedNrRows</AddonLabel>
+        <AddonLabel>@MyText?.LoadedNrRows</AddonLabel>
     </Addon>
     <Addon AddonType="AddonType.End">
         <AddonLabel>@(SearchState?.Value.TotalSearchItems ?? 0)</AddonLabel>
@@ -156,4 +165,4 @@
     <Addon AddonType="AddonType.End">
     </Addon>
 </Addons>
-<SurveyPrompt Title="@MyText?.somethingWrong" />
+<SurveyPrompt Title="@MyText?.SomethingWrong" />

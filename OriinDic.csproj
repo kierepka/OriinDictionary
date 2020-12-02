@@ -6,6 +6,8 @@
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 		<I18nTextFallBackLanguage>pl</I18nTextFallBackLanguage>
 		<Configurations>Debug;Release;DebugLocal;Docker</Configurations>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />

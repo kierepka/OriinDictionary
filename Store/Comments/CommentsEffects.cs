@@ -9,6 +9,7 @@ using Fluxor;
 
 using OriinDic.Helpers;
 using OriinDic.Models;
+using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Comments
 {
@@ -29,7 +30,7 @@ namespace OriinDic.Store.Comments
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
             var response = await _httpClient.PostAsJsonAsync(
-                $"{Const.ApiComments}", action.Comment);
+                $"{Const.Comments}", action.Comment);
 
             var returnData = new Comment();
             var returnString = string.Empty;
@@ -39,8 +40,25 @@ namespace OriinDic.Store.Comments
                 returnString = response.IsSuccessStatusCode ? string.Empty : response.StatusCode.ToString();
             }
 
+            var queryString = Const.Comments;
+            var userResult = new RootObject<Comment>();
 
-            dispatcher.Dispatch(new CommentsAddResultAction(returnData ?? new Comment(), returnString));
+            try
+            {
+
+                userResult = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(
+                    requestUri: queryString, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+            }
+
+            dispatcher.Dispatch(
+                    new CommentsAddResultAction(
+                        comment: returnData ?? new Comment(),
+                        statusCode: returnString,
+                        rootObject: userResult ?? new RootObject<Comment>()));
         }
 
 
@@ -61,7 +79,7 @@ namespace OriinDic.Store.Comments
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Token", action.Token);
                 var response = await _httpClient.DeleteAsync(
-                    $"{Const.ApiComments}{action.CommentId}/");
+                    $"{Const.Comments}{action.CommentId}/");
 
                 if (!(response is null))
                 {
@@ -81,6 +99,8 @@ namespace OriinDic.Store.Comments
                             returnObject.Deleted = false;
                             returnObject.Detail = $"Error: {response.StatusCode}";
                         }
+                        dispatcher.Dispatch(new ShowNotificationAction($"Error: {response.StatusCode}"));
+                        
                     }
                 }
             }
@@ -88,10 +108,27 @@ namespace OriinDic.Store.Comments
             {
                 if (!(returnObject is null))
                     returnObject.Detail = $"Error {e}";
+                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
             }
 
+            var queryString = Const.Comments;
+            var userResult = new RootObject<Comment>();
 
-            dispatcher.Dispatch(new CommentsDeleteResultAction(returnObject ?? new DeletedObjectResponse()));
+            try
+            {
+
+                userResult = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(
+                    requestUri: queryString, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+            }
+
+            dispatcher.Dispatch(
+                new CommentsDeleteResultAction(
+                    deleteResponse: returnObject ?? new DeletedObjectResponse(),
+                    rootObject: userResult ?? new RootObject<Comment>()));
         }
 
         [EffectMethod]
@@ -102,7 +139,7 @@ namespace OriinDic.Store.Comments
 
             var userResult = new RootObject<Comment>();
 
-            var queryString = Const.ApiComments;
+            var queryString = Const.Comments;
 
             if (action.ItemsPerPage!=0 && action.SearchPageNr!=0)
                 queryString += $"?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
@@ -115,7 +152,7 @@ namespace OriinDic.Store.Comments
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(new CommentsFetchDataResultAction(userResult ?? new RootObject<Comment>()));
@@ -127,7 +164,7 @@ namespace OriinDic.Store.Comments
         {
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
-            var url= $"{Const.ApiComments}?translation_id={action.TranslationId}";
+            var url= $"{Const.Comments}?translation_id={action.TranslationId}";
 
             
             var returnData = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);

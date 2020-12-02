@@ -8,405 +8,414 @@ namespace OriinDic.I18nText
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
         /// <summary>"Dodaj"</summary>
-        public string add;
+        public string Add;
 
         /// <summary>"Dodaj słowo bazowe"</summary>
-        public string addBase;
+        public string AddBase;
 
         /// <summary>"Dodaj komentarz"</summary>
-        public string addComment;
+        public string AddComment;
 
         /// <summary>"Komentarz dodany"</summary>
-        public string addedComment;
+        public string AddedComment;
 
         /// <summary>"Dodaj przykład"</summary>
-        public string addExample;
+        public string AddExample;
 
         /// <summary>"Dodaj odnośnik"</summary>
-        public string addLink;
+        public string AddLink;
 
         /// <summary>"Dodaj synonim"</summary>
-        public string addSynonym;
+        public string AddSynonym;
 
         /// <summary>"Dodaj tłumaczenie"</summary>
-        public string addTranslation;
-
-        /// <summary>"Dane zanonimizowane"</summary>
-        public string anonimized;
+        public string AddTranslation;
 
         /// <summary>"Anonimizacja"</summary>
-        public string anonymize;
+        public string Anonymize;
 
-        /// <summary>"Wstecz"</summary>
-        public string back;
-
-        /// <summary>"Aktualny"</summary>
-        public string baseTermCurrent;
-
-        /// <summary>"Definicja"</summary>
-        public string baseTermDefinition;
-
-        /// <summary>"Przykłady"</summary>
-        public string baseTermExamples;
-
-        /// <summary>"Praca z wybranym słowem bazowym"</summary>
-        public string baseTermHeader;
-
-        /// <summary>"Język"</summary>
-        public string baseTermLanguage;
-
-        /// <summary>"Ostatnio zatwierdził"</summary>
-        public string baseTermLastApproval;
-
-        /// <summary>"Ostatnio edytował"</summary>
-        public string baseTermLastEdit;
-
-        /// <summary>"Nazwa"</summary>
-        public string baseTermName;
-
-        /// <summary>"Słowo bazowe zostało zapisane pod numerem:"</summary>
-        public string baseTermSaved;
-
-        /// <summary>"Slug"</summary>
-        public string baseTermSlug;
-
-        /// <summary>"Synonimy"</summary>
-        public string baseTermSynonyms;
-
-        /// <summary>"Anuluj"</summary>
-        public string cancel;
-
-        /// <summary>"Wyczyść filtr"</summary>
-        public string clearFilter;
-
-        /// <summary>"Data"</summary>
-        public string commentDate;
-
-        /// <summary>"Nr"</summary>
-        public string commentId;
-
-        /// <summary>"Komentarze"</summary>
-        public string comments;
-
-        /// <summary>"Tłumaczenie"</summary>
-        public string commentsTranslation;
-
-        /// <summary>"Użytkownik"</summary>
-        public string commentsUser;
-
-        /// <summary>"Tekst"</summary>
-        public string commentText;
-
-        /// <summary>"Zarządzanie językami"</summary>
-        public string coordinating_languages;
-
-        /// <summary>"Dodaj"</summary>
-        public string create;
+        /// <summary>"Dane zanonimizowane"</summary>
+        public string Anonymized;
 
         /// <summary>"Zatwierdzone"</summary>
-        public string currentTranslations;
+        public string Approved;
 
-        /// <summary>"Wysąpił błąd podczas zapisu danych."</summary>
-        public string dataSavedNOk;
-
-        /// <summary>"Dane zapisano poprawnie."</summary>
-        public string dataSavedOk;
-
-        /// <summary>"Usuń"</summary>
-        public string delete;
-
-        /// <summary>"Podczas usuwania wystąpił błąd!"</summary>
-        public string deletionError;
-
-        /// <summary>"Edytuj"</summary>
-        public string edit;
-
-        /// <summary>"Edycja słowa bazowego"</summary>
-        public string editBaseTerm;
-
-        /// <summary>"E-mail"</summary>
-        public string email;
-
-        /// <summary>"Kobieta"</summary>
-        public string femaleGender;
-
-        /// <summary>"Imię"</summary>
-        public string firstname;
-
-        /// <summary>"Płeć"</summary>
-        public string gender;
-
-        /// <summary>"Słownik pojęć z miasta Oriin"</summary>
-        public string header;
-
-        /// <summary>"Edycja słowa bazowego"</summary>
-        public string headerBaseTermEdit;
-
-        /// <summary>"Dodawanie nowego słowa bazowego"</summary>
-        public string headerBaseTermNew;
-
-        /// <summary>"Tłumaczenia"</summary>
-        public string headerDashboard;
-
-        /// <summary>"Słowniki"</summary>
-        public string headerDictionaries;
-
-        /// <summary>"Języki"</summary>
-        public string headerLanguages;
-
-        /// <summary>"Główne menu"</summary>
-        public string headerMain;
-
-        /// <summary>"Pokaż tłumaczenia"</summary>
-        public string headerShowDashboard;
-
-        /// <summary>"Pokaż języki"</summary>
-        public string headerShowLanguages;
-
-        /// <summary>"Ustawienia użytkownika"</summary>
-        public string headerUser;
-
-        /// <summary>"Cześć"</summary>
-        public string hello;
-
-        /// <summary>"Kod"</summary>
-        public string langCode;
-
-        /// <summary>"Aktualnie dostępne w systemie języki."</summary>
-        public string langDesc;
-
-        /// <summary>"Dostępne języki"</summary>
-        public string langHeader;
-
-        /// <summary>"Id"</summary>
-        public string langId;
-
-        /// <summary>"Nazwa"</summary>
-        public string langName;
-
-        /// <summary>"Znaki specjalne"</summary>
-        public string langSpecialChars;
-
-        /// <summary>"Język"</summary>
-        public string language;
-
-        /// <summary>"Nazwisko"</summary>
-        public string lastname;
-
-        /// <summary>"Słowo bazowe"</summary>
-        public string linkBaseTerm;
-
-        /// <summary>"Nr"</summary>
-        public string linkId;
-
-        /// <summary>"Odnośnik do"</summary>
-        public string linkLink;
-
-        /// <summary>"Odnośniki"</summary>
-        public string links;
-
-        /// <summary>"Tłumaczenie"</summary>
-        public string linkTranslation;
-
-        /// <summary>"Dane wczytane"</summary>
-        public string loaded;
-
-        /// <summary>"Wczytano wierszy:"</summary>
-        public string loadedNrRows;
-
-        /// <summary>"Wczytuję dane - proszę czekać.."</summary>
-        public string loading;
-
-        /// <summary>"Zaloguj się"</summary>
-        public string logIn;
-
-        /// <summary>"Zaloguj się"</summary>
-        public string loginButton;
-
-        /// <summary>"Błąd w logowaniu. Sprawdź nazwę użytkownika i/lub hasło."</summary>
-        public string loginError;
-
-        /// <summary>"Logowanie do serwisu"</summary>
-        public string loginHeader;
-
-        /// <summary>"Użytkownik"</summary>
-        public string loginName;
-
-        /// <summary>"Hasło"</summary>
-        public string loginPassword;
-
-        /// <summary>"Pozwala na uzyskanie odpowiednich uprawnień"</summary>
-        public string loginSubtitle;
-
-        /// <summary>"Zalogowanie poprawnie"</summary>
-        public string loginSuccess;
-
-        /// <summary>"Wyloguj się"</summary>
-        public string logOut;
-
-        /// <summary>"Mężczyzna"</summary>
-        public string maleGender;
-
-        /// <summary>"Nowy"</summary>
-        public string newTxt;
-
-        /// <summary>"Następna"</summary>
-        public string next;
-
-        /// <summary>"Brak nazwy słowa bazowego - aktualizuj"</summary>
-        public string noBaseTermName;
-
-        /// <summary>"Brak danych"</summary>
-        public string noData;
-
-        /// <summary>"-"</summary>
-        public string noGender;
-
-        /// <summary>"Brak wyników!"</summary>
-        public string noResults;
-
-        /// <summary>"Brak nazwy tłumaczenia - aktualizuj"</summary>
-        public string noTranslationName;
-
-        /// <summary>"Nie ustawiony"</summary>
-        public string notSet;
-
-        /// <summary>"Dane"</summary>
-        public string personalData;
-
-        /// <summary>"Dane"</summary>
-        public string personalDataHeader;
-
-        /// <summary>"Personalne dane użytkownika"</summary>
-        public string personalDataSubtitle;
-
-        /// <summary>"Ustawienia"</summary>
-        public string personalSettings;
-
-        /// <summary>"Poprzednia"</summary>
-        public string previous;
-
-        /// <summary>"Przywróć"</summary>
-        public string reset;
-
-        /// <summary>"Wierszy na stronie"</summary>
-        public string rowsPerPage;
-
-        /// <summary>"Zapisz"</summary>
-        public string save;
-
-        /// <summary>"Błąd w zapisie. Sprawdź dane."</summary>
-        public string saveError;
-
-        /// <summary>"Szukaj"</summary>
-        public string search;
-
-        /// <summary>"Szukam:"</summary>
-        public string searchTitle;
-
-        /// <summary>"Aktualny język bazowy"</summary>
-        public string settingsCurrentLang;
-
-        /// <summary>"Ustawienia"</summary>
-        public string settingsHeader;
-
-        /// <summary>"Ustawienia użytkownika"</summary>
-        public string settingsSubtitle;
-
-        /// <summary>"Słownik Oriin"</summary>
-        public string shortHeader;
-
-        /// <summary>"Coś nie działa?"</summary>
-        public string somethingWrong;
-
-        /// <summary>"Wypowiedz"</summary>
-        public string speech;
-
-        /// <summary>"Super User ma dostęp do wszystkich ustawień"</summary>
-        public string superUserHasAll;
-
-        /// <summary>"Termin"</summary>
-        public string termTitle;
-
-        /// <summary>"Języki do tłumaczenia"</summary>
-        public string translating_languages;
+        /// <summary>"Wstecz"</summary>
+        public string Back;
 
         /// <summary>"Aktualny"</summary>
-        public string translationCurrent;
+        public string BaseTermCurrent;
 
         /// <summary>"Definicja"</summary>
-        public string translationDefinition;
+        public string BaseTermDefinition;
 
         /// <summary>"Przykłady"</summary>
-        public string translationExamples;
+        public string BaseTermExamples;
 
-        /// <summary>"Praca z wybranym tłumaczeniem"</summary>
-        public string translationHeader;
+        /// <summary>"Praca z wybranym słowem bazowym"</summary>
+        public string BaseTermHeader;
 
         /// <summary>"Język"</summary>
-        public string translationLanguage;
+        public string BaseTermLanguage;
 
         /// <summary>"Ostatnio zatwierdził"</summary>
-        public string translationLastApproval;
+        public string BaseTermLastApproval;
 
         /// <summary>"Ostatnio edytował"</summary>
-        public string translationLastEdit;
+        public string BaseTermLastEdit;
 
         /// <summary>"Nazwa"</summary>
-        public string translationName;
+        public string BaseTermName;
 
-        /// <summary>"Tłumaczenie zostało zapisane pod numerem:"</summary>
-        public string translationSaved;
+        /// <summary>"Słowo bazowe zostało zapisane pod numerem:"</summary>
+        public string BaseTermSaved;
+
+        /// <summary>"Slug"</summary>
+        public string BaseTermSlug;
 
         /// <summary>"Synonimy"</summary>
-        public string translationSynonyms;
+        public string BaseTermSynonyms;
 
-        /// <summary>"Tłumaczenie"</summary>
-        public string translationTitle;
+        /// <summary>"Anuluj"</summary>
+        public string Cancel;
 
-        /// <summary>"Dane zaktualizowane"</summary>
-        public string updated;
+        /// <summary>"Wyczyść filtr"</summary>
+        public string ClearFilter;
 
-        /// <summary>"Podczas usuwania konta użytkownika wystąpił błąd!"</summary>
-        public string userDeletionError;
-
-        /// <summary>"Użytkownik"</summary>
-        public string username;
-
-        /// <summary>"Użytkownicy"</summary>
-        public string users;
-
-        /// <summary>"Koordynowane języki"</summary>
-        public string usersCoordinatingLanguages;
-
-        /// <summary>"E-mail użytkownika"</summary>
-        public string usersEmail;
-
-        /// <summary>"Imię użytkownika"</summary>
-        public string usersFirstName;
+        /// <summary>"Data"</summary>
+        public string CommentDate;
 
         /// <summary>"Nr"</summary>
-        public string usersId;
+        public string CommentId;
+
+        /// <summary>"Komentarze"</summary>
+        public string Comments;
+
+        /// <summary>"Tłumaczenie"</summary>
+        public string CommentsTranslation;
+
+        /// <summary>"Użytkownik"</summary>
+        public string CommentsUser;
+
+        /// <summary>"Tekst"</summary>
+        public string CommentText;
+
+        /// <summary>"Zarządzanie językami"</summary>
+        public string CoordinatingLanguages;
+
+        /// <summary>"Dodaj"</summary>
+        public string Create;
+
+        /// <summary>"Zatwierdzone"</summary>
+        public string CurrentTranslations;
+
+        /// <summary>"Wysąpił błąd podczas zapisu danych."</summary>
+        public string DataSavedNOk;
+
+        /// <summary>"Dane zapisano poprawnie."</summary>
+        public string DataSavedOk;
+
+        /// <summary>"Usuń"</summary>
+        public string Delete;
+
+        /// <summary>"Podczas usuwania wystąpił błąd!"</summary>
+        public string DeletionError;
+
+        /// <summary>"Edytuj"</summary>
+        public string Edit;
+
+        /// <summary>"Edycja słowa bazowego"</summary>
+        public string EditBaseTerm;
+
+        /// <summary>"E-mail"</summary>
+        public string Email;
+
+        /// <summary>"Kobieta"</summary>
+        public string FemaleGender;
+
+        /// <summary>"Imię"</summary>
+        public string FirstName;
+
+        /// <summary>"Płeć"</summary>
+        public string Gender;
+
+        /// <summary>"Słownik pojęć z miasta Oriin"</summary>
+        public string Header;
+
+        /// <summary>"Edycja słowa bazowego"</summary>
+        public string HeaderBaseTermEdit;
+
+        /// <summary>"Dodawanie nowego słowa bazowego"</summary>
+        public string HeaderBaseTermNew;
+
+        /// <summary>"Tłumaczenia"</summary>
+        public string HeaderDashboard;
+
+        /// <summary>"Słowniki"</summary>
+        public string HeaderDictionaries;
+
+        /// <summary>"Języki"</summary>
+        public string HeaderLanguages;
+
+        /// <summary>"Główne menu"</summary>
+        public string HeaderMain;
+
+        /// <summary>"Pokaż słowa bazowe"</summary>
+        public string HeaderShowDashboardBase;
+
+        /// <summary>"Pokaż tłumaczenia"</summary>
+        public string HeaderShowDashboardTrans;
+
+        /// <summary>"Pokaż języki"</summary>
+        public string HeaderShowLanguages;
+
+        /// <summary>"Ustawienia użytkownika"</summary>
+        public string HeaderUser;
+
+        /// <summary>"Cześć"</summary>
+        public string Hello;
+
+        /// <summary>"Kod"</summary>
+        public string LangCode;
+
+        /// <summary>"Aktualnie dostępne w systemie języki."</summary>
+        public string LangDesc;
+
+        /// <summary>"Dostępne języki"</summary>
+        public string LangHeader;
+
+        /// <summary>"Id"</summary>
+        public string LangId;
+
+        /// <summary>"Nazwa"</summary>
+        public string LangName;
+
+        /// <summary>"Znaki specjalne"</summary>
+        public string LangSpecialChars;
+
+        /// <summary>"Język"</summary>
+        public string Language;
+
+        /// <summary>"Nazwisko"</summary>
+        public string LastName;
+
+        /// <summary>"Słowo bazowe"</summary>
+        public string LinkBaseTerm;
+
+        /// <summary>"Nr"</summary>
+        public string LinkId;
+
+        /// <summary>"Odnośnik do"</summary>
+        public string LinkLink;
+
+        /// <summary>"Odnośniki"</summary>
+        public string Links;
+
+        /// <summary>"Tłumaczenie"</summary>
+        public string LinkTranslation;
+
+        /// <summary>"Dane wczytane"</summary>
+        public string Loaded;
+
+        /// <summary>"Wczytano wierszy:"</summary>
+        public string LoadedNrRows;
+
+        /// <summary>"Wczytuję dane - proszę czekać.."</summary>
+        public string Loading;
+
+        /// <summary>"Zaloguj się"</summary>
+        public string LogIn;
+
+        /// <summary>"Zaloguj się"</summary>
+        public string LoginButton;
+
+        /// <summary>"Błąd w logowaniu. Sprawdź nazwę użytkownika i/lub hasło."</summary>
+        public string LoginError;
+
+        /// <summary>"Logowanie do serwisu"</summary>
+        public string LoginHeader;
+
+        /// <summary>"Użytkownik"</summary>
+        public string LoginName;
+
+        /// <summary>"Hasło"</summary>
+        public string LoginPassword;
+
+        /// <summary>"Pozwala na uzyskanie odpowiednich uprawnień"</summary>
+        public string LoginSubtitle;
+
+        /// <summary>"Zalogowanie poprawnie"</summary>
+        public string LoginSuccess;
+
+        /// <summary>"Wyloguj się"</summary>
+        public string LogOut;
+
+        /// <summary>"Mężczyzna"</summary>
+        public string MaleGender;
+
+        /// <summary>"Nowy"</summary>
+        public string NewTxt;
+
+        /// <summary>"Następna"</summary>
+        public string Next;
+
+        /// <summary>"Brak nazwy słowa bazowego - aktualizuj"</summary>
+        public string NoBaseTermName;
+
+        /// <summary>"Brak danych"</summary>
+        public string NoData;
+
+        /// <summary>"-"</summary>
+        public string NoGender;
+
+        /// <summary>"Brak wyników!"</summary>
+        public string NoResults;
+
+        /// <summary>"Brak nazwy tłumaczenia - aktualizuj"</summary>
+        public string NoTranslationName;
+
+        /// <summary>"Nie ustawiony"</summary>
+        public string NotSet;
+
+        /// <summary>"Dane"</summary>
+        public string PersonalData;
+
+        /// <summary>"Dane"</summary>
+        public string PersonalDataHeader;
+
+        /// <summary>"Personalne dane użytkownika"</summary>
+        public string PersonalDataSubtitle;
+
+        /// <summary>"Ustawienia"</summary>
+        public string PersonalSettings;
+
+        /// <summary>"Poprzednia"</summary>
+        public string Previous;
+
+        /// <summary>"Przywróć"</summary>
+        public string Reset;
+
+        /// <summary>"Wierszy na stronie"</summary>
+        public string RowsPerPage;
+
+        /// <summary>"Zapisz"</summary>
+        public string Save;
+
+        /// <summary>"Błąd w zapisie. Sprawdź dane."</summary>
+        public string SaveError;
+
+        /// <summary>"Szukaj"</summary>
+        public string Search;
+
+        /// <summary>"Szukam:"</summary>
+        public string SearchTitle;
+
+        /// <summary>"Aktualny język bazowy"</summary>
+        public string SettingsCurrentLang;
+
+        /// <summary>"Ustawienia"</summary>
+        public string SettingsHeader;
+
+        /// <summary>"Ustawienia użytkownika"</summary>
+        public string SettingsSubtitle;
+
+        /// <summary>"Słownik Oriin"</summary>
+        public string ShortHeader;
+
+        /// <summary>"Coś nie działa?"</summary>
+        public string SomethingWrong;
+
+        /// <summary>"Wypowiedz"</summary>
+        public string Speech;
+
+        /// <summary>"Super User ma dostęp do wszystkich ustawień"</summary>
+        public string SuperUserHasAll;
+
+        /// <summary>"Termin"</summary>
+        public string TermTitle;
+
+        /// <summary>"Języki do tłumaczenia"</summary>
+        public string TranslatingLanguages;
+
+        /// <summary>"Zatwierdź"</summary>
+        public string TranslationApproval;
+
+        /// <summary>"Aktualny"</summary>
+        public string TranslationCurrent;
+
+        /// <summary>"Definicja"</summary>
+        public string TranslationDefinition;
+
+        /// <summary>"Przykłady"</summary>
+        public string TranslationExamples;
+
+        /// <summary>"Praca z wybranym tłumaczeniem"</summary>
+        public string TranslationHeader;
+
+        /// <summary>"Język"</summary>
+        public string TranslationLanguage;
+
+        /// <summary>"Ostatnio zatwierdził"</summary>
+        public string TranslationLastApproval;
+
+        /// <summary>"Ostatnio edytował"</summary>
+        public string TranslationLastEdit;
+
+        /// <summary>"Nazwa"</summary>
+        public string TranslationName;
+
+        /// <summary>"Tłumaczenie zostało zapisane pod numerem:"</summary>
+        public string TranslationSaved;
+
+        /// <summary>"Synonimy"</summary>
+        public string TranslationSynonyms;
+
+        /// <summary>"Tłumaczenie"</summary>
+        public string TranslationTitle;
+
+        /// <summary>"Dane zaktualizowane"</summary>
+        public string Updated;
+
+        /// <summary>"Podczas usuwania konta użytkownika wystąpił błąd!"</summary>
+        public string UserDeletionError;
+
+        /// <summary>"Użytkownik"</summary>
+        public string UserName;
+
+        /// <summary>"Użytkownicy"</summary>
+        public string Users;
+
+        /// <summary>"Koordynowane języki"</summary>
+        public string UsersCoordinatingLanguages;
+
+        /// <summary>"E-mail użytkownika"</summary>
+        public string UsersEmail;
+
+        /// <summary>"Imię użytkownika"</summary>
+        public string UsersFirstName;
+
+        /// <summary>"Nr"</summary>
+        public string UsersId;
 
         /// <summary>"Asystent"</summary>
-        public string usersIsAssistant;
+        public string UsersIsAssistant;
 
         /// <summary>"Super użytkownik"</summary>
-        public string usersIsSuperUser;
+        public string UsersIsSuperUser;
 
         /// <summary>"Nazwisko użytkownika"</summary>
-        public string usersLastName;
+        public string UsersLastName;
 
         /// <summary>"Tłumaczone języki"</summary>
-        public string usersTranslatingLanguages;
+        public string UsersTranslatingLanguages;
 
         /// <summary>"Nazwa użytkownika"</summary>
-        public string usersUserName;
+        public string UsersUserName;
 
         /// <summary>"Przyznane Ci role:"</summary>
-        public string yourRoles;
+        public string YourRoles;
 
         /// <summary>"Twoje konto zostały usunięte!"</summary>
-        public string youWhereDeleted;
+        public string YouWhereDeleted;
     }
 }

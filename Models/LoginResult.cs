@@ -6,11 +6,7 @@ namespace OriinDic.Models
 
         public string Error { get; set; } = string.Empty;
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Token { get; set; } = string.Empty;
-
-        public LoginResult()
-        {
-            
-        }
     }
 }

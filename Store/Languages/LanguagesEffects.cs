@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
+
 using Fluxor;
-using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 
@@ -35,7 +34,7 @@ namespace OriinDic.Store.Languages
         private async Task<IEnumerable<Language>> GetLanguages()
         {
             var languageResult = await _httpClient.GetFromJsonAsync<RootObject<Language>>
-                (Const.ApiGetLanguages, Const.HttpClientOptions);
+                (Const.GetLanguages, Const.HttpClientOptions);
 
             if (languageResult is null) return new List<Language>();
             if (languageResult.Pages > 1)
