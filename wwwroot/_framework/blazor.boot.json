@@ -42,7 +42,7 @@
       "Toolbelt.Blazor.I18nText.dll": "sha256-AVCXGNjuULijp0GoMfxtHl4CkHABF4LIPEqecVwoLac=",
       "Toolbelt.Blazor.SpeechRecognition.dll": "sha256-QmPqMXGgr2zvJHITeDIgOo+4pnSXtCzpPs7oojGoOGY=",
       "Toolbelt.Blazor.SpeechSynthesis.dll": "sha256-lBaEndEBo4AGWoRSruCBUPyCAFb8d\/STAirDJwv\/P1Q=",
-      "OriinDic.dll": "sha256-rH\/BKRI6B+OX64TadOBbYe14ofOl1Z5HCL4ZEYQYVpg=",
+      "OriinDic.dll": "sha256-6z0\/ehN6JmTWv3dn3MWCOoWB2+SFfhTluuhR4ocFPNI=",
       "System.Collections.Concurrent.dll": "sha256-zeNpmpHw3KFiNAShqZpp90+eX3tLEqVsGTPe3KAXDoI=",
       "System.Collections.Immutable.dll": "sha256-H0NRRotG+86W0xlW9OELRJ+B6CWn5QPzD5wfmou5WDE=",
       "System.Collections.NonGeneric.dll": "sha256-ocKRR1j4ZnzNzlUrPzslVbckMjcocFtCJSmF8UoQVgQ=",
@@ -62,7 +62,7 @@
       "System.Linq.dll": "sha256-ARRGRrMaQApnun+OZ0aTEEpPFinSXvGpvZB5LreVUXs=",
       "System.Memory.dll": "sha256-7QTmkrgpEs7x4yitHbXu7bZAv1G1koOvoWPrBC\/g6W8=",
       "System.Net.Http.Json.dll": "sha256-xIQ8SumL3vrF+GHL7fZlrjmA2V9pMecZQs0XFZuTa3o=",
-      "System.Net.Http.dll": "sha256-UqHED87T2osg1i6ddzldy8nW4AsX0m4u\/yyhjammQh4=",
+      "System.Net.Http.dll": "sha256-72oqp2egBms\/yC3EHtdmEctCAdXizaxNJHC+dFaMBXs=",
       "System.Net.Primitives.dll": "sha256-TUPbs4yA7l48\/YG\/fIKTu1qJhMviKk6C2ohbPIZGSQQ=",
       "System.ObjectModel.dll": "sha256-VajKNj\/RG9hX\/oIBCAdxmjHLJYcGGOEmSK\/\/EhDidzc=",
       "System.Private.Runtime.InteropServices.JavaScript.dll": "sha256-dNXhQYzBE4BJlfDRQ\/x7YofV1XIDEKe7fuHfoU8t+X0=",
@@ -80,7 +80,7 @@
       "System.Text.Encodings.Web.dll": "sha256-p+w4VfOQe4xpDeMVUmqzR+TJIhbDwykCrATzc5\/TVUM=",
       "System.Text.Json.dll": "sha256-5XpgqLehOQIno0lJrnbiR\/j9hYW8I0c5GKlHo4gEIV0=",
       "System.Text.RegularExpressions.dll": "sha256-EiYaaZPGWN1+M7U5Dw4M5R1RzOUQ0m6hTvpYT4pX4gg=",
-      "System.Private.CoreLib.dll": "sha256-81tL9p\/U09YAZF97kpPZeZiykzVUhn+pptIohosGJio="
+      "System.Private.CoreLib.dll": "sha256-gatdTszmZ4S3XdlGlaMJ2Q1ylayQ3Akk5zO1P1x9hcw="
     },
     "lazyAssembly": null,
     "pdb": null,
