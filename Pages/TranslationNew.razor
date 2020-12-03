@@ -23,8 +23,7 @@ else
                 <h1>@MyText?.AddTranslation</h1>
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
-                        <CardTitle>[@TranslationLanguage]@TranslationsState.Value.BaseTranslation.Translation.Name</CardTitle>
-                        <CardSubtitle>@MyText?.TranslationHeader</CardSubtitle><br />
+                        <CardTitle>[@TranslationLanguage]@TranslationsState.Value.BaseTranslation.Translation.Name : @MyText?.TranslationHeader</CardTitle>
                     </CardHeader>
                     <CardBody>
 
@@ -74,8 +73,7 @@ else
 
                     <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
-                            <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTranslation.BaseTerm.Name</CardTitle>
-                            <CardSubtitle>@MyText?.BaseTermHeader</CardSubtitle>
+                            <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTranslation.BaseTerm.Name : @MyText?.BaseTermHeader</CardTitle>
                         </CardHeader>
                         <CardBody>
                             <Field IsHorizontal="true">
