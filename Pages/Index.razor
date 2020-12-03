@@ -11,14 +11,17 @@
 <!-- Search buttons bar -->
 <Addons>
 
-    <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
-        <Authorized>
-            <Addon AddonType="AddonType.Start">
-                <AddonLabel>@MyText?.Approved</AddonLabel>
-                <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
-            </Addon>
-        </Authorized>
-    </AuthorizeView>
+    @if (_showAuthorized)
+    {
+        <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
+            <Authorized>
+                <Addon AddonType="AddonType.Start">
+                    <AddonLabel>@MyText?.Approved</AddonLabel>
+                    <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
+                </Addon>
+            </Authorized>
+        </AuthorizeView>
+    }
 
     <Addon AddonType="AddonType.Body">
         <TextEdit Placeholder="@MyText?.Search" Text="@SearchText"
@@ -98,7 +101,7 @@
           SortMode="DataGridSortMode.Single"
           Filterable="false"
           Striped="true"
-          Bordered="true"         
+          Bordered="true"
           Responsive="true"
           Hoverable="true">
     <DataGridColumns>

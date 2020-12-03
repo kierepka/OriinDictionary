@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Languages;
@@ -16,6 +18,7 @@ namespace OriinDic.Pages
     public partial class TranslationEdit
     {
         private Token _token = new Token();
+        private AuthenticationState? _authState;
 
         [Parameter] public long TranslationId { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -26,6 +29,8 @@ namespace OriinDic.Pages
         [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
 
         private string BaseTermLanguage
         {
@@ -54,12 +59,41 @@ namespace OriinDic.Pages
         }
 
 
+        private string HeaderForTranslation
+        {
+            get
+            {
+                var retHeader = string.Empty;
+
+                if (!(AuthenticationStateProvider is null))
+                {
+
+                    var user = _authState?.User;
+                    if (!(user is null))
+                    {
+                        if (user.IsInRole(Const.RolesEditors))
+                        {
+                            retHeader = MyText?.TranslationHeader ?? string.Empty;
+
+                        }
+                    }
+                }
+               
+                return retHeader;
+            }
+
+        }
+
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
             if (!LanguagesState?.Value.Languages.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+
+            if (!(AuthenticationStateProvider is null))
+                _authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
             var token = string.Empty;
             if (!(LocalStorage is null))

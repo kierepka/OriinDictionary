@@ -31,6 +31,7 @@ namespace OriinDic.Components
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private ISyncLocalStorageService? LocalStorage { get; set; }
 
+        [CascadingParameter] protected Theme? Theme { get; set; }
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
         private Sidebar MySidebar { get; set; } = new Sidebar();
 
@@ -93,6 +94,68 @@ namespace OriinDic.Components
             MySidebar.Toggle();
         }
 
+        void OnThemeEnabledChanged(bool value)
+        {
+            if (Theme == null)
+                return;
+
+            Theme.Enabled = value;
+
+            Theme.ThemeHasChanged();
+        }
+
+        void OnGradientChanged(bool value)
+        {
+            if (Theme == null)
+                return;
+
+            Theme.IsGradient = value;
+
+            //if ( Theme.GradientOptions == null )
+            //    Theme.GradientOptions = new GradientOptions();
+
+            //Theme.GradientOptions.BlendPercentage = 80;
+
+            Theme.ThemeHasChanged();
+        }
+
+        void OnRoundedChanged(bool value)
+        {
+            if (Theme == null)
+                return;
+
+            Theme.IsRounded = value;
+
+            Theme.ThemeHasChanged();
+        }
+
+        void OnThemeColorChanged(string value)
+        {
+            if (Theme == null)
+                return;
+
+            if (Theme.ColorOptions == null)
+                Theme.ColorOptions = new ThemeColorOptions();
+
+            if (Theme.BackgroundOptions == null)
+                Theme.BackgroundOptions = new ThemeBackgroundOptions();
+
+            if (Theme.TextColorOptions == null)
+                Theme.TextColorOptions = new ThemeTextColorOptions();
+
+            Theme.ColorOptions.Primary = value;
+            Theme.BackgroundOptions.Primary = value;
+            Theme.TextColorOptions.Primary = value;
+
+            if (Theme.InputOptions == null)
+                Theme.InputOptions = new ThemeInputOptions();
+
+            //Theme.InputOptions.Color = value;
+            Theme.InputOptions.CheckColor = value;
+            Theme.InputOptions.SliderColor = value;
+
+            Theme.ThemeHasChanged();
+        }
         #endregion
     }
 }

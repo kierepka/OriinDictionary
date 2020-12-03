@@ -19,6 +19,7 @@ namespace OriinDic.Pages
         private Language? _currentLanguage1;
         private Language? _currentLanguage2;
 
+        private bool _showAuthorized = false;
         private long _searchPageNr = 1;
         private bool _currentTranslations = true;
         private long _itemsPerPage = Const.DefaultItemsPerPage;
@@ -161,6 +162,7 @@ namespace OriinDic.Pages
         private void SwapLanguages()
         {
 
+
             var cl1 = _currentLanguage1;
             _currentLanguage1 = _currentLanguage2;
             _currentLanguage2 = cl1;
@@ -174,6 +176,7 @@ namespace OriinDic.Pages
                 else
                     _currentHeader = MyText.HeaderShowDashboardTrans;
             }
+            _showAuthorized = !_showAuthorized;
             StateHasChanged();
             GoSearch();
 

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.BaseTerms;
@@ -16,8 +18,9 @@ namespace OriinDic.Pages
 {
     public partial class BaseTermEdit
     {
-        
+
         private Token _token = new Token();
+        private AuthenticationState? _authState;
 
         [Parameter] public long? BaseTermId { get; set; }
         [Parameter] public string? BaseTermSlug { get; set; }
@@ -30,6 +33,8 @@ namespace OriinDic.Pages
         [Inject] private IDispatcher? Dispatcher { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
 
         private string BaseTermLanguage
         {
@@ -48,7 +53,13 @@ namespace OriinDic.Pages
 
         protected override async Task OnInitializedAsync()
         {
+
             await base.OnInitializedAsync();
+
+            if (!(AuthenticationStateProvider is null))
+                _authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+
             var doLangFetch = LanguagesState is null;
             if (LanguagesState != null) doLangFetch = !LanguagesState.Value.Languages.Any();
             if (doLangFetch)
@@ -57,14 +68,14 @@ namespace OriinDic.Pages
             if (LocalStorage is null) return;
 
             _token = LocalStorage.GetItem<Token>(Const.TokenKey);
-            
+
             var token = _token?.AuthToken ?? string.Empty;
-            
+
             if (BaseTermId is null)
                 Dispatcher?.Dispatch(new BaseTermsFetchOneSlugAction(slug: BaseTermSlug ?? string.Empty, token: token));
             else
                 Dispatcher?.Dispatch(new BaseTermsFetchOneAction(baseTermId: BaseTermId.Value, token: token));
-            
+
 
         }
 
@@ -129,6 +140,29 @@ namespace OriinDic.Pages
         private void OnSynonymAdd(Synonym synonym)
         {
             BaseTermsState?.Value.ResultBaseTranslation.BaseTerm?.Synonyms.Add(synonym.Value);
+        }
+
+        private string HeaderForBaseTerm
+        {
+            get
+            {
+                var retHeader = string.Empty;
+
+                if (!(AuthenticationStateProvider is null))
+                {
+
+                    var user = _authState?.User;
+                    if (!(user is null))
+                    {
+                        if (user.IsInRole(Const.RolesEditors))
+                        {
+                            retHeader = MyText?.HeaderBaseTermEdit ?? string.Empty;
+                        }
+                    }
+                }
+               
+                return retHeader;
+            }
         }
     }
 }
