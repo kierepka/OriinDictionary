@@ -1,6 +1,6 @@
 ﻿namespace OriinDic.Models
 {
-    public class SearchItem
+    public record SearchItem
     {
         public string? BaseName { get; set; }
         public long? BaseTermId { get; set; }

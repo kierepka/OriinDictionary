@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OriinDic.Models
 {
-    public class LoginInput
+    public record LoginInput
     {
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         [Required] public string Username { get; set; }= string.Empty;

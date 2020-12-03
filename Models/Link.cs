@@ -2,7 +2,7 @@
 
 namespace OriinDic.Models
 {
-    public class OriinLink
+    public record OriinLink
     {
         [JsonPropertyName("approved")]
         // ReSharper disable once UnusedMember.Global
@@ -21,5 +21,10 @@ namespace OriinDic.Models
         [JsonPropertyName("translation_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public long? TranslationId { get; set; } = 0;
+
+        public OriinLink()
+        {
+
+        }
     }
 }

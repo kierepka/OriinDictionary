@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class BaseTerm
+    public record BaseTerm
     {
 
         [JsonPropertyName("id")]
@@ -58,7 +58,7 @@ namespace OriinDic.Models
 
         public IEnumerable<Synonym> GetSynonyms()
         {
-            return Synonyms.Select(s => new Synonym(s)).ToList();
+            return Synonyms?.Select(s => new Synonym(s)).ToList() ?? new List<Synonym>();
         }
 /*
         public void SetSynonyms(IEnumerable<Synonym> l)
@@ -74,7 +74,7 @@ namespace OriinDic.Models
        
         public IEnumerable<Example> GetExamples()
         {
-            return Examples.Select(e => new Example(e)).ToList();
+            return Examples?.Select(e => new Example(e)).ToList() ?? new List<Example>();
         }
 /*
         public void SetExamples(List<Example> l)

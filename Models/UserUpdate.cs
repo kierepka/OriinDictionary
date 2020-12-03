@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class UserUpdate : UserAdd
+    public record UserUpdate : UserAdd
     {
         [JsonPropertyName("gender")]
         public string Gender { get; set; } = string.Empty;
@@ -12,10 +12,17 @@ namespace OriinDic.Models
         [JsonPropertyName("assistant")]
         public bool Assistant { get; set; }
         [JsonPropertyName("translating_languages")]
-        ////[JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        // ReSharper disable once CollectionNeverUpdated.Global
         public List<int> TranslatingLanguages { get; set; } = new List<int>();
         [JsonPropertyName("coordinating_languages")]
-        ////[JsonIgnore(Condition = JsonIgnoreCondition.WhenNull)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        // ReSharper disable once CollectionNeverUpdated.Global
         public List<int> CoordinatingLanguages { get; set; } = new List<int>();
+
+        public UserUpdate()
+        {
+
+        }
     }
 }

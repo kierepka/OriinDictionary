@@ -7,6 +7,10 @@ using OriinDic.Helpers;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Search;
 using System.Linq;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
+using System;
+using System.Collections.Generic;
+using Blazorise.DataGrid;
 
 namespace OriinDic.Pages
 {
@@ -56,6 +60,25 @@ namespace OriinDic.Pages
         {
             GoSearch();
         }
+
+
+        void OnReadData(DataGridReadDataEventArgs<SearchItem> e)
+        {
+            var currLang1Id = Const.PlLangId;
+            if (!(_currentLanguage1 is null)) currLang1Id = _currentLanguage1.Id;
+            var currLang2Id = Const.EnLangId;
+            if (!(_currentLanguage2 is null)) currLang2Id = _currentLanguage2.Id;
+
+            _searchPageNr = e.Page;
+            Dispatcher?.Dispatch(new SearchPageNrChangeAction(e.Page.ToString(), searchText: SearchText, baseTermLangId: currLang1Id,
+                    translationLangId: currLang2Id, itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr, current: _currentTranslations,
+                    MyText?.NoResults ?? string.Empty));
+
+            
+
+        }
+
+
 
         private void ClickedDropdownItem1(object l)
         {
@@ -145,11 +168,11 @@ namespace OriinDic.Pages
             {
                 if (_currentLanguage1 is null)
                     _currentHeader = MyText.HeaderShowDashboardBase;
-                else 
+                else
                     if (_currentLanguage1.Id == Const.PlLangId)
-                        _currentHeader = MyText.HeaderShowDashboardBase;
-                    else
-                        _currentHeader = MyText.HeaderShowDashboardTrans;
+                    _currentHeader = MyText.HeaderShowDashboardBase;
+                else
+                    _currentHeader = MyText.HeaderShowDashboardTrans;
             }
             StateHasChanged();
             GoSearch();

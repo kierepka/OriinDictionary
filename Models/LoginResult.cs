@@ -1,6 +1,6 @@
 namespace OriinDic.Models
 {
-    public class LoginResult
+    public record LoginResult
     {
         public bool Successful { get; set; }
 
@@ -8,5 +8,6 @@ namespace OriinDic.Models
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Token { get; set; } = string.Empty;
+
     }
 }

@@ -13,7 +13,7 @@ using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OriinDic.Helpers;
 using Toolbelt.Blazor.I18nText;
-using AuthenticationStateProvider = OriinDic.Services.AuthenticationStateProvider;
+using AuthenticationStateProvider = OriinDic.Services.ApiAuthenticationStateProvider;
 
 namespace OriinDic
 {

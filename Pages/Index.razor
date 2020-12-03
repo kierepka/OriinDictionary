@@ -1,16 +1,16 @@
 ﻿@page "/"
 @page "/{SearchText}"
 @inherits DicBasePage
-<PageHeader IsLoading="@(SearchState?.Value.IsLoading ?? true)" 
-            CurrentAlertText="@CurrentAlert" 
-            LoadingText="@MyText?.Loading" 
+<PageHeader IsLoading="@(SearchState?.Value.IsLoading ?? true)"
+            CurrentAlertText="@CurrentAlert"
+            LoadingText="@MyText?.Loading"
             HeaderText="@_currentHeader" />
 
 <h1>@SearchText</h1>
 
 <!-- Search buttons bar -->
 <Addons>
-    
+
     <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
         <Authorized>
             <Addon AddonType="AddonType.Start">
@@ -22,7 +22,7 @@
 
     <Addon AddonType="AddonType.Body">
         <TextEdit Placeholder="@MyText?.Search" Text="@SearchText"
-                  TextChanged="@(value => GoSearchText(value))" />
+                  TextChanged="@GoSearchText" />
     </Addon>
 
     <Addon AddonType="AddonType.End">
@@ -85,68 +85,73 @@
     </Addon>
 </Addons>
 
-@if (!(SearchState?.Value.SearchItems is null))
-{
-    <Table IsStriped="true" IsHoverable="true" Theme="Theme.Dark">
-        <TableHeader>
-            <TableRow>
-                <TableHeaderCell>@MyText?.TermTitle</TableHeaderCell>
-                <TableHeaderCell>@MyText?.TranslationTitle</TableHeaderCell>
-            </TableRow>
-        </TableHeader>
-        <TableBody>
-            @foreach (var locDic in SearchState.Value.SearchItems)
-            {
-                <TableRow>
-                    <TableRowCell>
+
+<DataGrid TItem="SearchItem"
+          Data="SearchState?.Value.SearchItems"
+          ReadData="@OnReadData"
+          ShowPager="false"
+          Editable="false"
+          EditMode="DataGridEditMode.Inline"
+          UseInternalEditing="true"
+          PageSize="@((int)_itemsPerPage)"
+          Sortable="true"
+          SortMode="DataGridSortMode.Single"
+          Filterable="false"
+          Striped="true"
+          Bordered="true"         
+          Responsive="true"
+          Hoverable="true">
+    <DataGridColumns>
+        <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TermTitle">
+            <DisplayTemplate>
+                @{
+                    var locDic = context as SearchItem;
+                    if (locDic.BaseName is null)
+                    {
+                        <div class="box @SearchState?.Value.ButtonPlColor">
+                            <a href="/addbaseterm">@MyText?.AddBase</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box @SearchState?.Value.ButtonPlColor">
+                            <a href="/editbaseterm/@locDic.BaseTermSlug">
+                                "@locDic.BaseName"
+                            </a>
+                        </div>
+                    }
+                }
+            </DisplayTemplate>
+        </DataGridColumn>
+        <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TranslationTitle">
+            <DisplayTemplate>
+                @{
+                    var locDic = context as SearchItem;
+                    if (locDic.TranslateName is null)
+                    {
+                        <div class="box @SearchState?.Value.ButtonEnColor">
+                            <a href="/addtranslation/@locDic.BaseTermId">@MyText?.AddTranslation</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="box @SearchState?.Value.ButtonEnColor">
+                            <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
+                        </div>
+                    }
+                }
+            </DisplayTemplate>
+        </DataGridColumn>
+    </DataGridColumns>
+</DataGrid>
 
 
-                        @if (locDic.BaseName is null)
-                        {
-                            <div class="box @SearchState.Value.ButtonPlColor">
-                                <a href="/addbaseterm">@MyText?.AddBase</a>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="box @SearchState.Value.ButtonPlColor">
-                                <a href="/editbaseterm/@locDic.BaseTermSlug">
-                                    "@locDic.BaseName"
-                                </a>
-                            </div>
-                        }
-
-                    </TableRowCell>
-
-                    <TableRowCell>
-
-                        @if (locDic.TranslateName is null)
-                        {
-                            <div class="box @SearchState.Value.ButtonEnColor">
-                                <a href="/addtranslation/@locDic.BaseTermId">@MyText?.AddTranslation</a>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="box @SearchState.Value.ButtonEnColor">
-                                <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
-                            </div>
-                        }
-
-                    </TableRowCell>
-
-                </TableRow>
-            }
-        </TableBody>
-    </Table>
-
-}
 
 @if (SearchState?.Value.PaginationShow ?? false)
 {
-    <MyPagination LocalPages="@SearchState.Value.LocalPages"
+    <MyPagination LocalPages="@SearchState?.Value.LocalPages"
                   SearchPageNr="@_searchPageNr"
-                  TotalPages="@SearchState.Value.TotalPages"
+                  TotalPages="@(SearchState?.Value.TotalPages ?? 0)"
                   PrevText="@MyText?.Next"
                   NextText="@MyText?.Previous"
                   OnClickCallback="OnPageClick">

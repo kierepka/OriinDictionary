@@ -12,6 +12,7 @@ using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Translations
 {
+    // ReSharper disable once UnusedType.Global
     public class TranslationsEffects
     {
         private readonly HttpClient _httpClient;
@@ -23,9 +24,9 @@ namespace OriinDic.Store.Translations
         }
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleApproveAction(TranslationsAproveAction action, IDispatcher dispatcher)
         {
-            var returnCode = System.Net.HttpStatusCode.OK;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
             HttpContent httpContent = new StringContent(string.Empty);
@@ -35,9 +36,9 @@ namespace OriinDic.Store.Translations
                 requestUri: $"{Const.Translations}{action.TranslationId}/approve_translation/", httpContent);
 
 
-            returnCode = response.StatusCode;            
+            var returnCode = response.StatusCode;
             var url = $"{Const.Translations}{action.TranslationId}/";
-            Translation? translation = new Translation();
+            var translation = new Translation();
             try
             {
                 translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
@@ -46,7 +47,7 @@ namespace OriinDic.Store.Translations
             {
                 returnCode = System.Net.HttpStatusCode.BadRequest;
             }
-            
+
 
             dispatcher.Dispatch(
                 new TranslationsApproveResultAction(returnCode,
@@ -55,6 +56,7 @@ namespace OriinDic.Store.Translations
 
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleAddDataAction(TranslationsAddAction action, IDispatcher dispatcher)
         {
 
@@ -74,6 +76,7 @@ namespace OriinDic.Store.Translations
 
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchDataAction(TranslationsFetchDataAction action, IDispatcher dispatcher)
         {
 
@@ -107,11 +110,12 @@ namespace OriinDic.Store.Translations
         }
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleFetch4EditAction(TranslationsFetch4EditAction action, IDispatcher dispatcher)
         {
             var returnCode = System.Net.HttpStatusCode.OK;
             var url = $"{Const.Translations}{action.TranslationId}/";
-            Translation? translation = new Translation();
+            var translation = new Translation();
             try
             {
                 translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
@@ -120,7 +124,7 @@ namespace OriinDic.Store.Translations
             {
                 returnCode = System.Net.HttpStatusCode.BadRequest;
             }
-            
+
 
             ResultBaseTranslation? baseTermResult = null;
             try
@@ -169,6 +173,7 @@ namespace OriinDic.Store.Translations
         }
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleAddCommentsAction(TranslationsCommentAddAction action, IDispatcher dispatcher)
         {
             var comments = new RootObject<Comment>();
@@ -182,10 +187,7 @@ namespace OriinDic.Store.Translations
                     var response = await _httpClient.PostAsJsonAsync(
                         $"{Const.Comments}", action.Comment);
 
-                    if (!(response.Content is null))
-                    {
-                        _ = await response.Content.ReadFromJsonAsync<Comment>();
-                    }
+                    _ = await response.Content.ReadFromJsonAsync<Comment>();
 
                     var url = $"{Const.Comments}?translation_id={action.TranslationId}";
                     comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
@@ -203,6 +205,7 @@ namespace OriinDic.Store.Translations
         }
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchCommentsAction(TranslationsFetchCommentsAction action, IDispatcher dispatcher)
         {
 
@@ -229,6 +232,7 @@ namespace OriinDic.Store.Translations
         }
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchBaseTermAction(TranslationsFetchBaseTermAction action, IDispatcher dispatcher)
         {
 
@@ -246,27 +250,20 @@ namespace OriinDic.Store.Translations
             }
 
 
-            if (resBaseTransl is null) resBaseTransl = new ResultBaseTranslation();
+            resBaseTransl ??= new ResultBaseTranslation();
 
-            if (resBaseTransl.BaseTerm is null)
-                resBaseTransl.BaseTerm = new BaseTerm
-                {
-                    LanguageId = Const.PlLangId,
-                    Id = action.BaseTermId
-                };
+            resBaseTransl.BaseTerm ??= new BaseTerm
+            {
+                LanguageId = Const.PlLangId,
+                Id = action.BaseTermId
+            };
 
-            if (resBaseTransl.Translation is null)
+            resBaseTransl.Translation ??= new Translation
             {
-                resBaseTransl.Translation = new Translation
-                {
-                    LanguageId = resBaseTransl.BaseTerm.LanguageId,
-                    BaseTermId = resBaseTransl.BaseTerm.Id
-                };
-            }
-            if (resBaseTransl.Translations is null)
-            {
-                resBaseTransl.Translations = new System.Collections.Generic.List<Translation> { resBaseTransl.Translation };
-            }
+                LanguageId = resBaseTransl.BaseTerm.LanguageId,
+                BaseTermId = resBaseTransl.BaseTerm.Id
+            };
+            resBaseTransl.Translations ??= new System.Collections.Generic.List<Translation> { resBaseTransl.Translation };
 
             dispatcher.Dispatch(
                 new TranslationsFetchBaseTermResultAction(
@@ -276,6 +273,7 @@ namespace OriinDic.Store.Translations
 
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchOneAction(TranslationsFetchOneAction action, IDispatcher dispatcher)
         {
 
@@ -298,6 +296,7 @@ namespace OriinDic.Store.Translations
         }
 
         [EffectMethod]
+        // ReSharper disable once UnusedMember.Global
         public async Task HandleUpdateAction(TranslationsUpdateAction action, IDispatcher dispatcher)
         {
 

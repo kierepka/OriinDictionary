@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class ResultBaseTranslation
+    public record ResultBaseTranslation
     {
         [JsonPropertyName("base_term")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -15,6 +15,12 @@ namespace OriinDic.Models
         
         [JsonPropertyName("translations")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        // ReSharper disable once CollectionNeverQueried.Global
         public List<Translation>? Translations { get; set; }
+
+        public ResultBaseTranslation()
+        {
+
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class Comment : CommentAdd
+    public record Comment : CommentAdd
     {
         [JsonPropertyName("user")]
         public User User { get; set; } = new User();
@@ -13,5 +13,10 @@ namespace OriinDic.Models
 
         [JsonPropertyName("date")]
         public DateTimeOffset Date { get; set; } = DateTime.Now;
+
+        public Comment()
+        {
+
+        }
     }
 }

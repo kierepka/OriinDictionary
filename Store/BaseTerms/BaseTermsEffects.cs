@@ -102,7 +102,15 @@ namespace OriinDic.Store.BaseTerms
         {
 
             var url = $"{Const.BaseTerms}{action.Slug}/by_slug/";
-            var returnData = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
+            ResultBaseTranslation? returnData = new ResultBaseTranslation();
+            try
+            {
+                returnData = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
+            }
+            catch (Exception e1)
+            {
+                dispatcher.Dispatch(new ShowNotificationAction(e1.Message));
+            }
 
             RootObject<OriinLink>? userResult = null;
 

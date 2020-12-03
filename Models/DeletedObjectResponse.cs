@@ -2,7 +2,7 @@
 
 namespace OriinDic.Models
 {
-    public class DeletedObjectResponse
+    public record DeletedObjectResponse
     {
         [JsonPropertyName("deleted")]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
@@ -10,5 +10,10 @@ namespace OriinDic.Models
         [JsonPropertyName("detail")]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Detail { get; set; } = string.Empty;
+
+        public DeletedObjectResponse()
+        {
+
+        }
     }
 }

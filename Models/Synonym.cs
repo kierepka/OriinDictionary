@@ -1,6 +1,6 @@
 namespace OriinDic.Models
 {
-    public class Synonym : IExampleSynonym
+    public record Synonym : IExampleSynonym
     {
         public string Value { get; set; }
         public Synonym(string val)
@@ -11,5 +11,6 @@ namespace OriinDic.Models
         {
             Value = string.Empty;
         }
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace OriinDic.Models
 {
-    public class BaseTermChange
+    public record BaseTermChange
     {
         [JsonPropertyName("after")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -12,5 +12,9 @@ namespace OriinDic.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public BaseTerm Before { get; set; } = new BaseTerm();
 
+        public BaseTermChange()
+        {
+
+        }
     }
 }

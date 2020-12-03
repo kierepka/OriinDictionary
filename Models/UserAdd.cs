@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class UserAdd
+    public record UserAdd
     {
         [JsonPropertyName("username")]
         public string UserName { get; set; } = string.Empty;
@@ -15,5 +15,10 @@ namespace OriinDic.Models
         public string LastName { get; set; } = string.Empty;
         [JsonPropertyName("email")]
         public string Email { get; set; } = string.Empty;
+
+        public UserAdd()
+        {
+
+        }
     }
 }

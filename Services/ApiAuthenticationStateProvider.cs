@@ -5,19 +5,22 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
+
 using Blazored.LocalStorage;
+
 using Microsoft.AspNetCore.Components.Authorization;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 
 namespace OriinDic.Services
 {
-    public class AuthenticationStateProvider : Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider
+    public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
 
-        public AuthenticationStateProvider(HttpClient httpClient, ILocalStorageService localStorage)
+        public ApiAuthenticationStateProvider(HttpClient httpClient, ILocalStorageService localStorage)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             _localStorage = localStorage ?? throw new ArgumentNullException(nameof(localStorage));
@@ -35,13 +38,13 @@ namespace OriinDic.Services
         }
 
         /// <summary>
-        /// Logouts user
+        /// Logout user
         /// </summary>
         /// <returns></returns>
         public async Task MarkUserAsLoggedOut()
         {
             await _localStorage.RemoveItemAsync(Const.TokenKey);
-            NotifyAuthenticationStateChanged(CreateAnonymouslyState());
+            NotifyAuthenticationStateChanged(CreateAnonymousState());
         }
 
         /// <summary>
@@ -53,8 +56,9 @@ namespace OriinDic.Services
         {
             var claims = await ParseClaimsFromUserInfo(token);
             //no user info - not logged in or other error
-            if (claims is null) return await CreateAnonymouslyState();
+            if (claims is null) return await CreateAnonymousState();
             //ok - claims should be done
+
             // ReSharper disable once StringLiteralTypo
             var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(claims, "apiauth"));
             return await Task.FromResult(new AuthenticationState(authenticatedUser));
@@ -64,7 +68,7 @@ namespace OriinDic.Services
         /// Sets user state to anonymous
         /// </summary>
         /// <returns></returns>
-        private static async Task<AuthenticationState> CreateAnonymouslyState()
+        private static async Task<AuthenticationState> CreateAnonymousState()
         {
             var anonymousUser = new ClaimsPrincipal(new ClaimsIdentity());
             return await Task.FromResult(new AuthenticationState(anonymousUser));
@@ -78,11 +82,12 @@ namespace OriinDic.Services
         {
             var token = await _localStorage.GetItemAsync<Token>(Const.TokenKey);
             //no token - anonymous user
-            if (token is null) return await CreateAnonymouslyState();
-            if (string.IsNullOrWhiteSpace(token.AuthToken)) return await CreateAnonymouslyState();
+            if (token is null) return await CreateAnonymousState();
+            if (string.IsNullOrWhiteSpace(token.AuthToken)) return await CreateAnonymousState();
             //there is token - check user
             return await CreateAuthenticatedState(token);
         }
+
 
         /// <summary>
         /// Gets user data from server 
@@ -98,6 +103,7 @@ namespace OriinDic.Services
             return userInfo ?? new User();
         }
 
+
         /// <summary>
         /// Checks user rights
         /// </summary>
@@ -106,15 +112,16 @@ namespace OriinDic.Services
         /// <exception cref="ArgumentNullException"></exception>
         private async Task<List<Claim>?> ParseClaimsFromUserInfo(Token token)
         {
+            // ReSharper disable once UseNameofExpression
             if (token is null) throw new ArgumentNullException(nameof(token));
-
             var userInfo = await _localStorage.GetItemAsync<User>(Const.UserKey) ?? await GetUserInfoAsync(token);
 
+            _ = new ClaimsIdentity();
             var result = new List<Claim>
             {
                 !string.IsNullOrWhiteSpace(userInfo.UserName)
                     ? new Claim(ClaimTypes.Name, userInfo.UserName)
-                    : new Claim(ClaimTypes.Name, "Eden's")
+                    : new Claim(ClaimTypes.Name, "Eden's user")
             };
 
             if (!string.IsNullOrWhiteSpace(userInfo.FirstName))
@@ -134,7 +141,6 @@ namespace OriinDic.Services
 
             if (userInfo.TranslatingLanguages.Count > 0)
                 result.Add(new Claim(ClaimTypes.Role, Const.RoleTranslator));
-
 
             if (userInfo.CoordinatingLanguages.Count > 0)
                 result.Add(new Claim(ClaimTypes.Role, Const.RoleCoordinator));

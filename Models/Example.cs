@@ -1,6 +1,6 @@
 namespace OriinDic.Models
 {
-    public class Example : IExampleSynonym
+    public record Example : IExampleSynonym
     {
         public string Value { get; set; }
         public Example(string val)

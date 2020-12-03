@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace OriinDic.Models
 {
     // ReSharper disable once UnusedType.Global
-    public class LastEdit
+    public record LastEdit
     {
         [JsonPropertyName("id")]
         // ReSharper disable once UnusedMember.Global
@@ -33,5 +33,10 @@ namespace OriinDic.Models
         [JsonPropertyName("change")]
         // ReSharper disable once UnusedMember.Global
         public Change Change { get; set; } = new Change();
+
+        public LastEdit()
+        {
+
+        }
     }
 }

@@ -3,7 +3,7 @@
 namespace OriinDic.Models
 {
     // ReSharper disable once UnusedType.Global
-    public class Notification
+    public record Notification
     {
         // ReSharper disable once UnusedMember.Global
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -17,7 +17,6 @@ namespace OriinDic.Models
             if (string.IsNullOrWhiteSpace(text))
                 throw new ArgumentNullException(nameof(text));
 
-            Text = text;
             Text = text;
         }
     }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class BaseTermLastEdit
+    public record BaseTermLastEdit
     {
         [JsonPropertyName("id")]
         // ReSharper disable once UnusedMember.Global
@@ -37,5 +37,10 @@ namespace OriinDic.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         // ReSharper disable once UnusedMember.Global
         public BaseTermChange? Change { get; set; }
+
+        public BaseTermLastEdit()
+        {
+
+        }
     }
 }

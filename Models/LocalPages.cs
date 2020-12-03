@@ -2,7 +2,7 @@ using Blazorise;
 
 namespace OriinDic.Models
 {
-    public class LocalPages
+    public record LocalPages
     {
         public long Number { get; set; }
 

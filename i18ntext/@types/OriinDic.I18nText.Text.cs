@@ -160,10 +160,10 @@ namespace OriinDic.I18nText
         /// <summary>"Główne menu"</summary>
         public string HeaderMain;
 
-        /// <summary>"Pokaż słowa bazowe"</summary>
+        /// <summary>"Szukaj słów bazowych"</summary>
         public string HeaderShowDashboardBase;
 
-        /// <summary>"Pokaż tłumaczenia"</summary>
+        /// <summary>"Szukaj tłumaczeń"</summary>
         public string HeaderShowDashboardTrans;
 
         /// <summary>"Pokaż języki"</summary>

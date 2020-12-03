@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace OriinDic.Models
 {
-    public class Translation
+    public record Translation
     {
         [JsonPropertyName("id")]
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
@@ -86,6 +86,11 @@ namespace OriinDic.Models
             {
                 Examples.Add(e.Value);
             }
+        }
+
+        public Translation()
+        {
+
         }
     }
 }

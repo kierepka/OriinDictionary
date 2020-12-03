@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Blazorise;
+
 using OriinDic.Models;
 
 namespace OriinDic.Store.Search
@@ -12,7 +14,7 @@ namespace OriinDic.Store.Search
         public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } = (Array.Empty<LocalPages>()).ToList().AsReadOnly();
         public Language CurrentLanguage1 { get; init; } = new Language();
         public Language CurrentLanguage2 { get; init; } = new Language();
-        public long TotalSearchItems { get; private set; } = 0;
+        public int TotalSearchItems { get; private set; } = 0;
         public long TotalPages { get; private set; } = 0;
         public bool ConfirmedResults { get; init; } = false;
         public bool CurrentBaseLangPl { get; init; } = false;
@@ -35,21 +37,21 @@ namespace OriinDic.Store.Search
             RootObject<ResultBaseTranslation>? rootObject,
             IEnumerable<SearchItem> searchItems,
             IEnumerable<LocalPages> localPages,
-            Language currentLanguage1, 
+            Language currentLanguage1,
             Language currentLanguage2,
-            bool confirmedResults, 
-            bool currentBaseLangPl, 
-            string buttonEnColor, 
-            Color buttonPlColor, 
+            bool confirmedResults,
+            bool currentBaseLangPl,
+            string buttonEnColor,
+            Color buttonPlColor,
             long searchPageNr,
-            long totalSearchItems,
+            int totalSearchItems,
             long totalPages,
             long itemsPerPage,
             long translationLangId,
             long baseTermLangId,
             string searchText,
-            string noBaseTermName, 
-            string noTranslationName, 
+            string noBaseTermName,
+            string noTranslationName,
             string noResults,
             bool isLoading,
             bool current,
@@ -69,7 +71,7 @@ namespace OriinDic.Store.Search
             SearchItems = searchItems.ToList().AsReadOnly();
             LocalPages = localPages.ToList().AsReadOnly();
             TotalSearchItems = totalSearchItems;
-            TotalPages = totalPages;            
+            TotalPages = totalPages;
             Current = current;
             ItemsPerPage = itemsPerPage;
             TranslationLangId = translationLangId;
@@ -85,7 +87,7 @@ namespace OriinDic.Store.Search
 
 
 
- 
+
 
         private void CheckButtonColors()
         {
@@ -103,8 +105,6 @@ namespace OriinDic.Store.Search
 
         private void UpdateTempData(RootObject<ResultBaseTranslation> dictResult)
         {
-            if (dictResult is null) return;
-
             PaginationShow = false;
 
             if (dictResult.Pages > 1)
@@ -114,13 +114,13 @@ namespace OriinDic.Store.Search
                 var localPages = new List<LocalPages>();
                 if (TotalPages > 20)
                 {
-                    for (var i = 1; i <= 7; ++i) localPages.Add(new LocalPages {Number = i});
-                    localPages.Add(new LocalPages {Number = 0});
-                    for (var i = TotalPages - 7; i <= TotalPages; ++i) localPages.Add(new LocalPages {Number = i});
+                    for (var i = 1; i <= 7; ++i) localPages.Add(new LocalPages { Number = i });
+                    localPages.Add(new LocalPages { Number = 0 });
+                    for (var i = TotalPages - 7; i <= TotalPages; ++i) localPages.Add(new LocalPages { Number = i });
                 }
                 else
                 {
-                    for (var i = 1; i <= TotalPages; ++i) localPages.Add(new LocalPages {Number = i});
+                    for (var i = 1; i <= TotalPages; ++i) localPages.Add(new LocalPages { Number = i });
                 }
 
                 LocalPages = localPages.AsReadOnly();
@@ -131,35 +131,34 @@ namespace OriinDic.Store.Search
             var searchItems = new List<SearchItem>();
 
             if (TotalSearchItems <= 0) return;
-            if (!(dictResult.Results is null))
+
+            foreach (var dic in dictResult.Results)
             {
-                foreach (var dic in dictResult.Results)
+                var ltd = new SearchItem();
+                //Console.WriteLine(JsonSerializer.Serialize(dic));
+                if (!(dic.BaseTerm is null))
                 {
-                    var ltd = new SearchItem();
-                    //Console.WriteLine(JsonSerializer.Serialize(dic));
-                    if (!(dic.BaseTerm is null))
-                    {
-                        ltd.BaseTermId = dic.BaseTerm.Id;
-                        ltd.BaseTermSlug = string.IsNullOrEmpty(dic.BaseTerm.Slug)
-                            ? NoBaseTermName
-                            : dic.BaseTerm.Slug;
-                        ltd.BaseName = string.IsNullOrEmpty(dic.BaseTerm.Name)
-                            ? NoBaseTermName
-                            : dic.BaseTerm.Name;
-                    }
-
-                    if (!(dic.Translation is null))
-                    {
-                        ltd.TranslateId = dic.Translation.Id;
-                        ltd.TranslateName = string.IsNullOrEmpty(dic.Translation.Name)
-                            ? NoTranslationName
-                            : dic.Translation.Name;
-                    }
-
-                    //Console.WriteLine(JsonSerializer.Serialize(ltd));
-                    searchItems.Add(ltd);
+                    ltd.BaseTermId = dic.BaseTerm.Id;
+                    ltd.BaseTermSlug = string.IsNullOrEmpty(dic.BaseTerm.Slug)
+                        ? NoBaseTermName
+                        : dic.BaseTerm.Slug;
+                    ltd.BaseName = string.IsNullOrEmpty(dic.BaseTerm.Name)
+                        ? NoBaseTermName
+                        : dic.BaseTerm.Name;
                 }
+
+                if (!(dic.Translation is null))
+                {
+                    ltd.TranslateId = dic.Translation.Id;
+                    ltd.TranslateName = string.IsNullOrEmpty(dic.Translation.Name)
+                        ? NoTranslationName
+                        : dic.Translation.Name;
+                }
+
+                //Console.WriteLine(JsonSerializer.Serialize(ltd));
+                searchItems.Add(ltd);
             }
+
 
             SearchItems = searchItems.AsReadOnly();
         }
