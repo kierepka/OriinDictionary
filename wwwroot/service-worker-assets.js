@@ -373,7 +373,7 @@
       "url": "_framework\/Toolbelt.Blazor.SpeechSynthesis.dll"
     },
     {
-      "hash": "sha256-38xwHuVtKYqURueNd78+XFJdBAdM77imih3bj4VXQ4M=",
+      "hash": "sha256-hjkL9eeKvD3jc0WuCWdW+qB1nbUbL4j6mFY02v20JdA=",
       "url": "_framework\/OriinDic.dll"
     },
     {
@@ -529,7 +529,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-lKhwx1Cey3RcyScE8UkMPlxzncL2cXDNMDt\/TrSM48Q=",
+      "hash": "sha256-vIu6vS6rtQEPsC46AoE2h\/1u6\/2SrMLuCST5x4engZg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -537,5 +537,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "yVzb\/wjl"
+  "version": "r+h4sAvz"
 };
