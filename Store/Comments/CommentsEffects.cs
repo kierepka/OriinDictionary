@@ -51,7 +51,7 @@ namespace OriinDic.Store.Comments
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(
@@ -99,7 +99,7 @@ namespace OriinDic.Store.Comments
                             returnObject.Deleted = false;
                             returnObject.Detail = $"Error: {response.StatusCode}";
                         }
-                        dispatcher.Dispatch(new ShowNotificationAction($"Error: {response.StatusCode}"));
+                        dispatcher.Dispatch(new NotificationAction($"Error: {response.StatusCode}"));
                         
                     }
                 }
@@ -108,7 +108,7 @@ namespace OriinDic.Store.Comments
             {
                 if (!(returnObject is null))
                     returnObject.Detail = $"Error {e}";
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             var queryString = Const.Comments;
@@ -122,7 +122,7 @@ namespace OriinDic.Store.Comments
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(
@@ -152,7 +152,7 @@ namespace OriinDic.Store.Comments
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(new CommentsFetchDataResultAction(userResult ?? new RootObject<Comment>()));

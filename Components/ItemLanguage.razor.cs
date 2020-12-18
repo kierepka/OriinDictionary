@@ -10,14 +10,14 @@ namespace OriinDic.Components
 
     {
         [Parameter] public SelectableLanguage? Language { get; set; }
-        [Parameter] public Action<bool>? StatusChanged { get; set; }
+        [Parameter] public Action<SelectableLanguage>? StatusChanged { get; set; }
 
         void OnCheckedChanged(bool isChecked)
         {
             if (Language is null) return;
             
             Language.Selected = isChecked;
-            StatusChanged?.Invoke(isChecked);
+            StatusChanged?.Invoke(Language);
         }
     }
 }

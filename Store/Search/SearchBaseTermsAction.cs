@@ -1,4 +1,6 @@
-﻿namespace OriinDic.Store.Search
+﻿using OriinDic.Models;
+
+namespace OriinDic.Store.Search
 {
     public class SearchBaseTermsAction
     {
@@ -9,9 +11,10 @@
         public long ItemsPerPage { get; init; } = 0;
         public bool Current { get; init; } = false;
         public string NoResults { get; init; } = string.Empty;
+        public EnumHasTranslations HasTranslations { get; init; }
 
         public SearchBaseTermsAction(string searchText, long baseTermLangId, long translationLangId, long searchPageNr,
-            long itemsPerPage, bool current, string noResults)
+            long itemsPerPage, bool current, string noResults, EnumHasTranslations hasTranslations)
         {
             SearchText = searchText;
             BaseTermLangId = baseTermLangId;
@@ -20,6 +23,7 @@
             ItemsPerPage = itemsPerPage;
             Current = current;
             NoResults = noResults;
+            HasTranslations = hasTranslations;
         }
 
     }

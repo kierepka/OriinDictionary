@@ -9,6 +9,7 @@ namespace OriinDic.Models
     {
 
         [JsonPropertyName("id")]
+        // ReSharper disable once PropertyCanBeMadeInitOnly.Global
         public long Id { get; set; }
         
         [JsonPropertyName("language_id")]

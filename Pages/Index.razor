@@ -6,12 +6,35 @@
             LoadingText="@MyText?.Loading"
             HeaderText="@_currentHeader" />
 
-<h1>@SearchText</h1>
+<h3>@SearchText</h3>
 
 <!-- Search buttons bar -->
 <Addons>
 
-    @if (_showAuthorized)
+    @if (_showOptionForBaseTerms)
+    {
+        <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
+            <Authorized>
+                <Addon AddonType="AddonType.Start">
+                    <Dropdown>
+                        <DropdownToggle Color="Color.Primary">
+                            @MyText?.LinkTranslation
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithTranslations" 
+                                          Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithTranslations))">@MyText?.BaseTermWithTranslations</DropdownItem>
+                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithoutTranslations" 
+                                          Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithoutTranslations))">@MyText?.BaseTermWithoutTranslations</DropdownItem>
+                            <DropdownDivider />
+                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.None" 
+                                          Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.None))">@MyText?.BaseTermNone</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </Addon>
+            </Authorized>
+        </AuthorizeView>
+    }
+    else
     {
         <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
             <Authorized>
@@ -32,7 +55,7 @@
         <Buttons>
             <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.Loading" MyLanguage="@_currentLanguage1" />
             <Dropdown>
-                <Button>@MyText?.BaseTermLanguage: @_currentLanguage1?.Name</Button>
+                <Button>@_currentLanguage1?.Name</Button>
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
 
                 <DropdownMenu>

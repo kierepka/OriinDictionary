@@ -6,11 +6,11 @@
 <PageHeader IsLoading="@(UsersState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.Users" />
 
 <DataGrid TItem="User"
-          Data="@UsersState?.Value?.RootObject?.Results"
+          Data="@UsersState?.Value?.RootObject.Results"
           ReadData="@OnReadData"
-          TotalItems="@UsersState?.Value?.RootObject?.Results?.Count"
+          TotalItems="@UsersState?.Value?.RootObject.Results.Count"
           ShowPager="false"
-          UseInternalEditing="true"
+          UseInternalEditing="false"
           Editable="true"
           EditMode="DataGridEditMode.Form"
           Sortable="true"
@@ -18,18 +18,17 @@
           Striped="true"
           Bordered="true"
           Hoverable="true"
+          RowSelectable=@(_=>false)          
           RowInserted="@OnRowInserted"
           RowUpdated="@OnRowUpdated"
-          RowRemoved="@OnRowRemoved"
-          @bind-SelectedRow="@_selectedUser"
-          DetailRowTrigger="@((item)=> item.Id == _selectedUser?.Id)">
+          RowRemoved="@OnRowRemoved">
     <DataGridColumns>
         <DataGridCommandColumn TItem="User" Width="170px">
             <NewCommandTemplate>
                 <Button Color="Color.Success" Clicked="@context.Clicked">@MyText?.NewTxt</Button>
             </NewCommandTemplate>
             <EditCommandTemplate>
-                <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.Edit</Button>
+                <Button Color="Color.Primary" Clicked="@(async() => await OnEdit(context))">@MyText?.Edit</Button>
             </EditCommandTemplate>
             <SaveCommandTemplate>
                 <Button Color="Color.Primary" Clicked="@context.Clicked">@MyText?.Save</Button>
@@ -49,21 +48,29 @@
         <DataGridColumn TItem="User" Field="@nameof(User.FirstName)" Caption="@MyText?.UsersFirstName" Sortable="true" Editable="true" />
         <DataGridColumn TItem="User" Field="@nameof(User.LastName)" Caption="@MyText?.UsersLastName" Sortable="true" Editable="true" />
         <DataGridColumn TItem="User" Field="@nameof(User.Email)" Caption="@MyText?.UsersEmail" Editable="true" />
-        <DataGridCheckColumn TItem="User" Field="@nameof(User.IsSuperuser)" Caption="@MyText?.UsersIsSuperUser" Editable="false" Filterable="false">
+        <DataGridCheckColumn TItem="User" Field="@nameof(User.IsSuperuser)" Caption="@MyText?.UsersIsSuperUser" Editable="true" Filterable="false">
             <DisplayTemplate>
                 <Check TValue="bool" Checked="context.IsSuperuser" Disabled="true" ReadOnly="true" />
             </DisplayTemplate>
+            <EditTemplate>
+                <Check TValue="bool" Checked="@((bool)( context.CellValue ))"
+                       CheckedChanged="@(( v ) => context.CellValue = v)" />
+            </EditTemplate>
         </DataGridCheckColumn>
-        <DataGridCheckColumn TItem="User" Field="@nameof(User.Assistant)" Caption="@MyText?.UsersIsAssistant" Editable="false" Filterable="false">
+        <DataGridCheckColumn TItem="User" Field="@nameof(User.Assistant)" Caption="@MyText?.UsersIsAssistant" Editable="true" Filterable="false">
             <DisplayTemplate>
                 <Check TValue="bool" Checked="context.Assistant" Disabled="true" ReadOnly="true" />
             </DisplayTemplate>
+            <EditTemplate>
+                <Check TValue="bool" Checked="@((bool)( context.CellValue ))"
+                       CheckedChanged="@(( v ) => context.CellValue = v)" />
+            </EditTemplate>
         </DataGridCheckColumn>
-        <DataGridColumn TItem="User" Field="@nameof( User.TranslatingLanguages )" Caption="@MyText?.UsersTranslatingLanguages" Editable="false">
+        <DataGridColumn TItem="User" Field="@nameof( User.TranslatingLanguages )" Caption="@MyText?.UsersTranslatingLanguages" Editable="true">
             <FilterTemplate>
 
-                <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == "*" ? "" : e.ToString()))">
-                    <SelectItem Value="@("*")">@MyText?.NotSet</SelectItem>
+                <Select TValue="int" SelectedValueChanged="@(e => context.TriggerFilterChange(e.ToString().Contains(" *") ? "" : e.ToString()))">
+                    <SelectItem Value="@("*")">@(MyText?.NotSet ?? string.Empty)</SelectItem>
                     @if (!(LanguagesState is null))
                     {
                         @foreach (var item in LanguagesState.Value.Languages)
@@ -78,12 +85,11 @@
             <DisplayTemplate>
 
                 @{
-                    var user = (context as User);
-                    <label class="checkbox">@MyText?.UsersTranslatingLanguages</label>
+                    var user = context;
+                    <label class="checkbox">@(MyText?.UsersTranslatingLanguages ?? string.Empty)</label>
                     if (user.IsSuperuser)
                     {
                         <div class="control">@MyText?.SuperUserHasAll</div>
-
                     }
                     else
                     {
@@ -102,11 +108,39 @@
                 }
 
             </DisplayTemplate>
+            <EditTemplate>
+                @{
+                    var translatingLanguages = (List<int>)context.CellValue;
+                    if ((translatingLanguages is null))
+                    {
+                        @MyText?.NotSet
+                    }
+                    else
+                    {
+                        @if (!(LanguagesState is null))
+                        {
+                            var selectableTransLanguages = new List<SelectableLanguage>();
+                            foreach (var lang in LanguagesState.Value.Languages)
+                            {
+                                selectableTransLanguages.Add(
+                                    new SelectableLanguage(lang,
+                                        translatingLanguages.Contains((int)lang.Id)));
+                            }
+                            <ListGroup Flush="true">
+                                @foreach (var selLang in selectableTransLanguages)
+                                {
+                                    <ItemLanguage Language="@selLang" StatusChanged="@OnTransLangStatusChanged" />
+                                }
+                            </ListGroup>
+                        }
+                    }
+                }
+            </EditTemplate>
         </DataGridColumn>
-        <DataGridColumn TItem="User" Field="@nameof( User.CoordinatingLanguages )" Caption="@MyText?.UsersCoordinatingLanguages" Editable="false">
+        <DataGridColumn TItem="User" Field="@nameof( User.CoordinatingLanguages )" Caption="@MyText?.UsersCoordinatingLanguages" Editable="true">
             <FilterTemplate>
 
-                <Select TValue="string" SelectedValueChanged="@(e => context.TriggerFilterChange(e == " *" ? "" : e.ToString()))">
+                <Select TValue="int" SelectedValueChanged="@(e => context.TriggerFilterChange(e.ToString().Contains(" *") ? "" : e.ToString()))">
                     <SelectItem Value="@(" *")">@MyText?.NotSet</SelectItem>
                     @if (!(LanguagesState is null))
                     {
@@ -122,12 +156,11 @@
 
             <DisplayTemplate>
                 @{
-                    var user = (context as User);
+                    var user = context;
                     <label class="checkbox">@MyText?.UsersCoordinatingLanguages</label>
                     if (user.IsSuperuser)
                     {
                         <div class="control">@MyText?.SuperUserHasAll</div>
-
                     }
                     else
                     {
@@ -145,6 +178,34 @@
                     }
                 }
             </DisplayTemplate>
+            <EditTemplate>
+                @{
+                    var coordinatingLanguages = (List<int>)context.CellValue;
+                    if (coordinatingLanguages is null)
+                    {
+                        @(MyText?.NotSet ?? string.Empty)
+                    }
+                    else
+                    {
+                        @if (!(LanguagesState is null))
+                        {
+                            var selectableCoordLanguages = new List<SelectableLanguage>();
+                            foreach (var lang in LanguagesState.Value.Languages)
+                            {
+                                selectableCoordLanguages.Add(
+                                    new SelectableLanguage(lang,
+                                        coordinatingLanguages.Contains((int)lang.Id)));
+                            }
+                            <ListGroup Flush="true">
+                                @foreach (var selLang in selectableCoordLanguages)
+                                {
+                                    <ItemLanguage Language="@selLang" StatusChanged="@OnCoordLangStatusChanged" />
+                                }
+                            </ListGroup>
+                        }
+                    }
+                }
+            </EditTemplate>
         </DataGridColumn>
     </DataGridColumns>
 

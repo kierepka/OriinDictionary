@@ -7,7 +7,14 @@
     <Column>
         <Card Margin="Margin.Is4.OnY">
             <CardHeader>
-                <CardTitle>@MyText?.SettingsHeader : @MyText?.SettingsSubtitle</CardTitle>
+                <CardTitle>@MyText?.SettingsHeader</CardTitle>
+                <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                    <FieldBody ColumnSize="ColumnSize.Is12">
+                        <Buttons Role="ButtonsRole.Addons">
+                            <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
+                        </Buttons>
+                    </FieldBody>
+                </Field>
             </CardHeader>
             <CardBody>
                 <Field IsHorizontal="true">
@@ -38,16 +45,34 @@
 
                     </FieldBody>
                 </Field>
-            </CardBody>
-            <CardFooter Padding="Padding.Is3">
-                <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
-                    <FieldBody ColumnSize="ColumnSize.Is12">
-                        <Buttons Role="ButtonsRole.Addons">
-                            <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
-                        </Buttons>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemeEnabled</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <Switch TValue="bool" Checked="@(Theme?.Enabled == true)" CheckedChanged="@OnThemeEnabledChanged">@MyText?.SettingsThemeEnabled</Switch>
                     </FieldBody>
                 </Field>
-            </CardFooter>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemeGradientColors</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <Switch TValue="bool" Checked="@(Theme?.IsGradient == true)" CheckedChanged="@OnGradientChanged">@MyText?.SettingsThemeGradientColors</Switch>
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemeRoundedElements</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <Switch TValue="bool" Checked="@(Theme?.IsRounded == true)" CheckedChanged="@OnRoundedChanged">@MyText?.SettingsThemeRoundedElements</Switch>
+                    </FieldBody>
+                </Field>
+                <Field IsHorizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemePrimaryColor</FieldLabel>
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <Container Fluid="true">
+                            <ThemeColorSelector Value="@(Theme?.ColorOptions?.Primary)" ValueChanged="@OnThemeColorChanged"></ThemeColorSelector>
+                        </Container>
+                    </FieldBody>
+                </Field>
+            </CardBody>
+
         </Card>
     </Column>
 </Row>

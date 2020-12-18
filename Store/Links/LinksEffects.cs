@@ -73,14 +73,14 @@ namespace OriinDic.Store.Links
                         if (!(returnObject is null)) 
                             returnObject.Deleted = true;
 
-                        dispatcher.Dispatch(new ShowNotificationAction($"Link: {action.LinkId} - deleted"));
+                        dispatcher.Dispatch(new NotificationAction($"Link: {action.LinkId} - deleted"));
                     }
                     else
                     {
                         if (!(returnObject is null))
                         {
                             returnObject.Deleted = false;
-                            dispatcher.Dispatch(new ShowNotificationAction($"Error: {response.StatusCode}"));
+                            dispatcher.Dispatch(new NotificationAction($"Error: {response.StatusCode}"));
                             
                         }
                     }
@@ -91,7 +91,7 @@ namespace OriinDic.Store.Links
                 if (!(returnObject is null))
                     returnObject.Detail = $"Error {e}";
 
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
 
@@ -109,7 +109,7 @@ namespace OriinDic.Store.Links
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(
@@ -134,7 +134,7 @@ namespace OriinDic.Store.Links
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(new LinksFetchForBaseTermResultAction(userResult ?? new RootObject<OriinLink>()));
@@ -156,7 +156,7 @@ namespace OriinDic.Store.Links
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction($"Error: {e.Message}"));
+                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}"));
             }
 
             dispatcher.Dispatch(new LinksFetchDataResultAction(userResult ?? new RootObject<OriinLink>()));

@@ -15,7 +15,7 @@ else
         <Column>
             <Card Margin="Margin.Is4.OnY">
                 <CardHeader>
-                    <CardTitle>[@TranslationLanguage] @TranslationsState.Value.Translation.Name : @MyText?.TranslationHeader</CardTitle>
+                    <CardTitle>[@TranslationLanguage] @(TranslationsState.Value.Translation.Name ?? string.Empty)</CardTitle>
                 </CardHeader>
                 <CardBody>
 
@@ -28,7 +28,7 @@ else
                                               @bind-Text="@TranslationsState.Value.Translation.Name" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    <div class="field"><div class="control">@TranslationsState.Value.Translation.Name</div></div>
+                                    <div class="field"><div class="control">@(TranslationsState.Value.Translation.Name  ?? string.Empty)</div></div>
                                 </NotAuthorized>
                             </AuthorizeView>
                         </FieldBody>
@@ -55,7 +55,7 @@ else
                                               @bind-Text="@TranslationsState.Value.Translation.Definition" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    <div class="field"><div class="control">@TranslationsState.Value.Translation.Definition</div></div>
+                                    <div class="field"><div class="control">@(TranslationsState.Value.Translation.Definition ?? string.Empty)</div></div>
                                 </NotAuthorized>
                             </AuthorizeView>
                         </FieldBody>
@@ -64,8 +64,8 @@ else
                         <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
                         <FieldBody ColumnSize="ColumnSize.Is10">
                             <Label>
-                                @MyText?.TranslationLastEdit: @TranslationsState.Value.Translation.LastEdit.User.UserName,
-                                @MyText?.TranslationLastApproval: @TranslationsState.Value.Translation.LastApproval.User.UserName,
+                                @MyText?.TranslationLastEdit: @(TranslationsState.Value.Translation.LastEdit?.User?.UserName ?? string.Empty) ,
+                                @MyText?.TranslationLastApproval: @(TranslationsState.Value.Translation.LastApproval?.User?.UserName ?? string.Empty),
                                 @MyText?.TranslationTitle: @TranslationsState.Value.Translation.Id
                             </Label>
                         </FieldBody>
@@ -89,7 +89,7 @@ else
                                         </Authorized>
                                     </AuthorizeView>
                                 }
-                                <input class="button" type="button" value="@MyText?.Back" onClick="history.back();">
+                                <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
                                 <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.Speech</Button>
                             </Buttons>
                         </FieldBody>
@@ -106,7 +106,7 @@ else
 
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
-                        <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTerm.Name : @MyText?.BaseTermHeader</CardTitle>
+                        <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTerm.Name</CardTitle>
                     </CardHeader>
                     <CardBody>
                         <Field IsHorizontal="true">
@@ -173,6 +173,7 @@ else
                         <Field Horizontal="true">
                             <FieldBody ColumnSize="ColumnSize.Is12">
                                 <Buttons Role="ButtonsRole.Addons">
+
                                     <div class="button has-background-primary">
                                         <a href="/editBaseTerm/@TranslationsState.Value.Translation.BaseTermId">
                                             <AuthorizeView Roles="@Const.RolesEditors">

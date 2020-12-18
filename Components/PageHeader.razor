@@ -5,12 +5,9 @@
 {
     <Button IsLoading="@IsLoading">@LoadingText</Button>
 }
-@if (!string.IsNullOrEmpty(State?.Value.Notification))
-{
-    <Snackbar Color="SnackbarColor.Info" @ref="MyAlert" Location="SnackbarLocation.Right">
-        @State.Value.Notification
-    </Snackbar>
-}
+
+<SnackbarStack @ref="_snackbarStack" Location="SnackbarStackLocation.Center"/>
+
 
 @if (!string.IsNullOrEmpty(CurrentAlertText))
 {

@@ -19,7 +19,8 @@ namespace OriinDic.Pages
         private Language? _currentLanguage1;
         private Language? _currentLanguage2;
 
-        private bool _showAuthorized = false;
+        private bool _showOptionForBaseTerms = true;
+        private EnumHasTranslations _optionHasTranslations = EnumHasTranslations.None;
         private long _searchPageNr = 1;
         private bool _currentTranslations = true;
         private long _itemsPerPage = Const.DefaultItemsPerPage;
@@ -42,7 +43,8 @@ namespace OriinDic.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            if (!(MyText is null)) _currentHeader = MyText.HeaderShowDashboardBase;
+            if (!(MyText is null)) 
+                _currentHeader = MyText.HeaderShowDashboardBase;
 
             if (!(LocalStorage is null))
             {
@@ -75,10 +77,16 @@ namespace OriinDic.Pages
                     translationLangId: currLang2Id, itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr, current: _currentTranslations,
                     MyText?.NoResults ?? string.Empty));
 
-            
+
 
         }
 
+        private void ClickedTranslationOption(object baseTermOpt)
+        {
+            _optionHasTranslations = (EnumHasTranslations)Convert.ToByte(baseTermOpt);
+            GoSearch();
+
+        }
 
 
         private void ClickedDropdownItem1(object l)
@@ -107,7 +115,7 @@ namespace OriinDic.Pages
             if (Const.BaseLanguagesList.Contains(currLang1Id))
                 Dispatcher?.Dispatch(new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
                     translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
-                    current: _currentTranslations, MyText?.NoResults ?? string.Empty));
+                    current: _currentTranslations, MyText?.NoResults ?? string.Empty, _optionHasTranslations));
             else
             {
                 Dispatcher?.Dispatch(new SearchTranslationsAction(searchText: SearchText, baseTermLangId: currLang2Id,
@@ -166,17 +174,28 @@ namespace OriinDic.Pages
             var cl1 = _currentLanguage1;
             _currentLanguage1 = _currentLanguage2;
             _currentLanguage2 = cl1;
+            _showOptionForBaseTerms = true;
+
             if (!(MyText is null))
             {
                 if (_currentLanguage1 is null)
+                {
                     _currentHeader = MyText.HeaderShowDashboardBase;
+                }
                 else
+                {
                     if (_currentLanguage1.Id == Const.PlLangId)
-                    _currentHeader = MyText.HeaderShowDashboardBase;
-                else
-                    _currentHeader = MyText.HeaderShowDashboardTrans;
+                    {
+                        _currentHeader = MyText.HeaderShowDashboardBase;
+                    }
+                    else
+                    {
+                        _currentHeader = MyText.HeaderShowDashboardTrans;
+                        _showOptionForBaseTerms = false;
+                    }
+                }
             }
-            _showAuthorized = !_showAuthorized;
+            
             StateHasChanged();
             GoSearch();
 

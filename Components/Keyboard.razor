@@ -8,32 +8,27 @@ else
 {
     @if (GetSpecialChars().Any())
     {
-        <Accordion>
-            <Collapse Visible="@KeyboardVisible">
-                <CollapseHeader>
-                    <Heading Size="HeadingSize.Is5">
-                        <Button Clicked="@(() => KeyboardVisible = !KeyboardVisible)">
-                            <span class="icon">
-                                <i class="fas fa-keyboard"></i>
-                            </span>
-                        </Button>
-                    </Heading>
-                </CollapseHeader>
-                <CollapseBody>
 
-                    @foreach (var specCharRows in GetSpecialChars())
+        <Heading Size="HeadingSize.Is5">
+            <Button Clicked="@(() => KeyboardVisible = !KeyboardVisible)" class="@(KeyboardVisible ?  "is-hidden" : "")">
+                <span class="icon">
+                    <i class="fas fa-keyboard"></i>
+                </span>
+            </Button>
+        </Heading>
+        <div class="@(KeyboardVisible ?  "" : "is-hidden")" style="box-shadow: 0px 0px 50px #000000; position: relative; width: auto; display: inline-block; z-index: 2;">
+            @foreach (var specCharRows in GetSpecialChars())
+            {
+                <Buttons>
+                    @foreach (var specChar in specCharRows)
                     {
-                        <Buttons>
-                            @foreach (var specChar in specCharRows)
-                            {
-                                <Button Color="Color.Light" Clicked="@(async () => await OnKeyCallback.InvokeAsync(specChar))">@specChar</Button>
-                            }
-                        </Buttons>
-
+                        <Button Color="Color.Light" Clicked="@(async () => await OnKeyCallback.InvokeAsync(specChar))">@specChar</Button>
                     }
+                </Buttons>
 
-                </CollapseBody>
-            </Collapse>
-        </Accordion>
+            }
+        </div>
+
+
     }
 }

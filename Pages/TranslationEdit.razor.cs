@@ -5,6 +5,7 @@ using Fluxor;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 
 using OriinDic.Helpers;
 using OriinDic.Models;
@@ -31,7 +32,8 @@ namespace OriinDic.Pages
         [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
-
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        [Inject] private IJSRuntime? JSRuntime { get; set; }
         private string BaseTermLanguage
         {
             get
@@ -78,7 +80,7 @@ namespace OriinDic.Pages
                         }
                     }
                 }
-               
+
                 return retHeader;
             }
 
@@ -111,7 +113,7 @@ namespace OriinDic.Pages
         private void OnCommentAdd(Comment comment)
         {
             if (TranslationsState?.Value?.Translation == null) return;
-            
+
             comment.TranslationId = TranslationsState.Value.Translation.Id;
 
             if (!(LocalStorage is null))
@@ -146,6 +148,7 @@ namespace OriinDic.Pages
             Dispatcher?.Dispatch(new TranslationsUpdateAction(TranslationId, TranslationsState.Value.Translation, _token.AuthToken));
 
         }
+
 
         private void OnSpeechEnClicked()
         {

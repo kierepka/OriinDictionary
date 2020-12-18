@@ -67,6 +67,9 @@ namespace OriinDic.I18nText
         /// <summary>"Nazwa"</summary>
         public string BaseTermName;
 
+        /// <summary>"brak"</summary>
+        public string BaseTermNone;
+
         /// <summary>"Słowo bazowe zostało zapisane pod numerem:"</summary>
         public string BaseTermSaved;
 
@@ -75,6 +78,12 @@ namespace OriinDic.I18nText
 
         /// <summary>"Synonimy"</summary>
         public string BaseTermSynonyms;
+
+        /// <summary>"Bez tłumaczeń"</summary>
+        public string BaseTermWithoutTranslations;
+
+        /// <summary>"Z tłumaczeniami"</summary>
+        public string BaseTermWithTranslations;
 
         /// <summary>"Anuluj"</summary>
         public string Cancel;
@@ -318,6 +327,18 @@ namespace OriinDic.I18nText
 
         /// <summary>"Ustawienia użytkownika"</summary>
         public string SettingsSubtitle;
+
+        /// <summary>"Skórka włączona"</summary>
+        public string SettingsThemeEnabled;
+
+        /// <summary>"Kolory tonowane"</summary>
+        public string SettingsThemeGradientColors;
+
+        /// <summary>"Kolor główny"</summary>
+        public string SettingsThemePrimaryColor;
+
+        /// <summary>"Elementy zaokrąglane"</summary>
+        public string SettingsThemeRoundedElements;
 
         /// <summary>"Słownik Oriin"</summary>
         public string ShortHeader;

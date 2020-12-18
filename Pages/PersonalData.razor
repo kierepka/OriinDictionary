@@ -9,7 +9,7 @@
     <Column>
         <Card Margin="Margin.Is4.OnY">
             <CardHeader>
-                <CardTitle>@MyText?.PersonalDataHeader : @MyText?.PersonalDataSubtitle</CardTitle>
+                <CardTitle>@MyText?.PersonalDataHeader</CardTitle>
                 <AuthorizeView>
                     <Authorized>
                         @MyText?.YourRoles  <strong>@string.Join(",", context.User.Claims.Roles()) </strong>

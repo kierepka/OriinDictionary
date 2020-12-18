@@ -3,12 +3,20 @@
     <Row>
         <Column>
             <Card Margin="Margin.Is4.FromTop">
-                <CardBody Padding="Padding.Is0.FromBottom">
+                <CardBody Padding="Padding.Is0.OnY">
+                    <ListGroup Flush="true">
+                        @foreach (var comment in Comments)
+                        {
+                            <ItemComment MyComment="@comment" />
+                        }
+                    </ListGroup>
+                </CardBody>
+                <CardBody Padding="Padding.Is0.FromTop">
                     <Fields>
                         <Column ColumnSize="ColumnSize.Is11">
                             <Addons>
                                 <Addon AddonType="AddonType.Body">
-                                    <Validations @ref="_validations" Mode="ValidationMode.Manual">
+                                    <Validations @ref="_validations" Mode="ValidationMode.Auto">
                                         <Validation Validator="@ValidationRule.IsNotEmpty">
                                             <TextEdit @bind-Text="@_myValue" Placeholder="@_myText.AddComment"></TextEdit>
                                         </Validation>
@@ -22,14 +30,6 @@
                             </Addons>
                         </Column>
                     </Fields>
-                </CardBody>
-                <CardBody Padding="Padding.Is0.OnY">
-                    <ListGroup Flush="true">
-                        @foreach (var comment in Comments)
-                        {
-                            <ItemComment MyComment="@comment" />
-                        }
-                    </ListGroup>
                 </CardBody>
             </Card>
 

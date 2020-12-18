@@ -39,8 +39,23 @@ namespace OriinDic.Store.Search
             if (!action.Current) currentString = "false";
             var translationResult = new RootObject<ResultBaseTranslation>();
 
+
+            var hasTranslations = string.Empty;
+            switch (action.HasTranslations)
+            {
+                case EnumHasTranslations.WithTranslations:
+                    hasTranslations = "true";
+                    break;
+                case EnumHasTranslations.WithoutTranslations:
+                    hasTranslations = "false";
+                    break;
+                case EnumHasTranslations.None:
+                default:
+                    break;
+            }
+
             var queryString =
-                $"{Const.BaseTerms}?text={action.SearchText}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}&base_term_language_id={action.BaseTermLangId}";
+                $"{Const.BaseTerms}?text={action.SearchText}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}&base_term_language_id={action.BaseTermLangId}&has_translations={hasTranslations}";
             if (action.TranslationLangId != Const.PlLangId) queryString += $"&translation_language_id={action.TranslationLangId}";
 
             try
@@ -51,7 +66,7 @@ namespace OriinDic.Store.Search
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
+                dispatcher.Dispatch(new NotificationAction(e.Message));
             }
 
             if (translationResult is null)
@@ -64,7 +79,7 @@ namespace OriinDic.Store.Search
                 if (translationResult.Count == 0)
                 {
                     //brakuje danych
-                    dispatcher.Dispatch(new ShowNotificationAction(action.NoResults));
+                    dispatcher.Dispatch(new NotificationAction(action.NoResults));
                     return;
                 }
 
@@ -90,7 +105,7 @@ namespace OriinDic.Store.Search
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction(e.ToString()));
+                dispatcher.Dispatch(new NotificationAction(e.ToString()));
             }
 
             dispatcher.Dispatch(new SearchTranslationsResultAction(translationResult ?? new RootObject<ResultBaseTranslation>()));

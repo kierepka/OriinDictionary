@@ -83,7 +83,9 @@
 </Sidebar>
 
 <div class="app-main">
-    <Bar Class="app-bar" Breakpoint="Breakpoint.Desktop" Background="Background.Primary" ThemeContrast="ThemeContrast.Dark">
+    <Bar Class="app-bar" Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"
+         Mode="BarMode.Horizontal" CollapseMode="BarCollapseMode.Small" Background="Background.Primary">
+        
         <BarBrand>
             <BarItem>
                 <BarLink To="">
@@ -92,9 +94,7 @@
                 </BarLink>
             </BarItem>
         </BarBrand>
-        <BarToggler Clicked="@ToggleSidebar">
-
-        </BarToggler>
+        <BarToggler Clicked="@ToggleSidebar" />
         <BarMenu>
             <BarStart>
                 <BarItem>
@@ -123,37 +123,7 @@
                         </BarDropdownMenu>
                     </BarDropdown>
                 </BarItem>
-                <BarItem>
-                    <BarDropdown>
-                        <BarDropdownToggle><Icon Name="IconName.Tint" />Theme</BarDropdownToggle>
-                        <BarDropdownMenu Style="padding: 15px; min-width:550px;" RightAligned="true">
-                            <Row>
-                                <Column Margin="Margin.Is2.FromBottom">
-                                    <Field>
-                                        <Switch TValue="bool" Checked="@(Theme?.Enabled == true)" CheckedChanged="@OnThemeEnabledChanged">Theme enabled</Switch>
-                                    </Field>
-                                </Column>
-                            </Row>
-                            <Row>
-                                <Column Margin="Margin.Is2.FromBottom">
-                                    <Field>
-                                        <Check TValue="bool" Checked="@(Theme?.IsGradient == true)" CheckedChanged="@OnGradientChanged">Gradient colors</Check>
-                                    </Field>
-                                    <Field>
-                                        <Check TValue="bool" Checked="@(Theme?.IsRounded == true)" CheckedChanged="@OnRoundedChanged">Rounded elements</Check>
-                                    </Field>
-                                </Column>
-                            </Row>
-                            <Row>
-                                <Column>
-                                    <Container Fluid="true">
-                                        <ThemeColorSelector Value="@(Theme?.ColorOptions?.Primary)" ValueChanged="@OnThemeColorChanged"></ThemeColorSelector>
-                                    </Container>
-                                </Column>
-                            </Row>
-                        </BarDropdownMenu>
-                    </BarDropdown>
-                </BarItem>
+                
                 <BarItem>
                     <BarLink To="https://www.popko.pl/" Target="Target.Blank">POPKO</BarLink>
                 </BarItem>

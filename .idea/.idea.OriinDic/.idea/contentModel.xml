@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.1.2\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.-625878304.00" t="ExcludeRecursive" />
-    <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.-625878304.00" t="ExcludeRecursive" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.-625878304.00" t="ExcludeRecursive" />
     <e p="E:\source\repos\oriin_dictionary\oriin-dictionary-client" t="IncludeRecursive">
       <e p=".gitattributes" t="Include" />
@@ -18,6 +15,8 @@
         <e p="ItemComment.razor.cs" t="Include" />
         <e p="ItemExample.razor" t="Include" />
         <e p="ItemExample.razor.cs" t="Include" />
+        <e p="ItemLanguage.razor" t="Include" />
+        <e p="ItemLanguage.razor.cs" t="Include" />
         <e p="ItemLink.razor" t="Include" />
         <e p="ItemLink.razor.cs" t="Include" />
         <e p="ItemSynonym.razor" t="Include" />
@@ -36,14 +35,13 @@
         <e p="MainLayout.razor.cs" t="Include" />
         <e p="MyPagination.razor" t="Include" />
         <e p="MyPagination.razor.cs" t="Include" />
-        <e p="MySearch.razor" t="Include" />
-        <e p="MySearch.razor.cs" t="Include" />
         <e p="PageHeader.razor" t="Include" />
         <e p="PageHeader.razor.cs" t="Include" />
         <e p="RedirectToLogin.razor" t="Include" />
         <e p="RedirectToLogin.razor.cs" t="Include" />
         <e p="SurveyPrompt.razor" t="Include" />
         <e p="SurveyPrompt.razor.cs" t="Include" />
+        <e p="ThemeColorSelector.razor" t="Include" />
       </e>
       <e p="Dockerfile" t="Include" />
       <e p="Helpers" t="Include">
@@ -69,6 +67,7 @@
         <e p="Comment.cs" t="Include" />
         <e p="CommentAdd.cs" t="Include" />
         <e p="DeletedObjectResponse.cs" t="Include" />
+        <e p="EnumHasTranslations.cs" t="Include" />
         <e p="Example.cs" t="Include" />
         <e p="IExampleSynonym.cs" t="Include" />
         <e p="Language.cs" t="Include" />
@@ -81,6 +80,7 @@
         <e p="ResultBaseTranslation.cs" t="Include" />
         <e p="RootObject.cs" t="Include" />
         <e p="SearchItem.cs" t="Include" />
+        <e p="SelectableLanguage.cs" t="Include" />
         <e p="Synonym.cs" t="Include" />
         <e p="Token.cs" t="Include" />
         <e p="Translation.cs" t="Include" />
@@ -92,7 +92,7 @@
         <e p="UserUpdate.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
+        <e p="AWS" t="Include">
           <e p="net5.0" t="Include">
             <e p="OriinDic.AssemblyInfo.cs" t="Include" />
           </e>
@@ -203,10 +203,9 @@
           <e p="LinksState.cs" t="Include" />
         </e>
         <e p="Notifications" t="Include">
+          <e p="NotificationAction.cs" t="Include" />
           <e p="NotificationsFeature.cs" t="Include" />
-          <e p="NotificationsReducers.cs" t="Include" />
           <e p="NotificationsState.cs" t="Include" />
-          <e p="ShowNotificationAction.cs" t="Include" />
         </e>
         <e p="Search" t="Include">
           <e p="SearchBaseTermsAction.cs" t="Include" />

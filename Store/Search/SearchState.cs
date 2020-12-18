@@ -135,7 +135,6 @@ namespace OriinDic.Store.Search
             foreach (var dic in dictResult.Results)
             {
                 var ltd = new SearchItem();
-                //Console.WriteLine(JsonSerializer.Serialize(dic));
                 if (!(dic.BaseTerm is null))
                 {
                     ltd.BaseTermId = dic.BaseTerm.Id;
@@ -155,8 +154,8 @@ namespace OriinDic.Store.Search
                         : dic.Translation.Name;
                 }
 
-                //Console.WriteLine(JsonSerializer.Serialize(ltd));
-                searchItems.Add(ltd);
+                if (!searchItems.Contains(ltd))
+                    searchItems.Add(ltd);
             }
 
 

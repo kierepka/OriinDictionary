@@ -1,4 +1,6 @@
-﻿namespace OriinDic.Store.BaseTerms
+﻿using OriinDic.Models;
+
+namespace OriinDic.Store.BaseTerms
 {
     public class BaseTermsFetchDataAction
     {
@@ -15,6 +17,7 @@
         public bool Current { get; init; } = false;
 
         public string Token { get; init; } = string.Empty;
+        public EnumHasTranslations HasTranslations { get; init; }
 
         public BaseTermsFetchDataAction(string slug, string token)
         {
@@ -28,7 +31,10 @@
             Token = token;
         }
 
-        public BaseTermsFetchDataAction(string searchText, long baseTermLangId, long translationLangId, int searchPageNr, long itemsPerPage, bool current, string token)
+        public BaseTermsFetchDataAction(
+            string searchText, long baseTermLangId, long translationLangId, 
+            int searchPageNr, long itemsPerPage, bool current,
+            EnumHasTranslations hasTranslations, string token)
         {
             SearchText = searchText;
             BaseTermLangId = baseTermLangId;
@@ -37,6 +43,7 @@
             ItemsPerPage = itemsPerPage;
             Current = current;
             Token = token;
+            HasTranslations = hasTranslations;
         }
 
         

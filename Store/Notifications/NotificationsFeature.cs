@@ -5,6 +5,6 @@ namespace OriinDic.Store.Notifications
   public class NotificationsFeature : Feature<NotificationsState>
   {
     public override string GetName() => "Notifications";
-    protected override NotificationsState GetInitialState() => NotificationsState.EmptyState;
+    protected override NotificationsState GetInitialState() => new NotificationsState(string.Empty);
   }
 }

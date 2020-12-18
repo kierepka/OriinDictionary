@@ -5,15 +5,17 @@ namespace OriinDic.Helpers
 {
     public static class Const
     {
-        
+
         // ReSharper disable CommentTypo
         //For tests koordynator, uzytkownik, tlumacz, super_user                               
 #if RELEASE
-    private const string ApiDomain = "https://slownik-oriin.kropleduszy.pl:8000/";
+        private const string ApiDomain = "http://oriin.ga:8000/";
 #elif DEBUGLOCAL
-    private const string ApiDomain = "http://localhost:8000/";
+        private const string ApiDomain = "http://localhost:8000/";
 #elif DOCKER
-    private const string ApiDomain = "http://web:8000/";
+        private const string ApiDomain = "http://web:8000";
+#elif AWS || DEBUG
+        private const string ApiDomain = "http://oriin.ga:8000/";
 #else
         private const string ApiDomain = "https://slownik-oriin.kropleduszy.pl:8000/";
 #endif
@@ -83,6 +85,13 @@ namespace OriinDic.Helpers
         internal const string CurrentBaseLangKey = "CurrentBaseLang";
 
         internal const string CurrentTranslations = "CurrentTranslations";
+
+
+        
+        internal const string ThemeIsEnabled = "ThemeIsEnabled";
+        internal const string ThemeIsGradient = "ThemeIsGradient";
+        internal const string ThemeIsRounded = "ThemeIsRounded";
+        internal const string ThemePrimaryColor = "ThemePrimaryColor";
         
 
         /// <summary>

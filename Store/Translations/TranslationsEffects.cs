@@ -95,12 +95,12 @@ namespace OriinDic.Store.Translations
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new ShowNotificationAction(e.Message));
+                dispatcher.Dispatch(new NotificationAction(e.Message));
                 returnCode = System.Net.HttpStatusCode.BadRequest;
             }
             finally
             {
-                dispatcher.Dispatch(new ShowNotificationAction(action.DataLoadedMessage));
+                dispatcher.Dispatch(new NotificationAction(action.DataLoadedMessage));
             }
             dispatcher.Dispatch(
                 new TranslationsFetchDataResultAction(
@@ -169,7 +169,7 @@ namespace OriinDic.Store.Translations
                     httpStatusCode: returnCode)
                 );
 
-            dispatcher.Dispatch(new ShowNotificationAction(action.DataLoadedMessage));
+            dispatcher.Dispatch(new NotificationAction(action.DataLoadedMessage));
         }
 
         [EffectMethod]

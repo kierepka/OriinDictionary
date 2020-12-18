@@ -5,19 +5,19 @@ using Fluxor.Blazor.Web.Components;
 using Microsoft.AspNetCore.Components;
 using OriinDic.Store.Notifications;
 
+using System;
 using System.Threading.Tasks;
 
 namespace OriinDic.Components
 {
-    public partial class PageHeader
+    public partial class PageHeader      : IDisposable
     {
 
-        [Inject]
-        private IState<NotificationsState>? State { get; set; }
+        [Inject] private IActionSubscriber? ActionSubscriber { get; set; }
+
         private string _currentAlertText = string.Empty;
 
-        [Parameter]
-        public string CurrentAlertText
+        [Parameter] public string CurrentAlertText
         {
             get => _currentAlertText;
             set
@@ -46,6 +46,24 @@ namespace OriinDic.Components
         private Alert? MyAlertYesNo { get; set; } = null;
         [Parameter] public EventCallback<long> OnOkEvent { get; set; }
         [Parameter] public EventCallback<long> OnCancelEvent { get; set; }
+
+        private SnackbarStack? _snackbarStack;
+
+        protected override Task OnInitializedAsync()
+        {
+            ActionSubscriber?.SubscribeToAction<NotificationAction>(this, action =>
+            {
+                _snackbarStack?.Push(action.Text, SnackbarColor.Success, "Ok");
+            });
+            return base.OnInitializedAsync();
+        }
+
+        void IDisposable.Dispose()
+        {
+            base.Dispose();
+            // IMPORTANT: Unsubscribe to avoid memory leaks!
+            ActionSubscriber?.UnsubscribeFromAllActions(this);
+        }
 
         private async Task OnOk()
         {
