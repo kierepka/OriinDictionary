@@ -1,0 +1,12 @@
+﻿<ListGroupItem>
+    <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
+        <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
+            <FieldBody ColumnSize="ColumnSize.Is1">
+                <Check TValue="bool" Checked="@this.Language?.Selected" CheckedChanged="@OnCheckedChanged"></Check>
+            </FieldBody>
+            <FieldBody ColumnSize="ColumnSize.Is11">
+                @this.Language?.Name
+            </FieldBody>
+        </Field>
+    </Field>
+</ListGroupItem>
