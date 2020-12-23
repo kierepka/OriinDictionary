@@ -29,10 +29,10 @@ namespace OriinDic
                 {
                     options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
                 })
-                .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })                       //jak jest true to działa za wolno :(
+                .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })                       
                 .AddBulmaProviders()
                 .AddFontAwesomeIcons();
-            //builder.Services.AddSingleton(new HttpClient {BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)});
+            
             builder.Services.AddScoped(sp => 
                 new HttpClient
                 {
@@ -46,7 +46,9 @@ namespace OriinDic
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
+            #if DEBUG
             builder.Services.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Debug));
+            #endif 
             builder.Services.AddSpeechSynthesis();
             
             builder.Services.AddFluxor(o => o

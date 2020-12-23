@@ -173,19 +173,19 @@ else
                         <Field Horizontal="true">
                             <FieldBody ColumnSize="ColumnSize.Is12">
                                 <Buttons Role="ButtonsRole.Addons">
+                                    <AuthorizeView Roles="@Const.RolesEditors">
+                                        <Authorized>
+                                            <Button Color="Color.Primary" Type="ButtonType.Link" To="@($"/editBaseTerm/{TranslationsState.Value.Translation.BaseTermId}")">
+                                                @MyText?.EditBaseTerm
+                                            </Button>                                            
+                                        </Authorized>
+                                        <NotAuthorized>
+                                            <Button Color="Color.Primary" Type="ButtonType.Link" To="@($"/editBaseTerm/{TranslationsState.Value.Translation.BaseTermId}")">
+                                                @MyText?.LinkBaseTerm
+                                            </Button>                                            
+                                        </NotAuthorized>
+                                    </AuthorizeView>
 
-                                    <div class="button has-background-primary">
-                                        <a href="/editBaseTerm/@TranslationsState.Value.Translation.BaseTermId">
-                                            <AuthorizeView Roles="@Const.RolesEditors">
-                                                <Authorized>
-                                                    @MyText?.EditBaseTerm
-                                                </Authorized>
-                                                <NotAuthorized>
-                                                    @MyText?.LinkBaseTerm
-                                                </NotAuthorized>
-                                            </AuthorizeView>
-                                        </a>
-                                    </div>
                                     <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
                                 </Buttons>
                             </FieldBody>

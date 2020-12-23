@@ -1,9 +1,15 @@
 ﻿<ListGroupItem>
     <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
-        <FieldBody ColumnSize="ColumnSize.Is3">
+        <FieldBody ColumnSize="ColumnSize.Is2">
             @if (MyComment is not null)
             {
-                @MyComment.Date
+                @MyComment.Date.ToString("MM/dd/yyyy HH:mm");
+            }
+        </FieldBody>
+        <FieldBody ColumnSize="ColumnSize.Is2">
+            @if (MyComment is not null)
+            {
+                @MyComment.User.UserName
             }
         </FieldBody>
         <FieldBody ColumnSize="ColumnSize.Is9">

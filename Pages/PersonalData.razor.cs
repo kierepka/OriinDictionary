@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using OriinDic.Helpers;
@@ -28,10 +27,13 @@ namespace OriinDic.Pages
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<UsersState>? UserState { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private AuthenticationStateProvider? AuthenticationStateProvider { get; set; }
 
@@ -47,7 +49,7 @@ namespace OriinDic.Pages
                 User = LocalStorage.GetItem<User>(Const.UserKey);
             }
 
-            
+
             LoadUserData(User);
 
 
@@ -64,8 +66,6 @@ namespace OriinDic.Pages
 
         private void UserState_StateChanged(object sender, UsersState e)
         {
-
-            
             if (UserState?.Value.User != null) User = UserState.Value.User;
 
             LoadUserData(User);
@@ -74,7 +74,6 @@ namespace OriinDic.Pages
 
         private void LoadUserData(User user)
         {
-
             if (LocalStorage is null) return;
             if (MyText is null) return;
 
@@ -115,7 +114,7 @@ namespace OriinDic.Pages
                 var token = LocalStorage.GetItem<Token>(Const.TokenKey);
                 Dispatcher?.Dispatch(
                     new UsersAnonymizeAction(
-                        user: User, 
+                        user: User,
                         token: token.AuthToken,
                         MyText?.Anonymized ?? string.Empty));
             }
@@ -123,7 +122,6 @@ namespace OriinDic.Pages
             {
                 ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
-
         }
 
 
@@ -135,7 +133,6 @@ namespace OriinDic.Pages
 
             try
             {
-
                 var token = LocalStorage.GetItem<Token>(Const.TokenKey);
 
                 var uu = new UserUpdate
@@ -151,43 +148,56 @@ namespace OriinDic.Pages
 
                 Dispatcher?.Dispatch(
                     new UsersUpdateAction(
-                        userId: User.Id, 
-                        user: User, 
+                        userId: User.Id,
+                        user: User,
                         token: token.AuthToken,
                         userUpdatedMessage: MyText?.Updated ?? string.Empty));
-
             }
             catch
             {
                 ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
-
         }
 
         private void HandlePasswordChange()
         {
-            
+            if (LocalStorage is null) return;
+
+            if (MyText is null) return;
+
+            try
+            {
+                var token = LocalStorage.GetItem<Token>(Const.TokenKey);
+
+                Dispatcher?.Dispatch(
+                    new UsersPasswordChangeAction(
+                        user: UserPwdUpdate,
+                        token: token.AuthToken,
+                        userPasswordChangeMessage: MyText?.Updated ?? string.Empty));
+            }
+            catch
+            {
+                ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
+            }
         }
 
-        private static void ValidatePassword( ValidatorEventArgs e )
+        private static void ValidatePassword(ValidatorEventArgs e)
         {
-            e.Status = Convert.ToString( e.Value )?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
+            e.Status = Convert.ToString(e.Value)?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
         }
 
-        private static void ValidatePassword3( ValidatorEventArgs e )
+        private static void ValidatePassword3(ValidatorEventArgs e)
         {
-            e.Status = Convert.ToString( e.Value )?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
+            e.Status = Convert.ToString(e.Value)?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
         }
 
-        private void ValidatePassword2( ValidatorEventArgs e )
+        private void ValidatePassword2(ValidatorEventArgs e)
         {
-            
-
-            if ( UserPwdUpdate.ReNewPassword.Length < 6 )
+            if (UserPwdUpdate.ReNewPassword.Length < 6)
             {
                 e.Status = ValidationStatus.Error;
             }
-            else if ( UserPwdUpdate.ReNewPassword != UserPwdUpdate.NewPassword )
+            else if (UserPwdUpdate.ReNewPassword != UserPwdUpdate.NewPassword)
             {
                 e.Status = ValidationStatus.Error;
             }
@@ -196,6 +206,5 @@ namespace OriinDic.Pages
                 e.Status = ValidationStatus.Success;
             }
         }
-
     }
 }

@@ -55,7 +55,7 @@ namespace OriinDic.Store.Languages
         private async Task<List<Language>> GetLanguages(IDispatcher dispatcher)
         {
             var languageList = new List<Language>();
-            var uriStr = $"{Const.GetLanguages}?page=0&per_page={Const.DefaultItemsPerPage}";
+            var uriStr = $"{Const.GetLanguages}?page=1&per_page={Const.DefaultItemsPerPage}";
             RootObject<Language>? languageResult;
             try
             {
@@ -74,8 +74,8 @@ namespace OriinDic.Store.Languages
 
             if (languageResult.Pages <= 1) return languageResult.Results;
 
-
-            for (var i = 0; i < languageResult!.Pages; i++)
+            var pagesCount = languageResult!.Pages + 1;
+            for (var i = 1; i < pagesCount; i++)
             {
                 uriStr = $"{Const.GetLanguages}?page={i}&per_page={Const.DefaultItemsPerPage}";
                 try

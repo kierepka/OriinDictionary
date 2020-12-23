@@ -1,23 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-
 using Blazored.LocalStorage;
-
 using OriinDic.Models;
 
 namespace OriinDic.Helpers
 {
     public static class Func
     {
-
-
         public static User GetCurrentUser(ISyncLocalStorageService localStorage) =>
             localStorage.GetItem<User>(Const.UserKey);
-        
-
 
 
         public static List<string> Roles(this IEnumerable<Claim> claims)
@@ -27,15 +22,18 @@ namespace OriinDic.Helpers
                 .ToList();
         }
 
-  
 
         public enum EnumPasswordOptions
         {
             Alphanum,
             All
-        }    
+        }
+
+        private static Random random = new Random();
+
         public static string CreatePassword(int length, EnumPasswordOptions options)
         {
+#if WINDOWS
             RNGCryptoServiceProvider rProvider = new();
             StringBuilder res = new();
             byte[] random = new byte[1];
@@ -53,6 +51,11 @@ namespace OriinDic.Helpers
                 }
             }
             return res.ToString();
+#else
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+#endif
         }
 
         internal static string GetLangSpeech(long? languageId)
@@ -66,6 +69,5 @@ namespace OriinDic.Helpers
                 _ => Const.EnLangSpeechCode
             };
         }
-
     }
 }

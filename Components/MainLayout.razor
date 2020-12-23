@@ -9,19 +9,19 @@
             <SidebarLabel>@_myText.HeaderMain</SidebarLabel>
             <SidebarItem>
                 <SidebarLink To="/" Title="@_myText.HeaderShowDashboardBase">
-                    <Icon Name="IconName.Search" Margin="Margin.Is3.FromRight" />@_myText.HeaderDashboard
+                    <Icon Name="IconName.Search" Margin="Margin.Is3.FromRight"/>@_myText.HeaderDashboard
                 </SidebarLink>
             </SidebarItem>
             <AuthorizeView Roles="@Const.RolesEditors">
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="comments" Title="@_myText.Comments">
-                            <Icon Name="IconName.Mail" Margin="Margin.Is3.FromRight" />@_myText.Comments
+                            <Icon Name="IconName.Mail" Margin="Margin.Is3.FromRight"/>@_myText.Comments
                         </SidebarLink>
                     </SidebarItem>
                     <SidebarItem>
                         <SidebarLink To="links" Title="@_myText.Links">
-                            <Icon Name="IconName.MoreHorizontal" Margin="Margin.Is3.FromRight" />@_myText.Links
+                            <Icon Name="IconName.MoreHorizontal" Margin="Margin.Is3.FromRight"/>@_myText.Links
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
@@ -30,7 +30,7 @@
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="addbaseterm" Title="@_myText.AddBase">
-                            <Icon Name="IconName.Add" Margin="Margin.Is3.FromRight" />@_myText.AddBase
+                            <Icon Name="IconName.Add" Margin="Margin.Is3.FromRight"/>@_myText.AddBase
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
@@ -40,19 +40,19 @@
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="LogOut" Title="@_myText.LogOut">
-                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.LogOut
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight"/>@_myText.LogOut
                         </SidebarLink>
                     </SidebarItem>
                     <SidebarItem>
                         <SidebarLink To="PersonalData" Title="@_myText.PersonalData">
-                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.PersonalData
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight"/>@_myText.PersonalData
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
                 <NotAuthorized>
                     <SidebarItem>
                         <SidebarLink To="Login" Title="@_myText.LogIn">
-                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.LogIn
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight"/>@_myText.LogIn
                         </SidebarLink>
                     </SidebarItem>
                 </NotAuthorized>
@@ -61,7 +61,7 @@
                 <Authorized>
                     <SidebarItem>
                         <SidebarLink To="Users" Title="@_myText.LogIn">
-                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.Users
+                            <Icon Name="IconName.User" Margin="Margin.Is3.FromRight"/>@_myText.Users
                         </SidebarLink>
                     </SidebarItem>
                 </Authorized>
@@ -69,13 +69,13 @@
 
             <SidebarItem>
                 <SidebarLink To="Settings" Title="@_myText.PersonalSettings">
-                    <Icon Name="IconName.Dashboard" Margin="Margin.Is3.FromRight" />@_myText.PersonalSettings
+                    <Icon Name="IconName.Dashboard" Margin="Margin.Is3.FromRight"/>@_myText.PersonalSettings
                 </SidebarLink>
             </SidebarItem>
             <SidebarLabel>@_myText.HeaderDictionaries</SidebarLabel>
             <SidebarItem>
                 <SidebarLink To="dictionaryLanguages" Title="@_myText.HeaderShowLanguages">
-                    <Icon Name="IconName.Dashboard" Margin="Margin.Is3.FromRight" />@_myText.HeaderLanguages
+                    <Icon Name="IconName.Dashboard" Margin="Margin.Is3.FromRight"/>@_myText.HeaderLanguages
                 </SidebarLink>
             </SidebarItem>
         </SidebarNavigation>
@@ -83,25 +83,28 @@
 </Sidebar>
 
 <div class="app-main">
-    <Bar Class="app-bar" Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"
-         Mode="BarMode.Horizontal" CollapseMode="BarCollapseMode.Small" Background="Background.Primary">
-        
+    <Bar Breakpoint="Breakpoint.Desktop"
+         Background="Background.Secondary"
+         NavigationBreakpoint="Breakpoint.Tablet"
+         ThemeContrast="ThemeContrast.Dark"
+         Mode="BarMode.Horizontal"
+         CollapseMode="BarCollapseMode.Small">
+
         <BarBrand>
             <BarItem>
                 <BarLink To="">
-                    <Icon Name="IconName.Search" />
-                    @_myText.Header
+                    <Icon Name="IconName.Search"/>&nbsp;@_myText.Header
                 </BarLink>
             </BarItem>
         </BarBrand>
-        <BarToggler Clicked="@ToggleSidebar" />
+        <BarToggler Clicked="@ToggleSidebar"/>
         <BarMenu>
             <BarStart>
                 <BarItem>
                     <AuthorizeView>
                         <Authorized>
                             <BarLink To="PersonalData">
-                                <Icon Name="IconName.User" /> @_myText.Hello, @context?.User?.Identity?.Name!
+                                <Icon Name="IconName.User"/> @_myText.Hello, @context?.User?.Identity?.Name!
                             </BarLink>
                             <BarLink To="LogOut">@_myText.LogOut</BarLink>
                         </Authorized>
@@ -123,9 +126,9 @@
                         </BarDropdownMenu>
                     </BarDropdown>
                 </BarItem>
-                
+
                 <BarItem>
-                    <BarLink To="https://www.popko.pl/" Target="Target.Blank">POPKO</BarLink>
+                    <BarLink To="https://www.popko.pl/" Target="Target.Blank" Title="www.popko.pl">POPKO</BarLink>
                 </BarItem>
 
             </BarEnd>
