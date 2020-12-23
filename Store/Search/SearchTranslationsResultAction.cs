@@ -1,12 +1,14 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Search
 {
     public class SearchTranslationsResultAction
     {
-        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new RootObject<ResultBaseTranslation>();
+        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new();
 
-        public SearchTranslationsResultAction(RootObject<ResultBaseTranslation> rootObject)
+        public SearchTranslationsResultAction(RootObject<ResultBaseTranslation> rootObject,
+            HttpStatusCode httpStatusCode)
         {
             RootObject = rootObject;
         }

@@ -1,13 +1,16 @@
 ﻿namespace OriinDic.Store.Translations
 {
-    public class TranslationsAproveAction
+    public record TranslationsApproveAction
     {
-        public string Token { get; init; } = string.Empty;
-        public long TranslationId { get; init; } = 0;
+        public string Token { get; } = string.Empty;
+        public long TranslationId { get; }
 
-        public TranslationsAproveAction(long translationId, string token)
+        public string TranslationApproved { get; } = string.Empty;
+
+        public TranslationsApproveAction(long translationId, string token, string translationApproved)
         {
             Token = token;
+            TranslationApproved = translationApproved;
             TranslationId = translationId;
         }
     }

@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-
+using Blazorise.DataGrid;
+using Blazorise.Snackbar;
 using Fluxor;
-
 using OriinDic.Helpers;
 using OriinDic.Models;
+using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Languages
 {
     public class LanguagesEffects
     {
-        
-
         private readonly HttpClient _httpClient;
-  
+
         public LanguagesEffects(HttpClient http)
         {
             _httpClient = http;
@@ -25,38 +26,74 @@ namespace OriinDic.Store.Languages
         [EffectMethod]
         public async Task HandleFetchDataAction(LanguagesFetchDataAction action, IDispatcher dispatcher)
         {
+            if (action.LocalStorage is null)
+            {
+                return;
+            }
 
+            var languages =
+                action.LocalStorage.GetItem<List<Language>>(Const.LanguagesKey) ?? new List<Language>();
 
-            var languages = await GetLanguages();
+            if (languages.Count == 0)
+            {
+                languages = await GetLanguages(dispatcher);
+                action.LocalStorage.SetItem(Const.LanguagesKey, languages);
+            }
+            else
+            {
+                languages = action.LocalStorage.GetItem<List<Language>>(Const.LanguagesKey);
+            }
+
             dispatcher.Dispatch(new LanguagesFetchDataResultAction(languages));
         }
 
-        private async Task<IEnumerable<Language>> GetLanguages()
+        /// <summary>
+        /// Get all Languages
+        /// </summary>
+        /// <param name="dispatcher"></param>
+        /// <returns></returns>
+        private async Task<List<Language>> GetLanguages(IDispatcher dispatcher)
         {
-            var languageResult = await _httpClient.GetFromJsonAsync<RootObject<Language>>
-                (Const.GetLanguages, Const.HttpClientOptions);
-
-            if (languageResult is null) return new List<Language>();
-            if (languageResult.Pages > 1)
+            var languageList = new List<Language>();
+            var uriStr = $"{Const.GetLanguages}?page=0&per_page={Const.DefaultItemsPerPage}";
+            RootObject<Language>? languageResult;
+            try
             {
-                //TODO: pobierać więcej danych
+                languageResult = await _httpClient.GetFromJsonAsync<RootObject<Language>>
+                    (uriStr, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                return languageList;
             }
 
+            if (languageResult is null)
+                return new List<Language>();
+
+
+            if (languageResult.Pages <= 1) return languageResult.Results;
+
+
+            for (var i = 0; i < languageResult!.Pages; i++)
+            {
+                uriStr = $"{Const.GetLanguages}?page={i}&per_page={Const.DefaultItemsPerPage}";
+                try
+                {
+                    languageResult = await _httpClient.GetFromJsonAsync<RootObject<Language>>
+                        (uriStr, Const.HttpClientOptions);
+                }
+                catch (Exception e)
+                {
+                    dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                    return languageList;
+                }
+
+                if (languageResult is not null) languageList.AddRange(languageResult.Results);
+            }
+
+
             return languageResult.Results;
-
-        }
-
-        [EffectMethod]
-        public async Task HandleStoreLocalDataAction(LanguagesFetchDataStoreAction action, IDispatcher dispatcher)
-        {
-
-            if (action.LocalStorage is null) return;
-
-            var languages = (await GetLanguages()).ToList();
-
-            action.LocalStorage.SetItem(Const.LanguagesKey, languages);
-
-            dispatcher.Dispatch(new LanguagesFetchDataStoreResultAction(languages));
         }
     }
 }

@@ -1,14 +1,17 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsUpdateResultAction
+    public record BaseTermsUpdateResultAction
     {
-        public BaseTerm BaseTerm { get; init; } = new BaseTerm();
+        public BaseTerm BaseTerm { get; } = new();
+        public HttpStatusCode ResultCode { get; }
 
-        public BaseTermsUpdateResultAction(BaseTerm baseTerm)
+        public BaseTermsUpdateResultAction(BaseTerm baseTerm, HttpStatusCode resultCode)
         {
             BaseTerm = baseTerm;
+            ResultCode = resultCode;
         }
     }
 }

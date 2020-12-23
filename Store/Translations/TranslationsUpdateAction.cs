@@ -2,16 +2,19 @@
 
 namespace OriinDic.Store.Translations
 {
-    public class TranslationsUpdateAction
+    public record TranslationsUpdateAction
     {
-        public long TranslationId { get; init; } = 0;
-        public string Token { get; init; } = string.Empty;
-        public Translation Translation { get; init; } = new Translation();
+        public long TranslationId { get; }
+        public string Token { get; } = string.Empty;
+        public Translation Translation { get; } = new();
+        public string TranslationUpdateMessage { get; }
 
-        public TranslationsUpdateAction(long translationId, Translation translation, string token)
+        public TranslationsUpdateAction(long translationId, Translation translation, 
+            string token, string translationUpdateMessage)
         {
             TranslationId = translationId;
             Token = token;
+            TranslationUpdateMessage = translationUpdateMessage;
             Translation = translation;
         }
     }

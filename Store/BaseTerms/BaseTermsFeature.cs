@@ -7,7 +7,7 @@ namespace OriinDic.Store.BaseTerms
         public override string GetName() => "BaseTerms";
 
         protected override BaseTermsState GetInitialState() =>
-            new BaseTermsState(
+            new(
                 isLoading: false,
                 current: false,
                 searchPageNr: 0,

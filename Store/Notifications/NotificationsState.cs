@@ -2,7 +2,7 @@
 {
     public record NotificationsState
     {
-        public string Notification { get; init; } = string.Empty;
+        public string Notification { get; } = string.Empty;
 
         public NotificationsState(string notification)
         {

@@ -1,16 +1,16 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Links
 {
-    public class LinksAddResultAction
+    public record LinksAddResultAction
     {
-        public OriinLink Link { get; init; } = new OriinLink();
-        public string StatusCode { get; init; } = string.Empty;
-
-        public LinksAddResultAction(OriinLink link, string statusCode)
+        public OriinLink Link { get; } = new();
+        public HttpStatusCode HttpStatusCode { get; }
+        public LinksAddResultAction(OriinLink link,  HttpStatusCode httpStatusCode)
         {
             Link = link;
-            StatusCode = statusCode;
+            HttpStatusCode = httpStatusCode;
         }
     }
 }

@@ -2,19 +2,20 @@
 
 namespace OriinDic.Store.Search
 {
-    public class SearchBaseTermsAction
+    public record SearchBaseTermsAction
     {
-        public string SearchText { get; init; } = string.Empty;
-        public long BaseTermLangId { get; init; } = 0;
-        public long TranslationLangId { get; init; } = 0;
-        public long SearchPageNr { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
-        public bool Current { get; init; } = false;
-        public string NoResults { get; init; } = string.Empty;
-        public EnumHasTranslations HasTranslations { get; init; }
+        public string SearchText { get; } = string.Empty;
+        public long BaseTermLangId { get; }
+        public long TranslationLangId { get; }
+        public long SearchPageNr { get; }
+        public long ItemsPerPage { get; }
+        public bool Current { get; }
+        public string NoResults { get; } = string.Empty;
+        public EnumHasTranslations HasTranslations { get; }
+        public string SearchBaseTermMessage { get; }
 
         public SearchBaseTermsAction(string searchText, long baseTermLangId, long translationLangId, long searchPageNr,
-            long itemsPerPage, bool current, string noResults, EnumHasTranslations hasTranslations)
+            long itemsPerPage, bool current, string noResults, EnumHasTranslations hasTranslations, string searchBaseTermMessage)
         {
             SearchText = searchText;
             BaseTermLangId = baseTermLangId;
@@ -24,6 +25,7 @@ namespace OriinDic.Store.Search
             Current = current;
             NoResults = noResults;
             HasTranslations = hasTranslations;
+            SearchBaseTermMessage = searchBaseTermMessage;
         }
 
     }

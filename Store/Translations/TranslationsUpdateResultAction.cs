@@ -6,7 +6,7 @@ namespace OriinDic.Store.Translations
 {
     public class TranslationsUpdateResultAction
     {
-        public Translation Translation { get; init; } = new Translation();
+        public Translation Translation { get; init; } = new();
         public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
         public TranslationsUpdateResultAction(Translation translation, HttpStatusCode httpStatusCode)
         {

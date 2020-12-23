@@ -53,7 +53,7 @@ namespace OriinDic.Components
         {
             ActionSubscriber?.SubscribeToAction<NotificationAction>(this, action =>
             {
-                _snackbarStack?.Push(action.Text, SnackbarColor.Success, "Ok");
+                _snackbarStack?.Push(action.Text, action.SnackbarColor , "Ok");
             });
             return base.OnInitializedAsync();
         }

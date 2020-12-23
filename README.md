@@ -1,5 +1,6 @@
 # Oriin dictionary
 
+[ORIIN.ga](https://oriin.ga)
 
 This is a project that uses Blazor to connect to a Python backend. The goal of the project is to create a dictionary of base words (at the beginning base words are only in Polish, but the system is self-adapting to different base languages).
 

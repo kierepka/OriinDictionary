@@ -1,9 +1,7 @@
+using System;
 using System.Threading.Tasks;
-
 using Blazorise.DataGrid;
-
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
 using OriinDic.Helpers;
 using OriinDic.Models;
@@ -15,7 +13,6 @@ namespace OriinDic.Pages
     // ReSharper disable once ClassNeverInstantiated.Global
     public partial class AllComments
     {
-
         private long _itemsPerPage = Const.DefaultItemsPerPage;
 
         private bool _reloadData = true;
@@ -26,6 +23,7 @@ namespace OriinDic.Pages
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<CommentsState>? CommentState { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
 
@@ -34,8 +32,10 @@ namespace OriinDic.Pages
         {
             await base.OnInitializedAsync();
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new CommentsFetchDataAction(_token));
-
+            Dispatcher?.Dispatch(
+                new CommentsFetchDataAction(
+                    _token,
+                    MyText?.Loaded ?? string.Empty));
         }
 
         private void OnRowRemoved(Comment comment)
@@ -43,18 +43,26 @@ namespace OriinDic.Pages
             _selectedComment = comment;
 
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new CommentsDeleteAction(comment.Id, _token));
-          
+            Dispatcher?.Dispatch(
+                new CommentsDeleteAction(
+                    comment.Id,
+                    _token,
+                    MyText?.Deleted ?? string.Empty));
+
             UpdateLocalData();
         }
-
 
 
         private void OnReadData(DataGridReadDataEventArgs<Comment> e)
         {
             if (!_reloadData) return;
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new CommentsFetchDataAction(_token, e.Page, _itemsPerPage));
+            Dispatcher?.Dispatch(
+                new CommentsFetchDataAction(
+                    _token,
+                    e.Page,
+                    _itemsPerPage,
+                    MyText?.Loaded ?? string.Empty));
             UpdateLocalData();
             _reloadData = false;
         }
@@ -72,12 +80,10 @@ namespace OriinDic.Pages
 
         private void UpdateLocalData()
         {
-            if (CommentState?.Value is null) return; 
+            if (CommentState?.Value is null) return;
             _totalComments = CommentState.Value.RootObject.Results.Count;
             // always call StateHasChanged!
             StateHasChanged();
         }
-
-        
     }
 }

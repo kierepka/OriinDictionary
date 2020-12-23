@@ -1,7 +1,7 @@
 ﻿<ListGroupItem>
     <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
         <FieldBody ColumnSize="ColumnSize.Is11">
-            @if (!(MySynonym is null))
+            @if (MySynonym is not null)
             {
                 @MySynonym.Value
             }

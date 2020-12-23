@@ -89,6 +89,9 @@
         <e p="TranslationLastEdit.cs" t="Include" />
         <e p="User.cs" t="Include" />
         <e p="UserAdd.cs" t="Include" />
+        <e p="UserPwdReset.cs" t="Include" />
+        <e p="UserPwdResetUpdate.cs" t="Include" />
+        <e p="UserPwdUpdate.cs" t="Include" />
         <e p="UserUpdate.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
@@ -183,7 +186,6 @@
           <e p="LanguagesFeature.cs" t="Include" />
           <e p="LanguagesFetchDataAction.cs" t="Include" />
           <e p="LanguagesFetchDataResultAction.cs" t="Include" />
-          <e p="LanguagesFetchDataStoreAction.cs" t="Include" />
           <e p="LanguagesFetchDataStoreResultAction.cs" t="Include" />
           <e p="LanguagesReducers.cs" t="Include" />
           <e p="LanguagesState.cs" t="Include" />
@@ -255,6 +257,12 @@
           <e p="UsersFetchDataResultAction.cs" t="Include" />
           <e p="UsersFetchOneAction.cs" t="Include" />
           <e p="UsersFetchOneResultAction.cs" t="Include" />
+          <e p="UsersPasswordChangeAction.cs" t="Include" />
+          <e p="UsersPasswordChangeResultAction.cs" t="Include" />
+          <e p="UsersPasswordResetAction.cs" t="Include" />
+          <e p="UsersPasswordResetConfirmAction.cs" t="Include" />
+          <e p="UsersPasswordResetConfirmResultAction.cs" t="Include" />
+          <e p="UsersPasswordResetResultAction.cs" t="Include" />
           <e p="UsersReducers.cs" t="Include" />
           <e p="UsersState.cs" t="Include" />
           <e p="UsersUpdateAction.cs" t="Include" />

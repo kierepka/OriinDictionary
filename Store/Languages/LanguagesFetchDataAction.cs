@@ -1,7 +1,14 @@
-﻿namespace OriinDic.Store.Languages
+﻿using Blazored.LocalStorage;
+
+namespace OriinDic.Store.Languages
 {
-    public class LanguagesFetchDataAction
+    public record LanguagesFetchDataAction
     {
-        
+        public ISyncLocalStorageService? LocalStorage { get; }
+
+        public LanguagesFetchDataAction(ISyncLocalStorageService? localStorage)
+        {
+            LocalStorage = localStorage;
+        }
     }
 }

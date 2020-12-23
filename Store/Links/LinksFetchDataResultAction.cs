@@ -1,14 +1,17 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Links
 {
-    public class LinksFetchDataResultAction
+    public record LinksFetchDataResultAction
     {
-        public RootObject<OriinLink> RootObject { get; init; } = new RootObject<OriinLink>();
+        public RootObject<OriinLink> RootObject { get; } = new();
+        public HttpStatusCode HttpStatusCode { get; }
 
-        public LinksFetchDataResultAction(RootObject<OriinLink> rootObject)
+        public LinksFetchDataResultAction(RootObject<OriinLink> rootObject, HttpStatusCode httpStatusCode)
         {
             RootObject = rootObject;
+            HttpStatusCode = httpStatusCode;
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿namespace OriinDic.Store.Translations
 {
-    public class TranslationsFetchOneAction
+    public record TranslationsFetchOneAction
     {
-        public long TranslationId { get; init; } = 0;
+        public long TranslationId { get; }
+        public string FetchOneSuccessMessage { get; } = string.Empty;
 
-        public TranslationsFetchOneAction(long translationId)
+        public TranslationsFetchOneAction(long translationId, string fetchOneSuccessMessage)
         {
             TranslationId = translationId;
+            FetchOneSuccessMessage = fetchOneSuccessMessage;
         }
     }
 }

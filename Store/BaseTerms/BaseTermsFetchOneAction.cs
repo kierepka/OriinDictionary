@@ -1,14 +1,16 @@
 ﻿namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsFetchOneAction
+    public record BaseTermsFetchOneAction
     {
-        public long BaseTermId { get; init; } = 0;
-        public string Token { get; init; } = string.Empty;  
+        public long BaseTermId { get; }
+        public string Token { get; } = string.Empty;
+        public string BaseTermFetchedMessage { get; }
 
-        public BaseTermsFetchOneAction(long baseTermId, string token)
+        public BaseTermsFetchOneAction(long baseTermId, string token, string baseTermFetchedMessage)
         {
             BaseTermId = baseTermId;
             Token = token;
+            BaseTermFetchedMessage = baseTermFetchedMessage;
         }
     }
 }

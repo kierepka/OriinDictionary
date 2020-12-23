@@ -1,17 +1,21 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Links
 {
-    public class LinksDeleteResultAction
+    public record LinksDeleteResultAction
     {
-        public DeletedObjectResponse DelteResponse { get; init; } = new DeletedObjectResponse();
+        public DeletedObjectResponse DelteResponse { get; } = new();
 
-        public RootObject<OriinLink> RootObject { get; init; } = new RootObject<OriinLink>();
+        public RootObject<OriinLink> RootObject { get; } = new();
+        public HttpStatusCode HttpStatusCode { get; }
 
-        public LinksDeleteResultAction(DeletedObjectResponse delteResponse, RootObject<OriinLink> rootObject)
+        public LinksDeleteResultAction(DeletedObjectResponse delteResponse, 
+            RootObject<OriinLink> rootObject, HttpStatusCode httpStatusCode)
         {
             DelteResponse = delteResponse;
             RootObject = rootObject;
+            HttpStatusCode = httpStatusCode;
         }
     }
 }

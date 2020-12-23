@@ -6,11 +6,11 @@ namespace OriinDic.Models
     {
         [JsonPropertyName("after")]
         // ReSharper disable once UnusedMember.Global
-        public BaseTerm After { get; set; } = new BaseTerm();
+        public BaseTerm After { get; set; } = new();
 
         [JsonPropertyName("before")]
         // ReSharper disable once UnusedMember.Global
-        public BaseTerm Before { get; set; } = new BaseTerm();
+        public BaseTerm Before { get; set; } = new();
 
         public Change()
         {

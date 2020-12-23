@@ -6,11 +6,11 @@ namespace OriinDic.Models
     {
         [JsonPropertyName("after")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public BaseTerm After { get; set; } = new BaseTerm();
+        public BaseTerm After { get; set; } = new();
 
         [JsonPropertyName("before")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public BaseTerm Before { get; set; } = new BaseTerm();
+        public BaseTerm Before { get; set; } = new();
 
         public BaseTermChange()
         {

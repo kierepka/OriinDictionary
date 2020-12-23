@@ -211,7 +211,7 @@ else
                                 <ListComments Comments="@TranslationsState.Value.Comments" OnCommentAdd="OnCommentAdd" />
                             </Authorized>
                             <NotAuthorized>
-                                @if (!(TranslationsState?.Value?.Comments is null))
+                                @if (TranslationsState?.Value?.Comments is not null)
                                 {
                                     <ListGroup Flush="true">
                                         @foreach (var comment in TranslationsState.Value.Comments)
@@ -219,7 +219,7 @@ else
                                             <ListGroupItem>
                                                 <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
                                                     <FieldBody ColumnSize="ColumnSize.Is12">
-                                                        @if (!(comment is null))@comment.Text
+                                                        @comment.Text
                                                     </FieldBody>
                                                 </Field>
                                             </ListGroupItem>

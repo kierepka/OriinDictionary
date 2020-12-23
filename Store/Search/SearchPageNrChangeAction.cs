@@ -1,18 +1,19 @@
 ﻿namespace OriinDic.Store.Search
 {
-    public class SearchPageNrChangeAction
+    public record SearchPageNrChangeAction
     {
-        public string PageActionName { get; init; } = string.Empty;
-        public string SearchText { get; init; } = string.Empty;
-        public long BaseTermLangId { get; init; } = 0;
-        public long TranslationLangId { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
-        public long SearchPageNr { get; init; } = 0;
-        public bool Current { get; init; } = false;
-        public string NoResults { get; init; } = string.Empty;
+        public string PageActionName { get; } = string.Empty;
+        public string SearchText { get; } = string.Empty;
+        public long BaseTermLangId { get; }
+        public long TranslationLangId { get; }
+        public long ItemsPerPage { get; }
+        public long SearchPageNr { get; }
+        public bool Current { get; }
+        public string NoResults { get; } = string.Empty;
+        public string SearchTranslationMessage { get; }
 
         public SearchPageNrChangeAction(string pageActionName, string searchText, long baseTermLangId, long translationLangId, 
-            long itemsPerPage, long searchPageNr, bool current, string noResults)
+            long itemsPerPage, long searchPageNr, bool current, string noResults, string searchTranslationMessage)
         {
             PageActionName = pageActionName;
             SearchText = searchText;
@@ -21,7 +22,8 @@
             ItemsPerPage = itemsPerPage;
             SearchPageNr = searchPageNr;
             Current = current;
-            NoResults = noResults;            
+            NoResults = noResults;
+            SearchTranslationMessage = searchTranslationMessage;
         }
     }
 }

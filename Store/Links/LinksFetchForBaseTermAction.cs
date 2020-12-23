@@ -1,15 +1,17 @@
 ﻿namespace OriinDic.Store.Links
 {
-    public class LinksFetchForBaseTermAction
+    public record LinksFetchForBaseTermAction
     {
-        public long BaseTermId { get; init; } = 0;
-        public string Token { get; init; } = string.Empty;
+        public long BaseTermId { get; }
+        public string Token { get; } = string.Empty;
+        public string LinkFetchedMessage { get; }
 
 
-        public LinksFetchForBaseTermAction(long baseTermId, string token)
+        public LinksFetchForBaseTermAction(long baseTermId, string token, string linkFetchedMessage)
         {
             BaseTermId = baseTermId;
             Token = token;
+            LinkFetchedMessage = linkFetchedMessage;
         }
     }
 }

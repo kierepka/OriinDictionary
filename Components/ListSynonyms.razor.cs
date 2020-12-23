@@ -17,8 +17,8 @@ namespace OriinDic.Components
 
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
-        private List<Synonym> _synonyms = new List<Synonym>();
-        private Text _myText = new Text();
+        private List<Synonym> _synonyms = new();
+        private Text _myText = new();
 
         [Parameter] public EventCallback<Synonym> OnSynonymCallback { get; set; }
 

@@ -71,7 +71,7 @@
 
                 <Select TValue="int" SelectedValueChanged="@(e => context.TriggerFilterChange(e.ToString().Contains(" *") ? "" : e.ToString()))">
                     <SelectItem Value="@("*")">@(MyText?.NotSet ?? string.Empty)</SelectItem>
-                    @if (!(LanguagesState is null))
+                    @if (LanguagesState is not null)
                     {
                         @foreach (var item in LanguagesState.Value.Languages)
                         {
@@ -117,7 +117,7 @@
                     }
                     else
                     {
-                        @if (!(LanguagesState is null))
+                        @if (LanguagesState is not null)
                         {
                             var selectableTransLanguages = new List<SelectableLanguage>();
                             foreach (var lang in LanguagesState.Value.Languages)
@@ -142,7 +142,7 @@
 
                 <Select TValue="int" SelectedValueChanged="@(e => context.TriggerFilterChange(e.ToString().Contains(" *") ? "" : e.ToString()))">
                     <SelectItem Value="@(" *")">@MyText?.NotSet</SelectItem>
-                    @if (!(LanguagesState is null))
+                    @if (LanguagesState is not null)
                     {
                         @foreach (var item in LanguagesState.Value.Languages)
                         {
@@ -187,7 +187,7 @@
                     }
                     else
                     {
-                        @if (!(LanguagesState is null))
+                        @if (LanguagesState is not null)
                         {
                             var selectableCoordLanguages = new List<SelectableLanguage>();
                             foreach (var lang in LanguagesState.Value.Languages)

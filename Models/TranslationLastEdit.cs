@@ -27,7 +27,7 @@ namespace OriinDic.Models
 
         [JsonPropertyName("user")]
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-        public User User { get; set; } = new User();
+        public User User { get; set; } = new();
 
         [JsonPropertyName("change")]
         // ReSharper disable once UnusedMember.Global

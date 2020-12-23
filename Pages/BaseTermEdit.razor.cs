@@ -19,7 +19,7 @@ namespace OriinDic.Pages
     public partial class BaseTermEdit
     {
 
-        private Token _token = new Token();
+        private Token _token = new();
         private AuthenticationState? _authState;
 
         [Parameter] public long? BaseTermId { get; set; }
@@ -56,14 +56,14 @@ namespace OriinDic.Pages
 
             await base.OnInitializedAsync();
 
-            if (!(AuthenticationStateProvider is null))
+            if (AuthenticationStateProvider is not null)
                 _authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
 
             var doLangFetch = LanguagesState is null;
             if (LanguagesState != null) doLangFetch = !LanguagesState.Value.Languages.Any();
             if (doLangFetch)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
             if (LocalStorage is null) return;
 
@@ -72,9 +72,17 @@ namespace OriinDic.Pages
             var token = _token?.AuthToken ?? string.Empty;
 
             if (BaseTermId is null)
-                Dispatcher?.Dispatch(new BaseTermsFetchOneSlugAction(slug: BaseTermSlug ?? string.Empty, token: token));
+                Dispatcher?.Dispatch(
+                    new BaseTermsFetchOneSlugAction(
+                        slug: BaseTermSlug ?? string.Empty, 
+                        token: token,
+                        baseTermFetchedMessage: MyText?.Loaded ?? string.Empty));
             else
-                Dispatcher?.Dispatch(new BaseTermsFetchOneAction(baseTermId: BaseTermId.Value, token: token));
+                Dispatcher?.Dispatch(
+                    new BaseTermsFetchOneAction(
+                        baseTermId: BaseTermId.Value, 
+                        token: token,
+                        baseTermFetchedMessage: MyText?.Loaded ?? string.Empty));
 
 
         }
@@ -93,11 +101,18 @@ namespace OriinDic.Pages
 
             var token = _token.AuthToken;
 
-            Dispatcher?.Dispatch(new LinksAddAction(link, token));
+            Dispatcher?.Dispatch(
+                new LinksAddAction(
+                    link: link, 
+                    token: token, 
+                    linksAddedMessage: MyText?.AddedLink ?? string.Empty));
 
 
             Dispatcher?.Dispatch(
-                    new LinksFetchForBaseTermAction(link.BaseTermId ?? 0, token));
+                    new LinksFetchForBaseTermAction(
+                        baseTermId: link.BaseTermId ?? 0, 
+                        token: token, 
+                        linkFetchedMessage: MyText?.Loaded ?? string.Empty));
 
         }
 
@@ -116,7 +131,7 @@ namespace OriinDic.Pages
 
             var token = LocalStorage.GetItem<Token>(Const.TokenKey);
 
-            if (!(bt is null))
+            if (bt is not null)
                 Dispatcher?.Dispatch(
                     new BaseTermsUpdateAction(baseTermId: bt.Id, baseTerm: bt,
                     token: token.AuthToken));
@@ -148,11 +163,11 @@ namespace OriinDic.Pages
             {
                 var retHeader = string.Empty;
 
-                if (!(AuthenticationStateProvider is null))
+                if (AuthenticationStateProvider is not null)
                 {
 
                     var user = _authState?.User;
-                    if (!(user is null))
+                    if (user is not null)
                     {
                         if (user.IsInRole(Const.RolesEditors))
                         {

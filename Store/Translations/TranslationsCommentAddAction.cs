@@ -1,20 +1,23 @@
-﻿using OriinDic.Models;
+﻿using System;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Translations
 {
 
-    public class TranslationsCommentAddAction
+    public record TranslationsCommentAddAction
     {
-        public string Token { get; init; } = string.Empty;
-        public Comment Comment { get; init; } = new Comment();
+        public string Token { get; } = string.Empty;
+        public Comment Comment { get; } = new();
+        public string CommentAddedMessage { get; } = string.Empty;
+        public long TranslationId { get; }
 
-        public long TranslationId { get; init; } = 0;
-
-        public TranslationsCommentAddAction(Comment comment, string token, long translationId)
+        public TranslationsCommentAddAction(Comment comment, string token, 
+            long translationId, string commentAddedMessage)
         {
             Token = token;
             Comment = comment;
             TranslationId = translationId;
+            CommentAddedMessage = commentAddedMessage;
         }
     }
     

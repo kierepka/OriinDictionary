@@ -9,7 +9,7 @@ namespace OriinDic.Pages
     // ReSharper disable once ClassNeverInstantiated.Global
     public partial class Login
     {
-        private readonly LoginInput _loginModel = new LoginInput();
+        private readonly LoginInput _loginModel = new();
 
         private bool _isLoading;
 
@@ -26,7 +26,7 @@ namespace OriinDic.Pages
 
             var result = await AuthService.Login(_loginModel);
 
-            if (!(MyText is null)) 
+            if (MyText is not null) 
                 if (result.Successful)
                     NavigationManager?.NavigateTo("/");
                 else

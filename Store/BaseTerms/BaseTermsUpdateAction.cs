@@ -2,11 +2,11 @@
 
 namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsUpdateAction
+    public record BaseTermsUpdateAction
     {
-        public long BaseTermId { get; init; } = 0;
-        public string Token { get; init; } = string.Empty;
-        public BaseTerm BaseTerm { get; init; } = new BaseTerm();
+        public long BaseTermId { get; }
+        public string Token { get; } = string.Empty;
+        public BaseTerm BaseTerm { get; } = new();
 
         public BaseTermsUpdateAction(long baseTermId, BaseTerm baseTerm, string token)
         {

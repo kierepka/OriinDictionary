@@ -18,7 +18,7 @@ namespace OriinDic.Pages
 {
     public partial class TranslationEdit
     {
-        private Token _token = new Token();
+        private Token _token = new();
         private AuthenticationState? _authState;
 
         [Parameter] public long TranslationId { get; set; }
@@ -67,11 +67,11 @@ namespace OriinDic.Pages
             {
                 var retHeader = string.Empty;
 
-                if (!(AuthenticationStateProvider is null))
+                if (AuthenticationStateProvider is not null)
                 {
 
                     var user = _authState?.User;
-                    if (!(user is null))
+                    if (user is not null)
                     {
                         if (user.IsInRole(Const.RolesEditors))
                         {
@@ -92,13 +92,13 @@ namespace OriinDic.Pages
             await base.OnInitializedAsync();
 
             if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
-            if (!(AuthenticationStateProvider is null))
+            if (AuthenticationStateProvider is not null)
                 _authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
             var token = string.Empty;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 _token = LocalStorage.GetItem<Token>(Const.TokenKey);
                 token = _token?.AuthToken ?? string.Empty;
@@ -114,15 +114,19 @@ namespace OriinDic.Pages
         {
             if (TranslationsState?.Value?.Translation == null) return;
 
+            if (MyText is null) return;
+             
             comment.TranslationId = TranslationsState.Value.Translation.Id;
 
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
                 comment.User = Func.GetCurrentUser(LocalStorage);
 
+            
             Dispatcher?.Dispatch(
-                new TranslationsCommentAddAction(
-                    comment, _token.AuthToken, TranslationsState.Value.Translation.Id));
-
+                    new TranslationsCommentAddAction(
+                        comment, _token.AuthToken,
+                        TranslationsState.Value.Translation.Id,
+                        MyText.AddedComment));
         }
 
 
@@ -134,7 +138,9 @@ namespace OriinDic.Pages
                 ShowAlert(MyText.SaveError);
                 return;
             }
-            Dispatcher?.Dispatch(new TranslationsAproveAction(TranslationId, _token.AuthToken));
+            Dispatcher?.Dispatch(
+                new TranslationsApproveAction(TranslationId, _token.AuthToken, 
+                    MyText.TranslationSaved));
 
         }
         private void OnSaveClicked()
@@ -145,7 +151,11 @@ namespace OriinDic.Pages
                 ShowAlert(MyText.SaveError);
                 return;
             }
-            Dispatcher?.Dispatch(new TranslationsUpdateAction(TranslationId, TranslationsState.Value.Translation, _token.AuthToken));
+            Dispatcher?.Dispatch(
+                new TranslationsUpdateAction(TranslationId, 
+                    TranslationsState.Value.Translation,
+                    _token.AuthToken,
+                    MyText.TranslationSaved));
 
         }
 

@@ -1,16 +1,18 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Users
 {
-    public class UsersAnonymizeResultAction
+    public record UsersAnonymizeResultAction
     {
-        public User User { get; init; } = new User();
-        public string StatusCode { get; init; } = string.Empty;
-
-        public UsersAnonymizeResultAction(User user, string statusCode)
+        public User User { get; } = new();
+        public HttpStatusCode ResultCode { get; } = HttpStatusCode.OK;
+        
+        public UsersAnonymizeResultAction(User user, HttpStatusCode resultCode)
         {
             User = user;
-            StatusCode = statusCode;
+            ResultCode = resultCode;
+        
         }
     }
 }

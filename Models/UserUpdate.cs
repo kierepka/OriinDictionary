@@ -14,11 +14,11 @@ namespace OriinDic.Models
         [JsonPropertyName("translating_languages")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         // ReSharper disable once CollectionNeverUpdated.Global
-        public List<int> TranslatingLanguages { get; set; } = new List<int>();
+        public List<int> TranslatingLanguages { get; set; } = new();
         [JsonPropertyName("coordinating_languages")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         // ReSharper disable once CollectionNeverUpdated.Global
-        public List<int> CoordinatingLanguages { get; set; } = new List<int>();
+        public List<int> CoordinatingLanguages { get; set; } = new();
 
         public UserUpdate()
         {

@@ -4,10 +4,10 @@ using System.Net;
 
 namespace OriinDic.Store.Translations
 {
-    public class TranslationsAddResultAction
+    public record TranslationsAddResultAction
     {
-        public Translation Translation { get; init; } = new Translation();
-        public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
+        public Translation Translation { get; } = new();
+        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
 
         public TranslationsAddResultAction(Translation translation, HttpStatusCode resultCode)
         {

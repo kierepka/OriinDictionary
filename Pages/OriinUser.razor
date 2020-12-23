@@ -49,7 +49,7 @@
                 <Field IsHorizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Language</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        @if (!(LanguagesState is null))
+                        @if (LanguagesState is not null)
                         {
                             @foreach (var lang in LanguagesState.Value.Languages)
                             {
@@ -68,7 +68,7 @@
                         }
                         else
                         {
-                            @if (!(LanguagesState is null))
+                            @if (LanguagesState is not null)
                             {
 
                                 @foreach (var langT in LanguagesState.Value.Languages)
@@ -94,7 +94,7 @@
                         else
                         {
 
-                            @if (!(LanguagesState is null))
+                            @if (LanguagesState is not null)
                             {
                                 @foreach (var langC in LanguagesState.Value.Languages)
                                 {

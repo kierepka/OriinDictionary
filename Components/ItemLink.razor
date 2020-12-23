@@ -1,7 +1,7 @@
 ﻿<ListGroupItem>
     <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
         <FieldBody ColumnSize="ColumnSize.Is11">
-            @if (!(MyLink is null))
+            @if (MyLink is not null)
             {
                 <div class="box">
                     <a href="context.Link">@MyLink.Link</a>

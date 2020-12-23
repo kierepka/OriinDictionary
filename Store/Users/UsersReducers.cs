@@ -7,7 +7,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceAddAction(UsersState state, UsersAddAction action) =>
-            new UsersState(
+            new(
                  isLoading: state.IsLoading,
                  itemsPerPage: state.ItemsPerPage,
                  searchPageNr: state.SearchPageNr,
@@ -23,13 +23,13 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceAddResultAction(UsersState state, UsersAddResultAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
                 userId: state.UserId,
                 token: state.Token,
-                statusCode: action.StatusCode,
+                statusCode: action.ResultCode,
                 user: action.User,
                 rootObject: state.RootObject,
                 userUpdate: state.UserUpdate,
@@ -40,7 +40,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceAnonymizeAction(UsersState state, UsersAnonymizeAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -56,13 +56,13 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceAnonymizeResultAction(UsersState state, UsersAnonymizeResultAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
                 userId: state.UserId,
                 token: state.Token,
-                statusCode: action.StatusCode,
+                statusCode: action.ResultCode,
                 user: action.User,
                 rootObject: state.RootObject,
                 userUpdate: state.UserUpdate,
@@ -72,7 +72,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceDeleteAction(UsersState state, UsersDeleteAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -88,7 +88,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceDeleteResultAction(UsersState state, UsersDeleteResultAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -104,7 +104,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceFetchOneAction(UsersState state, UsersFetchOneAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -120,7 +120,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceFetchOneResultAction(UsersState state, UsersFetchOneResultAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -136,7 +136,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceFetchDataAction(UsersState state, UsersFetchDataAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: action.ItemsPerPage,
                 searchPageNr: action.SearchPageNr,
@@ -152,7 +152,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceFetchDataResultAction(UsersState state, UsersFetchDataResultAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -168,7 +168,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceUpdateAction(UsersState state, UsersUpdateAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,
@@ -184,7 +184,7 @@ namespace OriinDic.Store.Users
 
         [ReducerMethod]
         public static UsersState ReduceUpdateResultAction(UsersState state, UsersUpdateResultAction action) =>
-            new UsersState(
+            new(
                 isLoading: state.IsLoading,
                 itemsPerPage: state.ItemsPerPage,
                 searchPageNr: state.SearchPageNr,

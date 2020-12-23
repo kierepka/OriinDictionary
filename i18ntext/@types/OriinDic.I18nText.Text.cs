@@ -19,6 +19,12 @@ namespace OriinDic.I18nText
         /// <summary>"Komentarz dodany"</summary>
         public string AddedComment;
 
+        /// <summary>"Dodano odnośnik"</summary>
+        public string AddedLink;
+
+        /// <summary>"Użytkownik dodany"</summary>
+        public string AddedUser;
+
         /// <summary>"Dodaj przykład"</summary>
         public string AddExample;
 
@@ -109,11 +115,17 @@ namespace OriinDic.I18nText
         /// <summary>"Tekst"</summary>
         public string CommentText;
 
+        /// <summary>"Potwierdź"</summary>
+        public string Confirm;
+
         /// <summary>"Zarządzanie językami"</summary>
         public string CoordinatingLanguages;
 
         /// <summary>"Dodaj"</summary>
         public string Create;
+
+        /// <summary>"Aktualne hasło"</summary>
+        public string CurrentPassword;
 
         /// <summary>"Zatwierdzone"</summary>
         public string CurrentTranslations;
@@ -126,6 +138,9 @@ namespace OriinDic.I18nText
 
         /// <summary>"Usuń"</summary>
         public string Delete;
+
+        /// <summary>"Dane usunięto"</summary>
+        public string Deleted;
 
         /// <summary>"Podczas usuwania wystąpił błąd!"</summary>
         public string DeletionError;
@@ -262,6 +277,9 @@ namespace OriinDic.I18nText
         /// <summary>"Mężczyzna"</summary>
         public string MaleGender;
 
+        /// <summary>"Nowe hasło"</summary>
+        public string NewPassword;
+
         /// <summary>"Nowy"</summary>
         public string NewTxt;
 
@@ -286,6 +304,9 @@ namespace OriinDic.I18nText
         /// <summary>"Nie ustawiony"</summary>
         public string NotSet;
 
+        /// <summary>"Zmiana hasła"</summary>
+        public string PasswordChange;
+
         /// <summary>"Dane"</summary>
         public string PersonalData;
 
@@ -300,6 +321,9 @@ namespace OriinDic.I18nText
 
         /// <summary>"Poprzednia"</summary>
         public string Previous;
+
+        /// <summary>"Powtórz nowe hasło"</summary>
+        public string ReNewPassword;
 
         /// <summary>"Przywróć"</summary>
         public string Reset;
@@ -358,8 +382,14 @@ namespace OriinDic.I18nText
         /// <summary>"Języki do tłumaczenia"</summary>
         public string TranslatingLanguages;
 
+        /// <summary>"Dodano tłumaczenie"</summary>
+        public string TranslationAdded;
+
         /// <summary>"Zatwierdź"</summary>
         public string TranslationApproval;
+
+        /// <summary>"Tłumaczenie zatwierdzono"</summary>
+        public string TranslationApproved;
 
         /// <summary>"Aktualny"</summary>
         public string TranslationCurrent;

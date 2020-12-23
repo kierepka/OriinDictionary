@@ -10,7 +10,7 @@ namespace OriinDic.Components
     public partial class Keyboard
     {
 
-        [Parameter] public Language? MyLanguage { get; set; } = new Language();
+        [Parameter] public Language? MyLanguage { get; set; } = new();
 
         [Parameter] public string MyTextLoading { get; set; } = string.Empty;
 
@@ -22,7 +22,7 @@ namespace OriinDic.Components
         private IEnumerable<List<string>> GetSpecialChars()
         {
             
-            List<List<string>> returnList = new List<List<string>>();
+            List<List<string>> returnList = new();
             if (MyLanguage is null) return returnList;
             if (string.IsNullOrEmpty(MyLanguage.SpecialCharacters)) return returnList;
             

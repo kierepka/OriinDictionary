@@ -54,10 +54,10 @@ else
                                 <Buttons Role="ButtonsRole.Addons">
                                     <AuthorizeView Roles="@Const.RolesEditors">
                                         <Authorized>
-                                            <Button Color="Color.Primary" Type="ButtonType.Submit" Clicked="@OnSaveClicked">@MyText?.Create</Button>                                            
-                                            <input class="button" type="button" value="@MyText?.Back" onClick="history.back();">
+                                            <Button Color="Color.Primary" Type="ButtonType.Submit" Clicked="@OnSaveClicked">@MyText?.Create</Button>
                                         </Authorized>
                                     </AuthorizeView>
+                                    <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
                                     <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.Speech</Button>
                                 </Buttons>
                             </FieldBody>

@@ -1,4 +1,5 @@
-﻿using Fluxor;
+﻿using System.Net;
+using Fluxor;
 
 namespace OriinDic.Store.Users
 {
@@ -7,13 +8,13 @@ namespace OriinDic.Store.Users
         public override string GetName() => "Users";
 
 
-        protected override UsersState GetInitialState() => new UsersState(
+        protected override UsersState GetInitialState() => new(
             isLoading: false,
             itemsPerPage: 0,
             searchPageNr: 0,
             userId: 0, 
             token: string.Empty,
-            statusCode: string.Empty,
+            statusCode: HttpStatusCode.OK,
             user: new Models.User(),
             rootObject: new Models.RootObject<Models.User>(),
             userUpdate: new Models.UserUpdate(),

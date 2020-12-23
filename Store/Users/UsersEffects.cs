@@ -4,9 +4,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Blazorise.Snackbar;
 using Fluxor;
 using OriinDic.Helpers;
 using OriinDic.Models;
+using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Users
 {
@@ -23,49 +25,127 @@ namespace OriinDic.Store.Users
         [EffectMethod]
         public async Task HandleAddDataAction(UsersAddAction action, IDispatcher dispatcher)
         {
-
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
-            var response = await _httpClient.PostAsJsonAsync(
-                $"{Const.AddUser}", action.User);
+            try
+            {
+                response = await _httpClient.PostAsJsonAsync(
+                    $"{Const.AddUser}", action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
             var returnData = new User();
-            var returnString = string.Empty;
-            if (!(response.Content is null))
+            try
             {
-                returnData = await response.Content.ReadFromJsonAsync<User>();
-                returnString = response.IsSuccessStatusCode ? string.Empty : response.StatusCode.ToString();
+                if (response is not null)
+                {
+                    returnData = await response.Content.ReadFromJsonAsync<User>();
+                    returnCode = response.StatusCode;
+                }
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
 
-            dispatcher.Dispatch(new UsersAddResultAction(returnData ?? new User(), returnString));
+            dispatcher.Dispatch(
+                new UsersAddResultAction(
+                    user: returnData ?? new User(),
+                    resultCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserAddedMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
         public async Task HandleAnonymizeDataAction(UsersAnonymizeAction action, IDispatcher dispatcher)
         {
-
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
-            var response = await _httpClient.PostAsJsonAsync(
-                $"{Const.Users}{action.User.Id}/anonymize/", action.User);
+            try
+            {
+                response = await _httpClient.PostAsJsonAsync(
+                    $"{Const.Users}{action.User.Id}/anonymize/", action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
             var returnData = new User();
-            var returnString = string.Empty;
-            if (!(response.Content is null))
+            try
             {
-                returnData = await response.Content.ReadFromJsonAsync<User>();
-                returnString = response.IsSuccessStatusCode ? string.Empty : response.StatusCode.ToString();
+                if (response is not null)
+                {
+                    returnData = await response.Content.ReadFromJsonAsync<User>();
+                    returnCode = response.StatusCode;
+                }
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
 
-            dispatcher.Dispatch(new UsersAddResultAction(returnData ?? new User(), returnString));
+            dispatcher.Dispatch(
+                new UsersAnonymizeResultAction(
+                    user: returnData ?? new User(),
+                    resultCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserAnonymizedMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
+        public async Task HandlePasswordChangeAction(UsersPasswordChangeAction action, IDispatcher dispatcher)
+        {
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+
+            try
+            {
+                response = await _httpClient.PostAsJsonAsync(
+                    $"{Const.PasswordChange}", action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
+
+            returnCode = response.StatusCode;
+            
+
+
+            //dispatcher.Dispatch(
+            //    new UsersPasswordChangeResultAction(statusCode: returnCode));
+
+            //if (returnCode != HttpStatusCode.BadRequest)
+            //    dispatcher.Dispatch(
+            //        new NotificationAction(action.UserAnonymizedMessage, SnackbarColor.Success));
+        }
+        
+        
+        [EffectMethod]
         public async Task HandleDeleteDataAction(UsersDeleteAction action, IDispatcher dispatcher)
         {
-
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
             var returnObject = new DeletedObjectResponse
@@ -78,19 +158,32 @@ namespace OriinDic.Store.Users
             {
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Token", action.Token);
-                var response = await _httpClient.DeleteAsync(
+                response = await _httpClient.DeleteAsync(
                     $"{Const.Users}{action.UserId}/");
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
-                if (!(response is null))
+
+            if (response != null)
+            {
+                try
                 {
-                    if (response.Content != null)
-                        returnObject = await response.Content.ReadFromJsonAsync<DeletedObjectResponse>();
+                    returnObject = await response.Content.ReadFromJsonAsync<DeletedObjectResponse>();
+
                     if (response.StatusCode == HttpStatusCode.Accepted ||
                         response.StatusCode == HttpStatusCode.NoContent ||
                         response.StatusCode == HttpStatusCode.OK)
                     {
                         if (returnObject != null)
+                        {
                             returnObject.Deleted = true;
+                            dispatcher.Dispatch(
+                                new NotificationAction(action.UserDeleteMessage, SnackbarColor.Success));
+                        }
                     }
                     else
                     {
@@ -101,64 +194,121 @@ namespace OriinDic.Store.Users
                         }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                if (returnObject!=null)
-                    returnObject.Detail = $"Error {e}";
+                catch (Exception e)
+                {
+                    dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                    returnCode = HttpStatusCode.BadRequest;
+                }
             }
 
-            dispatcher.Dispatch(new UsersDeleteResultAction(returnObject ?? new DeletedObjectResponse()));
+            dispatcher.Dispatch(
+                new UsersDeleteResultAction(
+                    deleteResponse: returnObject ?? new DeletedObjectResponse(),
+                    resultCode: returnCode));
         }
 
         [EffectMethod]
         public async Task HandleFetchDataAction(UsersFetchDataAction action, IDispatcher dispatcher)
         {
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme: "Token", action.Token);
+            var returnCode = HttpStatusCode.OK;
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue(scheme: "Token", action.Token);
 
             var userResult = new RootObject<User>();
+
             var queryString =
                 $"{Const.Users}?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
+
             try
             {
-
                 userResult = await _httpClient.GetFromJsonAsync<RootObject<User>>(
                     requestUri: queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {
-                var a = e;
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
-            dispatcher.Dispatch(new UsersFetchDataResultAction(userResult ??  new RootObject<User>()));
+            dispatcher.Dispatch(
+                new UsersFetchDataResultAction(
+                    rootObject: userResult ?? new RootObject<User>(),
+                    resultCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserFetchedMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
         public async Task HandleFetchOneAction(UsersFetchOneAction action, IDispatcher dispatcher)
         {
-
             var url = $"{Const.Users}{action.UserId}/";
-            var returnData = await _httpClient.GetFromJsonAsync<User>(url, Const.HttpClientOptions);
+            User? returnData = null;
+            var returnCode = HttpStatusCode.OK;
+
+            try
+            {
+                returnData = await _httpClient.GetFromJsonAsync<User>(url, Const.HttpClientOptions);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
 
-            dispatcher.Dispatch(new UsersFetchOneResultAction(returnData ?? new User()));
+            dispatcher.Dispatch(
+                new UsersFetchOneResultAction(
+                    user: returnData ?? new User(),
+                    resultCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserFetchedMessage, SnackbarColor.Success));
         }
-
 
         [EffectMethod]
         public async Task HandleUpdateAction(UsersUpdateAction action, IDispatcher dispatcher)
         {
-
+            var returnCode = HttpStatusCode.OK;
+            User? returnData = null;
+            HttpResponseMessage? response = null;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
-            var response = await _httpClient.PutAsJsonAsync(
-                $"{Const.Users}{action.UserId}/",
-                action.User);
+            try
+            {
+                response = await _httpClient.PutAsJsonAsync(
+                    $"{Const.Users}{action.UserId}/",
+                    action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
-            var returnData = await response.Content.ReadFromJsonAsync<User>();
-
-
-            dispatcher.Dispatch(new UsersUpdateResultAction(returnData ?? new User()));
+            if (response is not null)
+            {
+                try
+                {
+                    returnData = await response.Content.ReadFromJsonAsync<User>();
+                    returnCode = response.StatusCode;
+                }
+                catch (Exception e)
+                {
+                    dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                    returnCode = HttpStatusCode.BadRequest;
+                }
+            }
+            
+            dispatcher.Dispatch(
+                new UsersUpdateResultAction(
+                    user: returnData ?? new User(),
+                    resultCode: returnCode));
+            
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserUpdatedMessage, SnackbarColor.Success));
         }
     }
 }

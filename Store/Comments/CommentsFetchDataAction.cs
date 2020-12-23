@@ -1,23 +1,26 @@
-﻿namespace OriinDic.Store.Comments
+﻿using OriinDic.Helpers;
+
+namespace OriinDic.Store.Comments
 {
-    public class CommentsFetchDataAction
+    public record CommentsFetchDataAction
     {
-        public string Token { get; init; } = string.Empty;
-        public int SearchPageNr { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
+        public string Token { get; } = string.Empty;
+        public int SearchPageNr { get; }
+        public long ItemsPerPage { get; }
+        public string CommentsLoadedMessage { get; }
 
+
+        public CommentsFetchDataAction(string token, string commentsLoadedMessage)
+            => (Token, SearchPageNr, ItemsPerPage, CommentsLoadedMessage) =
+                (token, 0, Const.DefaultItemsPerPage, commentsLoadedMessage); 
         
-        public CommentsFetchDataAction(string token)
-        {
-            Token = token;
 
-        }
-
-        public CommentsFetchDataAction(string token, int searchPageNr, long itemsPerPage)
+        public CommentsFetchDataAction(string token, int searchPageNr, long itemsPerPage, string commentsLoadedMessage)
         {
             Token = token;
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
+            CommentsLoadedMessage = commentsLoadedMessage;
         }
 
         

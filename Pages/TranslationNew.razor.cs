@@ -41,20 +41,22 @@ namespace OriinDic.Pages
         {
             get
             {
-                var retVal = Const.PlLangShortcut;
-                if (TranslationsState?.Value?.BaseTranslation.Translation is null) return retVal;
-                if (LocalStorage is null) return retVal;
-                return LanguagesState is null ? retVal : LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.Translation.LanguageId);
+                if (TranslationsState?.Value?.BaseTranslation.Translation is null) return Const.PlLangShortcut;
+                if (LocalStorage is null) return Const.PlLangShortcut;
+                return LanguagesState is null ? Const.PlLangShortcut : LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.Translation.LanguageId);
             }
         }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
+            if (MyText is null) return;
+            
             if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
-            Dispatcher?.Dispatch(new TranslationsFetchBaseTermAction(BaseTermId));
+            Dispatcher?.Dispatch(new TranslationsFetchBaseTermAction(
+                BaseTermId, MyText.Loaded));
         }
 
         private void OnSaveClicked()
@@ -71,8 +73,11 @@ namespace OriinDic.Pages
             
 
             Dispatcher?.Dispatch(
-                new TranslationsAddAction(TranslationsState.Value.BaseTranslation.Translation, 
-                    token.AuthToken));
+                new TranslationsAddAction(
+                    TranslationsState.Value.BaseTranslation.Translation, 
+                    token.AuthToken,
+                    MyText.TranslationAdded  
+                    ));
 
 
         }

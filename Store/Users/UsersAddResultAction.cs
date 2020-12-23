@@ -1,16 +1,18 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Users
 {
-    public class UsersAddResultAction
+    public record UsersAddResultAction
     {
-        public User User { get; init; } = new User();
-        public string StatusCode { get; init; } = string.Empty;
+        public User User { get; } = new();
+        
+        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
 
-        public UsersAddResultAction(User user, string statusCode)
+        public UsersAddResultAction(User user, HttpStatusCode resultCode)
         {
             User = user;
-            StatusCode = statusCode;
+            ResultCode = resultCode;
         }
     }
 }

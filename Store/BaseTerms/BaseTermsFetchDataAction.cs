@@ -2,39 +2,29 @@
 
 namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsFetchDataAction
+    public record BaseTermsFetchDataAction
     {
-        public long BaseTermId { get; init; } = 0;
-        public string Slug { get; init; } = string.Empty;
+        public long BaseTermId { get; }
+        public string Slug { get; } = string.Empty;
 
-        public string SearchText { get; init; } = string.Empty;
+        public string SearchText { get; } = string.Empty;
 
-        public long BaseTermLangId { get; init; } = 0;
-        public long TranslationLangId { get; init; } = 0;
-        public int SearchPageNr { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
+        public long BaseTermLangId { get; }
+        public long TranslationLangId { get; }
+        public int SearchPageNr { get; }
+        public long ItemsPerPage { get; }
 
-        public bool Current { get; init; } = false;
+        public bool Current { get; }
 
-        public string Token { get; init; } = string.Empty;
-        public EnumHasTranslations HasTranslations { get; init; }
+        public string Token { get; } = string.Empty;
+        public EnumHasTranslations HasTranslations { get; }
+        public string BaseTermFetchedMessage { get; }
 
-        public BaseTermsFetchDataAction(string slug, string token)
-        {
-            Slug = slug;
-            Token = token;
-        }
-
-        public BaseTermsFetchDataAction(long baseTermId, string token)
-        {
-            BaseTermId = baseTermId;
-            Token = token;
-        }
-
-        public BaseTermsFetchDataAction(
+        public BaseTermsFetchDataAction( 
             string searchText, long baseTermLangId, long translationLangId, 
             int searchPageNr, long itemsPerPage, bool current,
-            EnumHasTranslations hasTranslations, string token)
+            EnumHasTranslations hasTranslations, string token, string slug, 
+            long baseTermId, string baseTermFetchedMessage)
         {
             SearchText = searchText;
             BaseTermLangId = baseTermLangId;
@@ -43,6 +33,9 @@ namespace OriinDic.Store.BaseTerms
             ItemsPerPage = itemsPerPage;
             Current = current;
             Token = token;
+            Slug = slug;
+            BaseTermId = baseTermId;
+            BaseTermFetchedMessage = baseTermFetchedMessage;
             HasTranslations = hasTranslations;
         }
 

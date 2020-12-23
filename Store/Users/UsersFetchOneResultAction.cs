@@ -1,14 +1,16 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Users
 {
-    public class UsersFetchOneResultAction
+    public record UsersFetchOneResultAction
     {
-        public User User { get; init; } = new User();
-
-        public UsersFetchOneResultAction(User user)
+        public User User { get; } = new();
+        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+        public UsersFetchOneResultAction(User user, HttpStatusCode resultCode)
         {
             User = user;
+            ResultCode = resultCode;
         }
     }
 }

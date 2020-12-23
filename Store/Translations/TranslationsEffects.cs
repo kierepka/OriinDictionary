@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-
+using Blazorise.Snackbar;
 using Fluxor;
-
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Notifications;
@@ -25,33 +25,48 @@ namespace OriinDic.Store.Translations
 
         [EffectMethod]
         // ReSharper disable once UnusedMember.Global
-        public async Task HandleApproveAction(TranslationsAproveAction action, IDispatcher dispatcher)
+        public async Task HandleApproveAction(TranslationsApproveAction action, IDispatcher dispatcher)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
             HttpContent httpContent = new StringContent(string.Empty);
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var response = await _httpClient.PutAsync(
-                requestUri: $"{Const.Translations}{action.TranslationId}/approve_translation/", httpContent);
+            HttpStatusCode returnCode;
+
+            try
+            {
+                var response = await _httpClient.PutAsync(
+                    requestUri: $"{Const.Translations}{action.TranslationId}/approve_translation/", httpContent);
+                returnCode = response.StatusCode;
+            }
+            catch (Exception ex)
+            {
+                dispatcher.Dispatch(new NotificationAction(ex.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
 
-            var returnCode = response.StatusCode;
             var url = $"{Const.Translations}{action.TranslationId}/";
             var translation = new Translation();
             try
             {
                 translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
             }
-            catch
+            catch (Exception e)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
-
 
             dispatcher.Dispatch(
                 new TranslationsApproveResultAction(returnCode,
                     translation: translation ?? new Translation()));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+            {
+                dispatcher.Dispatch(new NotificationAction(action.TranslationApproved, SnackbarColor.Success));
+            }
         }
 
 
@@ -59,70 +74,80 @@ namespace OriinDic.Store.Translations
         // ReSharper disable once UnusedMember.Global
         public async Task HandleAddDataAction(TranslationsAddAction action, IDispatcher dispatcher)
         {
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+                var response = await _httpClient.PostAsJsonAsync(
+                    requestUri: $"{Const.Translations}", action.Translation);
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
-            var response = await _httpClient.PostAsJsonAsync(
-                requestUri: $"{Const.Translations}", action.Translation);
-
-            var returnData = await response.Content.ReadFromJsonAsync<Translation>();
+                var returnData = await response.Content.ReadFromJsonAsync<Translation>();
 
 
-            dispatcher.Dispatch(
-                new TranslationsAddResultAction(
-                          translation: returnData ?? new Translation(),
-                          resultCode: response.StatusCode));
+                dispatcher.Dispatch(
+                    new TranslationsAddResultAction(
+                        translation: returnData ?? new Translation(),
+                        resultCode: response.StatusCode));
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                return;
+            }
+
+            dispatcher.Dispatch(new NotificationAction(action.DataAddedMessage, SnackbarColor.Success));
         }
-
 
 
         [EffectMethod]
         // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchDataAction(TranslationsFetchDataAction action, IDispatcher dispatcher)
         {
-
             var currentString = "true";
             if (!action.Current) currentString = "false";
             var translationResult = new RootObject<ResultBaseTranslation>();
             var queryString =
                 $"{Const.Translations}?text={action.SearchText}&language_id={action.LangId}&base_term_language_id={action.BaseTermLangId}&page={action.SearchPageNr}&per_page={action.ItemsPerPage}&current={currentString}";
 
-            var returnCode = System.Net.HttpStatusCode.OK;
+            var returnCode = HttpStatusCode.OK;
             try
             {
-
                 translationResult = await _httpClient.GetFromJsonAsync<RootObject<ResultBaseTranslation>>(
                     requestUri: queryString, Const.HttpClientOptions);
             }
             catch (Exception e)
             {
-                dispatcher.Dispatch(new NotificationAction(e.Message));
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
-            finally
-            {
-                dispatcher.Dispatch(new NotificationAction(action.DataLoadedMessage));
-            }
+
             dispatcher.Dispatch(
                 new TranslationsFetchDataResultAction(
-                     rootObject: translationResult ?? new RootObject<ResultBaseTranslation>(),
-                     httpStatusCode: returnCode
-                     ));
+                    rootObject: translationResult ?? new RootObject<ResultBaseTranslation>(),
+                    httpStatusCode: returnCode
+                ));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+            {
+                dispatcher.Dispatch(new NotificationAction(action.DataLoadedMessage, SnackbarColor.Success));
+            }
         }
 
         [EffectMethod]
         // ReSharper disable once UnusedMember.Global
         public async Task HandleFetch4EditAction(TranslationsFetch4EditAction action, IDispatcher dispatcher)
         {
-            var returnCode = System.Net.HttpStatusCode.OK;
+            var returnCode = HttpStatusCode.OK;
             var url = $"{Const.Translations}{action.TranslationId}/";
             var translation = new Translation();
             try
             {
                 translation = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
             }
-            catch
+            catch (Exception eTrans)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(eTrans.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
 
@@ -132,12 +157,15 @@ namespace OriinDic.Store.Translations
                 if (translation != null)
                 {
                     url = $"{Const.BaseTerms}{translation.BaseTermId}/";
-                    baseTermResult = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
+                    baseTermResult =
+                        await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
                 }
             }
-            catch
+            catch (Exception eBase)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(eBase.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
 
@@ -147,18 +175,31 @@ namespace OriinDic.Store.Translations
             {
                 if (!string.IsNullOrEmpty(action.Token))
                 {
-                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Token", action.Token);
                     url = $"{Const.Comments}?translation_id={action.TranslationId}";
                     comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
                 }
             }
-            catch
+            catch (Exception eComments)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(eComments.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
-            url = $"{Const.Links}?translation_id={action.TranslationId}";
-            var links = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(url, Const.HttpClientOptions);
+            var links = new RootObject<OriinLink>();
+            try
+            {
+                url = $"{Const.Links}?translation_id={action.TranslationId}";
+                links = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(url, Const.HttpClientOptions);
+            }
+            catch (Exception eLinks)
+            {
+                dispatcher.Dispatch(
+                    new NotificationAction(eLinks.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
             dispatcher.Dispatch(
                 new TranslationsFetch4EditResultAction(
@@ -167,9 +208,11 @@ namespace OriinDic.Store.Translations
                     links: links?.Results ?? new System.Collections.Generic.List<OriinLink>(),
                     comments: comments?.Results ?? new System.Collections.Generic.List<Comment>(),
                     httpStatusCode: returnCode)
-                );
+            );
 
-            dispatcher.Dispatch(new NotificationAction(action.DataLoadedMessage));
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.DataLoadedMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
@@ -177,12 +220,13 @@ namespace OriinDic.Store.Translations
         public async Task HandleAddCommentsAction(TranslationsCommentAddAction action, IDispatcher dispatcher)
         {
             var comments = new RootObject<Comment>();
-            var returnCode = System.Net.HttpStatusCode.OK;
+            var returnCode = HttpStatusCode.OK;
             try
             {
                 if (!string.IsNullOrEmpty(action.Token))
                 {
-                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Token", action.Token);
 
                     var response = await _httpClient.PostAsJsonAsync(
                         $"{Const.Comments}", action.Comment);
@@ -193,60 +237,73 @@ namespace OriinDic.Store.Translations
                     comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
             dispatcher.Dispatch(
                 new TranslationsFetchCommentsResultAction(
                     comments: comments?.Results ?? new System.Collections.Generic.List<Comment>(),
                     httpStatusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.CommentAddedMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
         // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchCommentsAction(TranslationsFetchCommentsAction action, IDispatcher dispatcher)
         {
-
             var comments = new RootObject<Comment>();
-            var returnCode = System.Net.HttpStatusCode.OK;
+            var returnCode = HttpStatusCode.OK;
             try
             {
                 if (!string.IsNullOrEmpty(action.Token))
                 {
-                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+                    _httpClient.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Token", action.Token);
                     var url = $"{Const.Comments}?translation_id={action.TranslationId}";
                     comments = await _httpClient.GetFromJsonAsync<RootObject<Comment>>(url, Const.HttpClientOptions);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
             dispatcher.Dispatch(
                 new TranslationsFetchCommentsResultAction(
                     comments: comments?.Results ?? new System.Collections.Generic.List<Comment>(),
                     httpStatusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.CommentsFetchedMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
         // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchBaseTermAction(TranslationsFetchBaseTermAction action, IDispatcher dispatcher)
         {
-
             var url = $"{Const.BaseTerms}{action.BaseTermId}/";
-            var returnCode = System.Net.HttpStatusCode.OK;
+            var returnCode = HttpStatusCode.OK;
             var resBaseTransl = new ResultBaseTranslation();
 
             try
             {
                 resBaseTransl = await _httpClient.GetFromJsonAsync<ResultBaseTranslation>(url, Const.HttpClientOptions);
             }
-            catch
+            catch (Exception e)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
 
@@ -263,12 +320,16 @@ namespace OriinDic.Store.Translations
                 LanguageId = resBaseTransl.BaseTerm.LanguageId,
                 BaseTermId = resBaseTransl.BaseTerm.Id
             };
-            resBaseTransl.Translations ??= new System.Collections.Generic.List<Translation> { resBaseTransl.Translation };
+            resBaseTransl.Translations ??= new System.Collections.Generic.List<Translation> {resBaseTransl.Translation};
 
             dispatcher.Dispatch(
                 new TranslationsFetchBaseTermResultAction(
                     baseTranslation: resBaseTransl,
                     httpStatusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.FetchBaseSuccessMessage, SnackbarColor.Success));
         }
 
 
@@ -276,44 +337,62 @@ namespace OriinDic.Store.Translations
         // ReSharper disable once UnusedMember.Global
         public async Task HandleFetchOneAction(TranslationsFetchOneAction action, IDispatcher dispatcher)
         {
-
             var url = $"{Const.BaseTerms}{action.TranslationId}/";
 
-            var returnCode = System.Net.HttpStatusCode.OK;
+            var returnCode = HttpStatusCode.OK;
             var returnData = new Translation();
             try
             {
                 returnData = await _httpClient.GetFromJsonAsync<Translation>(url, Const.HttpClientOptions);
             }
-            catch
+            catch (Exception e)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
+
             dispatcher.Dispatch(
                 new TranslationsFetchOneResultAction(
                     translation: returnData ?? new Translation(),
                     httpStatusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.FetchOneSuccessMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]
         // ReSharper disable once UnusedMember.Global
         public async Task HandleUpdateAction(TranslationsUpdateAction action, IDispatcher dispatcher)
         {
-
+            HttpStatusCode returnCode;
+            HttpResponseMessage response = new();
+            Translation? returnData = null;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
-            var response = await _httpClient.PutAsJsonAsync(
-                $"{Const.BaseTerms}{action.TranslationId}/",
-                action.Translation);
+            try
+            {
+                response = await _httpClient.PutAsJsonAsync(
+                    $"{Const.BaseTerms}{action.TranslationId}/",
+                    action.Translation);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(
+                    new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
 
-            var returnCode = System.Net.HttpStatusCode.OK;
-            var returnData = new Translation();
             try
             {
                 returnData = await response.Content.ReadFromJsonAsync<Translation>();
+                returnCode = response.StatusCode;
             }
-            catch
+            catch (Exception e)
             {
-                returnCode = System.Net.HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(
+                    new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
             }
 
 
@@ -321,6 +400,10 @@ namespace OriinDic.Store.Translations
                 new TranslationsAddResultAction(
                     translation: returnData ?? new Translation(),
                     resultCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.TranslationUpdateMessage, SnackbarColor.Success));
         }
     }
 }

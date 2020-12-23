@@ -1,7 +1,7 @@
 ﻿<ListGroupItem>
     <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
         <FieldBody ColumnSize="ColumnSize.Is11">
-            @if (!(MyExample is null))
+            @if (MyExample is not null)
             {
                 @MyExample.Value
             }

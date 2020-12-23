@@ -1,18 +1,22 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Comments
 {
-    public class CommentsAddResultAction
+    public record CommentsAddResultAction
     {
-        public Comment Comment { get; init; } = new Comment();
-        public string StatusCode { get; init; } = string.Empty;
-        public RootObject<Comment> RootObject { get; init; } = new RootObject<Comment>();
+        public Comment Comment { get; } = new();
+        public string StatusCode { get; } = string.Empty;
+        public RootObject<Comment> RootObject { get; } = new();
+        public HttpStatusCode HttpStatusCode { get; }
 
-        public CommentsAddResultAction(Comment comment, string statusCode, RootObject<Comment> rootObject)
+        public CommentsAddResultAction(Comment comment, string statusCode, RootObject<Comment> rootObject,
+            HttpStatusCode httpStatusCode)
         {
             Comment = comment;
             StatusCode = statusCode;
             RootObject = rootObject;
+            HttpStatusCode = httpStatusCode;
         }
     }
 }

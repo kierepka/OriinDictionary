@@ -1,15 +1,16 @@
 ﻿namespace OriinDic.Store.Links
 {
-    public class LinksDeleteAction
+    public record LinksDeleteAction
     {
-        public string Token { get; init; } = string.Empty;
-        public long LinkId { get; init; } = 0;
+        public string Token { get; } = string.Empty;
+        public long LinkId { get; }
+        public string DeleteLinkMessage { get; }
 
 
-
-        public LinksDeleteAction(long linkId, string token)
+        public LinksDeleteAction(long linkId, string token, string deleteLinkMessage)
         {
             Token = token;
+            DeleteLinkMessage = deleteLinkMessage;
             LinkId = linkId;
           
         }

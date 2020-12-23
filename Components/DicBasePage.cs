@@ -27,7 +27,7 @@ namespace OriinDic.Components
         {
             await base.OnInitializedAsync();
             
-            if (!(I18NText is null))
+            if (I18NText is not null)
                 MyText = await I18NText.GetTextTableAsync<I18nText.Text>(this);
 
         }

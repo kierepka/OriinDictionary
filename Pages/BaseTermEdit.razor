@@ -7,7 +7,7 @@
 
 <Row>
     <Column>
-        @if (!(BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is null)) 
+        @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null) 
         { 
             <Card Margin="Margin.Is4.OnY">
                 <CardHeader>
@@ -51,7 +51,7 @@
                                     <ListExamples Examples="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    @if (!(BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Examples is null))
+                                    @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Examples is not null)
                                     {
                                         <ListGroup Flush="true">
                                             @foreach (var e in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Examples)
@@ -72,7 +72,7 @@
                                     <ListSynonyms Synonyms="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
                                 </Authorized>
                                 <NotAuthorized>
-                                    @if (!(BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is null)) {
+                                    @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is not null) {
                                         <ListGroup Flush="true">
                                             @foreach (var s in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms)
                                             {
@@ -100,7 +100,7 @@
                                         <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
                                     </Authorized>
                                 </AuthorizeView>
-                                <input class="button" type="button" value="@MyText?.Back" onClick="history.back();">
+                                <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
                                 <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
                             </Buttons>
                         </FieldBody>
@@ -117,7 +117,7 @@
                             <ListLinks Links="@BaseTermsState?.Value?.Links" OnLinkCallback="OnLinkAdd" />
                         </Authorized>
                         <NotAuthorized>
-                            @if (!(BaseTermsState?.Value?.Links is null))
+                            @if (BaseTermsState?.Value?.Links is not null)
                             {
                                 <ListGroup Flush="true">
                                     @foreach (var link in BaseTermsState.Value.Links)

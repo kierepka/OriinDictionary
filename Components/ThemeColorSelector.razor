@@ -55,7 +55,7 @@
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
-    private string _value;
+    private string _value = string.Empty;
 
     Task OnClick( string value )
     {

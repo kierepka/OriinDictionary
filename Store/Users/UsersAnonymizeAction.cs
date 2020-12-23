@@ -2,14 +2,16 @@
 
 namespace OriinDic.Store.Users
 {
-    public class UsersAnonymizeAction
+    public record UsersAnonymizeAction
     {
-        public string Token { get; init; } = string.Empty;
-        public User User { get; init; } = new User();
-
-        public UsersAnonymizeAction(User user, string token)
+        public string Token { get; } = string.Empty;
+        public User User { get; } = new();
+        public string UserAnonymizedMessage { get; } = string.Empty;
+        
+        public UsersAnonymizeAction(User user, string token,  string userAnonymizedMessage)
         {
             Token = token;
+            UserAnonymizedMessage = userAnonymizedMessage;
             User = user;
         }
     }

@@ -6,11 +6,11 @@ using OriinDic.Models;
 
 namespace OriinDic.Store.Languages
 {
-    public class LanguagesState
+    public record LanguagesState
     {
-        public EActionState LastActionState { get; init; } = EActionState.Initializing;
-        public bool IsLoading { get; init; } = false;
-        public IEnumerable<Language> Languages { get; init; } = new List<Language>();
+        public EActionState LastActionState { get; } = EActionState.Initializing;
+        public bool IsLoading { get; }
+        public IEnumerable<Language> Languages { get; } = new List<Language>();
 
         public LanguagesState(bool isLoading, IEnumerable<Language> languages, EActionState lastActionState)
         {

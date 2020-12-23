@@ -1,15 +1,17 @@
 ﻿namespace OriinDic.Store.Links
 {
-    public class LinksFetchDataAction
+    public record LinksFetchDataAction
     {
-        public int SearchPageNr { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
+        public int SearchPageNr { get; }
+        public long ItemsPerPage { get; }
+        public string LinkFetchedMessage { get; }
 
 
-        public LinksFetchDataAction(int searchPageNr, long itemsPerPage)
+        public LinksFetchDataAction(int searchPageNr, long itemsPerPage, string linkFetchedMessage)
         {
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
+            LinkFetchedMessage = linkFetchedMessage;
         }
 
         

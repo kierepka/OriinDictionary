@@ -1,14 +1,17 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Users
 {
-    public class UsersDeleteResultAction
+    public record UsersDeleteResultAction
     {
-        public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
-
-        public UsersDeleteResultAction(DeletedObjectResponse deleteResponse)
+        public DeletedObjectResponse DeleteResponse { get; init; } = new();
+        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+        
+        public UsersDeleteResultAction(DeletedObjectResponse deleteResponse, HttpStatusCode resultCode)
         {
             DeleteResponse = deleteResponse;
+            ResultCode = resultCode;
         }
     }
 }

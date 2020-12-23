@@ -7,155 +7,239 @@
 
 <Row>
     <Column>
-        <Card Margin="Margin.Is4.OnY">
-            <CardHeader>
-                <CardTitle>@MyText?.PersonalDataHeader</CardTitle>
-                <AuthorizeView>
-                    <Authorized>
-                        @MyText?.YourRoles  <strong>@string.Join(",", context.User.Claims.Roles()) </strong>
-                    </Authorized>
-                </AuthorizeView>
-            </CardHeader>
-            <CardBody>
-                <EditForm Model="@User">
-                    <DataAnnotationsValidator />
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Email</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <TextEdit @bind-Text="@User.Email"
-                                      Role="TextRole.Email"
-                                      Placeholder="@MyText?.Email" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UserName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <TextEdit @bind-Text="@User.UserName"
-                                      Placeholder="@MyText?.UserName" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.FirstName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <TextEdit Placeholder="@MyText?.FirstName" @bind-Text="@User.FirstName" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LastName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <TextEdit @bind-Text="@User.LastName" Placeholder="@MyText?.LastName" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Gender</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <RadioGroup TValue="string" Name="genderGroup" @bind-CheckedValue="@User.Gender">
-                                <Radio TValue="string" Value="@Const.FemaleGenderVal">@MyText?.FemaleGender</Radio>
-                                <Radio TValue="string" Value="@Const.MaleGenderVal">@MyText?.MaleGender</Radio>
-                                <Radio TValue="string" Value="@Const.NoGenderVal">@MyText?.NoGender</Radio>
-                            </RadioGroup>
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Language</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
+        <Tabs SelectedTab="@selectedTab" Justified="true" Pills="true">
+            <Items>
+                <Tab Name="profile">Profil</Tab>
+                <Tab Name="passwordChange">Password Change</Tab>
+                <Tab Name="passwordReset">Password Reset</Tab>
+            </Items>
+            <Content>
+                <TabPanel Name="profile">
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>@MyText?.PersonalDataHeader</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Label>
+                                <AuthorizeView>
+                                    <Authorized>
+                                        @MyText?.YourRoles <strong>@string.Join(",", context.User.Claims.Roles()) </strong>
+                                    </Authorized>
+                                </AuthorizeView>
+                            </Label>
+                            <EditForm Model="@User">
+                                <DataAnnotationsValidator />
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Email</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        <TextEdit @bind-Text="@User.Email"
+                                                  Role="TextRole.Email"
+                                                  Placeholder="@MyText?.Email" />
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UserName</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        <TextEdit @bind-Text="@User.UserName"
+                                                  Placeholder="@MyText?.UserName" />
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.FirstName</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        <TextEdit Placeholder="@MyText?.FirstName" @bind-Text="@User.FirstName" />
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LastName</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        <TextEdit @bind-Text="@User.LastName" Placeholder="@MyText?.LastName" />
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Gender</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        <RadioGroup TValue="string" Name="genderGroup" @bind-CheckedValue="@User.Gender">
+                                            <Radio TValue="string" Value="@Const.FemaleGenderVal">@MyText?.FemaleGender</Radio>
+                                            <Radio TValue="string" Value="@Const.MaleGenderVal">@MyText?.MaleGender</Radio>
+                                            <Radio TValue="string" Value="@Const.NoGenderVal">@MyText?.NoGender</Radio>
+                                        </RadioGroup>
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Language</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
 
-                            <Select TValue="long?" @bind-SelectedValue="@User.LanguageId">
-                                @if (!(LanguagesState is null))
-                                {
-                                    @foreach (var lang in LanguagesState.Value.Languages)
-                                    {
-                                        <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
-                                    }
-                                }
+                                        <Select TValue="long?" @bind-SelectedValue="@User.LanguageId">
+                                            @if (LanguagesState is not null)
+                                            {
+                                                @foreach (var lang in LanguagesState.Value.Languages)
+                                                {
+                                                    <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
+}
+                                            }
 
-                            </Select>
+                                        </Select>
 
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.TranslatingLanguages</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            @if (IsSuperUser)
-                            {
-                                <div class="field"><div class="control">@MyText?.SuperUserHasAll</div></div>
-                            }
-                            else
-                            {
-                                @if (!(LanguagesState is null))
-                                {
-                                    @foreach (var langT in LanguagesState.Value.Languages)
-                                    {
-                                        <div class="field">
-                                            <div class="control">
-                                                <label class="checkbox" for="@langT.Name">
-                                                    @if (CheckTranslation(langT))
-                                                    {
-                                                        <input disabled type="checkbox" id="@langT.Id" checked="checked" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <input disabled type="checkbox" id="@langT.Id" />
-                                                    }
-                                                    @langT.Name
-                                                </label>
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.TranslatingLanguages</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        @if (IsSuperUser)
+                                        {
+                                            <div class="field">
+                                                <div class="control">@MyText?.SuperUserHasAll</div>
                                             </div>
-                                        </div>
-                                    }
-
-                                }
-                            }
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CoordinatingLanguages</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            @if (IsSuperUser)
-                            {
-                                <div class="field"><div class="control">@MyText?.SuperUserHasAll</div></div>
-                            }
-                            else
-                            {
-                                @if (!(LanguagesState is null))
-                                {
-                                    @foreach (var langC in LanguagesState.Value.Languages)
-                                    {
-                                        <div class="field">
-                                            <div class="control">
-                                                <label class="checkbox" for="@langC.Name">
-                                                    @if (CheckCoordination(langC))
-                                                    {
-                                                        <input disabled type="checkbox" id="@langC.Id" checked="checked" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <input disabled type="checkbox" id="@langC.Id" />
-                                                    }
-                                                    @langC.Name
-                                                </label>
+                                        }
+                                        else
+                                        {
+                                            @if (LanguagesState is not null)
+                                            {
+                                                @foreach (var langT in LanguagesState.Value.Languages)
+                                                {
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <label class="checkbox" for="@langT.Name">
+                                                                @if (CheckTranslation(langT))
+                                                                {
+                                                                    <input disabled type="checkbox" id="@langT.Id" checked="checked" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input disabled type="checkbox" id="@langT.Id" />
+                                                                }
+                                                                @langT.Name
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CoordinatingLanguages</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
+                                        @if (IsSuperUser)
+                                        {
+                                            <div class="field">
+                                                <div class="control">@MyText?.SuperUserHasAll</div>
                                             </div>
-                                        </div>
-                                    }
+                                        }
+                                        else
+                                        {
+                                            @if (LanguagesState is not null)
+                                            {
+                                                @foreach (var langC in LanguagesState.Value.Languages)
+                                                {
+                                                    <div class="field">
+                                                        <div class="control">
+                                                            <label class="checkbox" for="@langC.Name">
+                                                                @if (CheckCoordination(langC))
+                                                                {
+                                                                    <input disabled type="checkbox" id="@langC.Id" checked="checked" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input disabled type="checkbox" id="@langC.Id" />
+                                                                }
+                                                                @langC.Name
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    </FieldBody>
+                                </Field>
+                                <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                                    <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is9">
 
-                                }
-                            }
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
-                        <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <Buttons Role="ButtonsRole.Toolbar">
-                                <Buttons Margin="Margin.Is2.FromRight">
-                                    <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
-                                </Buttons>
-                                <Buttons>
-                                    <Button Type="ButtonType.Button" Clicked="@HandleAnonymize" Color="Color.Warning">@MyText?.Anonymize</Button>
-                                </Buttons>
-                            </Buttons>
-                        </FieldBody>
-                    </Field>
-                </EditForm>
-            </CardBody>
-        </Card>
+                                        <Buttons Role="ButtonsRole.Toolbar">
+                                            <Buttons Margin="Margin.Is2.FromRight">
+                                                <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
+                                            </Buttons>
+                                            <Buttons>
+                                                <Button Type="ButtonType.Button" Clicked="@HandleAnonymize" Color="Color.Warning">@MyText?.Anonymize</Button>
+                                            </Buttons>
+                                        </Buttons>
+                                    </FieldBody>
+                                </Field>
+                            </EditForm>
+                        </CardBody>
+                    </Card>
+                </TabPanel>
+                <TabPanel name="passwordChange">
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>@MyText?.PasswordChange</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Validations Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                                <Validation Validator="@ValidatePassword">
+                                    <Field IsHorizontal="true">
+                                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.NewPassword</FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is9">
+                                            <TextEdit Role="TextRole.Password"
+                                                      Placeholder="@MyText?.NewPassword"
+                                                      @bind-Text="@UserPwdUpdate.NewPassword">
+                                                <Feedback>
+                                                    <FieldHelp>Please enter a new password</FieldHelp>
+                                                    <ValidationError>You must enter new password which is at least 6 characters length</ValidationError>
+                                                </Feedback>
+                                            </TextEdit>
+                                        </FieldBody>
+                                    </Field>
+                                </Validation>
+                                <Validation Validator="@ValidatePassword2">
+                                    <Field IsHorizontal="true">
+                                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.ReNewPassword</FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is9">
+                                            <TextEdit Role="TextRole.Password"
+                                                      Placeholder="@MyText?.ReNewPassword"
+                                                      @bind-Text="@UserPwdUpdate.ReNewPassword">
+                                                <Feedback>
+                                                    <FieldHelp>Please re-enter a new password</FieldHelp>
+                                                    <ValidationError>You must re enter this same new password</ValidationError>
+                                                </Feedback>
+                                            </TextEdit>
+                                        </FieldBody>
+                                    </Field>
+                                </Validation>
+                                <Validation Validator="@ValidatePassword3">
+                                    <Field IsHorizontal="true">
+                                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CurrentPassword</FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is9">
+                                            <TextEdit Role="TextRole.Password"
+                                                      Placeholder="@MyText?.CurrentPassword"
+                                                      @bind-Text="@UserPwdUpdate.CurrentPassword">
+                                                <Feedback>
+                                                    <FieldHelp>Please enter a current password</FieldHelp>
+                                                    <ValidationError>You must enter password which is at least 6 characters length</ValidationError>
+                                                </Feedback>
+                                            </TextEdit>
+                                        </FieldBody>
+                                    </Field>
+                                </Validation>
+                            </Validations>
+                            <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                                <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is9">
+
+                                    <Buttons Role="ButtonsRole.Toolbar">
+                                        <Buttons Margin="Margin.Is2.FromRight">
+                                            <Button Type="ButtonType.Submit" Clicked="@HandlePasswordChange" Color="Color.Secondary">@MyText?.Confirm</Button>
+                                        </Buttons>
+
+                                    </Buttons>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                    </Card>
+                </TabPanel>
+            </Content>
+        </Tabs>
     </Column>
 </Row>

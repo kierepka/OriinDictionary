@@ -1,5 +1,4 @@
 ﻿using Fluxor;
-
 using OriinDic.Models;
 
 namespace OriinDic.Store.Comments
@@ -8,7 +7,7 @@ namespace OriinDic.Store.Comments
     {
         public override string GetName() => "Comments";
 
-        protected override CommentsState GetInitialState() => new CommentsState(
+        protected override CommentsState GetInitialState() => new(
             isLoading: false, searchPageNr: 0, itemsPerPage: 0, commentId: 0, translationId: 0,
             token: string.Empty, statusCode: string.Empty,
             comment: new Comment(),

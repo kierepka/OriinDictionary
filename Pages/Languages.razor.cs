@@ -19,7 +19,7 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+            Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
         }
     }
 }

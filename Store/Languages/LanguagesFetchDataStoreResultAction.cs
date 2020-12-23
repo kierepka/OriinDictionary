@@ -3,9 +3,9 @@ using OriinDic.Models;
 
 namespace OriinDic.Store.Languages
 {
-    public class LanguagesFetchDataStoreResultAction
+    public record LanguagesFetchDataStoreResultAction
     {
-        public IEnumerable<Language> Languages { get; init; } = new List<Language>();
+        public IEnumerable<Language> Languages { get; } = new List<Language>();
 
         public LanguagesFetchDataStoreResultAction(IEnumerable<Language> languages)
         {

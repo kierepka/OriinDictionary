@@ -55,6 +55,8 @@
   "TranslationLastEdit": "Last edited by",
   "TranslationLastApproval": "Last approval by",
   "TranslationApproval": "Approve",
+  "TranslationAdded": "Translation added",
+  "TranslationApproved": "Translation approved",
   "BaseTermHeader": "Work with the selected base term",
   "BaseTermLanguage": "Language",
   "BaseTermCurrent": "Actual",
@@ -138,10 +140,17 @@
   "LinkLink": "Link to",
   "LinkBaseTerm": "Base term",
   "LinkTranslation": "Translation",
+  "AddedLink": "Link added",
   "AddedComment": "Comment added",
+  "AddedUser": "User added",
   "Loaded": "Data loaded",
+  "Deleted": "Data deleted",
   "Updated": "Data updated",
   "Anonymized": "Data anonymized",
-  "Approved": "Approved"
-
+  "Approved": "Approved",
+  "PasswordChange": "Password change",
+  "NewPassword": "New password",
+  "ReNewPassword": "Re new password",
+  "CurrentPassword": "Current password",
+  "Confirm": "Confirm"
 }

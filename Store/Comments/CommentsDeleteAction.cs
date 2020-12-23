@@ -1,13 +1,15 @@
 ﻿namespace OriinDic.Store.Comments
 {
-    public class CommentsDeleteAction
+    public record CommentsDeleteAction
     {
-        public string Token { get; init; } = string.Empty;
-        public long CommentId { get; init; } = 0;
+        public string Token { get; } = string.Empty;
+        public long CommentId { get; }
+        public string CommentDeletedMessage { get; }
 
-        public CommentsDeleteAction(long commentId, string token)
+        public CommentsDeleteAction(long commentId, string token, string commentDeletedMessage)
         {
             Token = token;
+            CommentDeletedMessage = commentDeletedMessage;
             CommentId = commentId;
         }
     }

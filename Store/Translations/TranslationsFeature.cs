@@ -7,7 +7,7 @@ namespace OriinDic.Store.Translations
         public override string GetName() => "Translations";
 
 
-        protected override TranslationsState GetInitialState() => new TranslationsState(
+        protected override TranslationsState GetInitialState() => new(
             current: false,
             isLoading: false,
             searchText: string.Empty,

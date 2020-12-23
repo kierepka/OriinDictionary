@@ -6,7 +6,7 @@ namespace OriinDic.Store.Search
     {
         [ReducerMethod]
         public static SearchState ReduceSearchBaseTermsAction(SearchState state, SearchBaseTermsAction action) =>
-            new SearchState(
+            new(
                 rootObject: null,
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
@@ -35,7 +35,7 @@ namespace OriinDic.Store.Search
         
         [ReducerMethod]
         public static SearchState ReduceSearchBaseTermsResultAction(SearchState state, SearchBaseTermsResultAction action) =>
-            new SearchState(
+            new(
                 rootObject: action.RootObject,
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
@@ -62,7 +62,7 @@ namespace OriinDic.Store.Search
 
         [ReducerMethod]
         public static SearchState ReduceSearchPageNrChangeAction(SearchState state, SearchPageNrChangeAction action) =>
-            new SearchState(
+            new(
                 rootObject: null,
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
@@ -89,7 +89,7 @@ namespace OriinDic.Store.Search
 
         [ReducerMethod]
         public static SearchState ReduceSearchTranslationsAction(SearchState state, SearchTranslationsAction action) =>
-            new SearchState(
+            new(
                 rootObject: null,
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
@@ -116,7 +116,7 @@ namespace OriinDic.Store.Search
 
         [ReducerMethod]
         public static SearchState ReduceSearchTranslationsResultAction(SearchState state, SearchTranslationsResultAction action) =>
-            new SearchState(
+            new(
                 rootObject: action.RootObject,
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,

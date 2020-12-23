@@ -36,8 +36,8 @@ namespace OriinDic.Helpers
         }    
         public static string CreatePassword(int length, EnumPasswordOptions options)
         {
-            RNGCryptoServiceProvider rProvider = new RNGCryptoServiceProvider();
-            StringBuilder res = new StringBuilder();
+            RNGCryptoServiceProvider rProvider = new();
+            StringBuilder res = new();
             byte[] random = new byte[1];
             using (rProvider)
             {

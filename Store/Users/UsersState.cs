@@ -1,21 +1,22 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Users
 {
-    public class UsersState
+    public record UsersState
     {
-        public EActionState LastActionState { get; init; } = EActionState.Initializing;
-        public UserAdd UserAdd { get; init; } = new UserAdd();
-        public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
-        public UserUpdate UserUpdate { get; init; } = new UserUpdate();
-        public RootObject<User> RootObject { get; init; } = new RootObject<User>();
-        public User User { get; init; } = new User();
-        public string StatusCode { get; init; } = string.Empty;
-        public string Token { get; init; } = string.Empty;
-        public long UserId { get; init; } = 0;        
-        public int SearchPageNr { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
-        public bool IsLoading { get; init; } = false;
+        public EActionState LastActionState { get; } = EActionState.Initializing;
+        public UserAdd UserAdd { get; } = new();
+        public DeletedObjectResponse DeleteResponse { get; } = new();
+        public UserUpdate UserUpdate { get; } = new();
+        public RootObject<User> RootObject { get; } = new();
+        public User User { get; } = new();
+        public HttpStatusCode StatusCode { get; } = HttpStatusCode.OK;
+        public string Token { get; } = string.Empty;
+        public long UserId { get; }        
+        public int SearchPageNr { get; }
+        public long ItemsPerPage { get; }
+        public bool IsLoading { get; }
         
 
         public UsersState(
@@ -24,7 +25,7 @@ namespace OriinDic.Store.Users
             int searchPageNr,             
             long userId, 
             string token, 
-            string statusCode,
+            HttpStatusCode statusCode,
             User user,
             RootObject<User> rootObject,
             UserUpdate userUpdate,

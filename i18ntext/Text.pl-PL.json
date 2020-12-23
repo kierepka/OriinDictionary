@@ -55,6 +55,8 @@
   "TranslationLastEdit": "Ostatnio edytował",
   "TranslationLastApproval": "Ostatnio zatwierdził",
   "TranslationApproval": "Zatwierdź",
+  "TranslationAdded": "Dodano tłumaczenie",
+  "TranslationApproved": "Tłumaczenie zatwierdzono",
   "BaseTermWithTranslations": "Z tłumaczeniami",
   "BaseTermWithoutTranslations": "Bez tłumaczeń",
   "BaseTermNone": "brak",
@@ -138,9 +140,17 @@
   "LinkLink": "Odnośnik do",
   "LinkBaseTerm": "Słowo bazowe",
   "LinkTranslation": "Tłumaczenie",
+  "AddedLink": "Dodano odnośnik",
   "AddedComment": "Komentarz dodany",
+  "AddedUser": "Użytkownik dodany",
   "Loaded": "Dane wczytane",
+  "Deleted": "Dane usunięto",
   "Updated": "Dane zaktualizowane",
   "Anonymized": "Dane zanonimizowane",
-  "Approved": "Zatwierdzone"
+  "Approved": "Zatwierdzone",
+  "PasswordChange": "Zmiana hasła",
+  "NewPassword": "Nowe hasło",
+  "ReNewPassword": "Powtórz nowe hasło",
+  "CurrentPassword": "Aktualne hasło",
+  "Confirm": "Potwierdź"
 }

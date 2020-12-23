@@ -27,11 +27,11 @@ namespace OriinDic.Models
 
         [JsonPropertyName("user")]
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-        public User User { get; set; } = new User();
+        public User User { get; set; } = new();
 
         [JsonPropertyName("change")]
         // ReSharper disable once UnusedMember.Global
-        public Change Change { get; set; } = new Change();
+        public Change Change { get; set; } = new();
 
         public TranslationApproval()
         {

@@ -7,8 +7,8 @@ namespace OriinDic.Store.Translations
 
 
         [ReducerMethod]
-        public static TranslationsState ReduceApproveAction(TranslationsState state, TranslationsAproveAction action) =>
-         new TranslationsState(
+        public static TranslationsState ReduceApproveAction(TranslationsState state, TranslationsApproveAction action) =>
+         new(
              current: state.Current,
              isLoading: state.IsLoading,
              searchText: state.SearchText,
@@ -30,7 +30,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceAddResultAction(TranslationsState state, TranslationsApproveResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -53,7 +53,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceAddAction(TranslationsState state, TranslationsAddAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -75,7 +75,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceAddResultAction(TranslationsState state, TranslationsAddResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -97,7 +97,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchDataAction(TranslationsState state, TranslationsFetchDataAction action) =>
-            new TranslationsState(
+            new(
                 current: action.Current,
                 isLoading: state.IsLoading,
                 searchText: action.SearchText,
@@ -119,7 +119,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchDataResultAction(TranslationsState state, TranslationsFetchDataResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -141,7 +141,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchBaseTermAction(TranslationsState state, TranslationsFetchBaseTermAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -163,7 +163,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchBaseTermResultAction(TranslationsState state, TranslationsFetchBaseTermResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -185,7 +185,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchCommentsAction(TranslationsState state, TranslationsFetchCommentsAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -207,7 +207,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchCommentsResultAction(TranslationsState state, TranslationsFetchCommentsResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -229,7 +229,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchOneAction(TranslationsState state, TranslationsFetchOneAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -251,7 +251,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetchOneResultAction(TranslationsState state, TranslationsFetchOneResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -273,7 +273,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetch4EditAction(TranslationsState state, TranslationsFetch4EditAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -295,7 +295,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceFetch4EditResultAction(TranslationsState state, TranslationsFetch4EditResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -317,7 +317,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceUpdateAction(TranslationsState state, TranslationsUpdateAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,
@@ -339,7 +339,7 @@ namespace OriinDic.Store.Translations
 
         [ReducerMethod]
         public static TranslationsState ReduceUpdateResultAction(TranslationsState state, TranslationsUpdateResultAction action) =>
-            new TranslationsState(
+            new(
                 current: state.Current,
                 isLoading: state.IsLoading,
                 searchText: state.SearchText,

@@ -23,7 +23,7 @@ namespace OriinDic.Pages
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject]  private IDispatcher? Dispatcher { get; set; }
 
-        private User User { get; } = new User();
+        private User User { get; } = new();
         private bool IsSuperUser { get; set; }
    
         [Parameter] public long UserId { get; set; }
@@ -36,18 +36,23 @@ namespace OriinDic.Pages
             await base.OnInitializedAsync();
 
             if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
             Token? token = null;
 
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 token = LocalStorage.GetItem<Token>(Const.TokenKey);
             }
 
-            if (token != null) Dispatcher?.Dispatch(new UsersFetchOneAction(UserId, token.AuthToken));
+            if (token != null) 
+                Dispatcher?.Dispatch(
+                    new UsersFetchOneAction(
+                        userId: UserId, 
+                        token.AuthToken, 
+                        userFetchedMessage: MyText?.Loaded ?? string.Empty));
 
-            if (!(AuthenticationStateProvider is null))
+            if (AuthenticationStateProvider is not null)
             {
                 var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
                 var user = authState.User;

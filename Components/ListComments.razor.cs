@@ -16,9 +16,9 @@ namespace OriinDic.Components
 
         private string _myValue = string.Empty;
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
-        private Text _myText = new Text();
+        private Text _myText = new();
 
-        private List<Comment> _comments = new List<Comment>();
+        private List<Comment> _comments = new();
 
         [Parameter] public EventCallback<Comment> OnCommentAdd { get; set; }
 

@@ -30,12 +30,12 @@ namespace OriinDic.Models
         [JsonPropertyName("synonyms")]
         // ReSharper disable once MemberCanBePrivate.Global
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-        public List<string> Synonyms { get; set; } = new List<string>();
+        public List<string> Synonyms { get; set; } = new();
 
         [JsonPropertyName("examples")]
         // ReSharper disable once MemberCanBePrivate.Global
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-        public List<string> Examples { get; set; } = new List<string>();
+        public List<string> Examples { get; set; } = new();
         
         [JsonPropertyName("definition")]
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
@@ -44,7 +44,7 @@ namespace OriinDic.Models
         [JsonPropertyName("last_edit")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
-        public BaseTermLastEdit? LastEdit { get; set; } = new BaseTermLastEdit();
+        public BaseTermLastEdit? LastEdit { get; set; } = new();
         
         [JsonPropertyName("last_edit_id")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazorise;
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
@@ -15,11 +17,13 @@ namespace OriinDic.Pages
     // ReSharper disable once ClassNeverInstantiated.Global
     public partial class PersonalData
     {
-        private List<Language> _coordinatingLanguages = new List<Language>();
+        private List<Language> _coordinatingLanguages = new();
+        private string selectedTab = "profile";
 
+        private List<Language> _translatingLanguages = new();
+        private User User { get; set; } = new();
 
-        private List<Language> _translatingLanguages = new List<Language>();
-        private User User { get; set; } = new User();
+        private UserPwdUpdate UserPwdUpdate { get; set; } = new();
         private bool IsSuperUser { get; set; }
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -36,9 +40,9 @@ namespace OriinDic.Pages
             await base.OnInitializedAsync();
 
             if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 User = LocalStorage.GetItem<User>(Const.UserKey);
             }
@@ -47,7 +51,7 @@ namespace OriinDic.Pages
             LoadUserData(User);
 
 
-            if (!(AuthenticationStateProvider is null))
+            if (AuthenticationStateProvider is not null)
             {
                 var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
                 var user = authState.User;
@@ -79,14 +83,14 @@ namespace OriinDic.Pages
             foreach (var lt in user.TranslatingLanguages)
             {
                 var lang = LanguagesState?.Value.GetLanguage(lt);
-                if (!(lang is null))
+                if (lang is not null)
                     _translatingLanguages.Add(item: lang);
             }
 
             foreach (var lt in user.CoordinatingLanguages)
             {
                 var lang = LanguagesState?.Value.GetLanguage(lt);
-                if (!(lang is null))
+                if (lang is not null)
                     _coordinatingLanguages.Add(item: lang);
             }
         }
@@ -109,11 +113,15 @@ namespace OriinDic.Pages
             try
             {
                 var token = LocalStorage.GetItem<Token>(Const.TokenKey);
-                Dispatcher?.Dispatch(new UsersAnonymizeAction(User, token.AuthToken));
+                Dispatcher?.Dispatch(
+                    new UsersAnonymizeAction(
+                        user: User, 
+                        token: token.AuthToken,
+                        MyText?.Anonymized ?? string.Empty));
             }
             catch
             {
-                ShowAlert(MyText.DataSavedNOk);
+                ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
 
         }
@@ -141,14 +149,53 @@ namespace OriinDic.Pages
                 if (User.LanguageId.HasValue) uu.LanguageId = User.LanguageId.Value;
 
 
-                Dispatcher?.Dispatch(new UsersUpdateAction(User, token.AuthToken));
+                Dispatcher?.Dispatch(
+                    new UsersUpdateAction(
+                        userId: User.Id, 
+                        user: User, 
+                        token: token.AuthToken,
+                        userUpdatedMessage: MyText?.Updated ?? string.Empty));
 
             }
             catch
             {
-                ShowAlert(MyText.DataSavedNOk);
+                ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
 
         }
+
+        private void HandlePasswordChange()
+        {
+            
+        }
+
+        private static void ValidatePassword( ValidatorEventArgs e )
+        {
+            e.Status = Convert.ToString( e.Value )?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
+        }
+
+        private static void ValidatePassword3( ValidatorEventArgs e )
+        {
+            e.Status = Convert.ToString( e.Value )?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
+        }
+
+        private void ValidatePassword2( ValidatorEventArgs e )
+        {
+            
+
+            if ( UserPwdUpdate.ReNewPassword.Length < 6 )
+            {
+                e.Status = ValidationStatus.Error;
+            }
+            else if ( UserPwdUpdate.ReNewPassword != UserPwdUpdate.NewPassword )
+            {
+                e.Status = ValidationStatus.Error;
+            }
+            else
+            {
+                e.Status = ValidationStatus.Success;
+            }
+        }
+
     }
 }

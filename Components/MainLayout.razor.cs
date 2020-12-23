@@ -20,10 +20,10 @@ namespace OriinDic.Components
 
         private string _currentLanguage = "Language";
 
-        private Text _myText = new Text();
+        private Text _myText = new();
 
 
-        private BarDropdownToggle DropDownToggle { get; set; } = new BarDropdownToggle();
+        private BarDropdownToggle DropDownToggle { get; set; } = new();
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
@@ -33,7 +33,7 @@ namespace OriinDic.Components
 
         
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-        private Sidebar MySidebar { get; set; } = new Sidebar();
+        private Sidebar MySidebar { get; set; } = new();
 
   
         protected override async Task OnInitializedAsync()
@@ -71,16 +71,16 @@ namespace OriinDic.Components
 
             LocalStorage?.SetItem(Const.LanguageKey, _currentLanguage);
 
-            if (!(I18NText is null))
+            if (I18NText is not null)
                 await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());
         }
 
         private async Task PlUiLanguageClicked()
         {
             _currentLanguage = Const.PlLangShortcut;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
                 LocalStorage.SetItem(Const.LanguageKey, _currentLanguage);
-            if (!(I18NText is null))
+            if (I18NText is not null)
                 await I18NText.SetCurrentLanguageAsync(_currentLanguage.ToLower());
         }
 

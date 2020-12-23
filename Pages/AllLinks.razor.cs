@@ -29,7 +29,11 @@ namespace OriinDic.Pages
         {
             await base.OnInitializedAsync();
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new LinksFetchDataAction(0,0));
+            Dispatcher?.Dispatch(
+                new LinksFetchDataAction(
+                    searchPageNr: 0,
+                    itemsPerPage: Const.DefaultItemsPerPage,
+                    linkFetchedMessage: MyText?.Loaded ?? string.Empty));
             StateHasChanged();
         }
 
@@ -37,7 +41,11 @@ namespace OriinDic.Pages
         {
             _selectedOriinLink = oriinLink;
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new LinksDeleteAction(oriinLink.Id, _token ));
+            Dispatcher?.Dispatch(
+                new LinksDeleteAction(
+                    linkId: oriinLink.Id, 
+                    token: _token,
+                    deleteLinkMessage: MyText?.Deleted ?? string.Empty));
 
             StateHasChanged();
         }
@@ -47,7 +55,11 @@ namespace OriinDic.Pages
         {
 
             ReadLocalSettings();
-            Dispatcher?.Dispatch(new LinksFetchDataAction(searchPageNr: e.Page, _itemsPerPage));
+            Dispatcher?.Dispatch(
+                new LinksFetchDataAction(
+                    searchPageNr: e.Page, 
+                    itemsPerPage: _itemsPerPage,
+                    linkFetchedMessage: MyText?.Loaded ?? string.Empty));
 
             StateHasChanged();
         }

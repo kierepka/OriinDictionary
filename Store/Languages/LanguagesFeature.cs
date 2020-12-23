@@ -11,7 +11,7 @@ namespace OriinDic.Store.Languages
         protected override LanguagesState GetInitialState()
         {
             //TODO: dodać zczytywanie z localdata
-            return new LanguagesState(false, Array.Empty<Language>(), EActionState.Initialized);
+            return new(false, Array.Empty<Language>(), EActionState.Initialized);
         } 
     }
 }

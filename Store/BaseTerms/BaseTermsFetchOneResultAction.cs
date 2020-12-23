@@ -1,17 +1,22 @@
 ﻿using OriinDic.Models;
 
 using System.Collections.Generic;
+using System.Net;
 
 namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsFetchOneResultAction
+    public record BaseTermsFetchOneResultAction
     {
-        public ResultBaseTranslation BaseTranslation { get; init; } = new ResultBaseTranslation();
-        public List<OriinLink> Links { get; init; } = new List<OriinLink>();
-        public BaseTermsFetchOneResultAction(ResultBaseTranslation baseTranslation, List<OriinLink> links)
+        public ResultBaseTranslation BaseTranslation { get; } = new();
+        public List<OriinLink> Links { get; } = new();
+        public HttpStatusCode HttpStatusCode { get; }
+
+        public BaseTermsFetchOneResultAction(ResultBaseTranslation baseTranslation, List<OriinLink> links,
+            HttpStatusCode httpStatusCode)
         {
             BaseTranslation = baseTranslation;
             Links = links;
+            HttpStatusCode = httpStatusCode;
         }
     }
 }

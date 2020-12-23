@@ -1,9 +1,6 @@
 ﻿using System;
-
 using Blazorise;
-
 using Fluxor;
-
 using OriinDic.Helpers;
 using OriinDic.Models;
 
@@ -13,7 +10,7 @@ namespace OriinDic.Store.Search
     {
         public override string GetName() => "Search";
         protected override SearchState GetInitialState() =>
-            new SearchState(
+            new(
                 rootObject: null,
                 searchItems: Array.Empty<SearchItem>(),
                 localPages: Array.Empty<LocalPages>(),
@@ -31,8 +28,8 @@ namespace OriinDic.Store.Search
                 },
                 confirmedResults: true,
                 currentBaseLangPl: true,
-                buttonEnColor: string.Empty,
-                buttonPlColor: Color.Light,
+                buttonEnColor: Color.Secondary,
+                buttonPlColor: Color.Primary,
                 searchPageNr:1,
                 totalSearchItems: 0,
                 totalPages: 0,

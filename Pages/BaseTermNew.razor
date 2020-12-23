@@ -8,7 +8,7 @@
         <h1>@MyText?.AddTranslation</h1>
         <AuthorizeView Roles="@Const.RolesBaseEditors">
             <Authorized>
-                @if (!(BaseTermsState?.Value?.BaseTerm is null))
+                @if (BaseTermsState?.Value?.BaseTerm is not null)
                 {
                     <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
@@ -54,10 +54,8 @@
                             <Field Horizontal="true">
                                 <FieldBody ColumnSize="ColumnSize.Is12">
                                     <Buttons Role="ButtonsRole.Addons">
-
                                         <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
-                                        <input class="button" type="button" value="@MyText?.Back" onClick="history.back();">
-
+                                        <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
                                         <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
                                     </Buttons>
                                 </FieldBody>

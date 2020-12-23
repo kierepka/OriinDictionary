@@ -17,8 +17,8 @@ namespace OriinDic.Components
 
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
 
-        private List<OriinLink> _links = new List<OriinLink>();
-        private Text _myText = new Text();
+        private List<OriinLink> _links = new();
+        private Text _myText = new();
 
         [Parameter] public EventCallback<OriinLink> OnLinkCallback { get; set; }
 

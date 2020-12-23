@@ -13,7 +13,7 @@
 
     @if (_showOptionForBaseTerms)
     {
-        <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
+        <AuthorizeView Roles="@Helpers.Const.RolesEditors">
             <Authorized>
                 <Addon AddonType="AddonType.Start">
                     <Dropdown>
@@ -21,30 +21,30 @@
                             @MyText?.LinkTranslation
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithTranslations" 
+                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithTranslations"
                                           Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithTranslations))">@MyText?.BaseTermWithTranslations</DropdownItem>
-                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithoutTranslations" 
-                                          Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithoutTranslations))">@MyText?.BaseTermWithoutTranslations</DropdownItem>
-                            <DropdownDivider />
-                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.None" 
-                                          Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.None))">@MyText?.BaseTermNone</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </Addon>
-            </Authorized>
-        </AuthorizeView>
-    }
-    else
-    {
-        <AuthorizeView Roles="@OriinDic.Helpers.Const.RolesEditors">
-            <Authorized>
-                <Addon AddonType="AddonType.Start">
-                    <AddonLabel>@MyText?.Approved</AddonLabel>
-                    <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
-                </Addon>
-            </Authorized>
-        </AuthorizeView>
-    }
+                                        <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithoutTranslations"
+                                                      Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithoutTranslations))">@MyText?.BaseTermWithoutTranslations</DropdownItem>
+                                                    <DropdownDivider />
+                                                    <DropdownItem TValue="byte" Value="@EnumHasTranslations.None"
+                                                                  Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.None))">@MyText?.BaseTermNone</DropdownItem>
+                                                            </DropdownMenu>
+                                                        </Dropdown>
+                                                    </Addon>
+                                                </Authorized>
+                                            </AuthorizeView>
+                                        }
+                                        else
+                                        {
+                                            <AuthorizeView Roles="@Helpers.Const.RolesEditors">
+                                                <Authorized>
+                                                    <Addon AddonType="AddonType.Start">
+                                                        <AddonLabel>@MyText?.Approved</AddonLabel>
+                                                        <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
+                                                    </Addon>
+                                                </Authorized>
+                                            </AuthorizeView>
+                                        }
 
     <Addon AddonType="AddonType.Body">
         <TextEdit Placeholder="@MyText?.Search" Text="@SearchText"
@@ -59,9 +59,9 @@
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
 
                 <DropdownMenu>
-                    @if (!(LanguagesState is null))
+                    @if (LanguagesState is not null)
                     {
-                        @foreach (var l in OriinDic.Helpers.Const.BaseLanguagesList)
+                        @foreach (var l in Helpers.Const.BaseLanguagesList)
                         {
                             <DropdownItem TValue="long" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
                             <DropdownDivider />
@@ -89,7 +89,7 @@
                 <Button>@_currentLanguage2?.Name</Button>
                 <DropdownToggle Color="Color.Primary" IsSplit="true" />
                 <DropdownMenu>
-                    @if (!(LanguagesState is null))
+                    @if (LanguagesState is not null)
                     {
                         @foreach (var l in LanguagesState.Value.TranslationLanguages)
                         {
@@ -122,6 +122,7 @@
           PageSize="@((int)_itemsPerPage)"
           Sortable="true"
           SortMode="DataGridSortMode.Single"
+          RowSelectable=@(_=>false)
           Filterable="false"
           Striped="true"
           Bordered="true"
@@ -134,17 +135,17 @@
                     var locDic = context as SearchItem;
                     if (locDic.BaseName is null)
                     {
-                        <div class="box @SearchState?.Value.ButtonPlColor">
-                            <a href="/addbaseterm">@MyText?.AddBase</a>
-                        </div>
+                        <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
+                                Type="ButtonType.Link" To="/addbaseterm" Block="true">
+                            @MyText?.AddBase
+                        </Button>
                     }
                     else
                     {
-                        <div class="box @SearchState?.Value.ButtonPlColor">
-                            <a href="/editbaseterm/@locDic.BaseTermSlug">
-                                "@locDic.BaseName"
-                            </a>
-                        </div>
+                        <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
+                                Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
+                            "@locDic.BaseName"
+                        </Button>
                     }
                 }
             </DisplayTemplate>
@@ -155,15 +156,18 @@
                     var locDic = context as SearchItem;
                     if (locDic.TranslateName is null)
                     {
-                        <div class="box @SearchState?.Value.ButtonEnColor">
-                            <a href="/addtranslation/@locDic.BaseTermId">@MyText?.AddTranslation</a>
-                        </div>
+                        <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
+                                Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}")" Block="true">
+                            @MyText?.AddTranslation
+                        </Button>
+
                     }
                     else
                     {
-                        <div class="box @SearchState?.Value.ButtonEnColor">
-                            <a href="/edittranslation/@locDic.TranslateId">"@locDic.TranslateName"</a>
-                        </div>
+                        <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
+                                Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
+                            "@locDic.TranslateName"
+                        </Button>
                     }
                 }
             </DisplayTemplate>

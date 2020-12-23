@@ -1,37 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Blazorise;
-
 using OriinDic.Models;
 
 namespace OriinDic.Store.Search
 {
-    public class SearchState
+    public record SearchState
     {
-        public IReadOnlyCollection<SearchItem> SearchItems { get; private set; } = (Array.Empty<SearchItem>()).ToList().AsReadOnly();
-        public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } = (Array.Empty<LocalPages>()).ToList().AsReadOnly();
-        public Language CurrentLanguage1 { get; init; } = new Language();
-        public Language CurrentLanguage2 { get; init; } = new Language();
-        public int TotalSearchItems { get; private set; } = 0;
-        public long TotalPages { get; private set; } = 0;
-        public bool ConfirmedResults { get; init; } = false;
-        public bool CurrentBaseLangPl { get; init; } = false;
-        public string ButtonEnColor { get; private set; } = string.Empty;
+        public IReadOnlyCollection<SearchItem> SearchItems { get; private set; } = Array.Empty<SearchItem>().ToList().AsReadOnly();
+        public IReadOnlyCollection<LocalPages> LocalPages { get; private set; } = Array.Empty<LocalPages>().ToList().AsReadOnly();
+        public Language CurrentLanguage1 { get; } = new();
+        public Language CurrentLanguage2 { get; } = new();
+        public int TotalSearchItems { get; private set; }
+        public long TotalPages { get; private set; }
+        public bool ConfirmedResults { get; }
+        public bool CurrentBaseLangPl { get; }
+        public Color ButtonEnColor { get; private set; } = Color.None;
         public Color ButtonPlColor { get; private set; } = Color.None;
-        public string NoBaseTermName { get; init; } = string.Empty;
-        public string NoTranslationName { get; init; } = string.Empty;
-        public string NoResults { get; init; } = string.Empty;
-        public EActionState LastActionState { get; init; } = EActionState.Initializing;
-        public bool Current { get; init; } = false;
-        public long ItemsPerPage { get; init; } = 0;
-        public long SearchPageNr { get; init; } = 0;
-        public long TranslationLangId { get; init; } = 0;
-        public long BaseTermLangId { get; init; } = 0;
-        public string SearchText { get; init; } = string.Empty;
-        public bool IsLoading { get; init; } = false;
-        public bool PaginationShow { get; private set; } = false;
+        public string NoBaseTermName { get; } = string.Empty;
+        public string NoTranslationName { get; } = string.Empty;
+        public string NoResults { get; } = string.Empty;
+        public EActionState LastActionState { get; } = EActionState.Initializing;
+        public bool Current { get; }
+        public long ItemsPerPage { get; }
+        public long SearchPageNr { get; }
+        public long TranslationLangId { get; }
+        public long BaseTermLangId { get; }
+        public string SearchText { get; } = string.Empty;
+        public bool IsLoading { get; }
+        public bool PaginationShow { get; private set; }
 
         public SearchState(
             RootObject<ResultBaseTranslation>? rootObject,
@@ -41,7 +39,7 @@ namespace OriinDic.Store.Search
             Language currentLanguage2,
             bool confirmedResults,
             bool currentBaseLangPl,
-            string buttonEnColor,
+            Color buttonEnColor,
             Color buttonPlColor,
             long searchPageNr,
             int totalSearchItems,
@@ -81,7 +79,7 @@ namespace OriinDic.Store.Search
             PaginationShow = paginationShow;
             LastActionState = lastActionState;
 
-            if (!(rootObject is null)) UpdateTempData(rootObject);
+            if (rootObject is not null) UpdateTempData(rootObject);
             CheckButtonColors();
         }
 
@@ -94,12 +92,12 @@ namespace OriinDic.Store.Search
             if (CurrentBaseLangPl)
             {
                 ButtonPlColor = Color.Primary;
-                ButtonEnColor = "has-background-light";
+                ButtonEnColor = Color.Light;
             }
             else
             {
-                ButtonPlColor = Color.Secondary;
-                ButtonEnColor = "has-background-primary";
+                ButtonPlColor = Color.Light;
+                ButtonEnColor = Color.Primary;
             }
         }
 
@@ -135,7 +133,7 @@ namespace OriinDic.Store.Search
             foreach (var dic in dictResult.Results)
             {
                 var ltd = new SearchItem();
-                if (!(dic.BaseTerm is null))
+                if (dic.BaseTerm is not null)
                 {
                     ltd.BaseTermId = dic.BaseTerm.Id;
                     ltd.BaseTermSlug = string.IsNullOrEmpty(dic.BaseTerm.Slug)
@@ -146,7 +144,7 @@ namespace OriinDic.Store.Search
                         : dic.BaseTerm.Name;
                 }
 
-                if (!(dic.Translation is null))
+                if (dic.Translation is not null)
                 {
                     ltd.TranslateId = dic.Translation.Id;
                     ltd.TranslateName = string.IsNullOrEmpty(dic.Translation.Name)

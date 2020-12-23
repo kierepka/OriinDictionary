@@ -1,14 +1,18 @@
 ﻿namespace OriinDic.Store.Translations
 {
-    public class TranslationsFetchCommentsAction
+    public record TranslationsFetchCommentsAction
     {
-        public long TranslationId { get; init; } = 0;
-        public string Token { get; init; } = string.Empty;
+        public long TranslationId { get; }
+        public string Token { get; } = string.Empty;
+        public string CommentsFetchedMessage { get; }
 
-        public TranslationsFetchCommentsAction(long translationId, string token)
+
+        public TranslationsFetchCommentsAction(long translationId, string token,
+            string commentsFetchedMessage)
         {
             TranslationId = translationId;
             Token = token;
+            CommentsFetchedMessage = commentsFetchedMessage;
         }
     }
 }

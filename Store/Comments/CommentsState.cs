@@ -2,22 +2,19 @@
 
 namespace OriinDic.Store.Comments
 {
-    public class CommentsState
+    public record CommentsState
     {
-        public EActionState LastActionState { get; init; } = EActionState.Initializing;
-        public DeletedObjectResponse DeleteResponse { get; init; } = new DeletedObjectResponse();
-        public Comment Comment { get; init; } = new Comment();
-        public RootObject<Comment> RootObject { get; init; } = new RootObject<Comment>();
-        public long TranslationId { get; init; } = 0;
-        public long CommentId { get; init; } = 0;
-        public string StatusCode { get; init; } = string.Empty;
-        public string Token { get; init; } = string.Empty;
-        public int SearchPageNr { get; init; } = 0;
-        public long ItemsPerPage { get; init; } = 0;
-        public bool IsLoading { get; init; } = false;
-        
-
-
+        public EActionState LastActionState { get; } = EActionState.Initializing;
+        public DeletedObjectResponse DeleteResponse { get; } = new();
+        public Comment Comment { get; } = new();
+        public RootObject<Comment> RootObject { get; } = new();
+        public long TranslationId { get; }
+        public long CommentId { get; }
+        public string StatusCode { get; } = string.Empty;
+        public string Token { get; } = string.Empty;
+        public int SearchPageNr { get; }
+        public long ItemsPerPage { get; }
+        public bool IsLoading { get; }
 
         public CommentsState(
             bool isLoading, 

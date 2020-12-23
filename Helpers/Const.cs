@@ -9,15 +9,15 @@ namespace OriinDic.Helpers
         // ReSharper disable CommentTypo
         //For tests koordynator, uzytkownik, tlumacz, super_user                               
 #if RELEASE
-        private const string ApiDomain = "http://oriin.ga:8000/";
+        private const string ApiDomain = "https://oriin.ga:8000/";
 #elif DEBUGLOCAL
         private const string ApiDomain = "http://localhost:8000/";
 #elif DOCKER
         private const string ApiDomain = "http://web:8000";
-#elif AWS || DEBUG
-        private const string ApiDomain = "http://oriin.ga:8000/";
-#else
+#elif PRZEMEK
         private const string ApiDomain = "https://slownik-oriin.kropleduszy.pl:8000/";
+#else
+        private const string ApiDomain = "https://oriin.ga:8000/";
 #endif
         private const string ApiVersion = "api/v1/";
         private const string ApiDomainVersion = ApiDomain + ApiVersion;
@@ -33,6 +33,11 @@ namespace OriinDic.Helpers
         internal const string Links = ApiDomainVersion + "links/";
         internal const string Translations = ApiDomainVersion + "translations/";
         internal const string Token = ApiDomainNoVersion + "auth/token/login/";
+
+        internal const string PasswordChange = Users + "set_password/";
+        
+        internal const string PasswordResetConfirm = Users + "reset_password_confirm/";
+        
 
         internal static readonly IEnumerable<long> BaseLanguagesList = new ReadOnlyCollectionBuilder<long>{PlLangId};                                         
 
@@ -113,7 +118,7 @@ namespace OriinDic.Helpers
         internal const string PlLangSpeechCode = "pl-PL";
 
         public static readonly System.Text.Json.JsonSerializerOptions HttpClientOptions =
-            new System.Text.Json.JsonSerializerOptions()
+            new()
             {
                 PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase,
                 PropertyNameCaseInsensitive = true,

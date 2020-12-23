@@ -1,14 +1,18 @@
-﻿using OriinDic.Models;
+﻿using System.Net;
+using OriinDic.Models;
 
 namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsFetchDataResultAction
+    public record BaseTermsFetchDataResultAction
     {
-        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new RootObject<ResultBaseTranslation>();
+        public RootObject<ResultBaseTranslation> RootObject { get; } = new();
+        public HttpStatusCode HttpStatusCode { get; }
 
-        public BaseTermsFetchDataResultAction(RootObject<ResultBaseTranslation> rootObject)
+        public BaseTermsFetchDataResultAction(RootObject<ResultBaseTranslation> rootObject,
+            HttpStatusCode httpStatusCode)
         {
             RootObject = rootObject;
+            HttpStatusCode = httpStatusCode;
         }
     }
 }

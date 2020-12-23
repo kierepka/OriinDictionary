@@ -1,4 +1,6 @@
-﻿using Fluxor;
+﻿using System.Net;
+using Fluxor;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Links
 {
@@ -6,17 +8,17 @@ namespace OriinDic.Store.Links
     {
         public override string GetName() => "Links";
 
-        protected override LinksState GetInitialState() => new LinksState(
+        protected override LinksState GetInitialState() => new(
             isLoading: false,
             searchPageNr: 0,
             itemsPerPage: 0,
             linkId: 0,
             baseTermId: 0,
             token: string.Empty,
-            statusCode: string.Empty,
-            link: new Models.OriinLink(),
-            rootObject: new Models.RootObject<Models.OriinLink>(),
-            deleteResponse: new Models.DeletedObjectResponse(),
+            httpStatusCode: HttpStatusCode.OK,
+            link: new OriinLink(),
+            rootObject: new RootObject<OriinLink>(),
+            deleteResponse: new DeletedObjectResponse(),
             lastActionState: EActionState.Initializing);
     }
 }

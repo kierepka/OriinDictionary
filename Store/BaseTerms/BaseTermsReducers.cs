@@ -7,7 +7,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceAddAction(BaseTermsState state, BaseTermsAddAction baseTermAction) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -28,7 +28,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceAddResultAction(BaseTermsState state, BaseTermsAddResultAction baseTermAction) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -48,7 +48,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchDataAction(BaseTermsState state, BaseTermsFetchDataAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: action.Current,
                 searchPageNr: action.SearchPageNr,
@@ -68,7 +68,7 @@ namespace OriinDic.Store.BaseTerms
       
         [ReducerMethod]
         public static BaseTermsState ReduceFetchDataResultAction(BaseTermsState state, BaseTermsFetchDataResultAction action) =>
-             new BaseTermsState(
+             new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -87,7 +87,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneAction(BaseTermsState state, BaseTermsFetchOneAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -106,7 +106,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneResultAction(BaseTermsState state, BaseTermsFetchOneResultAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -126,7 +126,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneSlugAction(BaseTermsState state, BaseTermsFetchOneSlugAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -146,7 +146,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceFetchOneSlugResultAction(BaseTermsState state, BaseTermsFetchOneSlugResultAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -165,7 +165,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceUpdateAction(BaseTermsState state, BaseTermsUpdateAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,
@@ -185,7 +185,7 @@ namespace OriinDic.Store.BaseTerms
 
         [ReducerMethod]
         public static BaseTermsState ReduceUpdateResultAction(BaseTermsState state, BaseTermsUpdateResultAction action) =>
-            new BaseTermsState(
+            new(
                 isLoading: state.IsLoading,
                 current: state.Current,
                 searchPageNr: state.SearchPageNr,

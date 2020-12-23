@@ -1,13 +1,14 @@
 ﻿namespace OriinDic.Store.Users
 {
-    public class UsersDeleteAction
+    public record UsersDeleteAction
     {
-        public string Token { get; init; } = string.Empty;
-        public long UserId { get; init; } = 0;
-
-        public UsersDeleteAction(long userId, string token)
+        public string Token { get; } = string.Empty;
+        public long UserId { get; }
+        public string UserDeleteMessage { get; } = string.Empty;
+        public UsersDeleteAction(long userId, string token, string userDeleteMessage)
         {
             Token = token;
+            UserDeleteMessage = userDeleteMessage;
             UserId = userId;
         }
     }

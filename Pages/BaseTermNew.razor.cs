@@ -21,11 +21,11 @@ namespace OriinDic.Pages
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        [Inject] SpeechSynthesis? SpeechSynthesis { get; set; }
+        [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
 
         private string BaseTermLanguage => _baseLanguage.Name;
 
-        private readonly Language _baseLanguage = new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
+        private readonly Language _baseLanguage = new() { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
 
         private void OnSaveClicked()
         {
@@ -42,7 +42,11 @@ namespace OriinDic.Pages
 
             baseTerm.LanguageId = _baseLanguage.Id;
 
-            Dispatcher?.Dispatch(new BaseTermsAddAction(baseTerm: baseTerm, token: token.AuthToken));
+            Dispatcher?.Dispatch(
+                new BaseTermsAddAction(
+                    baseTerm: baseTerm,
+                    token: token.AuthToken,
+                    baseTermAddedMessage: MyText.DataSavedOk));
         }
 
         private void OnSpeechPlClicked()

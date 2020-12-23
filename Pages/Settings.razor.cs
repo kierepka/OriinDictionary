@@ -34,9 +34,9 @@ namespace OriinDic.Pages
             _isLoading = true;
 
             if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 _currentBaseLangPl = LocalStorage!.GetItem<bool>(Const.CurrentBaseLangKey);
                 _rowsPerPage = LocalStorage.GetItem<int>(Const.ItemsPerPageKey);
@@ -53,7 +53,7 @@ namespace OriinDic.Pages
         private void HandleSave()
         {
             _isLoading = true;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 LocalStorage!.SetItem(Const.CurrentBaseLangKey, _selectedLanguage == 1);
                 LocalStorage!.SetItem(Const.ItemsPerPageKey, _rowsPerPage);
@@ -64,7 +64,7 @@ namespace OriinDic.Pages
             _isLoading = false;
         }
 
-        void OnThemeEnabledChanged(bool value)
+        private void OnThemeEnabledChanged(bool value)
         {
             if (Theme == null)
                 return;
@@ -73,7 +73,7 @@ namespace OriinDic.Pages
             Theme.Enabled = value;
 
             _isLoading = true;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 LocalStorage!.SetItem(Const.ThemeIsEnabled, value );
             }
@@ -84,7 +84,7 @@ namespace OriinDic.Pages
             
         }
 
-        void OnGradientChanged(bool value)
+        private void OnGradientChanged(bool value)
         {
             if (Theme == null)
                 return;
@@ -92,7 +92,7 @@ namespace OriinDic.Pages
             Theme.IsGradient = value;
 
             _isLoading = true;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 LocalStorage!.SetItem(Const.ThemeIsGradient, value);
             }
@@ -101,7 +101,7 @@ namespace OriinDic.Pages
             Theme.ThemeHasChanged();
         }
 
-        void OnRoundedChanged(bool value)
+        private void OnRoundedChanged(bool value)
         {
             if (Theme == null)
                 return;
@@ -110,7 +110,7 @@ namespace OriinDic.Pages
 
 
             _isLoading = true;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 LocalStorage!.SetItem(Const.ThemeIsRounded, value);
             }
@@ -119,7 +119,7 @@ namespace OriinDic.Pages
             Theme.ThemeHasChanged();
         }
 
-        void OnThemeColorChanged(string value)
+        private void OnThemeColorChanged(string value)
         {
             if (Theme == null)
                 return;
@@ -146,7 +146,7 @@ namespace OriinDic.Pages
 
 
             _isLoading = true;
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 LocalStorage!.SetItem(Const.ThemePrimaryColor, value);
             }

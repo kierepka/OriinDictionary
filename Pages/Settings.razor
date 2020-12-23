@@ -34,7 +34,7 @@
                     <FieldBody ColumnSize="ColumnSize.Is9">
 
                         <Select @bind-SelectedValue="@_selectedLanguage">
-                            @if (!(LanguagesState is null))
+                            @if (LanguagesState is not null)
                             {
                                 @foreach (var lang in LanguagesState.Value.Languages)
                                 {

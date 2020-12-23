@@ -43,10 +43,10 @@ namespace OriinDic.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            if (!(MyText is null)) 
+            if (MyText is not null) 
                 _currentHeader = MyText.HeaderShowDashboardBase;
 
-            if (!(LocalStorage is null))
+            if (LocalStorage is not null)
             {
                 _currentTranslations = LocalStorage.GetItem<bool>(Const.CurrentTranslations);
                 _itemsPerPage = LocalStorage.ContainKey(Const.ItemsPerPageKey)
@@ -54,7 +54,7 @@ namespace OriinDic.Pages
                     : Const.DefaultItemsPerPage;
             }
             if (!LanguagesState?.Value?.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
             await base.OnInitializedAsync();
         }
@@ -65,17 +65,19 @@ namespace OriinDic.Pages
         }
 
 
-        void OnReadData(DataGridReadDataEventArgs<SearchItem> e)
+        private void OnReadData(DataGridReadDataEventArgs<SearchItem> e)
         {
             var currLang1Id = Const.PlLangId;
-            if (!(_currentLanguage1 is null)) currLang1Id = _currentLanguage1.Id;
+            if (_currentLanguage1 is not null) currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
-            if (!(_currentLanguage2 is null)) currLang2Id = _currentLanguage2.Id;
+            if (_currentLanguage2 is not null) currLang2Id = _currentLanguage2.Id;
 
             _searchPageNr = e.Page;
-            Dispatcher?.Dispatch(new SearchPageNrChangeAction(e.Page.ToString(), searchText: SearchText, baseTermLangId: currLang1Id,
+            Dispatcher?.Dispatch(
+                new SearchPageNrChangeAction(e.Page.ToString(), searchText: SearchText, baseTermLangId: currLang1Id,
                     translationLangId: currLang2Id, itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr, current: _currentTranslations,
-                    MyText?.NoResults ?? string.Empty));
+                    noResults: MyText?.NoResults ?? string.Empty,
+                    searchTranslationMessage: MyText?.Loaded ?? string.Empty));
 
 
 
@@ -107,20 +109,23 @@ namespace OriinDic.Pages
         private void GoSearch()
         {
             var currLang1Id = Const.PlLangId;
-            if (!(_currentLanguage1 is null)) currLang1Id = _currentLanguage1.Id;
+            if (_currentLanguage1 is not null) currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
-            if (!(_currentLanguage2 is null)) currLang2Id = _currentLanguage2.Id;
+            if (_currentLanguage2 is not null) currLang2Id = _currentLanguage2.Id;
 
 
             if (Const.BaseLanguagesList.Contains(currLang1Id))
-                Dispatcher?.Dispatch(new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
-                    translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
-                    current: _currentTranslations, MyText?.NoResults ?? string.Empty, _optionHasTranslations));
+                Dispatcher?.Dispatch(
+                    new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
+                        translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
+                        current: _currentTranslations, noResults: MyText?.NoResults ?? string.Empty,
+                        hasTranslations: _optionHasTranslations, searchBaseTermMessage: MyText?.Loaded ?? string.Empty));
             else
             {
                 Dispatcher?.Dispatch(new SearchTranslationsAction(searchText: SearchText, baseTermLangId: currLang2Id,
                     translationLangId: currLang1Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
-                    current: _currentTranslations, MyText?.NoResults ?? string.Empty));
+                    current: _currentTranslations, noResults: MyText?.NoResults ?? string.Empty,
+                    searchTranslationMessage: MyText?.Loaded ?? string.Empty));
             }
         }
 
@@ -139,9 +144,9 @@ namespace OriinDic.Pages
         private void OnPageClick(string pageActionName)
         {
             var currLang1Id = Const.PlLangId;
-            if (!(_currentLanguage1 is null)) currLang1Id = _currentLanguage1.Id;
+            if (_currentLanguage1 is not null) currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
-            if (!(_currentLanguage2 is null)) currLang2Id = _currentLanguage2.Id;
+            if (_currentLanguage2 is not null) currLang2Id = _currentLanguage2.Id;
 
             if (_searchPageNr < 1) _searchPageNr = 1;
             switch (pageActionName)
@@ -161,9 +166,12 @@ namespace OriinDic.Pages
             if (_searchPageNr < 1) _searchPageNr = 1;
 
 
-            Dispatcher?.Dispatch(new SearchPageNrChangeAction(pageActionName, searchText: SearchText, baseTermLangId: currLang1Id,
-                    translationLangId: currLang2Id, itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr, current: _currentTranslations,
-                    MyText?.NoResults ?? string.Empty));
+            Dispatcher?.Dispatch(
+                new SearchPageNrChangeAction(
+                    pageActionName: pageActionName, searchText: SearchText, baseTermLangId: currLang1Id,
+                    translationLangId: currLang2Id, itemsPerPage: _itemsPerPage, searchPageNr: _searchPageNr,
+                    current: _currentTranslations, noResults: MyText?.NoResults ?? string.Empty,
+                    searchTranslationMessage: MyText?.Loaded ?? string.Empty));
         }
 
 
@@ -176,7 +184,7 @@ namespace OriinDic.Pages
             _currentLanguage2 = cl1;
             _showOptionForBaseTerms = true;
 
-            if (!(MyText is null))
+            if (MyText is not null)
             {
                 if (_currentLanguage1 is null)
                 {

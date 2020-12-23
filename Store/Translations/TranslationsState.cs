@@ -8,12 +8,12 @@ namespace OriinDic.Store.Translations
     public class TranslationsState
     {
         public EActionState LastActionState { get; init; } = EActionState.Initializing;
-        public ResultBaseTranslation BaseTranslation { get; init; } = new ResultBaseTranslation();
-        public Translation Translation { get; init; } = new Translation();
-        public BaseTerm BaseTerm { get; init; } = new BaseTerm();
-        public List<OriinLink> Links { get; init; } = new List<OriinLink>();
-        public List<Comment> Comments { get; init; } = new List<Comment>();
-        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new RootObject<ResultBaseTranslation>();
+        public ResultBaseTranslation BaseTranslation { get; init; } = new();
+        public Translation Translation { get; init; } = new();
+        public BaseTerm BaseTerm { get; init; } = new();
+        public List<OriinLink> Links { get; init; } = new();
+        public List<Comment> Comments { get; init; } = new();
+        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new();
         public long BaseTermId { get; init; } = 0;
         public long TranslationId { get; init; } = 0;
         public string Token { get; init; } = string.Empty;

@@ -2,14 +2,16 @@
 
 namespace OriinDic.Store.Comments
 {
-    public class CommentsAddAction
+    public record CommentsAddAction
     {
-        public string Token { get; init; } = string.Empty;
-        public Comment Comment { get; init; } = new Comment();
+        public string Token { get; } = string.Empty;
+        public Comment Comment { get; } = new();
+        public string AddDataSuccessMessage { get; }
 
-        public CommentsAddAction(Comment comment, string token)
+        public CommentsAddAction(Comment comment, string token, string addDataSuccessMessage)
         {
             Token = token;
+            AddDataSuccessMessage = addDataSuccessMessage;
             Comment = comment;
         }
     }

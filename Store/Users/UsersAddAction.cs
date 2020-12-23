@@ -2,14 +2,15 @@
 
 namespace OriinDic.Store.Users
 {
-    public class UsersAddAction
+    public record UsersAddAction
     {
-        public string Token { get; init; } = string.Empty;
-        public UserAdd User { get; init; } = new UserAdd();
-
-        public UsersAddAction(UserAdd user, string token)
+        public string Token { get; } = string.Empty;
+        public UserAdd User { get; } = new();
+        public string UserAddedMessage { get; } = string.Empty;
+        public UsersAddAction(UserAdd user, string token, string userAddedMessage)
         {
             Token = token;
+            UserAddedMessage = userAddedMessage;
             User = user;
         }
     }

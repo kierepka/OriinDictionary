@@ -7,7 +7,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceAddAction(CommentsState state, CommentsAddAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,
@@ -23,7 +23,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceAddResultAction(CommentsState state, CommentsAddResultAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,
@@ -40,7 +40,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceDeleteAction(CommentsState state, CommentsDeleteAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,
@@ -56,7 +56,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceDeleteResultAction(CommentsState state, CommentsDeleteResultAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,
@@ -72,7 +72,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceFetchDataAction(CommentsState state, CommentsFetchDataAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: action.SearchPageNr,
                 itemsPerPage: action.ItemsPerPage,
@@ -88,7 +88,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceFetchDataResultAction(CommentsState state, CommentsFetchDataResultAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,
@@ -105,7 +105,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceFetchForTranslationAction(CommentsState state, CommentsFetchForTranslationAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,
@@ -121,7 +121,7 @@ namespace OriinDic.Store.Comments
 
         [ReducerMethod]
         public static CommentsState ReduceFetchOneAction(CommentsState state, CommentsFetchForTranslationResultAction action) =>
-            new CommentsState(
+            new(
                 isLoading: state.IsLoading,
                 searchPageNr: state.SearchPageNr,
                 itemsPerPage: state.ItemsPerPage,

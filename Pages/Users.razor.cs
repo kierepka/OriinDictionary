@@ -1,13 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Blazorise.DataGrid;
-
 using Fluxor;
-
 using Microsoft.AspNetCore.Components;
-
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Languages;
@@ -18,7 +15,6 @@ namespace OriinDic.Pages
     // ReSharper disable once ClassNeverInstantiated.Global
     public partial class Users
     {
-
         private long _itemsPerPage = Const.DefaultItemsPerPage;
         private bool _reloadData = true;
         private string _token = string.Empty;
@@ -26,10 +22,13 @@ namespace OriinDic.Pages
         private User? _selectedUser;
 
         private DataGrid<User>? UsersGrid { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<UsersState>? UsersState { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
@@ -40,12 +39,16 @@ namespace OriinDic.Pages
         {
             await base.OnInitializedAsync();
             if (!LanguagesState?.Value.Languages.Any() ?? true)
-                Dispatcher?.Dispatch(new LanguagesFetchDataAction());
+                Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
             ReadLocalSettings();
 
-            Dispatcher?.Dispatch(new UsersFetchDataAction(_token, searchPageNr: 1, _itemsPerPage));
-
+            Dispatcher?.Dispatch(
+                new UsersFetchDataAction(
+                    token: _token,
+                    searchPageNr: 1,
+                    itemsPerPage: _itemsPerPage,
+                    MyText?.Loaded ?? string.Empty));
         }
 
 
@@ -69,8 +72,11 @@ namespace OriinDic.Pages
                 Password = Func.CreatePassword(12, Func.EnumPasswordOptions.All)
             };
 
-            Dispatcher?.Dispatch(new UsersAddAction(userAdd, _token));
-
+            Dispatcher?.Dispatch(
+                new UsersAddAction(
+                    user: userAdd,
+                    token: _token,
+                    MyText?.AddedUser ?? string.Empty));
         }
 
         private void OnRowUpdated(SavedRowItem<User, Dictionary<string, object>> e)
@@ -84,8 +90,12 @@ namespace OriinDic.Pages
 
             ReadLocalSettings();
 
-            Dispatcher?.Dispatch(new UsersUpdateAction(user.Id, user, _token));
-
+            Dispatcher?.Dispatch(
+                new UsersUpdateAction(
+                    userId: user.Id,
+                    user: user,
+                    token: _token,
+                    MyText?.Updated ?? string.Empty));
         }
 
 
@@ -96,7 +106,12 @@ namespace OriinDic.Pages
             if (_selectedUser is null) return;
             ReadLocalSettings();
 
-            if (_selectedUser != null) Dispatcher?.Dispatch(new UsersDeleteAction(_selectedUser.Id, _token));
+            if (_selectedUser != null)
+                Dispatcher?.Dispatch(
+                    new UsersDeleteAction(
+                        userId: _selectedUser.Id,
+                        token: _token,
+                        userDeleteMessage: MyText?.Deleted ?? string.Empty));
         }
 
         private void OnTransLangStatusChanged(SelectableLanguage selectableLanguage)
@@ -104,15 +119,15 @@ namespace OriinDic.Pages
             if (_selectedUser is null) return;
             if (selectableLanguage.Selected)
             {
-                if (_selectedUser.TranslatingLanguages.Contains((int)selectableLanguage.Id))
+                if (_selectedUser.TranslatingLanguages.Contains((int) selectableLanguage.Id))
                     return;
 
-                _selectedUser.TranslatingLanguages.Add((int)selectableLanguage.Id);
+                _selectedUser.TranslatingLanguages.Add((int) selectableLanguage.Id);
             }
             else
             {
-                if (_selectedUser.TranslatingLanguages.Contains((int)selectableLanguage.Id))
-                    _selectedUser.TranslatingLanguages.Remove((int)selectableLanguage.Id);
+                if (_selectedUser.TranslatingLanguages.Contains((int) selectableLanguage.Id))
+                    _selectedUser.TranslatingLanguages.Remove((int) selectableLanguage.Id);
             }
 
             StateHasChanged();
@@ -125,14 +140,14 @@ namespace OriinDic.Pages
 
             if (selectableLanguage.Selected)
             {
-                if (_selectedUser.CoordinatingLanguages.Contains((int)selectableLanguage.Id))
+                if (_selectedUser.CoordinatingLanguages.Contains((int) selectableLanguage.Id))
                     return;
-                _selectedUser.CoordinatingLanguages.Add((int)selectableLanguage.Id);
+                _selectedUser.CoordinatingLanguages.Add((int) selectableLanguage.Id);
             }
             else
             {
-                if (_selectedUser.CoordinatingLanguages.Contains((int)selectableLanguage.Id))
-                    _selectedUser.CoordinatingLanguages.Remove((int)selectableLanguage.Id);
+                if (_selectedUser.CoordinatingLanguages.Contains((int) selectableLanguage.Id))
+                    _selectedUser.CoordinatingLanguages.Remove((int) selectableLanguage.Id);
             }
 
             StateHasChanged();
@@ -143,8 +158,12 @@ namespace OriinDic.Pages
             if (!_reloadData) return;
             ReadLocalSettings();
 
-            Dispatcher?.Dispatch(new UsersFetchDataAction(_token, searchPageNr: e.Page, _itemsPerPage));
-
+            Dispatcher?.Dispatch(
+                new UsersFetchDataAction(
+                    token: _token,
+                    searchPageNr: e.Page,
+                    itemsPerPage: _itemsPerPage,
+                    MyText?.Loaded ?? string.Empty));
         }
 
         private void ReadLocalSettings()
@@ -161,8 +180,6 @@ namespace OriinDic.Pages
             int? itemsPerPage = LocalStorage.GetItem<int>(Const.ItemsPerPageKey);
             _itemsPerPage = itemsPerPage.Value;
             if (_itemsPerPage == 0) _itemsPerPage = Const.DefaultItemsPerPage;
-
-
         }
 
 
