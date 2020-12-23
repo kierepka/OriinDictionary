@@ -1,6 +1,6 @@
 # Oriin dictionary
 
-[ORIIN.ga](https://oriin.ga)
+You can check how project is working here: [ORIIN.ga](https://oriin.ga) (AMAZON AWS free hosting EC2)
 
 This is a project that uses Blazor to connect to a Python backend. The goal of the project is to create a dictionary of base words (at the beginning base words are only in Polish, but the system is self-adapting to different base languages).
 
