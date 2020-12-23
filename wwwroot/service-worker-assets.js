@@ -1,15 +1,15 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-SDT695pzho55iKj8V9Iom1AFQszeEtER0lQtZ4eoA+I=",
+      "hash": "sha256-9JdpziIDIkOK4b+AANLckjcfV\/OH+u7JxuO1a97mkBs=",
       "url": "_content\/i18ntext\/OriinDic.I18nText.Text.en.json"
     },
     {
-      "hash": "sha256-lXQ7a75GuuJ5zrcO9LpGYIiR2lBtUPec152u6fhAgqA=",
+      "hash": "sha256-USiT1wCUiCLXEvz57f3meWNHzwUQOAJPurkTMErtBvQ=",
       "url": "_content\/i18ntext\/OriinDic.I18nText.Text.pl-PL.json"
     },
     {
-      "hash": "sha256-lXQ7a75GuuJ5zrcO9LpGYIiR2lBtUPec152u6fhAgqA=",
+      "hash": "sha256-USiT1wCUiCLXEvz57f3meWNHzwUQOAJPurkTMErtBvQ=",
       "url": "_content\/i18ntext\/OriinDic.I18nText.Text.pl.json"
     },
     {
@@ -373,7 +373,7 @@
       "url": "_framework\/Toolbelt.Blazor.SpeechSynthesis.dll"
     },
     {
-      "hash": "sha256-GAtyoE6BzfDmclbyqQKpO1SXziHH6V8s69AfXmyR2t0=",
+      "hash": "sha256-vmfWiHtwz2MGjpVl+hA1cbP+b1ou22QysRDLT4ZYnlA=",
       "url": "_framework\/OriinDic.dll"
     },
     {
@@ -397,7 +397,7 @@
       "url": "_framework\/System.Collections.dll"
     },
     {
-      "hash": "sha256-GbPg7+MEOUiM2gd2RXLlZvVxFe\/aTjXZc4eajZlmguY=",
+      "hash": "sha256-p5itPYXr5c5bljx7EJwQtadgxsxsPb3uXayF8FuDLoI=",
       "url": "_framework\/System.ComponentModel.Annotations.dll"
     },
     {
@@ -453,7 +453,7 @@
       "url": "_framework\/System.Net.Http.Json.dll"
     },
     {
-      "hash": "sha256-qijojP0j8jRx+rhmyWLFCBPW36H+d33tF7iohqd\/7TU=",
+      "hash": "sha256-W6b12DszBJ7uBLswbR\/reU09lOoc0NnNX6SCiLHXWy0=",
       "url": "_framework\/System.Net.Http.dll"
     },
     {
@@ -529,7 +529,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-V+wPx9kA2YAcFfcB7DnD2LTYBLcVTQLyevdRPbF8hdo=",
+      "hash": "sha256-ZmVsSY4LJgU7xRiQL7bbRvVoTm+mxlEc4Oiuel5\/YBc=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -537,5 +537,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "N0m5mkjr"
+  "version": "Uz8W4eH\/"
 };
