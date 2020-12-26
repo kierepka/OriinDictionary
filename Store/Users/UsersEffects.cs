@@ -128,16 +128,15 @@ namespace OriinDic.Store.Users
                 returnCode = HttpStatusCode.BadRequest;
             }
 
-            returnCode = response.StatusCode;
-            
+            if (response is not null) returnCode = response.StatusCode;
 
 
-            //dispatcher.Dispatch(
-            //    new UsersPasswordChangeResultAction(statusCode: returnCode));
+            dispatcher.Dispatch(
+                new UsersPasswordChangeResultAction(statusCode: returnCode));
 
-            //if (returnCode != HttpStatusCode.BadRequest)
-            //    dispatcher.Dispatch(
-            //        new NotificationAction(action.UserAnonymizedMessage, SnackbarColor.Success));
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserPasswordChangeMessage, SnackbarColor.Success));
         }
         
         

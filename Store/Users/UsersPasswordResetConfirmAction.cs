@@ -5,10 +5,11 @@ namespace OriinDic.Store.Users
     public record UsersPasswordResetConfirmAction
     {
         public string Token { get; } = string.Empty;
-        public User User { get; } = new();
+        public UserPwdResetUpdate User { get; } = new();
         public string UserPasswordResetConfirmMessage { get; } = string.Empty;
         
-        public UsersPasswordResetConfirmAction(User user, string token, string userPasswordResetConfirmMessage)
+        public UsersPasswordResetConfirmAction(
+            UserPwdResetUpdate user, string token, string userPasswordResetConfirmMessage)
         {
             Token = token;
             UserPasswordResetConfirmMessage = userPasswordResetConfirmMessage;

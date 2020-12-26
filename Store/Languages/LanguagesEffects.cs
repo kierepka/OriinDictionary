@@ -93,7 +93,7 @@ namespace OriinDic.Store.Languages
             }
 
 
-            return languageResult.Results;
+            return languageResult?.Results ?? new List<Language>();
         }
     }
 }

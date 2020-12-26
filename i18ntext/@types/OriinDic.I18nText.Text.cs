@@ -307,6 +307,9 @@ namespace OriinDic.I18nText
         /// <summary>"Zmiana hasła"</summary>
         public string PasswordChange;
 
+        /// <summary>"Reset hasła wysłany - proszę sprawdź email, by przejść do następnych kroków."</summary>
+        public string PasswordReset;
+
         /// <summary>"Dane"</summary>
         public string PersonalData;
 

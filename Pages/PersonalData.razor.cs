@@ -17,7 +17,7 @@ namespace OriinDic.Pages
     public partial class PersonalData
     {
         private List<Language> _coordinatingLanguages = new();
-        private string selectedTab = "profile";
+        private string selectedTab { get; set; } = "profile";
 
         private List<Language> _translatingLanguages = new();
         private User User { get; set; } = new();
@@ -60,8 +60,8 @@ namespace OriinDic.Pages
                 IsSuperUser = (user.IsInRole(Const.RoleSuperUser));
             }
 
-            if (UserState is null) return;
-            UserState.StateChanged += UserState_StateChanged;
+            
+            UserState!.StateChanged += UserState_StateChanged;
         }
 
         private void UserState_StateChanged(object sender, UsersState e)
@@ -204,6 +204,43 @@ namespace OriinDic.Pages
             else
             {
                 e.Status = ValidationStatus.Success;
+            }
+        }
+
+        private void OnSelectedTabChanged(string name)
+        {
+            selectedTab = name;
+        }
+        
+        private void HandlePasswordReset()
+        {
+            
+            PasswordResetSend(User.Email);
+        }
+
+        private void PasswordResetSend(string userEmail)
+        {
+            if (LocalStorage is null) return;
+
+            if (MyText is null) return;
+
+            var upr = new UserPwdReset
+            {
+                Email = userEmail
+            };
+            try
+            {
+                var token = LocalStorage.GetItem<Token>(Const.TokenKey);
+
+                Dispatcher?.Dispatch(
+                    new UsersPasswordResetAction(
+                        user: upr,
+                        token: token.AuthToken,
+                        userPasswordResetMessage: MyText?.PasswordResetSend ?? string.Empty));
+            }
+            catch
+            {
+                ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
         }
     }

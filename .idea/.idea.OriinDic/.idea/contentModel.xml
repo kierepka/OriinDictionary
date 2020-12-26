@@ -124,6 +124,8 @@
         <e p="Logout.razor.cs" t="Include" />
         <e p="OriinUser.razor" t="Include" />
         <e p="OriinUser.razor.cs" t="Include" />
+        <e p="PasswordResetConfirm.razor" t="Include" />
+        <e p="PasswordResetConfirm.razor.cs" t="Include" />
         <e p="PersonalData.razor" t="Include" />
         <e p="PersonalData.razor.cs" t="Include" />
         <e p="Settings.razor" t="Include" />

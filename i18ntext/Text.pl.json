@@ -152,5 +152,7 @@
   "NewPassword": "Nowe hasło",
   "ReNewPassword": "Powtórz nowe hasło",
   "CurrentPassword": "Aktualne hasło",
+  "PasswordReset": "Reset hasła",
+  "PasswordResetSend": "Reset hasła wysłany - proszę sprawdź email, by przejść do następnych kroków.",
   "Confirm": "Potwierdź"
 }

@@ -7,7 +7,7 @@
 
 <Row>
     <Column>
-        <Tabs SelectedTab="@selectedTab" Justified="true" Pills="true">
+        <Tabs SelectedTab="@selectedTab" SelectedTabChanged="@OnSelectedTabChanged" Justified="true" Pills="true">
             <Items>
                 <Tab Name="profile">Profil</Tab>
                 <Tab Name="passwordChange">Password Change</Tab>
@@ -76,7 +76,7 @@
                                                 @foreach (var lang in LanguagesState.Value.Languages)
                                                 {
                                                     <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
-}
+                                                }
                                             }
 
                                         </Select>
@@ -238,6 +238,20 @@
                             </Field>
                         </CardBody>
                     </Card>
+                </TabPanel>
+                <TabPanel name="passwordReset">
+                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                        <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                        <FieldBody ColumnSize="ColumnSize.Is9">
+
+                            <Buttons Role="ButtonsRole.Toolbar">
+                                <Buttons Margin="Margin.Is2.FromRight">
+                                    <Button Type="ButtonType.Submit" Clicked="@HandlePasswordReset" Color="Color.Secondary">@MyText?.PasswordReset </Button>
+                                </Buttons>
+
+                            </Buttons>
+                        </FieldBody>
+                    </Field>
                 </TabPanel>
             </Content>
         </Tabs>

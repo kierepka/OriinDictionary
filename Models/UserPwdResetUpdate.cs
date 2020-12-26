@@ -29,7 +29,7 @@ namespace OriinDic.Models
         [JsonPropertyName("uid")]
         [Required]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public long UserId { get; set; }
+        public string UserId { get; set; }
         
         public UserPwdResetUpdate()
         {
