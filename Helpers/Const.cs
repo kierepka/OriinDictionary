@@ -91,10 +91,9 @@ namespace OriinDic.Helpers
 
         internal const string CurrentTranslations = "CurrentTranslations";
 
-
         
+        internal const string PrimaryColor = "#0288D1";
         internal const string ThemeIsEnabled = "ThemeIsEnabled";
-        internal const string ThemeIsGradient = "ThemeIsGradient";
         internal const string ThemeIsRounded = "ThemeIsRounded";
         internal const string ThemePrimaryColor = "ThemePrimaryColor";
         
@@ -124,6 +123,6 @@ namespace OriinDic.Helpers
                 PropertyNameCaseInsensitive = true,
                 IgnoreReadOnlyProperties = true
             };
-
+        internal const int ShownCharactersInTable = 30;
     }
 }

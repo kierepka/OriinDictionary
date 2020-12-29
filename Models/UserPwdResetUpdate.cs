@@ -25,11 +25,11 @@ namespace OriinDic.Models
         [DataType( DataType.Text )]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Token { get; set; } = string.Empty;
-        
+
         [JsonPropertyName("uid")]
         [Required]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
         
         public UserPwdResetUpdate()
         {

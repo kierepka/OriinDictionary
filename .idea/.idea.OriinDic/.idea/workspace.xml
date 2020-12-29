@@ -23,33 +23,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OriinDic - Backup (1).csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OriinDic - Backup (2).csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OriinDic - Backup.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/App.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ItemComment.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemComment.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/Const.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Const.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Functions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/SearchItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/SearchItem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/UserPwdResetUpdate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UserPwdResetUpdate.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OriinDic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OriinDic.sln" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllComments.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Index.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersEffects.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersPasswordChangeResultAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersPasswordChangeResultAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Users/UsersPasswordResetConfirmAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Users/UsersPasswordResetConfirmAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18ntext/Text.en.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.en.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/_framework/OriinDic.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/_framework/OriinDic.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/_framework/OriinDic.dll.br" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/_framework/OriinDic.dll.br" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/_framework/OriinDic.dll.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/_framework/OriinDic.dll.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/_framework/blazor.boot.json" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/_framework/blazor.boot.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/_framework/blazor.boot.json.br" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/_framework/blazor.boot.json.br" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/_framework/blazor.boot.json.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/_framework/blazor.boot.json.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/service-worker-assets.js" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/service-worker-assets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/service-worker-assets.js.br" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/service-worker-assets.js.br" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/service-worker-assets.js.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/service-worker-assets.js.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/service-worker.js.br" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/service-worker.js.br" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../publish/wwwroot/service-worker.js.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../publish/wwwroot/service-worker.js.gz" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +67,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Pages/Index.razor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/670B0ABC-A73B-4495-9191-A5197895E4D1/B/KeyboardEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsReducers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Links/LinksEffects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Store/Translations/TranslationsFetchBaseTermAction.cs" root0="FORCE_HIGHLIGHTING" />
@@ -108,11 +114,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Store/BaseTerms/BaseTermsFetchDataAction.cs" />
-      <option value="$PROJECT_DIR$/Store/Links/LinksAddAction.cs" />
-      <option value="$PROJECT_DIR$/Store/Links/LinksDeleteAction.cs" />
-      <option value="$PROJECT_DIR$/Store/Links/LinksFetchForBaseTermAction.cs" />
-      <option value="$PROJECT_DIR$/Store/Links/LinksEffects.cs" />
       <option value="$PROJECT_DIR$/Store/Links/LinksFetchDataAction.cs" />
       <option value="$PROJECT_DIR$/Store/Links/LinksState.cs" />
       <option value="$PROJECT_DIR$/Store/Links/LinksReducers.cs" />
@@ -135,7 +136,6 @@
       <option value="$PROJECT_DIR$/Store/Users/UsersFeature.cs" />
       <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
       <option value="$PROJECT_DIR$/Pages/OriinUser.razor.cs" />
-      <option value="$PROJECT_DIR$/Helpers/Const.cs" />
       <option value="$PROJECT_DIR$/Models/UserPwdReset.cs" />
       <option value="$PROJECT_DIR$/Models/UserPwdUpdate.cs" />
       <option value="$PROJECT_DIR$/Models/UserPwdResetUpdate.cs" />
@@ -155,10 +155,16 @@
       <option value="$PROJECT_DIR$/Store/Languages/LanguagesEffects.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersPasswordResetAction.cs" />
       <option value="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" />
-      <option value="$PROJECT_DIR$/Pages/PersonalData.razor.cs" />
       <option value="$PROJECT_DIR$/i18ntext/Text.pl.json" />
-      <option value="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" />
       <option value="$PROJECT_DIR$/i18ntext/Text.en.json" />
+      <option value="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" />
+      <option value="$PROJECT_DIR$/Pages/PersonalData.razor.cs" />
+      <option value="$PROJECT_DIR$/Pages/Settings.razor" />
+      <option value="$PROJECT_DIR$/Pages/Settings.razor.cs" />
+      <option value="$PROJECT_DIR$/Helpers/Const.cs" />
+      <option value="$PROJECT_DIR$/App.razor" />
+      <option value="$PROJECT_DIR$/Components/ListComments.razor" />
+      <option value="$PROJECT_DIR$/Components/ListComments.razor.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
@@ -281,7 +287,10 @@
       <workItem from="1608493615795" duration="31412000" />
       <workItem from="1608623074365" duration="8420000" />
       <workItem from="1608714519566" duration="4576000" />
-      <workItem from="1608985396701" duration="3403000" />
+      <workItem from="1608985396701" duration="3638000" />
+      <workItem from="1609156391229" duration="54000" />
+      <workItem from="1609156750449" duration="3920000" />
+      <workItem from="1609230023079" duration="5206000" />
     </task>
     <servers />
   </component>

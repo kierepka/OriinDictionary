@@ -6,6 +6,7 @@ using Blazorise;
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Store.Languages;
 
@@ -21,12 +22,17 @@ namespace OriinDic.Pages
         private long _rowsPerPage;
         private int _selectedLanguage;
         private bool _currentTranslations;
+
+        private string ThemeColor { get; set; } = string.Empty;
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
 
         [CascadingParameter] protected Theme? Theme { get; set; }
+        private bool ThemeEnabled { get; set; }
+        private bool ThemeRounded { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -38,10 +44,20 @@ namespace OriinDic.Pages
 
             if (LocalStorage is not null)
             {
-                _currentBaseLangPl = LocalStorage!.GetItem<bool>(Const.CurrentBaseLangKey);
+                _currentBaseLangPl = LocalStorage.GetItem<bool>(Const.CurrentBaseLangKey);
                 _rowsPerPage = LocalStorage.GetItem<int>(Const.ItemsPerPageKey);
                 _currentTranslations = LocalStorage.GetItem<bool>(Const.CurrentTranslations);
+
+                ThemeColor = LocalStorage.GetItem<string>(Const.ThemePrimaryColor);
+                ThemeEnabled = LocalStorage.GetItem<bool>(Const.ThemeIsEnabled);
+                ThemeRounded = LocalStorage.GetItem<bool>(Const.ThemeIsRounded);
             }
+
+
+
+            UpdateTheme();
+
+
 
             if (_currentBaseLangPl) _selectedLanguage = 1;
             if (_rowsPerPage == 0) _rowsPerPage = Const.DefaultItemsPerPage;
@@ -49,55 +65,59 @@ namespace OriinDic.Pages
             _isLoading = false;
         }
 
+        private void UpdateTheme()
+        {
+            if (Theme is null) return;
+            if (string.IsNullOrEmpty(ThemeColor)) ThemeColor = Theme.ColorOptions.Primary;
+            Theme.Enabled = ThemeEnabled;
+            Theme.IsRounded = ThemeRounded;
+            Theme.ColorOptions ??= new ThemeColorOptions();
+
+            Theme.BackgroundOptions ??= new ThemeBackgroundOptions();
+
+            Theme.TextColorOptions ??= new ThemeTextColorOptions();
+
+            Theme.ColorOptions.Primary = ThemeColor;
+            Theme.BackgroundOptions.Primary = ThemeColor;
+            Theme.TextColorOptions.Primary = ThemeColor;
+
+            Theme.InputOptions ??= new ThemeInputOptions();
+
+            Theme.InputOptions.Color = ThemeColor;
+            Theme.InputOptions.CheckColor = ThemeColor;
+            Theme.InputOptions.SliderColor = ThemeColor;
+            Theme.ThemeHasChanged();
+        }
 
         private void HandleSave()
         {
             _isLoading = true;
-            if (LocalStorage is not null)
+            if (LocalStorage is null)
             {
-                LocalStorage!.SetItem(Const.CurrentBaseLangKey, _selectedLanguage == 1);
-                LocalStorage!.SetItem(Const.ItemsPerPageKey, _rowsPerPage);
-                LocalStorage!.SetItem(Const.CurrentTranslations, _currentTranslations);
+                _isLoading = false;
+                return;
             }
 
+            LocalStorage!.SetItem(Const.CurrentBaseLangKey, _selectedLanguage == 1);
+            LocalStorage!.SetItem(Const.ItemsPerPageKey, _rowsPerPage);
+            LocalStorage!.SetItem(Const.CurrentTranslations, _currentTranslations);
+            LocalStorage!.SetItem(Const.ThemeIsEnabled, ThemeEnabled);
+            LocalStorage!.SetItem(Const.ThemeIsRounded, ThemeRounded);
+            LocalStorage!.SetItem(Const.ThemePrimaryColor, ThemeColor);
+
+            UpdateTheme();
 
             _isLoading = false;
+
+
         }
 
         private void OnThemeEnabledChanged(bool value)
         {
-            if (Theme == null)
+            if (Theme is null)
                 return;
-
-            
-            Theme.Enabled = value;
-
-            _isLoading = true;
-            if (LocalStorage is not null)
-            {
-                LocalStorage!.SetItem(Const.ThemeIsEnabled, value );
-            }
-            _isLoading = false;
-
-            Theme.ThemeHasChanged();
-
-            
-        }
-
-        private void OnGradientChanged(bool value)
-        {
-            if (Theme == null)
-                return;
-
-            Theme.IsGradient = value;
-
-            _isLoading = true;
-            if (LocalStorage is not null)
-            {
-                LocalStorage!.SetItem(Const.ThemeIsGradient, value);
-            }
-            _isLoading = false;
-
+            ThemeEnabled = value;                                                       
+            Theme.Enabled = ThemeEnabled;
             Theme.ThemeHasChanged();
         }
 
@@ -105,55 +125,15 @@ namespace OriinDic.Pages
         {
             if (Theme == null)
                 return;
-
+            ThemeRounded = value;
             Theme.IsRounded = value;
-
-
-            _isLoading = true;
-            if (LocalStorage is not null)
-            {
-                LocalStorage!.SetItem(Const.ThemeIsRounded, value);
-            }
-            _isLoading = false;
-
             Theme.ThemeHasChanged();
         }
 
         private void OnThemeColorChanged(string value)
         {
-            if (Theme == null)
-                return;
-
-            if (Theme.ColorOptions == null)
-                Theme.ColorOptions = new ThemeColorOptions();
-
-            if (Theme.BackgroundOptions == null)
-                Theme.BackgroundOptions = new ThemeBackgroundOptions();
-
-            if (Theme.TextColorOptions == null)
-                Theme.TextColorOptions = new ThemeTextColorOptions();
-
-            Theme.ColorOptions.Primary = value;
-            Theme.BackgroundOptions.Primary = value;
-            Theme.TextColorOptions.Primary = value;
-
-            if (Theme.InputOptions == null)
-                Theme.InputOptions = new ThemeInputOptions();
-
-            Theme.InputOptions.Color = value;
-            Theme.InputOptions.CheckColor = value;
-            Theme.InputOptions.SliderColor = value;
-
-
-            _isLoading = true;
-            if (LocalStorage is not null)
-            {
-                LocalStorage!.SetItem(Const.ThemePrimaryColor, value);
-            }
-            _isLoading = false;
-
-
-            Theme.ThemeHasChanged();
+            ThemeColor = value;
+            UpdateTheme();
         }
     }
 }

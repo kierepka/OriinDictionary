@@ -97,6 +97,12 @@ namespace OriinDic.I18nText
         /// <summary>"Wyczyść filtr"</summary>
         public string ClearFilter;
 
+        /// <summary>"Komentarz nie może być pusty"</summary>
+        public string CommentAddError;
+
+        /// <summary>"Dodaj nowy komentarz wpisując go powyżej"</summary>
+        public string CommentAddHelp;
+
         /// <summary>"Data"</summary>
         public string CommentDate;
 
@@ -127,8 +133,17 @@ namespace OriinDic.I18nText
         /// <summary>"Aktualne hasło"</summary>
         public string CurrentPassword;
 
+        /// <summary>"Musisz wprowadzić hasło o długości co najmniej 6 znaków"</summary>
+        public string CurrentPasswordError;
+
+        /// <summary>"Wprowadź aktualne hasło"</summary>
+        public string CurrentPasswordHelp;
+
         /// <summary>"Zatwierdzone"</summary>
         public string CurrentTranslations;
+
+        /// <summary>"Pokazuje tylko już zatwierdzone tłumaczenia (nie pokazuje innych wersji)"</summary>
+        public string CurrentTranslationsHelp;
 
         /// <summary>"Wysąpił błąd podczas zapisu danych."</summary>
         public string DataSavedNOk;
@@ -153,6 +168,9 @@ namespace OriinDic.I18nText
 
         /// <summary>"E-mail"</summary>
         public string Email;
+
+        /// <summary>"Wprowadzony tekst musi być adresem e-mail"</summary>
+        public string EmailError;
 
         /// <summary>"Kobieta"</summary>
         public string FemaleGender;
@@ -248,6 +266,9 @@ namespace OriinDic.I18nText
         public string Loading;
 
         /// <summary>"Zaloguj się"</summary>
+        public string Login;
+
+        /// <summary>"Zaloguj się"</summary>
         public string LogIn;
 
         /// <summary>"Zaloguj się"</summary>
@@ -280,6 +301,12 @@ namespace OriinDic.I18nText
         /// <summary>"Nowe hasło"</summary>
         public string NewPassword;
 
+        /// <summary>"Musisz wprowadzić nowe hasło o długości co najmniej 6 znaków"</summary>
+        public string NewPasswordError;
+
+        /// <summary>"Wprowadź nowe hasło"</summary>
+        public string NewPasswordHelp;
+
         /// <summary>"Nowy"</summary>
         public string NewTxt;
 
@@ -307,8 +334,20 @@ namespace OriinDic.I18nText
         /// <summary>"Zmiana hasła"</summary>
         public string PasswordChange;
 
-        /// <summary>"Reset hasła wysłany - proszę sprawdź email, by przejść do następnych kroków."</summary>
+        /// <summary>"Musisz wprowadzić hasło o długości co najmniej 6 znaków"</summary>
+        public string PasswordError;
+
+        /// <summary>"Proszę wprowadzić hasło"</summary>
+        public string PasswordHelp;
+
+        /// <summary>"Reset hasła"</summary>
         public string PasswordReset;
+
+        /// <summary>"Password reset completed successfully."</summary>
+        public string PasswordReseted;
+
+        /// <summary>"Reset hasła wysłany - proszę sprawdź email, by przejść do następnych kroków."</summary>
+        public string PasswordResetSend;
 
         /// <summary>"Dane"</summary>
         public string PersonalData;
@@ -325,14 +364,26 @@ namespace OriinDic.I18nText
         /// <summary>"Poprzednia"</summary>
         public string Previous;
 
+        /// <summary>"Profil"</summary>
+        public string Profile;
+
         /// <summary>"Powtórz nowe hasło"</summary>
         public string ReNewPassword;
+
+        /// <summary>"Musisz ponownie wprowadzić to samo nowe hasło"</summary>
+        public string ReNewPasswordError;
+
+        /// <summary>"Wprowadź ponownie nowe hasło"</summary>
+        public string ReNewPasswordHelp;
 
         /// <summary>"Przywróć"</summary>
         public string Reset;
 
         /// <summary>"Wierszy na stronie"</summary>
         public string RowsPerPage;
+
+        /// <summary>"Proszę wprowadzić maksymalną ilość wierszy na stronie"</summary>
+        public string RowsPerPageHelp;
 
         /// <summary>"Zapisz"</summary>
         public string Save;
@@ -349,6 +400,9 @@ namespace OriinDic.I18nText
         /// <summary>"Aktualny język bazowy"</summary>
         public string SettingsCurrentLang;
 
+        /// <summary>"Wskazuje jaki jezyk jest językiem bazowym. Na razie wspieranym jest tylko polski jako bazowy."</summary>
+        public string SettingsCurrentLangHelp;
+
         /// <summary>"Ustawienia"</summary>
         public string SettingsHeader;
 
@@ -358,14 +412,20 @@ namespace OriinDic.I18nText
         /// <summary>"Skórka włączona"</summary>
         public string SettingsThemeEnabled;
 
-        /// <summary>"Kolory tonowane"</summary>
-        public string SettingsThemeGradientColors;
+        /// <summary>"Oznacza czy skórka aplikacji zawierająca ustawienia wyglądu jest włączona i czy zmieniać pozostałe ustawienia."</summary>
+        public string SettingsThemeEnabledHelp;
 
         /// <summary>"Kolor główny"</summary>
         public string SettingsThemePrimaryColor;
 
+        /// <summary>"Główny kolor wiodący dla przycików"</summary>
+        public string SettingsThemePrimaryColorHelp;
+
         /// <summary>"Elementy zaokrąglane"</summary>
         public string SettingsThemeRoundedElements;
+
+        /// <summary>"Po włączeniu na stronie będą przyciski posiadały zaokrąglone krawędzie."</summary>
+        public string SettingsThemeRoundedElementsHelp;
 
         /// <summary>"Słownik Oriin"</summary>
         public string ShortHeader;
@@ -433,8 +493,17 @@ namespace OriinDic.I18nText
         /// <summary>"Podczas usuwania konta użytkownika wystąpił błąd!"</summary>
         public string UserDeletionError;
 
+        /// <summary>"Proszę podać zarejestrowany już adres e-mail, na który ma zostać wysłana instrukcja resetowania hasła"</summary>
+        public string UserEmailResetHelp;
+
         /// <summary>"Użytkownik"</summary>
         public string UserName;
+
+        /// <summary>"Pole nazwy użytkownika nie może być puste"</summary>
+        public string UserNameError;
+
+        /// <summary>"Wprowadź swoją nazwę użytkownika, aby uzyskać dostęp do tego systemu"</summary>
+        public string UserNameHelp;
 
         /// <summary>"Użytkownicy"</summary>
         public string Users;

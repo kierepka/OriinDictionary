@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blazorise;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using OriinDic.Models;
 
 using Text = OriinDic.I18nText.Text;
@@ -12,8 +13,7 @@ namespace OriinDic.Components
 {
     public partial class ListComments
     {
-        private Validations? _validations;
-
+        Validations validations;
         private string _myValue = string.Empty;
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
         private Text _myText = new();
@@ -31,17 +31,25 @@ namespace OriinDic.Components
 
         private async Task OnAddObject()
         {
-            if (_validations is null) return;
-            if (!_validations.ValidateAll()) return;
-            var comment = new Comment {Text = _myValue, Date = DateTimeOffset.Now};
-            _comments.Add(comment);
-            _myValue = string.Empty;
+            if (validations.ValidateAll())
+            {
 
-            _validations.ClearAll();
-
-            await OnCommentAdd.InvokeAsync(comment);
+                var comment = new Comment { Text = _myValue, Date = DateTimeOffset.Now };
+                _comments.Add(comment);
+                _myValue = string.Empty;
+                validations.ClearAll();
+                await OnCommentAdd.InvokeAsync(comment);
+            }
         }
 
+        private async Task KeyPressedText(KeyboardEventArgs keyboard)
+        {
+            if (keyboard.Code == "Enter" || keyboard.Code == "NumpadEnter")
+            {
+
+                await OnAddObject();
+            }
+        }
 
         protected override async Task OnInitializedAsync()
         {

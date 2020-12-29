@@ -1,5 +1,6 @@
+@using OriinDic.Helpers
 <Fluxor.Blazor.Web.StoreInitializer />
-<Blazorise.ThemeProvider Theme="@theme">
+<Blazorise.ThemeProvider Theme="@_theme">
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
@@ -42,32 +43,34 @@
     </Router>
 </Blazorise.ThemeProvider>
 @code{
-    private Theme theme = new()
+    
+    private readonly Theme _theme = new()
     {
         BarOptions = new ThemeBarOptions
         {
             HorizontalHeight = "64px"
         },
-        BreakpointOptions = new ThemeBreakpointOptions
-        {
-        },
+        BreakpointOptions = new ThemeBreakpointOptions(),
         ColorOptions = new ThemeColorOptions
         {
-            Primary = "#0288D1",
+            Primary = Const.PrimaryColor,
  
         },
         BackgroundOptions = new ThemeBackgroundOptions
         {
-            Primary = "#0288D1",
+            Primary = Const.PrimaryColor,
         },
         TextColorOptions = new ThemeTextColorOptions
         {
+            Primary = Const.PrimaryColor,
         },
       
         InputOptions = new ThemeInputOptions
         {
-            CheckColor = "#0288D1",
+            CheckColor = Const.PrimaryColor,
+            Color = Const.PrimaryColor,
+            SliderColor = Const.PrimaryColor,
         },
-  
+        
     };
 }

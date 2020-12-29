@@ -142,10 +142,13 @@
                     }
                     else
                     {
-                        <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
-                                Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
-                            "@locDic.BaseName"
-                        </Button>
+            <Tooltip Text="@locDic.BaseNameToolTip">
+
+                <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
+                        Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
+                    "@locDic.BaseName"
+                </Button>
+            </Tooltip>
                     }
                 }
             </DisplayTemplate>
@@ -164,10 +167,12 @@
                     }
                     else
                     {
-                        <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
-                                Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
-                            "@locDic.TranslateName"
-                        </Button>
+                        <Tooltip Text="@locDic.TranslateNameToolTip">
+                            <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
+                                    Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
+                                "@locDic.TranslateName"
+                            </Button>
+                        </Tooltip>
                     }
                 }
             </DisplayTemplate>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Blazorise;
+
+using OriinDic.Helpers;
 using OriinDic.Models;
 
 namespace OriinDic.Store.Search
@@ -139,17 +141,21 @@ namespace OriinDic.Store.Search
                     ltd.BaseTermSlug = string.IsNullOrEmpty(dic.BaseTerm.Slug)
                         ? NoBaseTermName
                         : dic.BaseTerm.Slug;
-                    ltd.BaseName = string.IsNullOrEmpty(dic.BaseTerm.Name)
+                    var baseName = string.IsNullOrEmpty(dic.BaseTerm.Name)
                         ? NoBaseTermName
                         : dic.BaseTerm.Name;
+                    ltd.BaseName = baseName.Truncate(Const.ShownCharactersInTable);
+                    ltd.BaseNameToolTip = baseName;
                 }
 
                 if (dic.Translation is not null)
                 {
                     ltd.TranslateId = dic.Translation.Id;
-                    ltd.TranslateName = string.IsNullOrEmpty(dic.Translation.Name)
+                    var translateName = string.IsNullOrEmpty(dic.Translation.Name)
                         ? NoTranslationName
                         : dic.Translation.Name;
+                    ltd.TranslateName = translateName.Truncate(Const.ShownCharactersInTable);
+                    ltd.TranslateNameToolTip = translateName;
                 }
 
                 if (!searchItems.Contains(ltd))

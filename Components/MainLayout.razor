@@ -3,7 +3,9 @@
 <Sidebar @ref="MySidebar">
     <SidebarContent>
         <SidebarBrand>
-            <a href="">@_myText.ShortHeader</a>
+            <SidebarLink To="/" Title="@_myText.HeaderShowDashboardBase">
+                @_myText.ShortHeader
+            </SidebarLink>            
         </SidebarBrand>
         <SidebarNavigation>
             <SidebarLabel>@_myText.HeaderMain</SidebarLabel>
@@ -90,13 +92,6 @@
          Mode="BarMode.Horizontal"
          CollapseMode="BarCollapseMode.Small">
 
-        <BarBrand>
-            <BarItem>
-                <BarLink To="">
-                    <Icon Name="IconName.Search"/>&nbsp;@_myText.Header
-                </BarLink>
-            </BarItem>
-        </BarBrand>
         <BarToggler Clicked="@ToggleSidebar"/>
         <BarMenu>
             <BarStart>

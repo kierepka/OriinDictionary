@@ -7,9 +7,8 @@ using OriinDic.Helpers;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Search;
 using System.Linq;
-using Microsoft.AspNetCore.Components.Web.Virtualization;
 using System;
-using System.Collections.Generic;
+using Blazorise;
 using Blazorise.DataGrid;
 
 namespace OriinDic.Pages
@@ -25,6 +24,8 @@ namespace OriinDic.Pages
         private bool _currentTranslations = true;
         private long _itemsPerPage = Const.DefaultItemsPerPage;
 
+        [CascadingParameter] protected Theme? Theme { get; set; }
+        
         public Index()
         {
             _currentLanguage1 = new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
@@ -52,11 +53,45 @@ namespace OriinDic.Pages
                 _itemsPerPage = LocalStorage.ContainKey(Const.ItemsPerPageKey)
                     ? LocalStorage.GetItem<long>(Const.ItemsPerPageKey)
                     : Const.DefaultItemsPerPage;
+                UpdateTheme();
+
+
             }
             if (!LanguagesState?.Value?.Languages.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
             await base.OnInitializedAsync();
+        }
+
+        private void UpdateTheme()
+        {
+            if (Theme is null) return;
+            if (LocalStorage is null) return;
+            
+            var themeColor = LocalStorage.GetItem<string>(Const.ThemePrimaryColor);
+            var themeEnabled = LocalStorage.GetItem<bool>(Const.ThemeIsEnabled);
+            var themeRounded = LocalStorage.GetItem<bool>(Const.ThemeIsRounded);
+            
+            
+            if (string.IsNullOrEmpty(themeColor)) themeColor = Theme.ColorOptions.Primary;
+            Theme.Enabled = themeEnabled;
+            Theme.IsRounded = themeRounded;
+            Theme.ColorOptions ??= new ThemeColorOptions();
+
+            Theme.BackgroundOptions ??= new ThemeBackgroundOptions();
+
+            Theme.TextColorOptions ??= new ThemeTextColorOptions();
+
+            Theme.ColorOptions.Primary = themeColor;
+            Theme.BackgroundOptions.Primary = themeColor;
+            Theme.TextColorOptions.Primary = themeColor;
+
+            Theme.InputOptions ??= new ThemeInputOptions();
+
+            Theme.InputOptions.Color = themeColor;
+            Theme.InputOptions.CheckColor = themeColor;
+            Theme.InputOptions.SliderColor = themeColor;
+            Theme.ThemeHasChanged();
         }
 
         private void ButtonSearchClicked()

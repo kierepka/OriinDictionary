@@ -1,39 +1,104 @@
 ﻿@page "/login"
 @inherits DicBasePage
 
-<PageHeader IsLoading="@_isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.LoginHeader" />
+<PageHeader IsLoading="@_isLoading" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.LoginHeader"/>
 
 <Row>
     <Column>
-        <Card Margin="Margin.Is4.OnY">
-            <CardHeader>
-                <CardTitle>@MyText?.LoginHeader</CardTitle>
-            </CardHeader>
-            <CardBody>
-                <EditForm Model="@_loginModel">
-                    <DataAnnotationsValidator />
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LoginName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <TextEdit @bind-Text="@_loginModel.Username"
-                                      Placeholder="@MyText?.LoginName" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LoginPassword</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <TextEdit @bind-Text="@_loginModel.Password"
-                                      Role="TextRole.Password" Placeholder="@MyText?.LoginPassword" />
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
-                        <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is9">
-                            <Button Type="ButtonType.Submit" Clicked="@HandleLogin" Color="Color.Primary">@MyText?.LoginButton</Button>
-                        </FieldBody>
-                    </Field>
-                </EditForm>
-            </CardBody>
-        </Card>
+        <Tabs SelectedTab="@SelectedTab" SelectedTabChanged="@OnSelectedTabChanged" Justified="true" Pills="true">
+            <Items>
+                <Tab Name="login">@MyText?.Login</Tab>
+                <Tab Name="passwordReset">@MyText?.PasswordReset</Tab>
+            </Items>
+            <Content>
+                <TabPanel Name="login">
+
+                    <Card Margin="Margin.Is4.OnY">
+
+                        <CardHeader>
+                            <CardTitle>@MyText?.LoginHeader</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <EditForm Model="@_loginModel">
+                                <DataAnnotationsValidator/>
+                                <Validations Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                                    <Validation Validator="@ValidationRule.IsNotEmpty">
+                                        <Field IsHorizontal="true">
+                                            <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LoginName</FieldLabel>
+                                            <FieldBody ColumnSize="ColumnSize.Is9">
+                                                <TextEdit @bind-Text="@_loginModel.Username"
+                                                           Placeholder="@MyText?.LoginName">
+                                                    <Feedback>
+                                                        <FieldHelp>@MyText?.UserNameHelp</FieldHelp>
+                                                        <ValidationError>@MyText?.UserNameError</ValidationError>
+                                                    </Feedback>
+                                                </TextEdit>
+                                            </FieldBody>
+                                        </Field>
+                                    </Validation>
+                                    <Validation Validator="@ValidatePassword">
+                                        <Field IsHorizontal="true">
+                                            <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LoginPassword</FieldLabel>
+                                            <FieldBody ColumnSize="ColumnSize.Is9">
+                                                <TextEdit @bind-Text="@_loginModel.Password"
+                                                           Role="TextRole.Password" Placeholder="@MyText?.LoginPassword">
+                                                    <Feedback>
+                                                        <FieldHelp>@MyText?.PasswordHelp</FieldHelp>
+                                                        <ValidationError>@MyText?.PasswordError</ValidationError>
+                                                    </Feedback>
+                                                </TextEdit>
+                                            </FieldBody>
+                                        </Field>
+                                    </Validation>
+                                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                                        <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is9">
+                                            <Button Type="ButtonType.Submit" Clicked="@HandleLogin" Color="Color.Primary">@MyText?.LoginButton</Button>
+                                        </FieldBody>
+                                    </Field>
+                                </Validations>
+                            </EditForm>
+                        </CardBody>
+                    </Card>
+                </TabPanel>
+                <TabPanel name="passwordReset">
+                    <Card Margin="Margin.Is4.OnY">
+
+                        <CardHeader>
+                            <CardTitle>@MyText?.LoginHeader</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Validations Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                                <Validation Validator="@ValidationRule.IsEmail">
+                                    <Field IsHorizontal="true">
+                                        <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UsersEmail</FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is9">
+                                            <TextEdit @bind-Text="@_emailToReset"
+                                                       Placeholder="@MyText?.UsersEmail">
+                                                <Feedback>
+                                                    <FieldHelp>@MyText?.UserEmailResetHelp</FieldHelp>
+                                                    <ValidationError>@MyText?.EmailError</ValidationError>
+                                                </Feedback>
+                                            </TextEdit>
+                                        </FieldBody>
+                                    </Field>
+                                </Validation>
+                            </Validations>
+                            <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                                <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is9">
+                                    <Buttons Role="ButtonsRole.Toolbar">
+                                        <Buttons Margin="Margin.Is2.FromRight">
+                                            <Button Type="ButtonType.Submit" Clicked="@HandlePasswordReset" Color="Color.Secondary">@MyText?.PasswordReset </Button>
+                                        </Buttons>
+                                    </Buttons>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+
+                    </Card>
+                </TabPanel>
+            </Content>
+        </Tabs>
     </Column>
 </Row>

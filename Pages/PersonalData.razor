@@ -7,11 +7,11 @@
 
 <Row>
     <Column>
-        <Tabs SelectedTab="@selectedTab" SelectedTabChanged="@OnSelectedTabChanged" Justified="true" Pills="true">
+        <Tabs SelectedTab="@SelectedTab" SelectedTabChanged="@OnSelectedTabChanged" Justified="true" Pills="true">
             <Items>
-                <Tab Name="profile">Profil</Tab>
-                <Tab Name="passwordChange">Password Change</Tab>
-                <Tab Name="passwordReset">Password Reset</Tab>
+                <Tab Name="profile">@MyText?.Profile</Tab>
+                <Tab Name="passwordChange">@MyText?.PasswordChange</Tab>
+                <Tab Name="passwordReset">@MyText?.PasswordReset</Tab>
             </Items>
             <Content>
                 <TabPanel Name="profile">
@@ -186,8 +186,8 @@
                                                       Placeholder="@MyText?.NewPassword"
                                                       @bind-Text="@UserPwdUpdate.NewPassword">
                                                 <Feedback>
-                                                    <FieldHelp>Please enter a new password</FieldHelp>
-                                                    <ValidationError>You must enter new password which is at least 6 characters length</ValidationError>
+                                                    <FieldHelp>@MyText?.NewPasswordHelp</FieldHelp>
+                                                    <ValidationError>@MyText?.NewPasswordError</ValidationError>
                                                 </Feedback>
                                             </TextEdit>
                                         </FieldBody>
@@ -201,8 +201,8 @@
                                                       Placeholder="@MyText?.ReNewPassword"
                                                       @bind-Text="@UserPwdUpdate.ReNewPassword">
                                                 <Feedback>
-                                                    <FieldHelp>Please re-enter a new password</FieldHelp>
-                                                    <ValidationError>You must re enter this same new password</ValidationError>
+                                                    <FieldHelp>@MyText?.ReNewPasswordHelp</FieldHelp>
+                                                    <ValidationError>@MyText?.ReNewPasswordError</ValidationError>
                                                 </Feedback>
                                             </TextEdit>
                                         </FieldBody>
@@ -216,8 +216,8 @@
                                                       Placeholder="@MyText?.CurrentPassword"
                                                       @bind-Text="@UserPwdUpdate.CurrentPassword">
                                                 <Feedback>
-                                                    <FieldHelp>Please enter a current password</FieldHelp>
-                                                    <ValidationError>You must enter password which is at least 6 characters length</ValidationError>
+                                                    <FieldHelp>@MyText?.CurrentPasswordHelp</FieldHelp>
+                                                    <ValidationError>@MyText?.CurrentPasswordError</ValidationError>
                                                 </Feedback>
                                             </TextEdit>
                                         </FieldBody>

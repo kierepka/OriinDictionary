@@ -8,67 +8,114 @@
         <Card Margin="Margin.Is4.OnY">
             <CardHeader>
                 <CardTitle>@MyText?.SettingsHeader</CardTitle>
-                <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
-                    <FieldBody ColumnSize="ColumnSize.Is12">
-                        <Buttons Role="ButtonsRole.Addons">
-                            <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
-                        </Buttons>
-                    </FieldBody>
-                </Field>
+
             </CardHeader>
             <CardBody>
-                <Field IsHorizontal="true">
+
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.RowsPerPage</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <NumericEdit TValue="long" @bind-Value="@_rowsPerPage" />
+                        <NumericEdit TValue="long" @bind-Value="@_rowsPerPage">
+                            <Feedback>
+                                <FieldHelp>@MyText?.RowsPerPageHelp</FieldHelp>
+                            </Feedback>
+                        </NumericEdit>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CurrentTranslations</FieldLabel>
+                <Field Horizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3" />
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <Check TValue="bool" @bind-Checked="@_currentTranslations">@MyText?.Approved</Check>
+                        <Switch TValue="bool" @bind-Checked="@_currentTranslations">
+                            <ChildContent>@MyText?.Approved</ChildContent>
+                            <Feedback>
+                                <FieldHelp>@MyText?.CurrentTranslationsHelp</FieldHelp>
+                            </Feedback>
+                        </Switch>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsCurrentLang</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
 
                         <Select @bind-SelectedValue="@_selectedLanguage">
-                            @if (LanguagesState is not null)
-                            {
-                                @foreach (var lang in LanguagesState.Value.Languages)
+                            <ChildContent>
+                                @if (LanguagesState is not null)
                                 {
-                                    <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
+                                    @foreach (var lang in LanguagesState.Value.Languages)
+                                    {
+                                        <SelectItem Value="@lang.Id">@lang.Name</SelectItem>
+                                    }
                                 }
-                            }
+                            </ChildContent>
+                            <Feedback>
+                                <div class="field">
+                                    <small>
+                                        @MyText?.SettingsCurrentLangHelp
+                                    </small>
+                                </div>                                
+                            </Feedback>
                         </Select>
+                    </FieldBody>
+                </Field>
+                <Field Horizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3" />
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+                        <Switch TValue="bool" Checked="@(Theme?.Enabled == true)" CheckedChanged="@OnThemeEnabledChanged">
+                            <ChildContent>
+                                @MyText?.SettingsThemeEnabled
+                            </ChildContent>
+                            <Feedback>                                
+                                <div class="field">
+                                    <small>
+                                        @MyText?.SettingsThemeEnabledHelp
+                                    </small>
+                                </div>
+                            </Feedback>
+                        </Switch>
+                    </FieldBody>
+                </Field>
 
-                    </FieldBody>
-                </Field>
-                <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemeEnabled</FieldLabel>
+                <Field Horizontal="true">
+                    <FieldLabel ColumnSize="ColumnSize.Is3" />
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <Switch TValue="bool" Checked="@(Theme?.Enabled == true)" CheckedChanged="@OnThemeEnabledChanged">@MyText?.SettingsThemeEnabled</Switch>
+                        <Switch TValue="bool" Checked="@(Theme?.IsRounded == true)" CheckedChanged="@OnRoundedChanged">
+                            <ChildContent>@MyText?.SettingsThemeRoundedElements</ChildContent>
+                            <Feedback>
+                                <div class="field">
+                                    <small>
+                                        @MyText?.SettingsThemeRoundedElementsHelp
+                                    </small>
+                                </div>                                
+                            </Feedback>
+                        </Switch>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemeGradientColors</FieldLabel>
-                    <FieldBody ColumnSize="ColumnSize.Is9">
-                        <Switch TValue="bool" Checked="@(Theme?.IsGradient == true)" CheckedChanged="@OnGradientChanged">@MyText?.SettingsThemeGradientColors</Switch>
-                    </FieldBody>
-                </Field>
-                <Field IsHorizontal="true">
-                    <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemeRoundedElements</FieldLabel>
-                    <FieldBody ColumnSize="ColumnSize.Is9">
-                        <Switch TValue="bool" Checked="@(Theme?.IsRounded == true)" CheckedChanged="@OnRoundedChanged">@MyText?.SettingsThemeRoundedElements</Switch>
-                    </FieldBody>
-                </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.SettingsThemePrimaryColor</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         <Container Fluid="true">
-                            <ThemeColorSelector Value="@(Theme?.ColorOptions?.Primary)" ValueChanged="@OnThemeColorChanged"></ThemeColorSelector>
+                            <ChildContent>
+                                <ThemeColorSelector Value="@ThemeColor" ValueChanged="@OnThemeColorChanged"></ThemeColorSelector>
+                                <div class="field">
+                                    <small>
+                                        @MyText?.SettingsThemePrimaryColorHelp
+                                    </small>
+                                </div>
+                            </ChildContent>
                         </Container>
+                    </FieldBody>
+                </Field>
+
+                <Field Horizontal="true" JustifyContent="JustifyContent.End">
+                    <FieldLabel ColumnSize="ColumnSize.Is3" />
+                    <FieldBody ColumnSize="ColumnSize.Is9">
+
+                        <Buttons Role="ButtonsRole.Toolbar">
+                            <Buttons Margin="Margin.Is2.FromRight">
+                                <Button Type="ButtonType.Submit" Clicked="@HandleSave" Color="Color.Primary">@MyText?.Save</Button>
+                            </Buttons>
+
+                        </Buttons>
                     </FieldBody>
                 </Field>
             </CardBody>

@@ -5,39 +5,34 @@
 		<nullable>enable</nullable>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 		<I18nTextFallBackLanguage>pl</I18nTextFallBackLanguage>
-		<Configurations>Debug;Release;DebugLocal;Docker;AWS</Configurations>
+		<Configurations>Debug;Release;DebugLocal;Docker</Configurations>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
-		<Title>Słownik pojęć z miasta Oriin</Title>
-		<Description>Słownik pojęć z miasta Oriin</Description>
-		<Copyright>Mateusz Kierepka</Copyright>
-		<PackageProjectUrl>https://oriin.ga</PackageProjectUrl>
-		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
-		<PackageReference Include="Blazorise" Version="0.9.2.4" />
-		<PackageReference Include="Blazorise.Bulma" Version="0.9.2.4" />
-		<PackageReference Include="Blazorise.Components" Version="0.9.2.4" />
-		<PackageReference Include="Blazorise.DataGrid" Version="0.9.2.4" />
-		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.2.4" />
-		<PackageReference Include="Blazorise.Sidebar" Version="0.9.2.4" />
-		<PackageReference Include="Blazorise.Snackbar" Version="0.9.2.4" />
+		<PackageReference Include="Blazorise" Version="0.9.2" />
+		<PackageReference Include="Blazorise.Bulma" Version="0.9.2" />
+		<PackageReference Include="Blazorise.Components" Version="0.9.2" />
+		<PackageReference Include="Blazorise.DataGrid" Version="0.9.2" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.2" />
+		<PackageReference Include="Blazorise.Sidebar" Version="0.9.2" />
+		<PackageReference Include="Blazorise.Snackbar" Version="0.9.2" />
 
 		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="3.9.0" />
 		
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.1" />		
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.1" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />		
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
     
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.0" />
 		
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
 		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
 		
-		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.3.1" />
+		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.3.0" />
 		<PackageReference Include="Toolbelt.Blazor.SpeechRecognition" Version="0.0.4.6-alpha" />
-		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="8.1.0" />
+		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />

@@ -99,7 +99,7 @@ else
             </Card>
             @if (TranslationsState?.Value?.BaseTerm is null)
             {
-                <a href="/">Base term @MyText?.NoData !</a>
+                <a href="/">@MyText?.BaseTermNone</a>
             }
             else
             {
@@ -177,12 +177,12 @@ else
                                         <Authorized>
                                             <Button Color="Color.Primary" Type="ButtonType.Link" To="@($"/editBaseTerm/{TranslationsState.Value.Translation.BaseTermId}")">
                                                 @MyText?.EditBaseTerm
-                                            </Button>                                            
+                                            </Button>
                                         </Authorized>
                                         <NotAuthorized>
                                             <Button Color="Color.Primary" Type="ButtonType.Link" To="@($"/editBaseTerm/{TranslationsState.Value.Translation.BaseTermId}")">
                                                 @MyText?.LinkBaseTerm
-                                            </Button>                                            
+                                            </Button>
                                         </NotAuthorized>
                                     </AuthorizeView>
 
@@ -197,13 +197,13 @@ else
 
             @if (TranslationsState?.Value?.Comments is null)
             {
-                <div>Comments @MyText?.NoData </div>
+                <Text>@MyText?.Comments: @MyText?.NoData </Text>
             }
             else
             {
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
-                        <CardSubtitle>Komentarze</CardSubtitle>
+                        <CardTitle>@MyText?.Comments</CardTitle>
                     </CardHeader>
                     <CardBody>
                         <AuthorizeView Roles="@Const.RolesEditors">
@@ -213,18 +213,25 @@ else
                             <NotAuthorized>
                                 @if (TranslationsState?.Value?.Comments is not null)
                                 {
-                                    <ListGroup Flush="true">
-                                        @foreach (var comment in TranslationsState.Value.Comments)
-                                        {
-                                            <ListGroupItem>
-                                                <Field Horizontal="true" Padding="Padding.IsAuto.OnAll">
-                                                    <FieldBody ColumnSize="ColumnSize.Is12">
-                                                        @comment.Text
-                                                    </FieldBody>
-                                                </Field>
-                                            </ListGroupItem>
-                                        }
-                                    </ListGroup>
+                                    @foreach (var comment in TranslationsState.Value.Comments)
+                                    {
+                                        <div class="box">
+                                            <article class="media">
+                                                <div class="media-content">
+                                                    <div class="content">
+                                                        <p>
+                                                            <strong>
+                                                                @($"{comment.User?.FirstName} {comment.User?.FirstName}")
+                                                            </strong>&nbsp;<small>@($"{comment.User?.UserName}")</small>
+                                                            <small>@($"{comment.Date:g}")</small>
+                                                            <br>
+                                                            @($"{comment.Text}")
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    }
                                 }
                             </NotAuthorized>
                         </AuthorizeView>

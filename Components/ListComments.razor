@@ -1,38 +1,31 @@
-﻿
-<Container Fluid="true">
-    <Row>
-        <Column>
-            <Card Margin="Margin.Is4.FromTop">
-                <CardBody Padding="Padding.Is0.OnY">
-                    <ListGroup Flush="true">
-                        @foreach (var comment in Comments)
-                        {
-                            <ItemComment MyComment="@comment" />
-                        }
-                    </ListGroup>
-                </CardBody>
-                <CardBody Padding="Padding.Is0.FromTop">
-                    <Fields>
-                        <Column ColumnSize="ColumnSize.Is11">
-                            <Addons>
-                                <Addon AddonType="AddonType.Body">
-                                    <Validations @ref="_validations" Mode="ValidationMode.Auto">
-                                        <Validation Validator="@ValidationRule.IsNotEmpty">
-                                            <TextEdit @bind-Text="@_myValue" Placeholder="@_myText.AddComment"></TextEdit>
-                                        </Validation>
-                                    </Validations>
-                                </Addon>
-                                <Addon AddonType="AddonType.End">
-                                    <Button Color="Color.Primary" Clicked="OnAddObject">
-                                        <Icon Name="IconName.Add" />@_myText.Add
-                                    </Button>
-                                </Addon>
-                            </Addons>
-                        </Column>
-                    </Fields>
-                </CardBody>
-            </Card>
+﻿<Container Fluid="true">
 
+    @foreach (var comment in Comments)
+    {
+        <ItemComment MyComment="@comment" />
+    }
+
+    <Fields>
+        <Column ColumnSize="ColumnSize.Is11">
+            <Addons>
+                <Addon AddonType="AddonType.Body">
+                    <Validations @ref="validations" Mode="ValidationMode.Manual">
+                        <Validation Validator="@ValidationRule.IsNotEmpty">
+                            <TextEdit @bind-Text="@_myValue" Placeholder="@_myText.AddComment" KeyDown="KeyPressedText">
+                                <Feedback>
+                                    <FieldHelp>@_myText?.CommentAddHelp</FieldHelp>
+                                    <ValidationError>@_myText?.CommentAddError</ValidationError>
+                                </Feedback>
+                            </TextEdit>
+                        </Validation>
+                    </Validations>
+                </Addon>
+                <Addon AddonType="AddonType.End">
+                    <Button Color="Color.Primary" Clicked="OnAddObject">
+                        <Icon Name="IconName.Add" />@_myText.Add
+                    </Button>
+                </Addon>
+            </Addons>
         </Column>
-    </Row>
+    </Fields>
 </Container>

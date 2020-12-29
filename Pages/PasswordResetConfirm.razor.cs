@@ -24,11 +24,11 @@ namespace OriinDic.Pages
         [Inject] private IDispatcher? Dispatcher { get; set; }
 
         [Parameter]
-        public string uid { get; set; }
+        public string uid { get; set; } = string.Empty;
         [Parameter]
-        public string token { get; set; }
+        public string token { get; set; } = string.Empty;
 
-        private UserPwdResetUpdate User {get;set;}
+        private UserPwdResetUpdate User { get; set; } = new UserPwdResetUpdate();
         
 
         protected override async Task OnInitializedAsync()

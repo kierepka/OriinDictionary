@@ -17,7 +17,7 @@ namespace OriinDic.Pages
     public partial class PersonalData
     {
         private List<Language> _coordinatingLanguages = new();
-        private string selectedTab { get; set; } = "profile";
+        private string SelectedTab { get; set; } = "profile";
 
         private List<Language> _translatingLanguages = new();
         private User User { get; set; } = new();
@@ -209,12 +209,11 @@ namespace OriinDic.Pages
 
         private void OnSelectedTabChanged(string name)
         {
-            selectedTab = name;
+            SelectedTab = name;
         }
         
         private void HandlePasswordReset()
         {
-            
             PasswordResetSend(User.Email);
         }
 
