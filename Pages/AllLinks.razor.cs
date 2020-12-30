@@ -29,12 +29,6 @@ namespace OriinDic.Pages
         {
             await base.OnInitializedAsync();
             ReadLocalSettings();
-            Dispatcher?.Dispatch(
-                new LinksFetchDataAction(
-                    searchPageNr: 0,
-                    itemsPerPage: Const.DefaultItemsPerPage,
-                    linkFetchedMessage: MyText?.Loaded ?? string.Empty));
-            StateHasChanged();
         }
 
         private void OnRowRemoved(OriinLink oriinLink)

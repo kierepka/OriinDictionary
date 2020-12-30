@@ -55,6 +55,12 @@ namespace OriinDic.I18nText
         /// <summary>"Definicja"</summary>
         public string BaseTermDefinition;
 
+        /// <summary>"Definicja nie może być pusta - proszę wpisać conajmniej kilka znaków"</summary>
+        public string BaseTermDefinitionError;
+
+        /// <summary>"Definicja tłumaczonego słowa lub zdania"</summary>
+        public string BaseTermDefinitionHelp;
+
         /// <summary>"Przykłady"</summary>
         public string BaseTermExamples;
 
@@ -72,6 +78,12 @@ namespace OriinDic.I18nText
 
         /// <summary>"Nazwa"</summary>
         public string BaseTermName;
+
+        /// <summary>"Słowo lub zdanie nie może być puste - proszę wpisać conajmniej kilka znaków"</summary>
+        public string BaseTermNameError;
+
+        /// <summary>"Słowo lub zdanie które podlega tłumaczeniu"</summary>
+        public string BaseTermNameHelp;
 
         /// <summary>"brak"</summary>
         public string BaseTermNone;

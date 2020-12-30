@@ -5,52 +5,112 @@
 
 <PageHeader IsLoading="@(BaseTermsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@HeaderForBaseTerm" />
 
-<Row>
-    <Column>
-        @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null) 
-        { 
-            <Card Margin="Margin.Is4.OnY">
-                <CardHeader>
-                    <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</CardTitle>
-                </CardHeader>
-                <CardBody>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
+<AuthorizeView Roles="@Const.RolesBaseEditors">
+    <Authorized>
+        <Row>
+            BaseTermsState.Value.BaseTerm.Name
 
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
-                                    <TextEdit Placeholder="@MyText?.BaseTermName"
-                                              @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name" />
-                                </Authorized>
-                                <NotAuthorized>
+            <Column>
+                @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null)
+                {
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Validations Mode="ValidationMode.Auto">
+                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                    <Field Horizontal="true">
+                                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is10">
+                                            <TextEdit Placeholder="@MyText?.BaseTermName"
+                                                      @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name">
+                                                <Feedback>
+                                                    <FieldHelp>@MyText?.BaseTermNameHelp</FieldHelp>
+                                                    <ValidationError>@MyText?.BaseTermNameError</ValidationError>
+                                                </Feedback>
+                                            </TextEdit>
+                                        </FieldBody>
+                                    </Field>
+                                </Validation>
+
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <TextEdit Placeholder="@MyText?.BaseTermDefinition"
+                                                  @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Definition">
+                                            <Feedback>
+                                                <FieldHelp>@MyText?.BaseTermDefinitionHelp</FieldHelp>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+
+
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <ListExamples Examples="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
+                                    </FieldBody>
+                                </Field>
+
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <ListSynonyms Synonyms="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
+                                    </FieldBody>
+                                </Field>
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.Links</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <ListLinks Links="@BaseTermsState?.Value?.Links" OnLinkCallback="OnLinkAdd" />
+                                    </FieldBody>
+                                </Field>
+                            </Validations>
+
+                        </CardBody>
+                        <CardFooter Padding="Padding.Is3">
+
+                            <Buttons Role="ButtonsRole.Addons">
+                                <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
+                                <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
+                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
+                            </Buttons>
+
+                        </CardFooter>
+                    </Card>
+                }
+            </Column>
+        </Row>
+    </Authorized>
+
+    <NotAuthorized>
+        <Row>
+            <Column>
+                @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null)
+                {
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+
                                     <div class="field"><div class="control">@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name</div></div>
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
-                                    <TextEdit Placeholder="@MyText?.BaseTermDefinition"
-                                              @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Definition" />
-                                </Authorized>
-                                <NotAuthorized>
+
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
                                     <div class="field"><div class="control">@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Definition</div></div>
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
-                                    <ListExamples Examples="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
-                                </Authorized>
-                                <NotAuthorized>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
                                     @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Examples is not null)
                                     {
                                         <ListGroup Flush="true">
@@ -60,19 +120,13 @@
                                             }
                                         </ListGroup>
                                     }
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
-                                    <ListSynonyms Synonyms="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
-                                </Authorized>
-                                <NotAuthorized>
-                                    @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is not null) {
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is not null)
+                                    {
                                         <ListGroup Flush="true">
                                             @foreach (var s in BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Synonyms)
                                             {
@@ -80,43 +134,32 @@
                                             }
                                         </ListGroup>
                                     }
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field IsHorizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSlug</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            @BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Slug
-                        </FieldBody>
-                    </Field>
-                </CardBody>
-                <CardFooter Padding="Padding.Is3">
-                    <Field Horizontal="true">
-                        <FieldBody ColumnSize="ColumnSize.Is12">
-                            <Buttons Role="ButtonsRole.Addons">
-                                <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                    <Authorized>
-                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
-                                    </Authorized>
-                                </AuthorizeView>
-                                <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
-                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
-                            </Buttons>
-                        </FieldBody>
-                    </Field>
-                </CardFooter>
-            </Card>
-            <Card Margin="Margin.Is4.FromBottom">
-                <CardHeader>
-                    <CardTitle>@MyText?.Links</CardTitle>
-                </CardHeader>
-                <CardBody>
-                    <AuthorizeView Roles="@Const.RolesBaseEditors">
-                        <Authorized>
-                            <ListLinks Links="@BaseTermsState?.Value?.Links" OnLinkCallback="OnLinkAdd" />
-                        </Authorized>
-                        <NotAuthorized>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSlug</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    @BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Slug
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                        <CardFooter Padding="Padding.Is3">
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">&nbsp;</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Buttons Role="ButtonsRole.Addons">
+                                        <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
+                                        <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
+                                    </Buttons>
+                                </FieldBody>
+                            </Field>
+                        </CardFooter>
+                    </Card>
+                    <Card Margin="Margin.Is4.FromBottom">
+                        <CardHeader>
+                            <CardTitle>@MyText?.Links</CardTitle>
+                        </CardHeader>
+                        <CardBody>
                             @if (BaseTermsState?.Value?.Links is not null)
                             {
                                 <ListGroup Flush="true">
@@ -126,10 +169,11 @@
                                     }
                                 </ListGroup>
                             }
-                        </NotAuthorized>
-                    </AuthorizeView>
-                </CardBody>
-            </Card>
-        }
-    </Column>
-</Row>
+                        </CardBody>
+                    </Card>
+                }
+            </Column>
+        </Row>
+    </NotAuthorized>
+</AuthorizeView>
+

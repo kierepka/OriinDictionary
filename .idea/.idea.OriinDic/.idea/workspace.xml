@@ -23,38 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/OriinDic - Backup (1).csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OriinDic - Backup (2).csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OriinDic - Backup.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/App.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ItemComment.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemComment.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/MainLayout.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helpers/Const.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Const.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helpers/Functions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/Functions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/SearchItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/SearchItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/UserPwdResetUpdate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/UserPwdResetUpdate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OriinDic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OriinDic.sln" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/AllComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllComments.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Index.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/@types/OriinDic.I18nText.Text.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.en.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl-PL.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.pl.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,6 +260,7 @@
       <workItem from="1609156391229" duration="54000" />
       <workItem from="1609156750449" duration="3920000" />
       <workItem from="1609230023079" duration="5206000" />
+      <workItem from="1609323116909" duration="594000" />
     </task>
     <servers />
   </component>

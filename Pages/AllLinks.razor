@@ -27,28 +27,25 @@
         </DataGridColumn>
         <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.Link)" Caption="@MyText?.LinkLink" Sortable="true" Editable="true">
             <DisplayTemplate>
-                <div class="box">
-                    <a href="context.Link">@context.Link</a>
-                </div>
+                <Link To="@context.Link" Title="@context.Link" Target="Target.Blank">
+                    <Icon Name="@("fa-link")" />&nbsp;@context.Link
+                </Link>
             </DisplayTemplate>
         </DataGridColumn>
         <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.BaseTermId)" Caption="@MyText?.LinkBaseTerm" Sortable="true" Editable="true">
             <DisplayTemplate>
-                <div class="box">
-                    <a href="/editbaseterm/@context.BaseTermId">@context.BaseTermId</a>
-                </div>
+                <Link To="@($"/editbaseterm/{context.BaseTermId}")" Title="@MyText?.LinkBaseTerm">
+                    <Icon Name="@("fa-scroll")" />&nbsp;@context.BaseTermId
+                </Link>
             </DisplayTemplate>
         </DataGridColumn>
         <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.TranslationId)" Caption="@MyText?.LinkTranslation" Sortable="true" Editable="true">
             <DisplayTemplate>
-                <div class="box">
-                    <a href="/edittranslation/@context.TranslationId">@context.TranslationId</a>
-                </div>
+                <Link To="@($"/edittranslation/{context.TranslationId}")" Title="@MyText?.LinkTranslation">
+                    <Icon Name="@("fa-language")" />&nbsp;@context.TranslationId
+                </Link>
             </DisplayTemplate>
         </DataGridColumn>
-
-
     </DataGridColumns>
-
 </DataGrid>
 

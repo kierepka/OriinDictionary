@@ -14,29 +14,29 @@
             <CardBody>
 
                 <DataAnnotationsValidator />
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Email</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         <div class="control"><strong>@User.Email</strong></div>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UserName</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         <div class="control"><strong>@User.UserName</strong></div>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.FirstName</FieldLabel>
                     <div class="control"><strong>@User.FirstName</strong></div>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LastName</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         <div class="control"><strong>@User.LastName</strong></div>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Gender</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         <RadioGroup TValue="string" Inline="true" Name="genderGroup" @bind-CheckedValue="@User.Gender" ReadOnly="true">
@@ -46,7 +46,7 @@
                         </RadioGroup>
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Language</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (LanguagesState is not null)
@@ -59,7 +59,7 @@
 
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.TranslatingLanguages</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
@@ -84,7 +84,7 @@
                         }
                     </FieldBody>
                 </Field>
-                <Field IsHorizontal="true">
+                <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CoordinatingLanguages</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)

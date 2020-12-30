@@ -102,7 +102,6 @@
         </e>
       </e>
       <e p="OriinDic.csproj" t="IncludeRecursive" />
-      <e p="OriinDic.csproj.DotSettings" t="Include" />
       <e p="OriinDic.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Pages" t="Include">

@@ -10,56 +10,71 @@
             <Authorized>
                 @if (BaseTermsState?.Value?.BaseTerm is not null)
                 {
+
                     <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
-                            <CardTitle>
-                                [@BaseTermLanguage]@BaseTermsState.Value.BaseTerm.Name
-                            </CardTitle>                            
+                            <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.BaseTerm.Name</CardTitle>
                         </CardHeader>
                         <CardBody>
-                            <Field IsHorizontal="true">
-                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.Is10">
-                                    <TextEdit Placeholder="@MyText?.BaseTermName"
-                                              @bind-Text="@BaseTermsState.Value.BaseTerm.Name" />
-                                </FieldBody>
-                            </Field>
-                            <Field IsHorizontal="true">
-                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.Is10">
-                                    <TextEdit Placeholder="@MyText?.BaseTermDefinition"
-                                              @bind-Text="@BaseTermsState.Value.BaseTerm.Definition" />
-                                </FieldBody>
-                            </Field>
-                            <Field IsHorizontal="true">
-                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.Is10">
-                                    <ListExamples Examples="@BaseTermsState.Value.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
-                                </FieldBody>
-                            </Field>
-                            <Field IsHorizontal="true">
-                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.Is10">
-                                    <ListSynonyms Synonyms="@BaseTermsState.Value.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
-                                </FieldBody>
-                            </Field>
-                            <Field IsHorizontal="true">
-                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSlug</FieldLabel>
-                                <FieldBody ColumnSize="ColumnSize.Is10">
-                                    <TextEdit Placeholder="@MyText?.BaseTermSlug" @bind-Text="@BaseTermsState.Value.BaseTerm.Slug" />
-                                </FieldBody>
-                            </Field>
+                            <Validations Mode="ValidationMode.Auto">
+                                <Validation Validator="@ValidationRule.IsNotEmpty">
+                                    <Field Horizontal="true">
+                                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermName</FieldLabel>
+                                        <FieldBody ColumnSize="ColumnSize.Is10">
+                                            <TextEdit Placeholder="@MyText?.BaseTermName"
+                                                      @bind-Text="@BaseTermsState.Value.BaseTerm.Name">
+                                                <Feedback>
+                                                    <FieldHelp>@MyText?.BaseTermNameHelp</FieldHelp>
+                                                    <ValidationError>@MyText?.BaseTermNameError</ValidationError>
+                                                </Feedback>
+                                            </TextEdit>
+                                        </FieldBody>
+                                    </Field>
+                                </Validation>
+
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermDefinition</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <TextEdit Placeholder="@MyText?.BaseTermDefinition"
+                                                  @bind-Text="@BaseTermsState.Value.BaseTerm.Definition">
+                                            <Feedback>
+                                                <FieldHelp>@MyText?.BaseTermDefinitionHelp</FieldHelp>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+
+
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <ListExamples Examples="@BaseTermsState.Value.BaseTerm.GetExamples()" OnExampleCallback="OnExampleAdd" />
+                                    </FieldBody>
+                                </Field>
+
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <ListSynonyms Synonyms="@BaseTermsState.Value.BaseTerm.GetSynonyms()" OnSynonymCallback="OnSynonymAdd" />
+                                    </FieldBody>
+                                </Field>
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.Links</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <ListLinks Links="@BaseTermsState?.Value?.Links" OnLinkCallback="OnLinkAdd" />
+                                    </FieldBody>
+                                </Field>
+                            </Validations>
+
                         </CardBody>
                         <CardFooter Padding="Padding.Is3">
-                            <Field Horizontal="true">
-                                <FieldBody ColumnSize="ColumnSize.Is12">
-                                    <Buttons Role="ButtonsRole.Addons">
-                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
-                                        <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
-                                        <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
-                                    </Buttons>
-                                </FieldBody>
-                            </Field>
+
+                            <Buttons Role="ButtonsRole.Addons">
+                                <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
+                                <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
+                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechPlClicked">@MyText?.Speech</Button>
+                            </Buttons>
+
                         </CardFooter>
                     </Card>
                 }

@@ -33,14 +33,14 @@
         <DataGridColumn TItem="Comment" Field="@nameof(Comment.TranslationId)" Caption="@MyText?.CommentsTranslation" Sortable="true" Editable="true">
             <DisplayTemplate>
                 <Link To="@($"/edittranslation/{context.TranslationId}")" Title="@MyText?.CommentsTranslation">
-                <Icon Name="@("fa-language")" />&nbsp;@context.TranslationId
+                    <Icon Name="@("fa-language")" />&nbsp;@context.TranslationId
                 </Link>
             </DisplayTemplate>
         </DataGridColumn>
         <DataGridColumn TItem="Comment" Field="@nameof(Comment.User)" Caption="@MyText?.CommentsUser" Editable="true">
             <DisplayTemplate>
                 <Link To="@($"/user/{context.User?.Id}")" Title="@($"{context.User?.FirstName} {context.User?.LastName}")">
-                <Icon Name="@("fa-user-alt")" />&nbsp;@context.User?.UserName
+                    <Icon Name="@("fa-user-alt")" />&nbsp;@context.User?.UserName
                 </Link>
             </DisplayTemplate>
         </DataGridColumn>

@@ -23,7 +23,7 @@
                                 <DataAnnotationsValidator/>
                                 <Validations Mode="ValidationMode.Auto" ValidateOnLoad="false">
                                     <Validation Validator="@ValidationRule.IsNotEmpty">
-                                        <Field IsHorizontal="true">
+                                        <Field Horizontal="true">
                                             <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LoginName</FieldLabel>
                                             <FieldBody ColumnSize="ColumnSize.Is9">
                                                 <TextEdit @bind-Text="@_loginModel.Username"
@@ -37,7 +37,7 @@
                                         </Field>
                                     </Validation>
                                     <Validation Validator="@ValidatePassword">
-                                        <Field IsHorizontal="true">
+                                        <Field Horizontal="true">
                                             <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LoginPassword</FieldLabel>
                                             <FieldBody ColumnSize="ColumnSize.Is9">
                                                 <TextEdit @bind-Text="@_loginModel.Password"
@@ -50,7 +50,7 @@
                                             </FieldBody>
                                         </Field>
                                     </Validation>
-                                    <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                                    <Field Horizontal="true" JustifyContent="JustifyContent.End">
                                         <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.Is9">
                                             <Button Type="ButtonType.Submit" Clicked="@HandleLogin" Color="Color.Primary">@MyText?.LoginButton</Button>
@@ -70,7 +70,7 @@
                         <CardBody>
                             <Validations Mode="ValidationMode.Auto" ValidateOnLoad="false">
                                 <Validation Validator="@ValidationRule.IsEmail">
-                                    <Field IsHorizontal="true">
+                                    <Field Horizontal="true">
                                         <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UsersEmail</FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.Is9">
                                             <TextEdit @bind-Text="@_emailToReset"
@@ -84,7 +84,7 @@
                                     </Field>
                                 </Validation>
                             </Validations>
-                            <Field IsHorizontal="true" JustifyContent="JustifyContent.End">
+                            <Field Horizontal="true" JustifyContent="JustifyContent.End">
                                 <FieldLabel ColumnSize="ColumnSize.Is3"></FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.Is9">
                                     <Buttons Role="ButtonsRole.Toolbar">

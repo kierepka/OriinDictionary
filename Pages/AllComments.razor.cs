@@ -31,11 +31,7 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            ReadLocalSettings();
-            Dispatcher?.Dispatch(
-                new CommentsFetchDataAction(
-                    _token,
-                    MyText?.Loaded ?? string.Empty));
+            ReadLocalSettings();            
         }
 
         private void OnRowRemoved(Comment comment)
