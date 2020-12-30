@@ -1,15 +1,15 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-9VnvBV2Lx0g4D2QwZVgEC9bSUH\/eRGv3G\/6JoNO8BxU=",
+      "hash": "sha256-WrPaFd4b4RMhsJ1f+cE3ACsRq2HXEfRRCq4UNSGuILU=",
       "url": "_content\/i18ntext\/OriinDic.I18nText.Text.en.json"
     },
     {
-      "hash": "sha256-3OcWzil65G+rFdsAfoEmkc3B2+33i4aIAqa66n6MG90=",
+      "hash": "sha256-aJjYsfRdTFieO6JJYnw4WWY+ub2AQy1Rjl7GBhvMayU=",
       "url": "_content\/i18ntext\/OriinDic.I18nText.Text.pl-PL.json"
     },
     {
-      "hash": "sha256-3OcWzil65G+rFdsAfoEmkc3B2+33i4aIAqa66n6MG90=",
+      "hash": "sha256-aJjYsfRdTFieO6JJYnw4WWY+ub2AQy1Rjl7GBhvMayU=",
       "url": "_content\/i18ntext\/OriinDic.I18nText.Text.pl.json"
     },
     {
@@ -373,7 +373,7 @@
       "url": "_framework\/Toolbelt.Blazor.SpeechSynthesis.dll"
     },
     {
-      "hash": "sha256-BrS3cVDk1vNpHvv\/LjA3ulZJlX1fxet0a+1nZhcbbDI=",
+      "hash": "sha256-XN4pzVGRxDv779s2urVEPD4yXWX95LOt3DkF2\/S+E74=",
       "url": "_framework\/OriinDic.dll"
     },
     {
@@ -525,7 +525,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-lZKauVtWKmqMijQuIPRJphGx1f0IOcRaOyzIgUSoIV0=",
+      "hash": "sha256-gHIaYG7336pPQUsG1jt9oAe\/hVSbC7hsk\/0xFdceCDs=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -533,5 +533,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "eMcaa50I"
+  "version": "ReMNmApT"
 };
