@@ -7,9 +7,7 @@
 
 <AuthorizeView Roles="@Const.RolesBaseEditors">
     <Authorized>
-        <Row>
-            BaseTermsState.Value.BaseTerm.Name
-
+        <Row>            
             <Column>
                 @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null)
                 {

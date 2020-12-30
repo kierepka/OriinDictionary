@@ -74,5 +74,6 @@ namespace OriinDic.Pages
         {
             BaseTermsState?.Value?.BaseTerm.Synonyms.Add(synonym.Value);
         }
+
     }
 }
