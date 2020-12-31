@@ -110,6 +110,36 @@ namespace OriinDic.Store.Users
                     new NotificationAction(action.UserAnonymizedMessage, SnackbarColor.Success));
         }
 
+
+        [EffectMethod]
+        public async Task HandlePasswordResetAction(UsersPasswordResetAction action, IDispatcher dispatcher)
+        {
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+
+            try
+            {
+                response = await _httpClient.PostAsJsonAsync(
+                    $"{Const.PasswordChange}", action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
+
+            if (response is not null) returnCode = response.StatusCode;
+
+
+            dispatcher.Dispatch(
+                new UsersPasswordChangeResultAction(statusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserPasswordResetMessage, SnackbarColor.Success));
+        }
+
         [EffectMethod]
         public async Task HandlePasswordChangeAction(UsersPasswordChangeAction action, IDispatcher dispatcher)
         {

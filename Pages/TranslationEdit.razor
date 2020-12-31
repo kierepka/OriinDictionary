@@ -11,99 +11,136 @@
 }
 else
 {
-    <Row>
-        <Column>
-            <Card Margin="Margin.Is4.OnY">
-                <CardHeader>
-                    <CardTitle>[@TranslationLanguage] @(TranslationsState.Value.Translation.Name ?? string.Empty)</CardTitle>
-                </CardHeader>
-                <CardBody>
-
-                    <Field Horizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationName</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
+    <AuthorizeView Roles="@Const.RolesBaseEditors" Context="cre0">
+        <Authorized>
+            <Row>
+                <Column>
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>[@TranslationLanguage] @(TranslationsState.Value.Translation.Name ?? string.Empty)</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationName</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
                                     <TextEdit Placeholder="@MyText?.TranslationName"
                                               @bind-Text="@TranslationsState.Value.Translation.Name" />
-                                </Authorized>
-                                <NotAuthorized>
-                                    <div class="field"><div class="control">@(TranslationsState.Value.Translation.Name  ?? string.Empty)</div></div>
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field Horizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
-                                    <Check @bind-Checked="@TranslationsState.Value.Translation.Current"></Check>
-                                </Authorized>
-                                <NotAuthorized>
-                                    <Check @bind-Checked="@TranslationsState.Value.Translation.Current" Disabled="true"></Check>
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field Horizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                <Authorized>
-                                    <TextEdit Placeholder="@MyText?.TranslationDefinition"
-                                              @bind-Text="@TranslationsState.Value.Translation.Definition" />
-                                </Authorized>
-                                <NotAuthorized>
-                                    <div class="field"><div class="control">@(TranslationsState.Value.Translation.Definition ?? string.Empty)</div></div>
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </FieldBody>
-                    </Field>
-                    <Field Horizontal="true">
-                        <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
-                        <FieldBody ColumnSize="ColumnSize.Is10">
-                            <Label>
-                                @MyText?.TranslationLastEdit: @(TranslationsState.Value.Translation.LastEdit?.User?.UserName ?? string.Empty) ,
-                                @MyText?.TranslationLastApproval: @(TranslationsState.Value.Translation.LastApproval?.User?.UserName ?? string.Empty),
-                                @MyText?.TranslationTitle: @TranslationsState.Value.Translation.Id
-                            </Label>
-                        </FieldBody>
-                    </Field>
-                </CardBody>
-                <CardFooter Padding="Padding.Is3">
-                    <Field Horizontal="true">
-                        <FieldBody ColumnSize="ColumnSize.Is12">
-                            <Buttons Role="ButtonsRole.Addons">
-                                <AuthorizeView Roles="@Const.RolesEditors">
-                                    <Authorized>
-                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
-                                    </Authorized>
-                                </AuthorizeView>
-
-                                @if (!TranslationsState.Value.Translation.Current)
-                                {
-                                    <AuthorizeView Roles="@Const.RolesUsersEditors">
-                                        <Authorized>
-                                            <Button Type="ButtonType.Button" Color="Color.Dark" Clicked="@OnApprove">@MyText?.TranslationApproval</Button>
-                                        </Authorized>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <AuthorizeView Roles="@Const.RolesBaseEditors">
+                                        <Switch @bind-Checked="@TranslationsState.Value.Translation.Current"></Switch>
                                     </AuthorizeView>
-                                }
-                                <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
-                                <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.Speech</Button>
-                            </Buttons>
-                        </FieldBody>
-                    </Field>
-                </CardFooter>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <AuthorizeView Roles="@Const.RolesBaseEditors">
+                                        <TextEdit Placeholder="@MyText?.TranslationDefinition"
+                                                  @bind-Text="@TranslationsState.Value.Translation.Definition" />
+                                    </AuthorizeView>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Label>
+                                        @MyText?.TranslationLastEdit: @(TranslationsState.Value.Translation.LastEdit?.User?.UserName ?? string.Empty) ,
+                                        @MyText?.TranslationLastApproval: @(TranslationsState.Value.Translation.LastApproval?.User?.UserName ?? string.Empty),
+                                        @MyText?.TranslationTitle: @TranslationsState.Value.Translation.Id
+                                    </Label>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                        <CardFooter Padding="Padding.Is3">
+                            <Field Horizontal="true">
+                                <FieldBody ColumnSize="ColumnSize.Is12">
+                                    <Buttons Role="ButtonsRole.Addons">
+                                        <Button Type="ButtonType.Submit" Color="Color.Primary" Clicked="@OnSaveClicked">@MyText?.Save</Button>
 
-            </Card>
+                                        @if (!TranslationsState.Value.Translation.Current)
+                                        {
+                                            <AuthorizeView Roles="@Const.RolesUsersEditors" Context="ctx1">
+                                                <Authorized>
+                                                    <Button Type="ButtonType.Button" Color="Color.Dark" Clicked="@OnApprove">@MyText?.TranslationApproval</Button>
+                                                </Authorized>
+                                            </AuthorizeView>
+                                        }
+                                        <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
+                                        <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.Speech</Button>
+                                    </Buttons>
+                                </FieldBody>
+                            </Field>
+                        </CardFooter>
+
+                    </Card>
+                </Column>
+            </Row>
+        </Authorized>
+        <NotAuthorized>
+            <Row>
+                <Column>
+                    <Card Margin="Margin.Is4.OnY">
+                        <CardHeader>
+                            <CardTitle>[@TranslationLanguage] @(TranslationsState.Value.Translation.Name ?? string.Empty)</CardTitle>
+                        </CardHeader>
+                        <CardBody>
+
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationName</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <div class="field"><div class="control">@(TranslationsState.Value.Translation.Name  ?? string.Empty)</div></div>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Check @bind-Checked="@TranslationsState.Value.Translation.Current" Disabled="true"></Check>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <div class="field"><div class="control">@(TranslationsState.Value.Translation.Definition ?? string.Empty)</div></div>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">Info</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Label>
+                                        @MyText?.TranslationLastEdit: @(TranslationsState.Value.Translation.LastEdit?.User?.UserName ?? string.Empty) ,
+                                        @MyText?.TranslationLastApproval: @(TranslationsState.Value.Translation.LastApproval?.User?.UserName ?? string.Empty),
+                                        @MyText?.TranslationTitle: @TranslationsState.Value.Translation.Id
+                                    </Label>
+                                </FieldBody>
+                            </Field>
+                        </CardBody>
+                        <CardFooter Padding="Padding.Is3">
+                            <Field Horizontal="true">
+                                <FieldBody ColumnSize="ColumnSize.Is12">
+                                    <Buttons Role="ButtonsRole.Addons">
+                                        <Button Type="ButtonType.Button" Color="Color.Light" onClick="history.back();">@MyText?.Back</Button>
+                                        <Button Type="ButtonType.Submit" Color="Color.Info" Clicked="@OnSpeechEnClicked">@MyText?.Speech</Button>
+                                    </Buttons>
+                                </FieldBody>
+                            </Field>
+                        </CardFooter>
+                    </Card>
+                </Column>
+            </Row>
+        </NotAuthorized>
+    </AuthorizeView>
+    <Row>
+        <Column>
             @if (TranslationsState?.Value?.BaseTerm is null)
             {
                 <a href="/">@MyText?.BaseTermNone</a>
             }
             else
             {
-
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
                         <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTerm.Name</CardTitle>
@@ -173,7 +210,7 @@ else
                         <Field Horizontal="true">
                             <FieldBody ColumnSize="ColumnSize.Is12">
                                 <Buttons Role="ButtonsRole.Addons">
-                                    <AuthorizeView Roles="@Const.RolesEditors">
+                                    <AuthorizeView Roles="@Const.RolesEditors" Context="cre">
                                         <Authorized>
                                             <Button Color="Color.Primary" Type="ButtonType.Link" To="@($"/editBaseTerm/{TranslationsState.Value.Translation.BaseTermId}")">
                                                 @MyText?.EditBaseTerm
@@ -195,18 +232,14 @@ else
                 </Card>
             }
 
-            @if (TranslationsState?.Value?.Comments is null)
-            {
-                <Text>@MyText?.Comments: @MyText?.NoData </Text>
-            }
-            else
+            @if (TranslationsState?.Value?.Comments is not null)
             {
                 <Card Margin="Margin.Is4.OnY">
                     <CardHeader>
                         <CardTitle>@MyText?.Comments</CardTitle>
                     </CardHeader>
                     <CardBody>
-                        <AuthorizeView Roles="@Const.RolesEditors">
+                        <AuthorizeView Roles="@Const.RolesEditors" Context="cre2">
                             <Authorized>
                                 <ListComments Comments="@TranslationsState.Value.Comments" OnCommentAdd="OnCommentAdd" />
                             </Authorized>

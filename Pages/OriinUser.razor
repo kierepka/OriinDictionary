@@ -17,23 +17,23 @@
                 <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Email</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <div class="control"><strong>@User.Email</strong></div>
+                        <Text Weight="TextWeight.Bold">@User.Email</Text>
                     </FieldBody>
                 </Field>
                 <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.UserName</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <div class="control"><strong>@User.UserName</strong></div>
+                        <Text Weight="TextWeight.Bold">@User.UserName</Text>
                     </FieldBody>
                 </Field>
                 <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.FirstName</FieldLabel>
-                    <div class="control"><strong>@User.FirstName</strong></div>
+                    <Text Weight="TextWeight.Bold">@User.FirstName</Text>
                 </Field>
                 <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.LastName</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
-                        <div class="control"><strong>@User.LastName</strong></div>
+                        <Text Weight="TextWeight.Bold">@User.LastName</Text>
                     </FieldBody>
                 </Field>
                 <Field Horizontal="true">
@@ -51,12 +51,10 @@
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (LanguagesState is not null)
                         {
-                            @foreach (var lang in LanguagesState.Value.Languages)
-                            {
-                                <div class="control"><strong>@lang.Name</strong></div>
-                            }
+                            <Blazorise.Text Weight="TextWeight.Bold">
+                                @((LanguagesState.Value).GetLanguageName(User.LanguageId ?? Const.PlLangId))
+                            </Blazorise.Text>
                         }
-
                     </FieldBody>
                 </Field>
                 <Field Horizontal="true">
@@ -64,7 +62,7 @@
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
                         {
-                            <div class="field"><div class="control"><strong>@MyText?.SuperUserHasAll</strong></div></div>
+                            <Blazorise.Text Weight="TextWeight.Bold">@MyText?.SuperUserHasAll</Blazorise.Text>
                         }
                         else
                         {
@@ -73,14 +71,10 @@
 
                                 @foreach (var langT in LanguagesState.Value.Languages)
                                 {
-                                    <div class="field">
-                                        <div class="control">
-                                            <div class="control"><strong>@langT.Name</strong></div>
-                                        </div>
-                                    </div>
+                                    <Switch TValue="bool" Checked="@(User.TranslatingLanguages?.Contains((int)langT.Id) ?? false)"
+                                            ReadOnly="true">@langT.Name</Switch>
                                 }
                             }
-
                         }
                     </FieldBody>
                 </Field>
@@ -89,7 +83,9 @@
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
                         {
-                            <div class="field"><div class="control"><strong>@MyText?.SuperUserHasAll</strong></div></div>
+                            <Blazorise.Text Weight="TextWeight.Bold">
+                                @MyText?.SuperUserHasAll
+                            </Blazorise.Text>
                         }
                         else
                         {
@@ -98,12 +94,8 @@
                             {
                                 @foreach (var langC in LanguagesState.Value.Languages)
                                 {
-                                    <div class="field">
-                                        <div class="control">
-                                            <label class="checkbox" for="@langC.Name"></label>
-                                            <div class="control"><strong>@langC.Name</strong></div>
-                                        </div>
-                                    </div>
+                                    <Switch TValue="bool" Checked="@(User.CoordinatingLanguages?.Contains((int)langC.Id) ?? false)"
+                                            ReadOnly="true">@langC.Name</Switch>
                                 }
                             }
 

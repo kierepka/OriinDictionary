@@ -23,7 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllComments.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/AllLinks.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/AllLinks.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Languages.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Languages.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/OriinUser.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/OriinUser.razor" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,9 +87,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Store/Links/LinksFetchDataAction.cs" />
-      <option value="$PROJECT_DIR$/Store/Links/LinksState.cs" />
-      <option value="$PROJECT_DIR$/Store/Links/LinksReducers.cs" />
       <option value="$PROJECT_DIR$/Store/Links/LinksFeature.cs" />
       <option value="$PROJECT_DIR$/Pages/AllLinks.razor.cs" />
       <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor.cs" />
@@ -133,7 +134,10 @@
       <option value="$PROJECT_DIR$/Helpers/Const.cs" />
       <option value="$PROJECT_DIR$/App.razor" />
       <option value="$PROJECT_DIR$/Components/ListComments.razor" />
+      <option value="$PROJECT_DIR$/Pages/Index.razor" />
       <option value="$PROJECT_DIR$/Components/ListComments.razor.cs" />
+      <option value="$PROJECT_DIR$/Pages/AllLinks.razor" />
+      <option value="$PROJECT_DIR$/Pages/AllComments.razor" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
@@ -260,7 +264,8 @@
       <workItem from="1609156391229" duration="54000" />
       <workItem from="1609156750449" duration="3920000" />
       <workItem from="1609230023079" duration="5206000" />
-      <workItem from="1609323116909" duration="594000" />
+      <workItem from="1609323116909" duration="1553000" />
+      <workItem from="1609409021295" duration="1849000" />
     </task>
     <servers />
   </component>

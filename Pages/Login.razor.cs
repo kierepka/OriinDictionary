@@ -60,15 +60,13 @@ namespace OriinDic.Pages
             };
             try
             {
-                var token = LocalStorage.GetItem<Token>(Const.TokenKey);
-
                 Dispatcher?.Dispatch(
                     new UsersPasswordResetAction(
                         user: upr,
-                        token: token.AuthToken,
+                        token: string.Empty,
                         userPasswordResetMessage: MyText?.PasswordResetSend ?? string.Empty));
             }
-            catch
+            catch (Exception e)
             {
                 ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
