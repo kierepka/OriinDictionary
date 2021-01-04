@@ -92,5 +92,17 @@ namespace OriinDic.Models
         {
 
         }
+
+        public void CheckNulls()
+        {
+            Definition ??=  string.Empty;
+            Examples ??= new List<string>();
+            Synonyms ??= new List<string>();
+            LastEditId ??= 0;
+            LastApprovalId ??= 0;
+            if (LastApproval is null) LastApproval = new TranslationApproval();
+
+        }
+
     }
 }

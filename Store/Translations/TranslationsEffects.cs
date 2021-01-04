@@ -59,9 +59,12 @@ namespace OriinDic.Store.Translations
                 returnCode = HttpStatusCode.BadRequest;
             }
 
+            if (translation is null) translation = new Translation();
+            translation.CheckNulls();
+
             dispatcher.Dispatch(
                 new TranslationsApproveResultAction(returnCode,
-                    translation: translation ?? new Translation()));
+                    translation: translation));
 
             if (returnCode != HttpStatusCode.BadRequest)
             {
@@ -93,6 +96,7 @@ namespace OriinDic.Store.Translations
                 dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
                 return;
             }
+
 
             dispatcher.Dispatch(new NotificationAction(action.DataAddedMessage, SnackbarColor.Success));
         }
@@ -149,12 +153,14 @@ namespace OriinDic.Store.Translations
                     new NotificationAction(eTrans.Message, SnackbarColor.Danger));
                 returnCode = HttpStatusCode.BadRequest;
             }
+            if (translation is null) translation = new Translation();
+            translation.CheckNulls();
 
 
             ResultBaseTranslation? baseTermResult = null;
             try
             {
-                if (translation != null)
+                if (translation is not null)
                 {
                     url = $"{Const.BaseTerms}{translation.BaseTermId}/";
                     baseTermResult =
@@ -320,6 +326,8 @@ namespace OriinDic.Store.Translations
                 LanguageId = resBaseTransl.BaseTerm.LanguageId,
                 BaseTermId = resBaseTransl.BaseTerm.Id
             };
+            resBaseTransl.Translation.CheckNulls();
+
             resBaseTransl.Translations ??= new System.Collections.Generic.List<Translation> {resBaseTransl.Translation};
 
             dispatcher.Dispatch(
@@ -351,10 +359,12 @@ namespace OriinDic.Store.Translations
                     new NotificationAction(e.Message, SnackbarColor.Danger));
                 returnCode = HttpStatusCode.BadRequest;
             }
+            returnData ??= new Translation();
+            returnData.CheckNulls();
 
             dispatcher.Dispatch(
                 new TranslationsFetchOneResultAction(
-                    translation: returnData ?? new Translation(),
+                    translation: returnData,
                     httpStatusCode: returnCode));
 
             if (returnCode != HttpStatusCode.BadRequest)
@@ -395,6 +405,8 @@ namespace OriinDic.Store.Translations
                 returnCode = HttpStatusCode.BadRequest;
             }
 
+            returnData ??= new Translation();
+            returnData.CheckNulls();
 
             dispatcher.Dispatch(
                 new TranslationsAddResultAction(

@@ -1,5 +1,6 @@
 ﻿using OriinDic.Models;
 
+using System.Collections.Generic;
 using System.Net;
 
 namespace OriinDic.Store.Translations
@@ -13,6 +14,7 @@ namespace OriinDic.Store.Translations
         {
             ResultCode = resultCode;
             Translation = translation;
+
         }
     }
 }
