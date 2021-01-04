@@ -43,7 +43,7 @@
     </Router>
 </Blazorise.ThemeProvider>
 @code{
-    
+
     private readonly Theme _theme = new()
     {
         BarOptions = new ThemeBarOptions
@@ -54,7 +54,7 @@
         ColorOptions = new ThemeColorOptions
         {
             Primary = Const.PrimaryColor,
- 
+
         },
         BackgroundOptions = new ThemeBackgroundOptions
         {
@@ -64,13 +64,14 @@
         {
             Primary = Const.PrimaryColor,
         },
-      
+
         InputOptions = new ThemeInputOptions
         {
             CheckColor = Const.PrimaryColor,
             Color = Const.PrimaryColor,
             SliderColor = Const.PrimaryColor,
         },
-        
+        Enabled = true,
+        IsRounded = true
     };
 }

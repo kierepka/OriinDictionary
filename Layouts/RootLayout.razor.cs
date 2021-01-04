@@ -8,7 +8,7 @@ namespace OriinDic.Layouts
 {
     public partial class RootLayout
     {
-        private readonly HttpClient Http;
+        private readonly HttpClient Http = new HttpClient();
 
         public RootLayout()
         {

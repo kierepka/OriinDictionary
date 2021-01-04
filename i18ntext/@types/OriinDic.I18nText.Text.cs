@@ -58,7 +58,7 @@ namespace OriinDic.I18nText
         /// <summary>"Definicja nie może być pusta - proszę wpisać conajmniej kilka znaków"</summary>
         public string BaseTermDefinitionError;
 
-        /// <summary>"Definicja tłumaczonego słowa lub zdania"</summary>
+        /// <summary>"Definicja słowa lub zdania"</summary>
         public string BaseTermDefinitionHelp;
 
         /// <summary>"Przykłady"</summary>
@@ -214,6 +214,9 @@ namespace OriinDic.I18nText
         /// <summary>"Główne menu"</summary>
         public string HeaderMain;
 
+        /// <summary>"Szukaj słów bazowych i tłumaczeń"</summary>
+        public string HeaderShowDashboard;
+
         /// <summary>"Szukaj słów bazowych"</summary>
         public string HeaderShowDashboardBase;
 
@@ -277,7 +280,7 @@ namespace OriinDic.I18nText
         /// <summary>"Wczytuję dane - proszę czekać.."</summary>
         public string Loading;
 
-        /// <summary>"Zaloguj się"</summary>
+        /// <summary>"Login"</summary>
         public string Login;
 
         /// <summary>"Zaloguj się"</summary>
@@ -469,8 +472,14 @@ namespace OriinDic.I18nText
         /// <summary>"Aktualny"</summary>
         public string TranslationCurrent;
 
+        /// <summary>"Zaznaczenie tego pola oznacza czy tłumaczenie jest głównym obowiązującym tłumaczeniem"</summary>
+        public string TranslationCurrentHelp;
+
         /// <summary>"Definicja"</summary>
         public string TranslationDefinition;
+
+        /// <summary>"Definicja tłumaczonego słowa lub zdania"</summary>
+        public string TranslationDefinitionHelp;
 
         /// <summary>"Przykłady"</summary>
         public string TranslationExamples;
@@ -489,6 +498,12 @@ namespace OriinDic.I18nText
 
         /// <summary>"Nazwa"</summary>
         public string TranslationName;
+
+        /// <summary>"Tłumaczenie słowa lub zdania nie może być puste - proszę wpisać conajminej kilka znaków"</summary>
+        public string TranslationNameError;
+
+        /// <summary>"Tłumaczenie słowa lub zdania"</summary>
+        public string TranslationNameHelp;
 
         /// <summary>"Tłumaczenie zostało zapisane pod numerem:"</summary>
         public string TranslationSaved;

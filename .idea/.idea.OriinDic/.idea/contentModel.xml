@@ -31,8 +31,6 @@
         <e p="ListLinks.razor.cs" t="Include" />
         <e p="ListSynonyms.razor" t="Include" />
         <e p="ListSynonyms.razor.cs" t="Include" />
-        <e p="MainLayout.razor" t="Include" />
-        <e p="MainLayout.razor.cs" t="Include" />
         <e p="MyPagination.razor" t="Include" />
         <e p="MyPagination.razor.cs" t="Include" />
         <e p="PageHeader.razor" t="Include" />
@@ -56,6 +54,12 @@
         <e p="Text.en.json" t="Include" />
         <e p="Text.pl-PL.json" t="Include" />
         <e p="Text.pl.json" t="Include" />
+      </e>
+      <e p="Layouts" t="Include">
+        <e p="MainLayout.razor" t="Include" />
+        <e p="MainLayout.razor.cs" t="Include" />
+        <e p="RootLayout.razor" t="Include" />
+        <e p="RootLayout.razor.cs" t="Include" />
       </e>
       <e p="libman.json" t="Include" />
       <e p="LICENSE" t="Include" />

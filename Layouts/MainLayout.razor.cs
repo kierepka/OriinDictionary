@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 
 using Blazored.LocalStorage;
 
+using Blazorise;
+
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Helpers;
@@ -13,14 +15,16 @@ namespace OriinDic.Layouts
 {
     public partial class MainLayout
     {
-        private bool _collapseNavMenu = true;
-
         private string _currentLanguage = "Language";
 
         private Text _myText = new();
 
-
-
+        RenderFragment customIcon = b =>
+                {
+                    b.OpenComponent<Image>(0);
+                    b.AddAttribute(1, "Source", "favicon-32x32.png");
+                    b.CloseComponent();
+                };
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
@@ -28,15 +32,15 @@ namespace OriinDic.Layouts
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private ISyncLocalStorageService? LocalStorage { get; set; }
 
- 
-  
+
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             await CheckLanguage();
         }
 
- 
+
         /// <summary>
         /// Checking languages - are they proper loaded?
         /// </summary>
@@ -77,7 +81,7 @@ namespace OriinDic.Layouts
         }
 
 
-    
+
 
     }
 }

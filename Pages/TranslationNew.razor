@@ -26,27 +26,44 @@ else
                         <CardTitle>[@TranslationLanguage]@TranslationsState.Value.BaseTranslation.Translation.Name</CardTitle>
                     </CardHeader>
                     <CardBody>
+                        <Validations Mode="ValidationMode.Auto">
+                            <Validation Validator="@ValidationRule.IsNotEmpty">
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationName</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <TextEdit Placeholder="@MyText?.TranslationName"
+                                                  @bind-Text="@TranslationsState.Value.BaseTranslation.Translation.Name">
+                                            <Feedback>
+                                                <FieldHelp>@MyText?.TranslationNameHelp</FieldHelp>
+                                                <ValidationError>@MyText?.TranslationNameError</ValidationError>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
+                            </Validation>
 
-                        <Field Horizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationName</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <TextEdit Placeholder="@MyText?.TranslationName"
-                                          @bind-Text="@TranslationsState.Value.BaseTranslation.Translation.Name" />
-                            </FieldBody>
-                        </Field>
-                        <Field Horizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <Check @bind-Checked="@TranslationsState.Value.BaseTranslation.Translation.Current"></Check>
-                            </FieldBody>
-                        </Field>
-                        <Field Horizontal="true">
-                            <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
-                            <FieldBody ColumnSize="ColumnSize.Is10">
-                                <TextEdit Placeholder="@MyText?.TranslationDefinition"
-                                          @bind-Text="@TranslationsState.Value.BaseTranslation.Translation.Definition" />
-                            </FieldBody>
-                        </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <Switch @bind-Checked="@TranslationsState.Value.BaseTranslation.Translation.Current">
+                                        <Feedback>
+                                            <FieldHelp>@MyText?.TranslationCurrentHelp</FieldHelp>
+                                        </Feedback>
+                                    </Switch>
+                                </FieldBody>
+                            </Field>
+                            <Field Horizontal="true">
+                                <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
+                                <FieldBody ColumnSize="ColumnSize.Is10">
+                                    <TextEdit Placeholder="@MyText?.TranslationDefinition"
+                                              @bind-Text="@TranslationsState.Value.BaseTranslation.Translation.Definition">
+                                        <Feedback>
+                                            <FieldHelp>@MyText?.TranslationDefinitionHelp</FieldHelp>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validations>
                     </CardBody>
                     <CardFooter Padding="Padding.Is3">
                         <Field Horizontal="true">
