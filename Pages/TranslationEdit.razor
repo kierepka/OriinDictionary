@@ -292,7 +292,7 @@ else
                         <CardTitle>@MyText?.Comments</CardTitle>
                     </CardHeader>
                     <CardBody>
-                        <AuthorizeView Roles="@Const.RolesEditors" Context="cre2">
+                        <AuthorizeView Roles="@Const.LinksAndComments" Context="cre2">
                             <Authorized>
                                 <ListComments Comments="@TranslationsState.Value.Comments" OnCommentAdd="OnCommentAdd" />
                             </Authorized>

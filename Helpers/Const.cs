@@ -110,6 +110,7 @@ namespace OriinDic.Helpers
         internal const string RoleAssistant = "Assistant";
 
         internal const string RolesEditors = RoleTranslator + ", " + RoleCoordinator + ", " + RoleSuperUser;
+        internal const string LinksAndComments = RolesEditors + ", " + RoleAssistant;
         internal const string RolesBaseEditors = RoleSuperUser;     
         internal const string RolesUsersEditors = RoleCoordinator + ", " + RoleSuperUser;
         internal const string EnLangSpeechCode = "en-GB";
