@@ -23,13 +23,14 @@ namespace OriinDic.Pages
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
 
-        [Parameter]
-        public string uid { get; set; } = string.Empty;
-        [Parameter]
-        public string token { get; set; } = string.Empty;
 
-        private UserPwdResetUpdate User { get; set; } = new UserPwdResetUpdate();
+        [Parameter]
+        public string PageRoute { get; set; } = string.Empty;
         
+        private UserPwdResetUpdate User { get; set; } = new UserPwdResetUpdate();
+
+        private string UserId = string.Empty;
+        private string Token = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -37,8 +38,7 @@ namespace OriinDic.Pages
             _isLoading = true;
 
 
-            if (NavigationManager is null) return;
-            NavigationManager.NavigateTo("/");
+
 
             _isLoading = false;
         }
@@ -64,15 +64,28 @@ namespace OriinDic.Pages
             }
         }
 
+        protected override void OnParametersSet()
+        {
+            if (PageRoute is null) return;
+            
+            var s = PageRoute.Split('/');
+
+            if (s.Length == 2) {
+                UserId = s[0];
+                Token = s[1];
+            }
+        }
+
         private void HandlePasswordReset()
         {
             if (LocalStorage is null) return;
 
             if (MyText is null) return;
+            if (string.IsNullOrEmpty(UserId)) return;
+            if (string.IsNullOrEmpty(Token)) return;
 
-            User.UserId = uid;
-            User.Token = token;
-
+            User.UserId = UserId;
+            User.Token = Token;
 
             try
             {
@@ -83,6 +96,9 @@ namespace OriinDic.Pages
                         user: User,
                         token: token.AuthToken,
                         userPasswordResetConfirmMessage: MyText?.PasswordReseted ?? string.Empty));
+
+                if (NavigationManager is null) return;
+                NavigationManager.NavigateTo("/");
             }
             catch
             {

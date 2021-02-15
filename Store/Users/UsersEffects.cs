@@ -66,6 +66,8 @@ namespace OriinDic.Store.Users
                     new NotificationAction(action.UserAddedMessage, SnackbarColor.Success));
         }
 
+
+
         [EffectMethod]
         public async Task HandleAnonymizeDataAction(UsersAnonymizeAction action, IDispatcher dispatcher)
         {
@@ -121,7 +123,7 @@ namespace OriinDic.Store.Users
             try
             {
                 response = await _httpClient.PostAsJsonAsync(
-                    $"{Const.PasswordChange}", action.User);
+                    $"{Const.PasswordReset}", action.User);
             }
             catch (Exception e)
             {
@@ -138,6 +140,36 @@ namespace OriinDic.Store.Users
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.UserPasswordResetMessage, SnackbarColor.Success));
+        }
+
+
+        [EffectMethod]
+        public async Task HandlePasswordResetConfirmAction(UsersPasswordResetConfirmAction action, IDispatcher dispatcher)
+        {
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+
+            try
+            {
+                response = await _httpClient.PostAsJsonAsync(
+                    $"{Const.PasswordResetConfirm}", action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
+
+            if (response is not null) returnCode = response.StatusCode;
+
+
+            dispatcher.Dispatch(
+                new UsersPasswordChangeResultAction(statusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserPasswordResetConfirmMessage, SnackbarColor.Success));
         }
 
         [EffectMethod]

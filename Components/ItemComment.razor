@@ -8,8 +8,9 @@
                         @($"{MyComment?.User?.FirstName} {MyComment?.User?.FirstName}")
                     </strong>&nbsp;<small>@($"{MyComment?.User?.UserName}")</small>
                     <small>@($"{MyComment?.Date:g}")</small>
-                    <br>
-                    @($"{MyComment?.Text}")
+                    <br/>
+
+                    @((MarkupString)$"{MyComment?.Text.Replace("\n","<br/>")}")
                 </p>
             </div>
             @*<nav class="level is-mobile">

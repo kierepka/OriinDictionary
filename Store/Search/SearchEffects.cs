@@ -76,7 +76,6 @@ namespace OriinDic.Store.Search
             {
                 //no data result
                 dispatcher.Dispatch(new NotificationAction(action.NoResults, SnackbarColor.Warning));
-                return;
             }
 
             dispatcher.Dispatch(new SearchBaseTermsResultAction(translationResult,

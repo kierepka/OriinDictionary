@@ -34,9 +34,11 @@ namespace OriinDic.Helpers
         internal const string Translations = ApiDomainVersion + "translations/";
         internal const string Token = ApiDomainNoVersion + "auth/token/login/";
 
-        internal const string PasswordChange = Users + "set_password/";
-        
-        internal const string PasswordResetConfirm = Users + "reset_password_confirm/";
+        internal const string PasswordChange = AddUser + "set_password/";
+
+        internal const string PasswordReset = AddUser + "reset_password/";
+
+        internal const string PasswordResetConfirm = AddUser + "reset_password_confirm/";
         
 
         internal static readonly IEnumerable<long> BaseLanguagesList = new ReadOnlyCollectionBuilder<long>{PlLangId};                                         

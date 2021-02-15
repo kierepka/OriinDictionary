@@ -81,7 +81,7 @@ namespace OriinDic.Store.Search
             PaginationShow = paginationShow;
             LastActionState = lastActionState;
 
-            if (rootObject is not null) UpdateTempData(rootObject);
+            UpdateTempData(rootObject);
             CheckButtonColors();
         }
 
@@ -106,63 +106,64 @@ namespace OriinDic.Store.Search
         private void UpdateTempData(RootObject<ResultBaseTranslation> dictResult)
         {
             PaginationShow = false;
-
-            if (dictResult.Pages > 1)
-            {
-                PaginationShow = true;
-                TotalPages = dictResult.Pages;
-                var localPages = new List<LocalPages>();
-                if (TotalPages > 20)
-                {
-                    for (var i = 1; i <= 7; ++i) localPages.Add(new LocalPages { Number = i });
-                    localPages.Add(new LocalPages { Number = 0 });
-                    for (var i = TotalPages - 7; i <= TotalPages; ++i) localPages.Add(new LocalPages { Number = i });
-                }
-                else
-                {
-                    for (var i = 1; i <= TotalPages; ++i) localPages.Add(new LocalPages { Number = i });
-                }
-
-                LocalPages = localPages.AsReadOnly();
-            }
-
-            TotalSearchItems = dictResult.Count;
-
             var searchItems = new List<SearchItem>();
 
-            if (TotalSearchItems <= 0) return;
-
-            foreach (var dic in dictResult.Results)
+            if (dictResult is not null)
             {
-                var ltd = new SearchItem();
-                if (dic.BaseTerm is not null)
+                if (dictResult.Pages > 1)
                 {
-                    ltd.BaseTermId = dic.BaseTerm.Id;
-                    ltd.BaseTermSlug = string.IsNullOrEmpty(dic.BaseTerm.Slug)
-                        ? NoBaseTermName
-                        : dic.BaseTerm.Slug;
-                    var baseName = string.IsNullOrEmpty(dic.BaseTerm.Name)
-                        ? NoBaseTermName
-                        : dic.BaseTerm.Name;
-                    ltd.BaseName = baseName.Truncate(Const.ShownCharactersInTable);
-                    ltd.BaseNameToolTip = baseName;
+                    PaginationShow = true;
+                    TotalPages = dictResult.Pages;
+                    var localPages = new List<LocalPages>();
+                    if (TotalPages > 20)
+                    {
+                        for (var i = 1; i <= 7; ++i) localPages.Add(new LocalPages { Number = i });
+                        localPages.Add(new LocalPages { Number = 0 });
+                        for (var i = TotalPages - 7; i <= TotalPages; ++i) localPages.Add(new LocalPages { Number = i });
+                    }
+                    else
+                    {
+                        for (var i = 1; i <= TotalPages; ++i) localPages.Add(new LocalPages { Number = i });
+                    }
+
+                    LocalPages = localPages.AsReadOnly();
                 }
 
-                if (dic.Translation is not null)
+                TotalSearchItems = dictResult.Count;
+                foreach (var dic in dictResult.Results)
                 {
-                    ltd.TranslateId = dic.Translation.Id;
-                    var translateName = string.IsNullOrEmpty(dic.Translation.Name)
-                        ? NoTranslationName
-                        : dic.Translation.Name;
-                    ltd.TranslateName = translateName.Truncate(Const.ShownCharactersInTable);
-                    ltd.TranslateNameToolTip = translateName;
-                }
+                    var ltd = new SearchItem();
+                    if (dic.BaseTerm is not null)
+                    {
+                        ltd.BaseTermId = dic.BaseTerm.Id;
+                        ltd.BaseTermSlug = string.IsNullOrEmpty(dic.BaseTerm.Slug)
+                            ? NoBaseTermName
+                            : dic.BaseTerm.Slug;
+                        var baseName = string.IsNullOrEmpty(dic.BaseTerm.Name)
+                            ? NoBaseTermName
+                            : dic.BaseTerm.Name;
+                        ltd.BaseName = baseName.Truncate(Const.ShownCharactersInTable);
+                        ltd.BaseNameToolTip = baseName;
+                    }
 
-                if (!searchItems.Contains(ltd))
-                    searchItems.Add(ltd);
+                    if (dic.Translation is not null)
+                    {
+                        ltd.TranslateId = dic.Translation.Id;
+                        var translateName = string.IsNullOrEmpty(dic.Translation.Name)
+                            ? NoTranslationName
+                            : dic.Translation.Name;
+                        ltd.TranslateName = translateName.Truncate(Const.ShownCharactersInTable);
+                        ltd.TranslateNameToolTip = translateName;
+                    }
+
+                    if (!searchItems.Contains(ltd))
+                        searchItems.Add(ltd);
+                }
+            }                                       
+            else
+            {
+                TotalSearchItems = 0;
             }
-
-
             SearchItems = searchItems.AsReadOnly();
         }
     }

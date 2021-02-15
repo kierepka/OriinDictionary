@@ -106,81 +106,83 @@
             </Addon>
         </Addons>
 
+        @if (SearchState?.Value.SearchItems is not null)
+        {
+            <DataGrid TItem="SearchItem"
+                      Data="SearchState?.Value.SearchItems"
+                      ReadData="@OnReadData"
+                      ShowPager="false"
+                      Editable="false"
+                      EditMode="DataGridEditMode.Inline"
+                      UseInternalEditing="true"
+                      PageSize="@((int)_itemsPerPage)"
+                      Sortable="true"
+                      SortMode="DataGridSortMode.Single"
+                      RowSelectable=@(_ => false)
+                      Filterable="false"
+                      Striped="true"
+                      Bordered="true"
+                      Responsive="true"
+                      Hoverable="true">
+                <DataGridColumns>
+                    <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TermTitle">
+                        <DisplayTemplate Context="ctx1">
 
-        <DataGrid TItem="SearchItem"
-                  Data="SearchState?.Value.SearchItems"
-                  ReadData="@OnReadData"
-                  ShowPager="false"
-                  Editable="false"
-                  EditMode="DataGridEditMode.Inline"
-                  UseInternalEditing="true"
-                  PageSize="@((int)_itemsPerPage)"
-                  Sortable="true"
-                  SortMode="DataGridSortMode.Single"
-                  RowSelectable=@(_=>false)
-                  Filterable="false"
-                  Striped="true"
-                  Bordered="true"
-                  Responsive="true"
-                  Hoverable="true">
-            <DataGridColumns>
-                <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TermTitle">
-                    <DisplayTemplate Context="ctx1">
-
-                        @{
-                            var locDic = ctx1 as SearchItem;
-                            if (string.IsNullOrEmpty(locDic.BaseName))
-                            {
-                                <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
-                                        Type="ButtonType.Link" To="/addbaseterm" Block="true">
-                                    <ChildContent>
-                                        <Icon Name="@("fa-scroll")" />&nbsp;@MyText?.AddBase
-                                    </ChildContent>
-                                </Button>
-                            }
-                            else
-                            {
-                                <Tooltip Text="@locDic.BaseNameToolTip">
-
+                            @{
+                                var locDic = ctx1 as SearchItem;
+                                if (string.IsNullOrEmpty(locDic.BaseName))
+                                {
                                     <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
-                                            Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
-                                        <Icon Name="@("fa-scroll")" />&nbsp;"@locDic.BaseName"
+                                            Type="ButtonType.Link" To="/addbaseterm" Block="true">
+                                        <ChildContent>
+                                            <Icon Name="@("fa-scroll")" />&nbsp;@MyText?.AddBase
+                                        </ChildContent>
                                     </Button>
-                                </Tooltip>
+                                }
+                                else
+                                {
+                                    <Tooltip Text="@locDic.BaseNameToolTip">
+
+                                        <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
+                                                Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
+                                            <Icon Name="@("fa-scroll")" />&nbsp;"@locDic.BaseName"
+                                        </Button>
+                                    </Tooltip>
+                                }
                             }
-                        }
-                    </DisplayTemplate>
-                </DataGridColumn>
-                <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TranslationTitle">
-                    <DisplayTemplate Context="ctx2">
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                    <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TranslationTitle">
+                        <DisplayTemplate Context="ctx2">
 
-                        @{
-                            var locDic = ctx2 as SearchItem;
-                            if (string.IsNullOrEmpty(locDic.TranslateName))
-                            {
-                                <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
-                                        Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}")" Block="true">
-                                    <ChildContent>
-
-                                        <Icon Name="@("fa-language")" />&nbsp;@MyText?.AddTranslation
-                                    </ChildContent>
-                                </Button>
-
-                            }
-                            else
-                            {
-                                <Tooltip Text="@locDic.TranslateNameToolTip">
+                            @{
+                                var locDic = ctx2 as SearchItem;
+                                if (string.IsNullOrEmpty(locDic.TranslateName))
+                                {
                                     <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
-                                            Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
-                                        <Icon Name="@("fa-language")" />&nbsp;"@locDic.TranslateName"
+                                            Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}")" Block="true">
+                                        <ChildContent>
+
+                                            <Icon Name="@("fa-language")" />&nbsp;@MyText?.AddTranslation
+                                        </ChildContent>
                                     </Button>
-                                </Tooltip>
+
+                                }
+                                else
+                                {
+                                    <Tooltip Text="@locDic.TranslateNameToolTip">
+                                        <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
+                                                Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
+                                            <Icon Name="@("fa-language")" />&nbsp;"@locDic.TranslateName"
+                                        </Button>
+                                    </Tooltip>
+                                }
                             }
-                        }
-                    </DisplayTemplate>
-                </DataGridColumn>
-            </DataGridColumns>
-        </DataGrid>
+                        </DisplayTemplate>
+                    </DataGridColumn>
+                </DataGridColumns>
+            </DataGrid>
+        }
 
     </Authorized>
 
