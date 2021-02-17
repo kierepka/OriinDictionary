@@ -118,8 +118,7 @@ namespace OriinDic.Store.Users
         {
             var returnCode = HttpStatusCode.OK;
             HttpResponseMessage? response = null;
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
-
+            
             try
             {
                 response = await _httpClient.PostAsJsonAsync(
@@ -148,8 +147,7 @@ namespace OriinDic.Store.Users
         {
             var returnCode = HttpStatusCode.OK;
             HttpResponseMessage? response = null;
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
-
+            
             try
             {
                 response = await _httpClient.PostAsJsonAsync(

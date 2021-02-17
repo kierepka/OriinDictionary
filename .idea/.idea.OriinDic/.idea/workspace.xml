@@ -24,16 +24,21 @@
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ItemComment.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ItemComment.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ListComments.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/ListComments.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OriinDic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/BaseTermEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/BaseTermEdit.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/BaseTermNew.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/BaseTermNew.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PasswordResetConfirm.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchEffects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/PersonalData.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/PersonalData.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Settings.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Settings.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/TranslationEdit.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationEdit.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/TranslationNew.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/TranslationNew.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Users.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/Users.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Users.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/i18ntext/Text.en.json" beforeDir="false" afterPath="$PROJECT_DIR$/i18ntext/Text.en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +95,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Store/Notifications/NotificationsState.cs" />
-      <option value="$PROJECT_DIR$/Store/Users/UsersAddAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersAddResultAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersAnonymizeAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersDeleteAction.cs" />
@@ -104,7 +107,6 @@
       <option value="$PROJECT_DIR$/Store/Users/UsersUpdateAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersState.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersFeature.cs" />
-      <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
       <option value="$PROJECT_DIR$/Pages/OriinUser.razor.cs" />
       <option value="$PROJECT_DIR$/Models/UserPwdReset.cs" />
       <option value="$PROJECT_DIR$/Models/UserPwdUpdate.cs" />
@@ -139,8 +141,11 @@
       <option value="$PROJECT_DIR$/Pages/AllLinks.razor" />
       <option value="$PROJECT_DIR$/Pages/AllComments.razor" />
       <option value="$PROJECT_DIR$/Pages/TranslationEdit.razor" />
-      <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor" />
       <option value="$PROJECT_DIR$/Store/StoreInitializedEffect.cs" />
+      <option value="$PROJECT_DIR$/Pages/Login.razor.cs" />
+      <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor" />
+      <option value="$PROJECT_DIR$/Store/Search/SearchState.cs" />
+      <option value="$PROJECT_DIR$/Pages/Users.razor.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
@@ -274,6 +279,8 @@
       <workItem from="1609747824020" duration="605000" />
       <workItem from="1610820043811" duration="1274000" />
       <workItem from="1613388970532" duration="963000" />
+      <workItem from="1613472199069" duration="1739000" />
+      <workItem from="1613482765581" duration="1290000" />
     </task>
     <servers />
   </component>
@@ -297,41 +304,5 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Pages/Users.razor.cs</url>
-          <line>137</line>
-          <properties documentPath="E:\source\repos\oriin_dictionary\oriin-dictionary-client\Pages\Users.razor.cs" initialLine="121" containingFunctionPresentation="method 'OnCoordLangStatusChanged'">
-            <startOffsets>
-              <option value="4285" />
-              <option value="4312" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4311" />
-              <option value="4319" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Pages/Users.razor.cs</url>
-          <line>118</line>
-          <properties documentPath="E:\source\repos\oriin_dictionary\oriin-dictionary-client\Pages\Users.razor.cs" initialLine="102" containingFunctionPresentation="method 'OnTransLangStatusChanged'">
-            <startOffsets>
-              <option value="3572" />
-              <option value="3599" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3598" />
-              <option value="3606" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

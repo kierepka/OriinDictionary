@@ -58,7 +58,18 @@ namespace OriinDic.Pages
 
             if (user is null) return;
 
+            try
+            {
+                user.UserName = Convert.ToString(e.Values["UserName"]) ?? user.UserName;
+                user.FirstName = Convert.ToString(e.Values["FirstName"]) ?? user.FirstName;
+                user.LastName = Convert.ToString(e.Values["LastName"]) ?? user.LastName;
+                user.Email = Convert.ToString(e.Values["Email"]) ?? user.Email;
+            }
+            catch { }
+
             _selectedUser = user;
+
+
 
             if (MyText is null) return;
 
@@ -82,7 +93,31 @@ namespace OriinDic.Pages
         private void OnRowUpdated(SavedRowItem<User, Dictionary<string, object>> e)
         {
             var user = e.Item;
+
             if (user is null) return;
+
+            try
+            {
+                user.UserName = Convert.ToString(e.Values["UserName"]) ?? user.UserName;
+                user.FirstName = Convert.ToString(e.Values["FirstName"]) ?? user.FirstName;
+                user.LastName = Convert.ToString(e.Values["LastName"]) ?? user.LastName;
+                user.Email = Convert.ToString(e.Values["Email"]) ?? user.Email;
+
+                user.IsSuperuser = Convert.ToBoolean(e.Values["IsSuperuser"]);
+                user.Assistant = Convert.ToBoolean(e.Values["Assistant"]);
+
+                var corLang = (List<int>)e.Values["CoordinatingLanguages"];
+                var tranLang = (List<int>)e.Values["TranslatingLanguages"];
+                user.CoordinatingLanguages = corLang ?? user.CoordinatingLanguages;
+                user.TranslatingLanguages = tranLang ?? user.TranslatingLanguages;
+
+                //user.CoordinatingLanguages = Convert.ToBoolean(e.Values["Assistant"]);
+            } catch
+            {
+                return;
+            }
+
+
 
             _selectedUser = user;
 
