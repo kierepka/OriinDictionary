@@ -190,10 +190,13 @@ namespace OriinDic.I18nText
         /// <summary>"Imię"</summary>
         public string FirstName;
 
+        /// <summary>"na podstawie Akademii Wiedzy Duchowej Zbigniewa Jana Popko"</summary>
+        public string FromJanPopko;
+
         /// <summary>"Płeć"</summary>
         public string Gender;
 
-        /// <summary>"Słownik pojęć z miasta Oriin"</summary>
+        /// <summary>"SŁOWNIK WIEDZY DUCHOWEJ z miasta Oriin"</summary>
         public string Header;
 
         /// <summary>"Edycja słowa bazowego"</summary>
@@ -228,6 +231,9 @@ namespace OriinDic.I18nText
 
         /// <summary>"Ustawienia użytkownika"</summary>
         public string HeaderUser;
+
+        /// <summary>"DICTIONARY OF SPIRITUAL KNOWLEDGE from the city of Oriin"</summary>
+        public string Headline;
 
         /// <summary>"Cześć"</summary>
         public string Hello;
@@ -442,8 +448,8 @@ namespace OriinDic.I18nText
         /// <summary>"Po włączeniu na stronie będą przyciski posiadały zaokrąglone krawędzie."</summary>
         public string SettingsThemeRoundedElementsHelp;
 
-        /// <summary>"Słownik Oriin"</summary>
-        public string ShortHeader;
+        /// <summary>"SŁOWNIK WIEDZY DUCHOWEJ"</summary>
+        public string ShortHeader2;
 
         /// <summary>"Coś nie działa?"</summary>
         public string SomethingWrong;

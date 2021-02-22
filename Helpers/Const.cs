@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using OriinDic.Models;
+using OriinDic.Pages;
+
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace OriinDic.Helpers
@@ -41,9 +44,13 @@ namespace OriinDic.Helpers
         internal const string PasswordResetConfirm = AddUser + "reset_password_confirm/";
         
 
-        internal static readonly IEnumerable<long> BaseLanguagesList = new ReadOnlyCollectionBuilder<long>{PlLangId};                                         
+        internal static readonly List<Language> BaseLanguagesList  = new List<Language>
+        {
+            new Language { Code = PlLangShortcut, Id = PlLangId, Name = PlLangName, SpecialCharacters = PlSpecialChars}
+        };
 
-        
+
+
         internal const string PlLangName = "Polski";
         internal const string PlLangShortcut = "PL";
         internal const string PlSpecialChars = "ą,ć,ę,ł,ń,ó,ś,ź,ż;Ą,Ć,Ę,Ł,Ń,Ó,Ś,Ź,Ż";

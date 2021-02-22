@@ -23,9 +23,7 @@ namespace OriinDic.Pages
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
 
-        private string BaseTermLanguage => _baseLanguage.Name;
-
-        private readonly Language _baseLanguage = new() { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
+        private string BaseTermLanguage => Const.BaseLanguagesList[0].Name;
 
         private void OnSaveClicked()
         {
@@ -40,7 +38,7 @@ namespace OriinDic.Pages
             var token = LocalStorage.GetItem<Token>(Const.TokenKey);
             var baseTerm = BaseTermsState.Value.BaseTerm;
 
-            baseTerm.LanguageId = _baseLanguage.Id;
+            baseTerm.LanguageId = Const.BaseLanguagesList[0].Id;
 
             Dispatcher?.Dispatch(
                 new BaseTermsAddAction(

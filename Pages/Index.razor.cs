@@ -18,6 +18,8 @@ namespace OriinDic.Pages
         private Language? _currentLanguage1;
         private Language? _currentLanguage2;
 
+        private Language? _currentLanguage3;
+
         private bool _showOptionForBaseTerms = true;
         private EnumHasTranslations _optionHasTranslations = EnumHasTranslations.None;
         private long _searchPageNr = 1;
@@ -30,6 +32,7 @@ namespace OriinDic.Pages
         {
             _currentLanguage1 = new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
             _currentLanguage2 = new Language { Code = Const.EnLangShortcut, Id = Const.EnLangId, Name = Const.EnLangName, SpecialCharacters = Const.EnSpecialChars };
+            _currentLanguage3 = new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
         }
 
         private string _currentHeader = string.Empty;
@@ -106,6 +109,18 @@ namespace OriinDic.Pages
             if (_currentLanguage1 is not null) currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
             if (_currentLanguage2 is not null) currLang2Id = _currentLanguage2.Id;
+            if (_currentLanguage3 is not null)
+            {
+                currLang1Id = _currentLanguage3.Id;
+                if (_currentLanguage3.Id == Const.PlLangId)
+                {                    
+                    currLang2Id = Const.EnLangId;
+                } else
+                {
+                    currLang2Id = _currentLanguage3.Id;
+                }
+            }
+
 
             _searchPageNr = e.Page;
             Dispatcher?.Dispatch(
@@ -128,28 +143,46 @@ namespace OriinDic.Pages
 
         private void ClickedDropdownItem1(object l)
         {
-            var langId = (long)l;
-
-            _currentLanguage1 = LanguagesState?.Value.GetLanguage(langId);
+            _currentLanguage1 = (Language)l;
             GoSearch();
         }
 
         private void ClickedDropdownItem2(object l)
         {
-
             _currentLanguage2 = (Language)l;
+            GoSearch();
+        }
+
+        private void ClickedDropdownItem3(object l)
+        {
+            _currentLanguage3 = (Language)l;
             GoSearch();
         }
 
         private void GoSearch()
         {
-            var currLang1Id = Const.PlLangId;
-            if (_currentLanguage1 is not null) currLang1Id = _currentLanguage1.Id;
+            if (_currentLanguage1 is null)
+            {
+                _currentLanguage1 = Const.BaseLanguagesList[0];
+            }
+
+            var currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
             if (_currentLanguage2 is not null) currLang2Id = _currentLanguage2.Id;
+            if (_currentLanguage3 is not null)
+            {
+                currLang1Id = _currentLanguage3.Id;
+                if (_currentLanguage3.Id == Const.PlLangId)
+                {
+                    currLang2Id = Const.EnLangId;
+                }
+                else
+                {
+                    currLang2Id = _currentLanguage3.Id;
+                }
+            }
 
-
-            if (Const.BaseLanguagesList.Contains(currLang1Id))
+            if (Const.BaseLanguagesList.Contains(_currentLanguage1))
                 Dispatcher?.Dispatch(
                     new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
                         translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,

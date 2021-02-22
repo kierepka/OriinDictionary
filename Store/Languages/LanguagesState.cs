@@ -44,7 +44,7 @@ namespace OriinDic.Store.Languages
             {
                 return
                     Languages.Where(l => 
-                        Const.BaseLanguagesList.All(l2 => l2 != l.Id)).ToList().AsReadOnly();
+                        Const.BaseLanguagesList.All(l2 => l2.Id != l.Id)).ToList().AsReadOnly();
             }
         }
 

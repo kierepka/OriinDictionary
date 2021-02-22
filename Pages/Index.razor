@@ -58,7 +58,7 @@
                             {
                                 @foreach (var l in Helpers.Const.BaseLanguagesList)
                                 {
-                                    <DropdownItem TValue="long" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
+                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
                                     <DropdownDivider />
                                 }
                             }
@@ -197,9 +197,9 @@
 
             <Addon AddonType="AddonType.End">
                 <Buttons>
-                    <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.Loading" MyLanguage="@_currentLanguage1" />
+                    <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.Loading" MyLanguage="@_currentLanguage3" />
                     <Dropdown>
-                        <Button>@_currentLanguage1?.Name</Button>
+                        <Button>@_currentLanguage3?.Name</Button>
                         <DropdownToggle Color="Color.Primary" IsSplit="true" />
 
                         <DropdownMenu>
@@ -207,31 +207,16 @@
                             {
                                 @foreach (var l in Helpers.Const.BaseLanguagesList)
                                 {
-                                    <DropdownItem TValue="long" Value="@l" Clicked="@(_ => ClickedDropdownItem1(l))">@LanguagesState?.Value.GetLanguageName(l)</DropdownItem>
+                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem3(l))">@l.Name</DropdownItem>
                                     <DropdownDivider />
                                 }
-                            }
-                        </DropdownMenu>
-                    </Dropdown>
-                </Buttons>
-            </Addon>
 
-            <Addon AddonType="AddonType.End">
-                <Buttons>
-                    <Keyboard KeyboardVisible="false" OnKeyCallback="@OnKeyboardKey" MyTextLoading="@MyText?.Loading" MyLanguage="@_currentLanguage2" />
-                    <Dropdown>
-                        <Button>@_currentLanguage2?.Name</Button>
-                        <DropdownToggle Color="Color.Primary" IsSplit="true" />
-                        <DropdownMenu>
-                            @if (LanguagesState is not null)
-                            {
                                 @foreach (var l in LanguagesState.Value.TranslationLanguages)
                                 {
-                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
+                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem3(l))">@l.Name</DropdownItem>
                                     <DropdownDivider />
                                 }
                             }
-
                         </DropdownMenu>
                     </Dropdown>
                 </Buttons>
@@ -259,7 +244,7 @@
                   RowSelectable=@(_=>false)
                   Filterable="false"
                   Striped="true"
-                  Bordered="true"
+                  Bordered="false"
                   Responsive="true"
                   Hoverable="true">
             <DataGridColumns>
@@ -344,4 +329,8 @@
     <Addon AddonType="AddonType.End">
     </Addon>
 </Addons>
+<h5>
+    @MyText?.ShortHeader2 
+    @MyText?.FromJanPopko
+</h5>
 <SurveyPrompt Title="@MyText?.SomethingWrong" />

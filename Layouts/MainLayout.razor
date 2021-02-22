@@ -7,24 +7,44 @@
         <LayoutSiderContent>
             <Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Light"
                  Mode="BarMode.VerticalPopout" CollapseMode="BarCollapseMode.Small">
-                <BarToggler />
 
                 <BarBrand>
                     <BarItem>
-                        <BarLink To="" Title="@_myText.HeaderShowDashboard">
+                        <BarLink To="" Title="@_myText.Header">
                             <BarIcon IconName="customIcon" />
-                            @_myText.ShortHeader
+                            @_myText.ShortHeader2
                         </BarLink>
                     </BarItem>
+                    
                 </BarBrand>
                 <BarMenu>
                     <BarStart>
-                        <BarLabel>@_myText.HeaderMain</BarLabel>
                         <BarItem>
                             <BarLink To="/" Title="@_myText.HeaderShowDashboard">
                                 <BarIcon IconName="IconName.Search" Margin="Margin.Is3.FromRight" />@_myText.HeaderDashboard
                             </BarLink>
                         </BarItem>
+
+                        <BarItem>
+                            <AuthorizeView>
+                                <Authorized>
+                                    <BarLink To="PersonalData">
+                                        <BarIcon IconName="IconName.UserCheck" />&nbsp;@_myText.Hello, @context?.User?.Identity?.Name!
+                                    </BarLink>
+                                    <BarLink To="LogOut" Title="@_myText.LogOut">
+                                        <BarIcon IconName="IconName.UserCircle" Margin="Margin.Is3.FromRight" />&nbsp;
+                                        @_myText.LogOut
+                                    </BarLink>
+                                </Authorized>
+                                <NotAuthorized>
+                                    <BarLink To="Login" Title="@_myText.Login">
+                                        <BarIcon IconName="IconName.UserCircle" Margin="Margin.Is3.FromRight" />&nbsp;
+                                        @_myText.LogIn
+                                    </BarLink>
+                                </NotAuthorized>
+                            </AuthorizeView>
+                        </BarItem>
+
                         <AuthorizeView Roles="@Const.RolesEditors">
                             <Authorized>
                                 <BarItem>
@@ -48,28 +68,8 @@
                                 </BarItem>
                             </Authorized>
                         </AuthorizeView>
-                        <BarLabel>@_myText.HeaderUser</BarLabel>
-                        <AuthorizeView>
-                            <Authorized>
-                                <BarItem>
-                                    <BarLink To="LogOut" Title="@_myText.LogOut">
-                                        <BarIcon IconName="IconName.User" Margin="Margin.Is3.FromRight" />@_myText.LogOut
-                                    </BarLink>
-                                </BarItem>
-                                <BarItem>
-                                    <BarLink To="PersonalData" Title="@_myText.PersonalData">
-                                        <BarIcon IconName="IconName.UserCheck" Margin="Margin.Is3.FromRight" />@_myText.PersonalData
-                                    </BarLink>
-                                </BarItem>
-                            </Authorized>
-                            <NotAuthorized>
-                                <BarItem>
-                                    <BarLink To="Login" Title="@_myText.LogIn">
-                                        <BarIcon IconName="IconName.UserCircle" Margin="Margin.Is3.FromRight" />@_myText.LogIn
-                                    </BarLink>
-                                </BarItem>
-                            </NotAuthorized>
-                        </AuthorizeView>
+
+
                         <AuthorizeView Roles="@Const.RolesUsersEditors">
                             <Authorized>
                                 <BarItem>
@@ -85,43 +85,22 @@
                                 <BarIcon IconName="@("fa-cogs")" Margin="Margin.Is3.FromRight" />@_myText.PersonalSettings
                             </BarLink>
                         </BarItem>
-                        <BarLabel>@_myText.HeaderDictionaries</BarLabel>
-                        <BarItem>
-                            <BarLink To="dictionaryLanguages" Title="@_myText.HeaderShowLanguages">
-                                <BarIcon IconName="@("fa-language")" Margin="Margin.Is3.FromRight" />@_myText.HeaderLanguages
-                            </BarLink>
-                        </BarItem>
-                    </BarStart>
-                </BarMenu>
 
-            </Bar>
-        </LayoutSiderContent>
-    </LayoutSider>
-    <Layout>
-        <LayoutHeader Fixed="true">
-
-            <Bar Breakpoint="Breakpoint.Desktop" Background="Background.Secondary" ThemeContrast="ThemeContrast.Dark">
-                <BarToggler Mode="BarTogglerMode.Popout" />
-                <BarMenu>
-                    <BarStart>
-                        <BarItem>
-                            <AuthorizeView>
-                                <Authorized>
-                                    <BarLink To="PersonalData">
-                                        <BarIcon IconName="IconName.UserCheck" />&nbsp;@_myText.Hello, @context?.User?.Identity?.Name!
+                        <AuthorizeView Roles="@Const.RolesUsersEditors">
+                            <Authorized>
+                                <BarItem>
+                                    <BarLink To="dictionaryLanguages" Title="@_myText.HeaderShowLanguages">
+                                        <BarIcon IconName="@("fa-language")" Margin="Margin.Is3.FromRight" />@_myText.HeaderLanguages
                                     </BarLink>
-                                    <BarLink To="LogOut">@_myText.LogOut</BarLink>
-                                </Authorized>
-                                <NotAuthorized>
-                                    <BarLink To="Login">@_myText.LogIn</BarLink>
-                                </NotAuthorized>
-                            </AuthorizeView>
-                        </BarItem>
+                                </BarItem>
+                            </Authorized>
+                        </AuthorizeView>
+
                     </BarStart>
                     <BarEnd>
                         <BarItem>
                             <BarDropdown>
-                                <BarDropdownToggle class="oi oi-globe">
+                                <BarDropdownToggle Class="oi oi-globe">
                                     @_currentLanguage
                                 </BarDropdownToggle>
                                 <BarDropdownMenu>
@@ -132,14 +111,16 @@
                         </BarItem>
 
                         <BarItem>
-                            <BarLink To="https://www.popko.pl/" Target="Target.Blank" Title="www.popko.pl">POPKO</BarLink>
+                            <BarLink To="https://www.popko.pl/" Target="Target.Blank" Title="@_myText.FromJanPopko">
+                                (www.popko.pl)
+                            </BarLink>
                         </BarItem>
-
                     </BarEnd>
                 </BarMenu>
             </Bar>
-
-        </LayoutHeader>
+        </LayoutSiderContent>
+    </LayoutSider>
+    <Layout>
         <LayoutContent Padding="Padding.Is4.OnX">
             @Body
         </LayoutContent>
