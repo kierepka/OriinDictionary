@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.-625878304.00" t="ExcludeRecursive" />
-    <e p="E:\source\repos\oriin_dictionary\oriin-dictionary-client" t="IncludeRecursive">
+    <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.1198269565.00" t="ExcludeRecursive" />
+    <e p="E:\source\repos\OriinDictionary" t="IncludeRecursive">
       <e p=".gitattributes" t="Include" />
       <e p=".gitignore" t="Include" />
       <e p="_Imports.razor" t="Include" />
@@ -100,7 +100,7 @@
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
-          <e p="net5.0" t="Include">
+          <e p="net6.0" t="Include">
             <e p="OriinDic.AssemblyInfo.cs" t="Include" />
           </e>
         </e>
@@ -125,6 +125,8 @@
         <e p="Login.razor.cs" t="Include" />
         <e p="Logout.razor" t="Include" />
         <e p="Logout.razor.cs" t="Include" />
+        <e p="NewUserConfirm.razor" t="Include" />
+        <e p="NewUserConfirm.razor.cs" t="Include" />
         <e p="OriinUser.razor" t="Include" />
         <e p="OriinUser.razor.cs" t="Include" />
         <e p="PasswordResetConfirm.razor" t="Include" />

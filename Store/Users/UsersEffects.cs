@@ -151,7 +151,7 @@ namespace OriinDic.Store.Users
             try
             {
                 response = await _httpClient.PostAsJsonAsync(
-                    $"{Const.PasswordResetConfirm}", action.User);
+                    Const.PasswordResetConfirm, action.User);
             }
             catch (Exception e)
             {
@@ -169,6 +169,36 @@ namespace OriinDic.Store.Users
                 dispatcher.Dispatch(
                     new NotificationAction(action.UserPasswordResetConfirmMessage, SnackbarColor.Success));
         }
+
+        [EffectMethod]
+        public async Task HandleCreationConfirmAction(UsersCreationConfirmAction action, IDispatcher dispatcher)
+        {
+            var returnCode = HttpStatusCode.OK;
+            HttpResponseMessage? response = null;
+
+            try
+            {
+                response = await _httpClient.PostAsJsonAsync(
+                    Const.UserCreationConfirm, action.User);
+            }
+            catch (Exception e)
+            {
+                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+                returnCode = HttpStatusCode.BadRequest;
+            }
+
+            if (response is not null) returnCode = response.StatusCode;
+
+
+            dispatcher.Dispatch(
+                new UsersCreationConfirmResultAction(statusCode: returnCode));
+
+            if (returnCode != HttpStatusCode.BadRequest)
+                dispatcher.Dispatch(
+                    new NotificationAction(action.UserPasswordResetConfirmMessage, SnackbarColor.Success));
+        }
+
+        
 
         [EffectMethod]
         public async Task HandlePasswordChangeAction(UsersPasswordChangeAction action, IDispatcher dispatcher)

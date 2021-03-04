@@ -34,7 +34,7 @@ namespace OriinDic.Store.Search
         public bool PaginationShow { get; private set; }
 
         public SearchState(
-            RootObject<ResultBaseTranslation>? rootObject,
+            RootObject<ResultBaseTranslation> rootObject,
             IEnumerable<SearchItem> searchItems,
             IEnumerable<LocalPages> localPages,
             Language currentLanguage1,

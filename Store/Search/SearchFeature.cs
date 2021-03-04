@@ -11,7 +11,7 @@ namespace OriinDic.Store.Search
         public override string GetName() => "Search";
         protected override SearchState GetInitialState() =>
             new(
-                rootObject: null,
+                rootObject: new RootObject<ResultBaseTranslation>(),
                 searchItems: Array.Empty<SearchItem>(),
                 localPages: Array.Empty<LocalPages>(),
                 currentLanguage1: new Language

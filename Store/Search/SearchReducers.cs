@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using OriinDic.Models;
 
 namespace OriinDic.Store.Search
 {
@@ -7,7 +8,7 @@ namespace OriinDic.Store.Search
         [ReducerMethod]
         public static SearchState ReduceSearchBaseTermsAction(SearchState state, SearchBaseTermsAction action) =>
             new(
-                rootObject: null,
+                rootObject: new RootObject<ResultBaseTranslation>(),
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
                 currentLanguage1: state.CurrentLanguage1,
@@ -63,7 +64,7 @@ namespace OriinDic.Store.Search
         [ReducerMethod]
         public static SearchState ReduceSearchPageNrChangeAction(SearchState state, SearchPageNrChangeAction action) =>
             new(
-                rootObject: null,
+                rootObject: new RootObject<ResultBaseTranslation>(),
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
                 currentLanguage1: state.CurrentLanguage1,
@@ -90,7 +91,7 @@ namespace OriinDic.Store.Search
         [ReducerMethod]
         public static SearchState ReduceSearchTranslationsAction(SearchState state, SearchTranslationsAction action) =>
             new(
-                rootObject: null,
+                rootObject: new RootObject<ResultBaseTranslation>(),
                 searchItems: state.SearchItems,
                 localPages: state.LocalPages,
                 currentLanguage1: state.CurrentLanguage1,

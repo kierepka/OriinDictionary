@@ -42,9 +42,10 @@ namespace OriinDic.Helpers
         internal const string PasswordReset = AddUser + "reset_password/";
 
         internal const string PasswordResetConfirm = AddUser + "reset_password_confirm/";
-        
+        internal const string UserCreationConfirm = AddUser + "activation/";
 
-        internal static readonly List<Language> BaseLanguagesList  = new List<Language>
+
+        internal static readonly List<Language> BaseLanguagesList  = new()
         {
             new Language { Code = PlLangShortcut, Id = PlLangId, Name = PlLangName, SpecialCharacters = PlSpecialChars}
         };

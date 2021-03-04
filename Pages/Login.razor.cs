@@ -66,7 +66,7 @@ namespace OriinDic.Pages
                         token: string.Empty,
                         userPasswordResetMessage: MyText?.PasswordResetSend ?? string.Empty));
             }
-            catch (Exception e)
+            catch 
             {
                 ShowAlert(MyText?.DataSavedNOk ?? string.Empty);
             }
