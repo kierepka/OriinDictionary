@@ -8,6 +8,14 @@
 		<Configurations>Debug;Release;DebugLocal;Docker</Configurations>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<Copyright>Mateusz Kierepka</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>http://oriin.ga/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/kierepka/OriinDictionary</RepositoryUrl>
+		<NeutralLanguage>pl-PL</NeutralLanguage>
+		<SignAssembly>true</SignAssembly>
+		<DelaySign>false</DelaySign>
+		<AssemblyOriginatorKeyFile>Oriin.pfx</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />

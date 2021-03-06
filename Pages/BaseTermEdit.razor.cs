@@ -65,8 +65,15 @@ namespace OriinDic.Pages
             if (doLangFetch)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
-            if (LocalStorage is null) return;
+           
 
+            GetData();
+
+        }
+
+        private void GetData()
+        {
+            if (LocalStorage is null) return;
             _token = LocalStorage.GetItem<Token>(Const.TokenKey);
 
             var token = _token?.AuthToken ?? string.Empty;
@@ -74,17 +81,15 @@ namespace OriinDic.Pages
             if (BaseTermId is null)
                 Dispatcher?.Dispatch(
                     new BaseTermsFetchOneSlugAction(
-                        slug: BaseTermSlug ?? string.Empty, 
+                        slug: BaseTermSlug ?? string.Empty,
                         token: token,
                         baseTermFetchedMessage: MyText?.Loaded ?? string.Empty));
             else
                 Dispatcher?.Dispatch(
                     new BaseTermsFetchOneAction(
-                        baseTermId: BaseTermId.Value, 
+                        baseTermId: BaseTermId.Value,
                         token: token,
                         baseTermFetchedMessage: MyText?.Loaded ?? string.Empty));
-
-
         }
 
 
@@ -108,11 +113,7 @@ namespace OriinDic.Pages
                     linksAddedMessage: MyText?.AddedLink ?? string.Empty));
 
 
-            Dispatcher?.Dispatch(
-                    new LinksFetchForBaseTermAction(
-                        baseTermId: link.BaseTermId ?? 0, 
-                        token: token, 
-                        linkFetchedMessage: MyText?.Loaded ?? string.Empty));
+            GetData();
 
         }
 
