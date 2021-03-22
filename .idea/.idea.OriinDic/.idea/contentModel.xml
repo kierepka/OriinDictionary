@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.3.1\contentFiles\any\net5.0\compilerconfig.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\Carousel" t="Include">
+      <e p="de.json" t="Include" />
+      <e p="en.json" t="Include" />
+      <e p="es.json" t="Include" />
+      <e p="fr.json" t="Include" />
+      <e p="hr.json" t="Include" />
+      <e p="it.json" t="Include" />
+      <e p="nl.json" t="Include" />
+      <e p="pt.json" t="Include" />
+    </e>
+    <e p="C:\Users\pc\.nuget\packages\blazorise\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\FileEdit" t="Include">
+      <e p="de.json" t="Include" />
+      <e p="en.json" t="Include" />
+      <e p="es.json" t="Include" />
+      <e p="fr.json" t="Include" />
+      <e p="hr.json" t="Include" />
+      <e p="it.json" t="Include" />
+      <e p="nl.json" t="Include" />
+      <e p="pt.json" t="Include" />
+    </e>
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\de.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\en.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\es.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\fr.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\hr.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\it.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\nl.json" t="Include" />
+    <e p="C:\Users\pc\.nuget\packages\blazorise.datagrid\0.9.3.1\contentFiles\any\net5.0\Resources\Localization\DataGrid\pt.json" t="Include" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
     <e p="C:\Users\pc\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_OriinDic.1198269565.00" t="ExcludeRecursive" />
     <e p="E:\source\repos\OriinDictionary" t="IncludeRecursive">
@@ -105,6 +134,7 @@
           </e>
         </e>
       </e>
+      <e p="Oriin.pfx" t="Include" />
       <e p="OriinDic.csproj" t="IncludeRecursive" />
       <e p="OriinDic.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
@@ -151,6 +181,11 @@
         </e>
       </e>
       <e p="README.md" t="Include" />
+      <e p="Resources" t="Include">
+        <e p="Localization" t="Include">
+          <e p="DataGrid" t="Include" />
+        </e>
+      </e>
       <e p="Services" t="Include">
         <e p="ApiAuthenticationStateProvider.cs" t="Include" />
         <e p="AuthService.cs" t="Include" />
@@ -256,6 +291,8 @@
           <e p="UsersAddResultAction.cs" t="Include" />
           <e p="UsersAnonymizeAction.cs" t="Include" />
           <e p="UsersAnonymizeResultAction.cs" t="Include" />
+          <e p="UsersCreationConfirmAction.cs" t="Include" />
+          <e p="UsersCreationConfirmResultAction.cs" t="Include" />
           <e p="UsersDeleteAction.cs" t="Include" />
           <e p="UsersDeleteResultAction.cs" t="Include" />
           <e p="UsersEffects.cs" t="Include" />

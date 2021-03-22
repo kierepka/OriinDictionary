@@ -51,9 +51,13 @@ namespace OriinDic.Components
 
         protected override Task OnInitializedAsync()
         {
-            ActionSubscriber?.SubscribeToAction<NotificationAction>(this, action =>
+            ActionSubscriber?.SubscribeToAction<NotificationAction>(this, async action =>
             {
-                _snackbarStack?.Push(action.Text, action.SnackbarColor , "Ok");
+                await _snackbarStack?.PushAsync(
+                    action.Text,
+                    color: action.SnackbarColor,
+                    options: null)!;
+                    
             });
             return base.OnInitializedAsync();
         }

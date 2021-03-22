@@ -24,11 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7a152293-819e-4b32-b4f2-5a7a8181de8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.OriinDic/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/PageHeader.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/PageHeader.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OriinDic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/OriinDic.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Login.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchReducers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Search/SearchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Store/Search/SearchState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +82,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Store/Users/UsersDeleteAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersDeleteResultAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersFetchOneAction.cs" />
       <option value="$PROJECT_DIR$/Store/Users/UsersFetchDataAction.cs" />
@@ -136,6 +132,7 @@
       <option value="$PROJECT_DIR$/Store/Search/SearchFeature.cs" />
       <option value="$PROJECT_DIR$/Store/Search/SearchReducers.cs" />
       <option value="$PROJECT_DIR$/Pages/BaseTermEdit.razor" />
+      <option value="$PROJECT_DIR$/Components/PageHeader.razor.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1atfWalolSC2oepIZhVdtEp0mbb" />
@@ -272,6 +269,7 @@
       <workItem from="1613472199069" duration="1739000" />
       <workItem from="1613482765581" duration="1290000" />
       <workItem from="1614882787253" duration="199000" />
+      <workItem from="1616399773410" duration="751000" />
     </task>
     <servers />
   </component>
