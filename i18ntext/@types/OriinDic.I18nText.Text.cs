@@ -448,7 +448,7 @@ namespace OriinDic.I18nText
         /// <summary>"Po włączeniu na stronie będą przyciski posiadały zaokrąglone krawędzie."</summary>
         public string SettingsThemeRoundedElementsHelp;
 
-        /// <summary>"SŁOWNIK WIEDZY DUCHOWEJ"</summary>
+        /// <summary>"SŁOWNIK"</summary>
         public string ShortHeader2;
 
         /// <summary>"Coś nie działa?"</summary>
