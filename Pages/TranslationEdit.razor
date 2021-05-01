@@ -11,7 +11,7 @@
 }
 else
 {
-    <AuthorizeView Roles="@Const.RolesBaseEditors" Context="cre0">
+    <AuthorizeView Roles="@Const.RolesEditors" Context="cre0">
         <Authorized>
             <Row>
                 <Column>
@@ -41,13 +41,12 @@ else
                                     <Field Horizontal="true">
                                         <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationCurrent</FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.Is10">
-                                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                                <Switch @bind-Checked="@TranslationsState.Value.Translation.Current">
-                                                    <Feedback>
-                                                        <FieldHelp>@MyText?.TranslationCurrentHelp</FieldHelp>
-                                                    </Feedback>
-                                                </Switch>
-                                            </AuthorizeView>
+                                            <Switch TValue="bool" @bind-Checked="@TranslationsState.Value.Translation.Current">
+                                                <ChildContent>@MyText?.TranslationCurrent</ChildContent>
+                                                <Feedback>
+                                                    <FieldHelp>@MyText?.TranslationCurrentHelp</FieldHelp>
+                                                </Feedback>
+                                            </Switch>
                                         </FieldBody>
                                     </Field>
                                 </Validation>
@@ -55,14 +54,12 @@ else
                                     <Field Horizontal="true">
                                         <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.TranslationDefinition</FieldLabel>
                                         <FieldBody ColumnSize="ColumnSize.Is10">
-                                            <AuthorizeView Roles="@Const.RolesBaseEditors">
-                                                <TextEdit Placeholder="@MyText?.TranslationDefinition"
-                                                          @bind-Text="@TranslationsState.Value.Translation.Definition">
-                                                    <Feedback>
-                                                        <FieldHelp>@MyText?.TranslationDefinitionHelp</FieldHelp>
-                                                    </Feedback>
-                                                </TextEdit>
-                                            </AuthorizeView>
+                                            <TextEdit Placeholder="@MyText?.TranslationDefinition"
+                                                        @bind-Text="@TranslationsState.Value.Translation.Definition">
+                                                <Feedback>
+                                                    <FieldHelp>@MyText?.TranslationDefinitionHelp</FieldHelp>
+                                                </Feedback>
+                                            </TextEdit>
                                         </FieldBody>
                                     </Field>
                                 </Validation>

@@ -9,7 +9,7 @@ namespace OriinDic.Store.Translations
         public Translation Translation { get; } = new();
         public string TranslationUpdateMessage { get; }
 
-        public TranslationsUpdateAction(long translationId, Translation translation, 
+        public TranslationsUpdateAction(long translationId, Translation translation,
             string token, string translationUpdateMessage)
         {
             TranslationId = translationId;

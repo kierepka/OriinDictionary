@@ -376,21 +376,20 @@ namespace OriinDic.Store.Translations
         // ReSharper disable once UnusedMember.Global
         public async Task HandleUpdateAction(TranslationsUpdateAction action, IDispatcher dispatcher)
         {
-            HttpStatusCode returnCode;
+            HttpStatusCode returnCode = HttpStatusCode.BadRequest;
             HttpResponseMessage response = new();
             Translation? returnData = null;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
             try
             {
                 response = await _httpClient.PutAsJsonAsync(
-                    $"{Const.BaseTerms}{action.TranslationId}/",
+                    $"{Const.Translations}{action.TranslationId}/",
                     action.Translation);
             }
             catch (Exception e)
             {
                 dispatcher.Dispatch(
                     new NotificationAction(e.Message, SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;
             }
 
             try
@@ -415,7 +414,8 @@ namespace OriinDic.Store.Translations
 
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
-                    new NotificationAction(action.TranslationUpdateMessage, SnackbarColor.Success));
+                    new NotificationAction(
+                        $"{action.TranslationUpdateMessage}{returnData?.Id}", SnackbarColor.Success));
         }
     }
 }

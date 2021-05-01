@@ -13,19 +13,19 @@
 		<PackageProjectUrl>http://oriin.ga/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/kierepka/OriinDictionary</RepositoryUrl>
 		<NeutralLanguage>pl-PL</NeutralLanguage>
-		<SignAssembly>true</SignAssembly>
+		<SignAssembly>false</SignAssembly>
 		<DelaySign>false</DelaySign>
 		<AssemblyOriginatorKeyFile>Oriin.pfx</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
-		<PackageReference Include="Blazorise" Version="0.9.3.4" />
-		<PackageReference Include="Blazorise.Bulma" Version="0.9.3.4" />
-		<PackageReference Include="Blazorise.Components" Version="0.9.3.4" />
-		<PackageReference Include="Blazorise.DataGrid" Version="0.9.3.4" />
-		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3.4" />
-		<PackageReference Include="Blazorise.Sidebar" Version="0.9.3.4" />
-		<PackageReference Include="Blazorise.Snackbar" Version="0.9.3.4" />
+		<PackageReference Include="Blazorise" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise.Bulma" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise.Components" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise.DataGrid" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise.Sidebar" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise.Snackbar" Version="0.9.3.6" />
 
 		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0-Beta1" />
 		

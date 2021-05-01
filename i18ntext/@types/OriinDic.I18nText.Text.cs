@@ -439,7 +439,7 @@ namespace OriinDic.I18nText
         /// <summary>"Kolor główny"</summary>
         public string SettingsThemePrimaryColor;
 
-        /// <summary>"Główny kolor wiodący dla przycików"</summary>
+        /// <summary>"Główny kolor wiodący dla przycisków"</summary>
         public string SettingsThemePrimaryColorHelp;
 
         /// <summary>"Elementy zaokrąglane"</summary>

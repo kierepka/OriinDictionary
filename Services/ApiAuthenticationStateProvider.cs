@@ -94,7 +94,7 @@ namespace OriinDic.Services
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        private async Task<User> GetUserInfoAsync(Token token)
+        protected async Task<User> GetUserInfoAsync(Token token)
         {
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(Const.TokenApiKey, token.AuthToken);
@@ -145,6 +145,8 @@ namespace OriinDic.Services
             if (userInfo.CoordinatingLanguages.Count > 0)
                 result.Add(new Claim(ClaimTypes.Role, Const.RoleCoordinator));
 
+
+            
             return result;
         }
     }
