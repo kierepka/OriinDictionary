@@ -18,6 +18,9 @@ namespace OriinDic.Pages
         private Language? _currentLanguage1;
         private Language? _currentLanguage2;
 
+        
+        public long CurrentLanguage2Id => _currentLanguage2?.Id ?? Const.EnLangId;
+
         private Language? _currentLanguage3;
 
         private bool _showOptionForBaseTerms = true;

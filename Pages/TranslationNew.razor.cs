@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace OriinDic.Pages
     public partial class TranslationNew
     {
         [Parameter] public long BaseTermId { get; set; }
+        [Parameter] public long TranslationLangId { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<TranslationsState>? TranslationsState { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -41,11 +43,18 @@ namespace OriinDic.Pages
         {
             get
             {
-                if (TranslationsState?.Value?.BaseTranslation.Translation is null) return Const.PlLangShortcut;
-                if (LocalStorage is null) return Const.PlLangShortcut;
-                return LanguagesState is null ? Const.PlLangShortcut : LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.Translation.LanguageId);
+
+                if (TranslationsState?.Value?.BaseTranslation.Translation is null)
+                {
+                    return LanguagesState is null ? Const.EnLangShortcut : LanguagesState.Value.GetLanguageName(TranslationLangId);
+                } else
+                {
+                    return LanguagesState is null ? Const.EnLangShortcut : LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.Translation.LanguageId);
+                }
+
             }
         }
+
 
         protected override async Task OnInitializedAsync()
         {
@@ -70,7 +79,10 @@ namespace OriinDic.Pages
                 return;
             }
             var token = LocalStorage.GetItem<Token>(Const.TokenKey);
-            
+
+            //additional check for new/null data
+            TranslationsState.Value.BaseTranslation.Translation.LanguageId = TranslationLangId;
+            TranslationsState.Value.BaseTranslation.Translation.Current = true;
 
             Dispatcher?.Dispatch(
                 new TranslationsAddAction(

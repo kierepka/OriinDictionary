@@ -25,21 +25,21 @@
                         <DropdownMenu>
                             <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithTranslations"
                                           Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithTranslations))">@MyText?.BaseTermWithTranslations</DropdownItem>
-                                        <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithoutTranslations"
-                                                      Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithoutTranslations))">@MyText?.BaseTermWithoutTranslations</DropdownItem>
-                                                    <DropdownDivider />
-                                                    <DropdownItem TValue="byte" Value="@EnumHasTranslations.None"
-                                                                  Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.None))">@MyText?.BaseTermNone</DropdownItem>
-                                                            </DropdownMenu>
-                                                        </Dropdown>
-                                                    </Addon>
+                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.WithoutTranslations"
+                                            Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.WithoutTranslations))">@MyText?.BaseTermWithoutTranslations</DropdownItem>
+                            <DropdownDivider />
+                            <DropdownItem TValue="byte" Value="@EnumHasTranslations.None"
+                                            Clicked="@(_ => ClickedTranslationOption(EnumHasTranslations.None))">@MyText?.BaseTermNone</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </Addon>
 
-                                                }
-                                                else
-                                                {
-                                                    <AddonLabel>@MyText?.Approved</AddonLabel>
-                                                    <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
-                                                }
+            }
+            else
+            {
+                <AddonLabel>@MyText?.Approved</AddonLabel>
+                <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
+            }
 
             <Addon AddonType="AddonType.Body">
                 <TextEdit Placeholder="@MyText?.Search" Text="@SearchText"
@@ -160,7 +160,7 @@
                                 if (string.IsNullOrEmpty(locDic.TranslateName))
                                 {
                                     <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
-                                            Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}")" Block="true">
+                                            Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}/{CurrentLanguage2Id}")" Block="true">
                                         <ChildContent>
 
                                             <Icon Name="@("fa-language")" />&nbsp;@MyText?.AddTranslation
@@ -330,7 +330,7 @@
     </Addon>
 </Addons>
 <h5>
-    @MyText?.ShortHeader2 
+    @MyText?.ShortHeader2
     @MyText?.FromJanPopko
 </h5>
 <SurveyPrompt Title="@MyText?.SomethingWrong" />
