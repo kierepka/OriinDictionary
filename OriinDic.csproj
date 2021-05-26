@@ -18,7 +18,7 @@
 		<AssemblyOriginatorKeyFile>Oriin.pfx</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
+		<PackageReference Include="Blazored.LocalStorage" Version="4.1.1" />
 		<PackageReference Include="Blazorise" Version="0.9.3.6" />
 		<PackageReference Include="Blazorise.Bulma" Version="0.9.3.6" />
 		<PackageReference Include="Blazorise.Components" Version="0.9.3.6" />
@@ -27,7 +27,7 @@
 		<PackageReference Include="Blazorise.Sidebar" Version="0.9.3.6" />
 		<PackageReference Include="Blazorise.Snackbar" Version="0.9.3.6" />
 
-		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0-Beta1" />
+		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
 		
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.3.21201.13" />		
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.3.21201.13" PrivateAssets="all" />
@@ -40,7 +40,7 @@
 		
 		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="9.4.0" />
 		<PackageReference Include="Toolbelt.Blazor.SpeechRecognition" Version="0.0.4.6-alpha" />
-		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="8.1.0" />
+		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="8.1.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
