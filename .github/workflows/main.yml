@@ -17,17 +17,18 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.100-preview.3.21202.5'
+        dotnet-version: '6.0.100-preview.4.21255.9'
 
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output build
     
       
-      
-    - name: Commit wwwroot to GitHub Pages - Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@3.7.1
+    - name: Publish to server
+      id: deploy_with_scp
+      uses: noobly314/deploy-with-scp@v1
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: build # The folder the action should deploy.
-        CLEAN: true # Automatically remove deleted files from the deploy branch
+        src: /build
+        dest: /home/oriin/front/bin/Release/net6.0/wwwroot
+        username: ${{ secrets.SERVER_USER }}
+        server-ip: ${{ secrets.SERVER_IP }}
+        ssh-key: ${{ secrets.SERVER_SSH_KEY }}
