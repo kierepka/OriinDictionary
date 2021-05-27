@@ -12,15 +12,13 @@ namespace OriinDic.Helpers
         // ReSharper disable CommentTypo
         //For tests koordynator, uzytkownik, tlumacz, super_user                               
 #if RELEASE
-        private const string ApiDomain = "https://3.64.15.76:80/";
+        private const string ApiDomain = "https://slownik.edenu.pl:8000/";
 #elif DEBUGLOCAL
         private const string ApiDomain = "http://localhost:8000/";
 #elif DOCKER
         private const string ApiDomain = "http://web:8000";
-#elif PRZEMEK
-        private const string ApiDomain = "https://slownik-oriin.kropleduszy.pl:8000/";
 #else
-        private const string ApiDomain = "https://3.64.15.76:80/"; 
+        private const string ApiDomain = "https://slownik.edenu.pl:8000/"; 
 #endif
         private const string ApiVersion = "api/v1/";
         private const string ApiDomainVersion = ApiDomain + ApiVersion;
