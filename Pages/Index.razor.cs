@@ -18,7 +18,7 @@ namespace OriinDic.Pages
         private Language? _currentLanguage1;
         private Language? _currentLanguage2;
 
-        
+
         public long CurrentLanguage2Id => _currentLanguage2?.Id ?? Const.EnLangId;
 
         private Language? _currentLanguage3;
@@ -30,7 +30,7 @@ namespace OriinDic.Pages
         private long _itemsPerPage = Const.DefaultItemsPerPage;
 
         [CascadingParameter] protected Theme? Theme { get; set; }
-        
+
         public Index()
         {
             _currentLanguage1 = new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
@@ -50,7 +50,7 @@ namespace OriinDic.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            if (MyText is not null) 
+            if (MyText is not null)
                 _currentHeader = MyText.HeaderShowDashboardBase;
 
             if (LocalStorage is not null)
@@ -73,12 +73,12 @@ namespace OriinDic.Pages
         {
             if (Theme is null) return;
             if (LocalStorage is null) return;
-            
+
             var themeColor = LocalStorage.GetItem<string>(Const.ThemePrimaryColor);
             var themeEnabled = LocalStorage.GetItem<bool>(Const.ThemeIsEnabled);
             var themeRounded = LocalStorage.GetItem<bool>(Const.ThemeIsRounded);
-            
-            
+
+
             if (string.IsNullOrEmpty(themeColor)) themeColor = Theme.ColorOptions.Primary;
             Theme.Enabled = themeEnabled;
             Theme.IsRounded = themeRounded;
@@ -116,9 +116,10 @@ namespace OriinDic.Pages
             {
                 currLang1Id = _currentLanguage3.Id;
                 if (_currentLanguage3.Id == Const.PlLangId)
-                {                    
+                {
                     currLang2Id = Const.EnLangId;
-                } else
+                }
+                else
                 {
                     currLang2Id = _currentLanguage3.Id;
                 }
@@ -164,28 +165,39 @@ namespace OriinDic.Pages
 
         private void GoSearch()
         {
+            bool goBaseLang = false;
             if (_currentLanguage1 is null)
             {
                 _currentLanguage1 = Const.BaseLanguagesList[0];
             }
 
+            goBaseLang = (Const.BaseLanguagesList.Contains(_currentLanguage1));
+
             var currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
-            if (_currentLanguage2 is not null) currLang2Id = _currentLanguage2.Id;
+            
+            if (_currentLanguage2 is not null)
+                currLang2Id = _currentLanguage2.Id;
+
             if (_currentLanguage3 is not null)
             {
-                currLang1Id = _currentLanguage3.Id;
+
+
                 if (_currentLanguage3.Id == Const.PlLangId)
                 {
                     currLang2Id = Const.EnLangId;
+                    currLang1Id = _currentLanguage3.Id;
+                    goBaseLang = true;
                 }
                 else
                 {
+                    currLang1Id = Const.PlLangId;
                     currLang2Id = _currentLanguage3.Id;
+                    goBaseLang = false;
                 }
             }
 
-            if (Const.BaseLanguagesList.Contains(_currentLanguage1))
+            if (goBaseLang)
                 Dispatcher?.Dispatch(
                     new SearchBaseTermsAction(searchText: SearchText, baseTermLangId: currLang1Id,
                         translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
@@ -193,8 +205,8 @@ namespace OriinDic.Pages
                         hasTranslations: _optionHasTranslations, searchBaseTermMessage: MyText?.Loaded ?? string.Empty));
             else
             {
-                Dispatcher?.Dispatch(new SearchTranslationsAction(searchText: SearchText, baseTermLangId: currLang2Id,
-                    translationLangId: currLang1Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
+                Dispatcher?.Dispatch(new SearchTranslationsAction(searchText: SearchText, baseTermLangId: currLang1Id,
+                    translationLangId: currLang2Id, searchPageNr: 1, itemsPerPage: _itemsPerPage,
                     current: _currentTranslations, noResults: MyText?.NoResults ?? string.Empty,
                     searchTranslationMessage: MyText?.Loaded ?? string.Empty));
             }
@@ -274,7 +286,7 @@ namespace OriinDic.Pages
                     }
                 }
             }
-            
+
             StateHasChanged();
             GoSearch();
 
