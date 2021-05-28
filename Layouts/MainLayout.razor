@@ -17,24 +17,15 @@
                     </BarItem>
                     
                 </BarBrand>
+                <Divider DividerType="DividerType.Dotted" />
                 <BarMenu>
                     <BarStart>
-                        <BarItem>
-                            <BarLink To="/" Title="@_myText.HeaderShowDashboard">
-                                <BarIcon IconName="IconName.Search" Margin="Margin.Is3.FromRight" />@_myText.HeaderDashboard
-                            </BarLink>
-                        </BarItem>
-
                         <BarItem>
                             <AuthorizeView>
                                 <Authorized>
                                     <BarLink To="PersonalData">
                                         <BarIcon IconName="IconName.UserCheck" />&nbsp;@_myText.Hello, @context?.User?.Identity?.Name!
-                                    </BarLink>
-                                    <BarLink To="LogOut" Title="@_myText.LogOut">
-                                        <BarIcon IconName="IconName.UserCircle" Margin="Margin.Is3.FromRight" />&nbsp;
-                                        @_myText.LogOut
-                                    </BarLink>
+                                    </BarLink>                           
                                 </Authorized>
                                 <NotAuthorized>
                                     <BarLink To="Login" Title="@_myText.Login">
@@ -44,7 +35,14 @@
                                 </NotAuthorized>
                             </AuthorizeView>
                         </BarItem>
-
+                        <Divider DividerType="DividerType.Dotted" />
+                        <BarItem>
+                            <BarLink To="/" Title="@_myText.HeaderShowDashboard">
+                                <BarIcon IconName="IconName.Search" Margin="Margin.Is3.FromRight" />@_myText.HeaderDashboard
+                            </BarLink>
+                        </BarItem>
+                        
+                        
                         <AuthorizeView Roles="@Const.RolesEditors">
                             <Authorized>
                                 <BarItem>
@@ -79,7 +77,7 @@
                                 </BarItem>
                             </Authorized>
                         </AuthorizeView>
-
+                        <Divider DividerType="DividerType.Dotted" />
                         <BarItem>
                             <BarLink To="Settings" Title="@_myText.PersonalSettings">
                                 <BarIcon IconName="@("fa-cogs")" Margin="Margin.Is3.FromRight" />@_myText.PersonalSettings
@@ -95,6 +93,19 @@
                                 </BarItem>
                             </Authorized>
                         </AuthorizeView>
+
+                        <Divider DividerType="DividerType.Dotted" />
+                        <AuthorizeView>
+                            <Authorized>
+                                <BarItem>                                        
+                                    <BarLink To="LogOut" Title="@_myText.LogOut">
+                                        <BarIcon IconName="IconName.UserCircle" Margin="Margin.Is3.FromRight" />&nbsp;
+                                        @_myText.LogOut
+                                    </BarLink>
+                                </BarItem>
+                            </Authorized>
+                        </AuthorizeView>
+                        
 
                     </BarStart>
                     <BarEnd>
