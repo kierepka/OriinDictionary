@@ -19,13 +19,13 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="4.1.1" />
-		<PackageReference Include="Blazorise" Version="0.9.3.6" />
-		<PackageReference Include="Blazorise.Bulma" Version="0.9.3.6" />
-		<PackageReference Include="Blazorise.Components" Version="0.9.3.6" />
-		<PackageReference Include="Blazorise.DataGrid" Version="0.9.3.6" />
-		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3.6" />
-		<PackageReference Include="Blazorise.Sidebar" Version="0.9.3.6" />
-		<PackageReference Include="Blazorise.Snackbar" Version="0.9.3.6" />
+		<PackageReference Include="Blazorise" Version="0.9.3.8" />
+		<PackageReference Include="Blazorise.Bulma" Version="0.9.3.8" />
+		<PackageReference Include="Blazorise.Components" Version="0.9.3.8" />
+		<PackageReference Include="Blazorise.DataGrid" Version="0.9.3.8" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3.8" />
+		<PackageReference Include="Blazorise.Sidebar" Version="0.9.3.8" />
+		<PackageReference Include="Blazorise.Snackbar" Version="0.9.3.8" />
 
 		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
 		
