@@ -139,16 +139,10 @@ namespace OriinDic.Pages
 
         private void ClickedTranslationOption(object baseTermOpt)
         {
-            _optionHasTranslations = (EnumHasTranslations)Convert.ToByte(baseTermOpt);
+            EnumHasTranslations enumHasTranslations = (EnumHasTranslations)Convert.ToByte(baseTermOpt);
+            _optionHasTranslations = enumHasTranslations;
             GoSearch();
 
-        }
-
-
-        private void ClickedDropdownItem1(object l)
-        {
-            _currentLanguage1 = (Language)l;
-            GoSearch();
         }
 
         private void ClickedDropdownItem2(object l)
@@ -165,13 +159,12 @@ namespace OriinDic.Pages
 
         private void GoSearch()
         {
-            bool goBaseLang = false;
             if (_currentLanguage1 is null)
             {
                 _currentLanguage1 = Const.BaseLanguagesList[0];
             }
 
-            goBaseLang = (Const.BaseLanguagesList.Contains(_currentLanguage1));
+            bool goBaseLang = Const.BaseLanguagesList.Contains(_currentLanguage1);
 
             var currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
