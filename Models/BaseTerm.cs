@@ -41,6 +41,9 @@ namespace OriinDic.Models
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public string Definition { get; set; } = string.Empty;
 
+        [JsonPropertyName("chart_code")]
+        public string ChartCode { get; set; } = string.Empty;
+
         [JsonPropertyName("last_edit")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global

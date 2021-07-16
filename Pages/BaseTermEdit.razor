@@ -46,6 +46,17 @@
                                     </FieldBody>
                                 </Field>
 
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermChartCode</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <TextEdit Placeholder="@MyText?.BaseTermChartCode"
+                                                  @bind-Text="@BaseTermsState.Value.ResultBaseTranslation.BaseTerm.ChartCode">
+                                            <Feedback>
+                                                <FieldHelp>@MyText?.BaseTermChartCodeHelp</FieldHelp>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
 
                                 <Field Horizontal="true">
                                     <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
@@ -162,6 +173,13 @@
                                     @BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Slug
                                 </FieldBody>
                             </Field>
+
+                            <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermChartCode</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        @BaseTermsState.Value.ResultBaseTranslation.BaseTerm.ChartCode                                            
+                                    </FieldBody>
+                                </Field>
                         </CardBody>
                         <CardFooter Padding="Padding.Is3">
                             <Field Horizontal="true">

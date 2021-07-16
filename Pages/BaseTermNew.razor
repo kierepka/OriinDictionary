@@ -44,6 +44,17 @@
                                     </FieldBody>
                                 </Field>
 
+                                <Field Horizontal="true">
+                                    <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermChartCode</FieldLabel>
+                                    <FieldBody ColumnSize="ColumnSize.Is10">
+                                        <TextEdit Placeholder="@MyText?.BaseTermChartCode"
+                                                  @bind-Text="@BaseTermsState.Value.BaseTerm.ChartCode">
+                                            <Feedback>
+                                                <FieldHelp>@MyText?.BaseTermChartCodeHelp</FieldHelp>
+                                            </Feedback>
+                                        </TextEdit>
+                                    </FieldBody>
+                                </Field>
 
                                 <Field Horizontal="true">
                                     <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>

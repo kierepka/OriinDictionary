@@ -18,8 +18,10 @@ namespace OriinDic.Helpers
 #elif DOCKER
         private const string ApiDomain = "http://web:8000";
 #else
-        private const string ApiDomain = "https://slownik.edenu.pl:8000/"; 
+        private const string ApiDomain = "https://slownik.edenu.pl:8000/";
 #endif
+
+        
         private const string ApiVersion = "api/v1/";
         private const string ApiDomainVersion = ApiDomain + ApiVersion;
         private const string ApiNoVersion = "api/";
@@ -133,5 +135,10 @@ namespace OriinDic.Helpers
                 IgnoreReadOnlyProperties = true
             };
         internal const int ShownCharactersInTable = 30;
+
+        public static string[] GetApiCharCodes()
+        {
+            return new string[] { "", "0", "0b", "1", "1b", "2", "2b", "3", "3b", "4", "4b", "5", "5b", "6", "6b", "7", "7b", "8", "8b", "9", "9b", "10", "10b", "11", "11b", "12", "12b", "13", "13b", "14", "14b", "15", "15b", "16", "16b", "17", "17b", "18", "18b", "19", "19b", "20", "20b", "21", "21b", "22", "22b", "23", "23b", "24", "24b", "25", "25b", "26", "26b", "27", "27b", "28", "28b", "29", "29b", "30", "30b" };
+        }
     }
 }

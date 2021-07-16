@@ -49,6 +49,12 @@ namespace OriinDic.I18nText
         /// <summary>"Wstecz"</summary>
         public string Back;
 
+        /// <summary>"Kod tablicy"</summary>
+        public string BaseTermChartCode;
+
+        /// <summary>"Podaj kod tablicy (dozwolone to &apos;&apos;, &apos;0&apos;, &apos;0b&apos;, &apos;1&apos;, &apos;1b&apos;, &apos;2&apos;, &apos;2b&apos;, &apos;3&apos;, &apos;3b&apos;, &apos;4&apos;, &apos;4b&apos;, &apos;5&apos;, &apos;5b&apos;, &apos;6&apos;, &apos;6b&apos;, &apos;7&apos;, &apos;7b&apos;, &apos;8&apos;, &apos;8b&apos;, &apos;9&apos;, &apos;9b&apos;, &apos;10&apos;, &apos;10b&apos;, &apos;11&apos;, &apos;11b&apos;, &apos;12&apos;, &apos;12b&apos;, &apos;13&apos;, &apos;13b&apos;, &apos;14&apos;, &apos;14b&apos;, &apos;15&apos;, &apos;15b&apos;, &apos;16&apos;, &apos;16b&apos;, &apos;17&apos;, &apos;17b&apos;, &apos;18&apos;, &apos;18b&apos;, &apos;19&apos;, &apos;19b&apos;, &apos;20&apos;, &apos;20b&apos;, &apos;21&apos;, &apos;21b&apos;, &apos;22&apos;, &apos;22b&apos;, &apos;23&apos;, &apos;23b&apos;, &apos;24&apos;, &apos;24b&apos;, &apos;25&apos;, &apos;25b&apos;, &apos;26&apos;, &apos;26b&apos;, &apos;27&apos;, &apos;27b&apos;, &apos;28&apos;, &apos;28b&apos;, &apos;29&apos;, &apos;29b&apos;, &apos;30&apos;, &apos;30b&apos;"</summary>
+        public string BaseTermChartCodeHelp;
+
         /// <summary>"Aktualny"</summary>
         public string BaseTermCurrent;
 
