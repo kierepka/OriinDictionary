@@ -27,7 +27,7 @@ jobs:
       id: deploy_with_scp
       uses: mdallasanta/ssh-scp-deploy@v1.0.4
       with:
-        local: /home/runner/work/OriinDictionary/OriinDictionary/build
+        local: /home/runner/work/OriinDictionary/OriinDictionary/build/wwwroot/
         remote: /home/oriin/front/bin/Release/net6.0/publish/wwwroot
         user: ${{ secrets.SERVER_USER }}
         host: ${{ secrets.SERVER_IP }}
