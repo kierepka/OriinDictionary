@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 jobs:
-  deploy-to-github-pages:
+  deploy-to-edenu-server:
     # use ubuntu-latest image to run steps on
     runs-on: ubuntu-latest
     steps:

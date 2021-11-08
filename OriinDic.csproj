@@ -21,26 +21,26 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
-		<PackageReference Include="Blazorise" Version="0.9.4.4" />
-		<PackageReference Include="Blazorise.Bulma" Version="0.9.4.4" />
-		<PackageReference Include="Blazorise.Components" Version="0.9.4.4" />
-		<PackageReference Include="Blazorise.DataGrid" Version="0.9.4.4" />
-		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.4.4" />
-		<PackageReference Include="Blazorise.Sidebar" Version="0.9.4.4" />
-		<PackageReference Include="Blazorise.Snackbar" Version="0.9.4.4" />
+		<PackageReference Include="Blazorise" Version="0.9.4.7" />
+		<PackageReference Include="Blazorise.Bulma" Version="0.9.4.7" />
+		<PackageReference Include="Blazorise.Components" Version="0.9.4.7" />
+		<PackageReference Include="Blazorise.DataGrid" Version="0.9.4.7" />
+		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.4.7" />
+		<PackageReference Include="Blazorise.Sidebar" Version="0.9.4.7" />
+		<PackageReference Include="Blazorise.Snackbar" Version="0.9.4.7" />
 
-		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.1.0" />
+		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="4.2.0" />
 		
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />		
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />		
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
     
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.0-rc.1.21452.15" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="6.0.0" />
 		
-    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-rc.1.21451.13" />
-		<PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.1.21451.13" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
 		
-		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="11.0.0-preview.1" />
+		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="11.0.0-preview.2" />
 		<PackageReference Include="Toolbelt.Blazor.SpeechRecognition" Version="0.0.4.6-alpha" />
 		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="9.0.0" />
 	</ItemGroup>
