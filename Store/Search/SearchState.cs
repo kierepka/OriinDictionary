@@ -18,8 +18,8 @@ namespace OriinDic.Store.Search
         public long TotalPages { get; private set; }
         public bool ConfirmedResults { get; }
         public bool CurrentBaseLangPl { get; }
-        public Color ButtonEnColor { get; private set; } = Color.None;
-        public Color ButtonPlColor { get; private set; } = Color.None;
+        public Color ButtonEnColor { get; private set; } = Color.Info;
+        public Color ButtonPlColor { get; private set; } = Color.Default;
         public string NoBaseTermName { get; } = string.Empty;
         public string NoTranslationName { get; } = string.Empty;
         public string NoResults { get; } = string.Empty;

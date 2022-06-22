@@ -16,7 +16,7 @@
           Hoverable="true"
           RowRemoved="@OnRowRemoved"
           @bind-SelectedRow="@_selectedComment"
-          DetailRowTrigger="@((item)=> item.Id == _selectedComment?.Id)">
+          DetailRowTrigger="@((item)=> item.Item.Id == _selectedComment?.Id)">
     <DataGridColumns>
 
         <DataGridColumn TItem="Comment" Field="@nameof(Comment.Id)" Caption="@MyText?.CommentId" Sortable="true" Editable="false">

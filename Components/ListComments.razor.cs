@@ -33,13 +33,13 @@ namespace OriinDic.Components
         {
             if (validations is null) return;
             
-            if (validations.ValidateAll())
+            if (await validations.ValidateAll())
             {
 
                 var comment = new Comment { Text = _myValue, Date = DateTimeOffset.Now };
                 _comments.Add(comment);
                 _myValue = string.Empty;
-                validations.ClearAll();
+                _ = validations.ClearAll();
                 await OnCommentAdd.InvokeAsync(comment);
             }
         }

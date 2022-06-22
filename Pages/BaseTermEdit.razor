@@ -136,15 +136,13 @@
                             <Field Horizontal="true">
                                 <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.Is10">
-                                    @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Examples is not null)
+                                    @if (BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Examples is not null)
                                     {
                                         <ListGroup Flush="true">
-                                            @foreach (var e in BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Examples)
+                                            @foreach (var e in (BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Examples)
+                                                .Where(e => !string.IsNullOrEmpty(e)))
                                             {
-                                                if (!string.IsNullOrEmpty(e))
-                                                {
-                                                    <div class="field"><div class="control">@e</div></div>
-                                                }
+                                                <div class="field"><div class="control">@e</div></div>
                                             }
                                         </ListGroup>
                                     }
@@ -156,12 +154,10 @@
                                     @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is not null)
                                     {
                                         <ListGroup Flush="true">
-                                            @foreach (var s in BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Synonyms)
+                                            @foreach (var s in (BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Synonyms)
+                                                .Where(s => !string.IsNullOrEmpty(s)))
                                             {
-                                                if (!string.IsNullOrEmpty(s))
-                                                {
-                                                    <div class="field"><div class="control">@s</div></div>
-                                                }
+                                                <div class="field"><div class="control">@s</div></div>
                                             }
                                         </ListGroup>
                                     }

@@ -7,13 +7,18 @@ namespace OriinDic.Helpers
 {
     public class LoggingMiddleware : Middleware
     {
-        private IStore? Store { get; set; } 
+        public LoggingMiddleware()
+        {
+        }
 
-        public override Task InitializeAsync(IStore store)
+        private IStore? Store { get; set; }
+
+        public override Task InitializeAsync(IDispatcher dispatcher, IStore store)
         {
             Store = store;
             Debug.WriteLine(nameof(InitializeAsync));
             return Task.CompletedTask;
+            
         }
 
         public override void AfterInitializeAllMiddlewares()

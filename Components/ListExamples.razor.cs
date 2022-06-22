@@ -31,14 +31,15 @@ namespace OriinDic.Components
         private async Task OnAddObject()
         {
             if (_validations is null) return;
-            if (!_validations.ValidateAll()) return;
+            var result = await _validations.ValidateAll();
+            if (!result) return;
             var example = new Example {Value = _myValue};
             _examples.Add(example);
             _myValue = string.Empty;
 
             await OnExampleCallback.InvokeAsync(example);
 
-            _validations.ClearAll();
+            _ = _validations.ClearAll();
         }
 
 

@@ -29,16 +29,17 @@ namespace OriinDic.Components
             set => _links = value.ToList();
         }
 
-        private void OnAddObject()
+        private async Task OnAddObject()
         {
             if (_validations is null) return;
-            if (!_validations.ValidateAll()) return;
+            var result = await _validations.ValidateAll();
+            if (!result) return;
             var link = new OriinLink{ Link= _myValue};
             _links.Add(link);
             _myValue = string.Empty;
 
-            OnLinkCallback.InvokeAsync(link);
-            _validations.ClearAll();
+            _ = OnLinkCallback.InvokeAsync(link);
+            _ = _validations.ClearAll();
         }
 
         protected override async Task OnInitializedAsync()

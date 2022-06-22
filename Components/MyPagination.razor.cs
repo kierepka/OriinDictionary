@@ -29,7 +29,7 @@ namespace OriinDic.Components
 
         private Color GetBackColor()
         {
-            return GetBackIsDisabled() ? Color.Secondary : Color.None;
+            return GetBackIsDisabled() ? Color.Secondary : Color.Default;
         }
 
         private bool GetNextIsDisabled()
@@ -39,7 +39,7 @@ namespace OriinDic.Components
 
         private Color GetNextColor()
         {
-            return GetNextIsDisabled() ? Color.Secondary : Color.None;
+            return GetNextIsDisabled() ? Color.Secondary : Color.Default;
         }
     }
 }

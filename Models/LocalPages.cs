@@ -22,7 +22,7 @@ namespace OriinDic.Models
         {
             return ButtonIsDisabled(searchPageNr)
                 ? Color.Primary
-                : Color.None;
+                : Color.Default;
         }
     }
 }

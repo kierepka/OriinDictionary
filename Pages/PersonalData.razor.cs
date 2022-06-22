@@ -60,17 +60,18 @@ namespace OriinDic.Pages
                 IsSuperUser = (user.IsInRole(Const.RoleSuperUser));
             }
 
-            
-            UserState!.StateChanged += UserState_StateChanged;
+
+            UserState!.StateChanged += OnStateChanged;
         }
 
-        private void UserState_StateChanged(object sender, UsersState e)
+        private void OnStateChanged(object? sender, EventArgs e)
         {
             if (UserState?.Value.User != null) User = UserState.Value.User;
 
             LoadUserData(User);
             LocalStorage?.SetItem(Const.UserKey, User);
         }
+
 
         private void LoadUserData(User user)
         {
@@ -211,7 +212,7 @@ namespace OriinDic.Pages
         {
             SelectedTab = name;
         }
-        
+
         private void HandlePasswordReset()
         {
             PasswordResetSend(User.Email);

@@ -17,7 +17,7 @@
           Hoverable="true"
           RowRemoved="@OnRowRemoved"
           @bind-SelectedRow="@_selectedOriinLink"
-          DetailRowTrigger="@((item)=> item.Id == _selectedOriinLink?.Id)">
+          DetailRowTrigger="@((item)=> item.Item.Id == _selectedOriinLink?.Id)">
     <DataGridColumns>
 
         <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.Id)" Caption="@MyText?.LinkId" Sortable="true" Editable="false">

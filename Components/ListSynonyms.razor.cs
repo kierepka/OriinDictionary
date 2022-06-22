@@ -29,16 +29,17 @@ namespace OriinDic.Components
             set => _synonyms = value.ToList();
         }
 
-        private void OnAddObject()
+        private async Task OnAddObject()
         {
             if (_validations is null) return;
-            if (!_validations.ValidateAll()) return;
+            var result = await _validations.ValidateAll();
+            if (!result) return;
             var synonym = new Synonym {Value = _myValue};
             _synonyms.Add(synonym);
             _myValue = string.Empty;
 
-            OnSynonymCallback.InvokeAsync(synonym);
-            _validations.ClearAll();
+            _ = OnSynonymCallback.InvokeAsync(synonym);
+            _ = _validations.ClearAll();
         }
 
         protected override async Task OnInitializedAsync()

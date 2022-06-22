@@ -29,7 +29,7 @@ namespace OriinDic
                 {
                     options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
                 })
-                .AddBlazorise(options => { options.ChangeTextOnKeyPress = false; })                       
+                .AddBlazorise()                       
                 .AddBulmaProviders()
                 .AddFontAwesomeIcons();
             
