@@ -2,194 +2,190 @@
 
 using Fluxor;
 
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
+using OriinDictionary7.Helpers;
+using OriinDictionary7.Models;
+using OriinDictionary7.Store.Notifications;
 
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 
-namespace OriinDic.Store.Links
+namespace OriinDictionary7.Store.Links;
+
+public class LinksEffects
 {
-    public class LinksEffects
+    private readonly HttpClient _httpClient;
+
+
+    public LinksEffects(HttpClient http)
     {
-        private readonly HttpClient _httpClient;
+        _httpClient = http;
+    }
 
+    [EffectMethod]
+    public async Task HandleAddDataAction(LinksAddAction action, IDispatcher dispatcher)
+    {
+        var returnCode = HttpStatusCode.OK;
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
 
-        public LinksEffects(HttpClient http)
+        var response = await _httpClient.PostAsJsonAsync(
+            $"{Const.Links}", action.Link);
+        OriinLink returnData = new();
+        try
         {
-            _httpClient = http;
+            returnData = await response.Content.ReadFromJsonAsync<OriinLink>() ?? new OriinLink();
+            returnCode = response.StatusCode;
+        }
+        catch (Exception e)
+        {
+            dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
+            returnCode = HttpStatusCode.BadRequest;
         }
 
-        [EffectMethod]
-        public async Task HandleAddDataAction(LinksAddAction action, IDispatcher dispatcher)
+        dispatcher.Dispatch(new LinksAddResultAction(returnData, returnCode));
+
+        if (returnCode != HttpStatusCode.BadRequest)
+            dispatcher.Dispatch(
+                new NotificationAction(action.LinksAddedMessage, SnackbarColor.Success));
+    }
+
+
+    [EffectMethod]
+    public async Task HandleDeleteAction(LinksDeleteAction action, IDispatcher dispatcher)
+    {
+        var returnCode = HttpStatusCode.OK;
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+
+        var returnObject = new DeletedObjectResponse
         {
-            var returnCode = HttpStatusCode.OK;
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+            Deleted = false,
+            Detail = "Null response"
+        };
 
-            var response = await _httpClient.PostAsJsonAsync(
-                $"{Const.Links}", action.Link);
-            OriinLink returnData = new();
-            try
-            {
-                returnData = await response.Content.ReadFromJsonAsync<OriinLink>() ?? new OriinLink();
-                returnCode = response.StatusCode;
-            }
-            catch (Exception e)
-            {
-                dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;
-            }
-
-            dispatcher.Dispatch(new LinksAddResultAction(returnData, returnCode));
-
-            if (returnCode != HttpStatusCode.BadRequest)
-                dispatcher.Dispatch(
-                    new NotificationAction(action.LinksAddedMessage, SnackbarColor.Success));
-        }
-
-
-        [EffectMethod]
-        public async Task HandleDeleteAction(LinksDeleteAction action, IDispatcher dispatcher)
+        try
         {
-            var returnCode = HttpStatusCode.OK;
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", action.Token);
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Token", action.Token);
+            var response = await _httpClient.DeleteAsync(
+                $"{Const.Links}{action.LinkId}/");
 
-            var returnObject = new DeletedObjectResponse
-            {
-                Deleted = false,
-                Detail = "Null response"
-            };
-
-            try
-            {
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Token", action.Token);
-                var response = await _httpClient.DeleteAsync(
-                    $"{Const.Links}{action.LinkId}/");
-
-                returnObject = await response.Content.ReadFromJsonAsync<DeletedObjectResponse>();
-                returnCode = response.StatusCode;
-                if (response.StatusCode == HttpStatusCode.Accepted ||
-                    response.StatusCode == HttpStatusCode.NoContent ||
-                    response.StatusCode == HttpStatusCode.OK)
-                {
-                    if (returnObject is not null)
-                        returnObject.Deleted = true;
-
-                    dispatcher.Dispatch(new NotificationAction($"Link: {action.LinkId} - deleted", SnackbarColor.Info));
-                }
-                else
-                {
-                    if (returnObject is not null)
-                    {
-                        returnObject.Deleted = false;
-                        dispatcher.Dispatch(new NotificationAction($"Error: {response.StatusCode}",
-                            SnackbarColor.Danger));
-                    }
-                }
-            }
-            catch (Exception e)
+            returnObject = await response.Content.ReadFromJsonAsync<DeletedObjectResponse>();
+            returnCode = response.StatusCode;
+            if (response.StatusCode == HttpStatusCode.Accepted ||
+                response.StatusCode == HttpStatusCode.NoContent ||
+                response.StatusCode == HttpStatusCode.OK)
             {
                 if (returnObject is not null)
-                    returnObject.Detail = $"Error {e}";
+                    returnObject.Deleted = true;
 
-                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;
+                dispatcher.Dispatch(new NotificationAction($"Link: {action.LinkId} - deleted", SnackbarColor.Info));
             }
-
-
-            var userResult = new RootObject<OriinLink>();
-
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(scheme: "Token", action.Token);
-
-
-
-            try
+            else
             {
-                userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
-                    requestUri: Const.Links, Const.HttpClientOptions);
+                if (returnObject is not null)
+                {
+                    returnObject.Deleted = false;
+                    dispatcher.Dispatch(new NotificationAction($"Error: {response.StatusCode}",
+                        SnackbarColor.Danger));
+                }
             }
-            catch (Exception e)
-            {
-                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;
-            }
-
-            dispatcher.Dispatch(
-                new LinksDeleteResultAction(
-                    delteResponse: returnObject ?? new DeletedObjectResponse(),
-                    rootObject: userResult ?? new RootObject<OriinLink>(),
-                    httpStatusCode: returnCode));
-
-            if (returnCode != HttpStatusCode.BadRequest)
-                dispatcher.Dispatch(
-                    new NotificationAction(action.DeleteLinkMessage, SnackbarColor.Success));
         }
-
-        [EffectMethod]
-        public async Task HandleFetchBaseTermAction(LinksFetchForBaseTermAction action, IDispatcher dispatcher)
+        catch (Exception e)
         {
-            var returnCode = HttpStatusCode.OK;
-            var userResult = new RootObject<OriinLink>();
+            if (returnObject is not null)
+                returnObject.Detail = $"Error {e}";
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(scheme: "Token", action.Token);
-
-            var queryString = $"{Const.Links}?base_term_id={action.BaseTermId}";
-            try
-            {
-                userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
-                    requestUri: queryString, Const.HttpClientOptions);
-            }
-            catch (Exception e)
-            {
-                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;
-            }
-
-            dispatcher.Dispatch(
-                new LinksFetchForBaseTermResultAction(
-                    rootObject: userResult ?? new RootObject<OriinLink>(),
-                    httpStatusCode: returnCode));
-
-            if (returnCode != HttpStatusCode.BadRequest)
-                dispatcher.Dispatch(
-                    new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));
+            dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
+            returnCode = HttpStatusCode.BadRequest;
         }
 
-        [EffectMethod]
-        public async Task HandleFetchDataAction(LinksFetchDataAction action, IDispatcher dispatcher)
+
+        var userResult = new RootObject<OriinLink>();
+
+        _httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(scheme: "Token", action.Token);
+
+
+
+        try
         {
-            var returnCode = HttpStatusCode.OK;
-            var userResult = new RootObject<OriinLink>();
-            var queryString = Const.Links;
-            if (action.SearchPageNr > 0)
-                queryString += $"?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
-            try
-            {
-                userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
-                    requestUri: queryString, Const.HttpClientOptions);
-            }
-            catch (Exception e)
-            {
-                dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;
-            }
-
-            dispatcher.Dispatch(
-                new LinksFetchDataResultAction(
-                    userResult ?? new RootObject<OriinLink>(),
-                    httpStatusCode: returnCode));
-
-            if (returnCode != HttpStatusCode.BadRequest)
-                dispatcher.Dispatch(
-                    new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));
+            userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
+                requestUri: Const.Links, Const.HttpClientOptions);
         }
+        catch (Exception e)
+        {
+            dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
+            returnCode = HttpStatusCode.BadRequest;
+        }
+
+        dispatcher.Dispatch(
+            new LinksDeleteResultAction(
+                delteResponse: returnObject ?? new DeletedObjectResponse(),
+                rootObject: userResult ?? new RootObject<OriinLink>(),
+                httpStatusCode: returnCode));
+
+        if (returnCode != HttpStatusCode.BadRequest)
+            dispatcher.Dispatch(
+                new NotificationAction(action.DeleteLinkMessage, SnackbarColor.Success));
+    }
+
+    [EffectMethod]
+    public async Task HandleFetchBaseTermAction(LinksFetchForBaseTermAction action, IDispatcher dispatcher)
+    {
+        var returnCode = HttpStatusCode.OK;
+        var userResult = new RootObject<OriinLink>();
+
+        _httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue(scheme: "Token", action.Token);
+
+        var queryString = $"{Const.Links}?base_term_id={action.BaseTermId}";
+        try
+        {
+            userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
+                requestUri: queryString, Const.HttpClientOptions);
+        }
+        catch (Exception e)
+        {
+            dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
+            returnCode = HttpStatusCode.BadRequest;
+        }
+
+        dispatcher.Dispatch(
+            new LinksFetchForBaseTermResultAction(
+                rootObject: userResult ?? new RootObject<OriinLink>(),
+                httpStatusCode: returnCode));
+
+        if (returnCode != HttpStatusCode.BadRequest)
+            dispatcher.Dispatch(
+                new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));
+    }
+
+    [EffectMethod]
+    public async Task HandleFetchDataAction(LinksFetchDataAction action, IDispatcher dispatcher)
+    {
+        var returnCode = HttpStatusCode.OK;
+        var userResult = new RootObject<OriinLink>();
+        var queryString = Const.Links;
+        if (action.SearchPageNr > 0)
+            queryString += $"?page={action.SearchPageNr}&per_page={action.ItemsPerPage}";
+        try
+        {
+            userResult = await _httpClient.GetFromJsonAsync<RootObject<OriinLink>>(
+                requestUri: queryString, Const.HttpClientOptions);
+        }
+        catch (Exception e)
+        {
+            dispatcher.Dispatch(new NotificationAction($"Error: {e.Message}", SnackbarColor.Danger));
+            returnCode = HttpStatusCode.BadRequest;
+        }
+
+        dispatcher.Dispatch(
+            new LinksFetchDataResultAction(
+                userResult ?? new RootObject<OriinLink>(),
+                httpStatusCode: returnCode));
+
+        if (returnCode != HttpStatusCode.BadRequest)
+            dispatcher.Dispatch(
+                new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));
     }
 }

@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 
-namespace OriinDic.Models
+namespace OriinDictionary7.Models;
+
+public record Token
 {
-    public record Token
-    {
-        [JsonPropertyName("auth_token")]
-        public string AuthToken { get; set; } = string.Empty;
-    }
+    [JsonPropertyName("auth_token")]
+    public string AuthToken { get; set; } = string.Empty;
 }

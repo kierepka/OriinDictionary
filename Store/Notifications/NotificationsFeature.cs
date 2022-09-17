@@ -1,10 +1,9 @@
 ﻿using Fluxor;
 
-namespace OriinDic.Store.Notifications
+namespace OriinDictionary7.Store.Notifications;
+
+public class NotificationsFeature : Feature<NotificationsState>
 {
-    public class NotificationsFeature : Feature<NotificationsState>
-    {
-        public override string GetName() => "Notifications";
-        protected override NotificationsState GetInitialState() => new(string.Empty);
-    }
+    public override string GetName() => "Notifications";
+    protected override NotificationsState GetInitialState() => new(string.Empty);
 }

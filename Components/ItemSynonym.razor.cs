@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Components;
 
-using OriinDic.Models;
+using OriinDictionary7.Models;
 
-namespace OriinDic.Components
+namespace OriinDictionary7.Components;
+
+public partial class ItemSynonym
+
 {
-    public partial class ItemSynonym
+    [Parameter] public Synonym? MySynonym { get; set; }
 
-    {
-        [Parameter] public Synonym? MySynonym { get; set; }
-
-    }
 }

@@ -2,39 +2,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.32912.340
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriinDic", "OriinDic.csproj", "{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriinDictionary7", "..\OriinDictionary7\OriinDictionary7.csproj", "{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriinDictionary7", "OriinDictionary7.csproj", "{63767B62-1147-4D8E-A432-758D6E8A7034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		AWS|Any CPU = AWS|Any CPU
 		Debug|Any CPU = Debug|Any CPU
-		DebugLocal|Any CPU = DebugLocal|Any CPU
-		Docker|Any CPU = Docker|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.AWS|Any CPU.ActiveCfg = AWS|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.AWS|Any CPU.Build.0 = AWS|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.Docker|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.Docker|Any CPU.Build.0 = Debug|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F4D2757-5BE4-4F24-833D-981B4FDA1B9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.AWS|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.AWS|Any CPU.Build.0 = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.Docker|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.Docker|Any CPU.Build.0 = Debug|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7C6B653-B0EC-4DB3-B20E-D196BF648E5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63767B62-1147-4D8E-A432-758D6E8A7034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63767B62-1147-4D8E-A432-758D6E8A7034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63767B62-1147-4D8E-A432-758D6E8A7034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63767B62-1147-4D8E-A432-758D6E8A7034}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿@page "/editbaseterm/{BaseTermId:long}"
 @page "/editbaseterm/{BaseTermSlug}"
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 
 <PageHeader IsLoading="@(BaseTermsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@HeaderForBaseTerm" />
@@ -10,8 +10,8 @@
         <Row>            
             <Column>
                 @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null)
-                {
-                    <Card Margin="Margin.Is4.OnY">
+            {
+                <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
                             <CardTitle>[@BaseTermLanguage]
                                 @BaseTermsState.Value.ResultBaseTranslation.BaseTerm.Name
@@ -100,7 +100,7 @@
 
                         </CardFooter>
                     </Card>
-                }
+            }
             </Column>
         </Row>
     </Authorized>
@@ -109,8 +109,8 @@
         <Row>
             <Column>
                 @if (BaseTermsState?.Value?.ResultBaseTranslation.BaseTerm is not null)
-                {
-                    <Card Margin="Margin.Is4.OnY">
+            {
+                <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
                             <CardTitle>
                                 [@BaseTermLanguage]@BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Name
@@ -137,30 +137,30 @@
                                 <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.Is10">
                                     @if (BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Examples is not null)
-                                    {
-                                        <ListGroup Flush="true">
+                                {
+                                    <ListGroup Flush="true">
                                             @foreach (var e in (BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Examples)
-                                                .Where(e => !string.IsNullOrEmpty(e)))
-                                            {
-                                                <div class="field"><div class="control">@e</div></div>
-                                            }
+                                            .Where(e => !string.IsNullOrEmpty(e)))
+                                        {
+                                            <div class="field"><div class="control">@e</div></div>
+                                        }
                                         </ListGroup>
-                                    }
+                                }
                                 </FieldBody>
                             </Field>
                             <Field Horizontal="true">
                                 <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.Is10">
                                     @if (BaseTermsState?.Value?.ResultBaseTranslation?.BaseTerm?.Synonyms is not null)
-                                    {
-                                        <ListGroup Flush="true">
+                                {
+                                    <ListGroup Flush="true">
                                             @foreach (var s in (BaseTermsState?.Value.ResultBaseTranslation.BaseTerm.Synonyms)
-                                                .Where(s => !string.IsNullOrEmpty(s)))
-                                            {
-                                                <div class="field"><div class="control">@s</div></div>
-                                            }
+                                            .Where(s => !string.IsNullOrEmpty(s)))
+                                        {
+                                            <div class="field"><div class="control">@s</div></div>
+                                        }
                                         </ListGroup>
-                                    }
+                                }
                                 </FieldBody>
                             </Field>
                             <Field Horizontal="true">
@@ -199,26 +199,26 @@
                         </CardHeader>
                         <CardBody>
                             @if (BaseTermsState?.Value?.Links is not null)
-                            {
-                                <ListGroup Flush="true">
+                        {
+                            <ListGroup Flush="true">
                                     @if (BaseTermsState?.Value.Links is not null)
+                                {
+                                    foreach (var link in BaseTermsState.Value.Links)
                                     {
-                                        foreach (var link in BaseTermsState.Value.Links)
-                                        {
-                                            <div class="field">
+                                        <div class="field">
                                                 <div class="control">
                                                     <a href="@link.Link" target="_blank">
                                                         @link.Link
                                                     </a>
                                                 </div>
                                             </div>
-                                        }
                                     }
+                                }
                                 </ListGroup>
-                            }
+                        }
                         </CardBody>
                     </Card>
-                }
+            }
             </Column>
         </Row>
     </NotAuthorized>

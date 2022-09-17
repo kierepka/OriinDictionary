@@ -1,18 +1,17 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersAnonymizeAction
 {
-    public record UsersAnonymizeAction
-    {
-        public string Token { get; } = string.Empty;
-        public User User { get; } = new();
-        public string UserAnonymizedMessage { get; } = string.Empty;
+    public string Token { get; } = string.Empty;
+    public User User { get; } = new();
+    public string UserAnonymizedMessage { get; } = string.Empty;
 
-        public UsersAnonymizeAction(User user, string token, string userAnonymizedMessage)
-        {
-            Token = token;
-            UserAnonymizedMessage = userAnonymizedMessage;
-            User = user;
-        }
+    public UsersAnonymizeAction(User user, string token, string userAnonymizedMessage)
+    {
+        Token = token;
+        UserAnonymizedMessage = userAnonymizedMessage;
+        User = user;
     }
 }

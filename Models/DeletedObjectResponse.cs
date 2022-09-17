@@ -1,19 +1,18 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace OriinDic.Models
+namespace OriinDictionary7.Models;
+
+public record DeletedObjectResponse
 {
-    public record DeletedObjectResponse
+    [JsonPropertyName("deleted")]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
+    public bool Deleted { get; set; }
+    [JsonPropertyName("detail")]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
+    public string Detail { get; set; } = string.Empty;
+
+    public DeletedObjectResponse()
     {
-        [JsonPropertyName("deleted")]
-        // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public bool Deleted { get; set; }
-        [JsonPropertyName("detail")]
-        // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        public string Detail { get; set; } = string.Empty;
 
-        public DeletedObjectResponse()
-        {
-
-        }
     }
 }

@@ -35,20 +35,20 @@
         <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.BaseTermId)" Caption="@MyText?.LinkBaseTerm" Sortable="true" Editable="true">
             <DisplayTemplate>
                 @if (context.BaseTermId is not null) { 
-                    <Blazorise.Link To="@($"/editbaseterm/{context.BaseTermId}")" Title="@MyText?.LinkBaseTerm">
+                <Blazorise.Link To="@($"/editbaseterm/{context.BaseTermId}")" Title="@MyText?.LinkBaseTerm">
                         <Icon Name="@("fa-scroll")" />&nbsp;@context.BaseTermId
                     </Blazorise.Link>
-                 }
+             }
              </DisplayTemplate>
         </DataGridColumn>
         <DataGridColumn TItem="OriinLink" Field="@nameof(OriinLink.TranslationId)" Caption="@MyText?.LinkTranslation" Sortable="true" Editable="true">
             <DisplayTemplate>
                 @if (context.TranslationId is not null)
-                {
-                    <Blazorise.Link To="@($"/edittranslation/{context.TranslationId}")" Title="@MyText?.LinkTranslation">
+            {
+                <Blazorise.Link To="@($"/edittranslation/{context.TranslationId}")" Title="@MyText?.LinkTranslation">
                         <Icon Name="@("fa-language")" />&nbsp;@context.TranslationId
                     </Blazorise.Link>
-                }
+            }
             </DisplayTemplate>
         </DataGridColumn>
     </DataGridColumns>

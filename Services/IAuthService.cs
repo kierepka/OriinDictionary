@@ -1,13 +1,10 @@
-using OriinDic.Models;
+using OriinDictionary7.Models;
 
-using System.Threading.Tasks;
+namespace OriinDictionary7.Services;
 
-namespace OriinDic.Services
+public interface IAuthService
 {
-    public interface IAuthService
-    {
-        Task<LoginResult> Login(LoginInput loginModel);
+    Task<LoginResult> Login(LoginInput loginModel);
 
-        Task Logout();
-    }
+    Task Logout();
 }

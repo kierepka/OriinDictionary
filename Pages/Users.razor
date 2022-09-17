@@ -1,6 +1,6 @@
 ﻿@page "/Users"
 @attribute [Authorize(Roles = Const.RolesUsersEditors)]
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 
 <PageHeader IsLoading="@(UsersState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.Users" />

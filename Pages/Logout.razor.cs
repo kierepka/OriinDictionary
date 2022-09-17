@@ -1,35 +1,32 @@
 using Microsoft.AspNetCore.Components;
 
-using OriinDic.Services;
+using OriinDictionary7.Services;
 
-using System.Threading.Tasks;
+namespace OriinDictionary7.Pages;
 
-namespace OriinDic.Pages
+// ReSharper disable once ClassNeverInstantiated.Global
+public partial class Logout
 {
-    // ReSharper disable once ClassNeverInstantiated.Global
-    public partial class Logout
+    private bool _isLoading;
+
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    [Inject] private IAuthService? AuthService { get; set; }
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    [Inject] private NavigationManager? NavigationManager { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        private bool _isLoading;
+        await base.OnInitializedAsync();
+        _isLoading = true;
 
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        [Inject] private IAuthService? AuthService { get; set; }
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        [Inject] private NavigationManager? NavigationManager { get; set; }
+        if (AuthService is null) return;
+        await AuthService.Logout();
 
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            _isLoading = true;
+        LocalStorage?.Clear();
 
-            if (AuthService is null) return;
-            await AuthService.Logout();
+        if (NavigationManager is null) return;
+        NavigationManager.NavigateTo("/");
 
-            LocalStorage?.Clear();
-
-            if (NavigationManager is null) return;
-            NavigationManager.NavigateTo("/");
-
-            _isLoading = false;
-        }
+        _isLoading = false;
     }
 }

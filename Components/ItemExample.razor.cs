@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Components;
 
-using OriinDic.Models;
+using OriinDictionary7.Models;
 
-namespace OriinDic.Components
+namespace OriinDictionary7.Components;
+
+public partial class ItemExample
+
 {
-    public partial class ItemExample
+    [Parameter] public Example? MyExample { get; set; }
 
-    {
-        [Parameter] public Example? MyExample { get; set; }
-
-    }
 }

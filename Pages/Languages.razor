@@ -11,14 +11,14 @@
             <CardBody>
 
                 @if (LanguagesState?.Value.Languages is null)
-                {
-                    <p>
+            {
+                <p>
                         <em>@MyText?.Loading</em>
                     </p>
-                }
-                else
-                {
-                    <Table Striped="true" Hoverable="true">
+            }
+            else
+            {
+                <Table Striped="true" Hoverable="true">
                         <TableHeader>
                             <TableRow>
                                 <TableHeaderCell>@MyText?.LangId</TableHeaderCell>
@@ -29,17 +29,17 @@
                         </TableHeader>
                         <TableBody>
                             @foreach (var lang in LanguagesState.Value.Languages)
-                            {
-                                <TableRow>
+                        {
+                            <TableRow>
                                     <TableRowHeader>@lang.Id</TableRowHeader>
                                     <TableRowCell>@lang.Code</TableRowCell>
                                     <TableRowCell>@lang.Name</TableRowCell>
                                     <TableRowCell>@lang.SpecialCharacters</TableRowCell>
                                 </TableRow>
-                            }
+                        }
                         </TableBody>
                     </Table>
-                }
+            }
                 
             </CardBody>
         </Card>

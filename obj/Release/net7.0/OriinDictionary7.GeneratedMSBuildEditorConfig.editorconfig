@@ -1,0 +1,182 @@
+is_global = true
+build_property.ProjectDir = D:\GitHub\OriinDictionary7\
+build_property.ProjectDir = D:\GitHub\OriinDictionary7\
+build_property.RootNamespace = OriinDictionary7
+build_property.RootNamespace = OriinDictionary7
+build_property.RootNamespace = OriinDictionary7
+build_property.I18nTextNamespace = OriinDictionary7.I18nText
+build_property.I18nTextSourceDirectory = i18ntext
+build_property.I18nTextFallBackLanguage = en
+build_property.I18nTextDisableSubNameSpace = false
+build_property.I18nTextIntermediateDir = D:\GitHub\OriinDictionary7\obj\Release\net7.0\dist\_content\i18ntext\
+build_property.I18nTextUseSourceGenerator = True
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\GitHub\OriinDictionary7
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/GitHub/OriinDictionary7/i18ntext/Text.en.json]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/i18ntext/Text.pl-PL.json]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/i18ntext/Text.pl.json]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ItemComment.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJdGVtQ29tbWVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ItemExample.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJdGVtRXhhbXBsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ItemLanguage.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJdGVtTGFuZ3VhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ItemLink.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJdGVtTGluay5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ItemSynonym.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJdGVtU3lub255bS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/Keyboard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xLZXlib2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ListComments.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXN0Q29tbWVudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ListExamples.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXN0RXhhbXBsZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ListLinks.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXN0TGlua3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ListSynonyms.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMaXN0U3lub255bXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/MyPagination.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNeVBhZ2luYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/PageHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlSGVhZGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSZWRpcmVjdFRvTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTdXJ2ZXlQcm9tcHQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Components/ThemeColorSelector.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUaGVtZUNvbG9yU2VsZWN0b3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Layouts/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0c1xNYWluTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Layouts/RootLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0c1xSb290TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/AllComments.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsQ29tbWVudHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/AllLinks.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxsTGlua3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/BaseTermEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmFzZVRlcm1FZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/BaseTermNew.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmFzZVRlcm1OZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/Languages.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZ3VhZ2VzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/Logout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/NewUserConfirm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmV3VXNlckNvbmZpcm0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/OriinUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JpaW5Vc2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/PasswordResetConfirm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFzc3dvcmRSZXNldENvbmZpcm0ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/PersonalData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyc29uYWxEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/TranslationEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNsYXRpb25FZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/TranslationNew.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNsYXRpb25OZXcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/Pages/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GitHub/OriinDictionary7/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

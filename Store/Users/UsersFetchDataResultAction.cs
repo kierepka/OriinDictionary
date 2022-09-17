@@ -1,17 +1,16 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
 using System.Net;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersFetchDataResultAction
 {
-    public record UsersFetchDataResultAction
+    public RootObject<User> RootObject { get; } = new();
+    public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+    public UsersFetchDataResultAction(RootObject<User> rootObject, HttpStatusCode resultCode)
     {
-        public RootObject<User> RootObject { get; } = new();
-        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
-        public UsersFetchDataResultAction(RootObject<User> rootObject, HttpStatusCode resultCode)
-        {
-            RootObject = rootObject;
-            ResultCode = resultCode;
-        }
+        RootObject = rootObject;
+        ResultCode = resultCode;
     }
 }

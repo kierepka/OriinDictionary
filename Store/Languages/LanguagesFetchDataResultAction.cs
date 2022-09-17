@@ -1,16 +1,13 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-using System.Collections.Generic;
+namespace OriinDictionary7.Store.Languages;
 
-namespace OriinDic.Store.Languages
+public record LanguagesFetchDataResultAction
 {
-    public record LanguagesFetchDataResultAction
-    {
-        public IEnumerable<Language> Languages { get; } = new List<Language>();
+    public IEnumerable<Language> Languages { get; } = new List<Language>();
 
-        public LanguagesFetchDataResultAction(IEnumerable<Language> languages)
-        {
-            Languages = languages;
-        }
+    public LanguagesFetchDataResultAction(IEnumerable<Language> languages)
+    {
+        Languages = languages;
     }
 }

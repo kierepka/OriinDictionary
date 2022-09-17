@@ -6,42 +6,39 @@ using Fluxor.Blazor.Web.Components;
 
 using Microsoft.AspNetCore.Components;
 
-using System.Threading.Tasks;
+namespace OriinDictionary7.Components;
 
-namespace OriinDic.Components
+public class DicBasePage : FluxorComponent
 {
-    public class DicBasePage : FluxorComponent
+    protected I18nText.Text MyText { get; set; } = default!;
+
+
+    [Inject] protected Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
+
+    [Inject] protected ISyncLocalStorageService? LocalStorage { get; set; }
+    // ReSharper disable once MemberCanBePrivate.Global
+    protected string CurrentAlert { get; set; } = string.Empty;
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private Alert? MyAlert { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        protected I18nText.Text? MyText;
+        await base.OnInitializedAsync();
 
+        if (I18NText is not null)
+            MyText = await I18NText.GetTextTableAsync<I18nText.Text>(this);
 
-        [Inject] protected Toolbelt.Blazor.I18nText.I18nText? I18NText { get; set; }
+    }
 
-        [Inject] protected ISyncLocalStorageService? LocalStorage { get; set; }
-        // ReSharper disable once MemberCanBePrivate.Global
-        protected string CurrentAlert { get; set; } = string.Empty;
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        private Alert? MyAlert { get; set; }
+    protected void ShowAlert(string alert)
+    {
+        CurrentAlert = alert;
+        MyAlert?.Show();
+    }
 
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            if (I18NText is not null)
-                MyText = await I18NText.GetTextTableAsync<I18nText.Text>(this);
-
-        }
-
-        protected void ShowAlert(string alert)
-        {
-            CurrentAlert = alert;
-            MyAlert?.Show();
-        }
-
-        protected void ShowAlertYesNo(string alertHeader, string alert, string yes, string no)
-        {
-            CurrentAlert = alert;
-            MyAlert?.Show();
-        }
+    protected void ShowAlertYesNo(string alertHeader, string alert, string yes, string no)
+    {
+        CurrentAlert = alert;
+        MyAlert?.Show();
     }
 }

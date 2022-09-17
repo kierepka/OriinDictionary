@@ -1,6 +1,6 @@
 ﻿@page "/PersonalData"
 @attribute [Authorize]
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 
 <PageHeader IsLoading="@(UserState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.HeaderUser" />

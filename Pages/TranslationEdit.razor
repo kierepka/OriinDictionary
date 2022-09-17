@@ -1,6 +1,6 @@
 ﻿@page "/edittranslation/{TranslationId:long}"
 
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 
 <PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@HeaderForTranslation" />

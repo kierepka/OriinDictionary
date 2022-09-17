@@ -1,19 +1,18 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
 using System.Net;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersAnonymizeResultAction
 {
-    public record UsersAnonymizeResultAction
+    public User User { get; } = new();
+    public HttpStatusCode ResultCode { get; } = HttpStatusCode.OK;
+
+    public UsersAnonymizeResultAction(User user, HttpStatusCode resultCode)
     {
-        public User User { get; } = new();
-        public HttpStatusCode ResultCode { get; } = HttpStatusCode.OK;
+        User = user;
+        ResultCode = resultCode;
 
-        public UsersAnonymizeResultAction(User user, HttpStatusCode resultCode)
-        {
-            User = user;
-            ResultCode = resultCode;
-
-        }
     }
 }

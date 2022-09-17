@@ -1,18 +1,17 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
 using System.Net;
 
-namespace OriinDic.Store.BaseTerms
-{
-    public record BaseTermsAddResultAction
-    {
-        public BaseTerm BaseTerm { get; } = new();
-        public HttpStatusCode HttpStatusCode { get; } = HttpStatusCode.BadRequest;
+namespace OriinDictionary7.Store.BaseTerms;
 
-        public BaseTermsAddResultAction(BaseTerm baseTerm, HttpStatusCode httpStatusCode)
-        {
-            BaseTerm = baseTerm;
-            HttpStatusCode = httpStatusCode;
-        }
+public record BaseTermsAddResultAction
+{
+    public BaseTerm BaseTerm { get; } = new();
+    public HttpStatusCode HttpStatusCode { get; } = HttpStatusCode.BadRequest;
+
+    public BaseTermsAddResultAction(BaseTerm baseTerm, HttpStatusCode httpStatusCode)
+    {
+        BaseTerm = baseTerm;
+        HttpStatusCode = httpStatusCode;
     }
 }

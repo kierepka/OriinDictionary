@@ -1,18 +1,15 @@
-using System.Net.Http;
+namespace OriinDictionary7.Layouts;
 
-namespace OriinDic.Layouts
+public partial class RootLayout
 {
-    public partial class RootLayout
+    private readonly HttpClient Http = new HttpClient();
+
+    public RootLayout()
     {
-        private readonly HttpClient Http = new HttpClient();
+    }
 
-        public RootLayout()
-        {
-        }
-
-        public RootLayout(HttpClient httpClient) : this()
-        {
-            Http = httpClient;
-        }
+    public RootLayout(HttpClient httpClient) : this()
+    {
+        Http = httpClient;
     }
 }

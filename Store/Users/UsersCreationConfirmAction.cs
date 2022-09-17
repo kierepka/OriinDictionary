@@ -1,19 +1,18 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersCreationConfirmAction
 {
-    public record UsersCreationConfirmAction
-    {
-        public string Token { get; } = string.Empty;
-        public UserPwdResetUpdate User { get; } = new();
-        public string UserPasswordResetConfirmMessage { get; } = string.Empty;
+    public string Token { get; } = string.Empty;
+    public UserPwdResetUpdate User { get; } = new();
+    public string UserPasswordResetConfirmMessage { get; } = string.Empty;
 
-        public UsersCreationConfirmAction(
-            UserPwdResetUpdate user, string token, string userPasswordResetConfirmMessage)
-        {
-            Token = token;
-            UserPasswordResetConfirmMessage = userPasswordResetConfirmMessage;
-            User = user;
-        }
+    public UsersCreationConfirmAction(
+        UserPwdResetUpdate user, string token, string userPasswordResetConfirmMessage)
+    {
+        Token = token;
+        UserPasswordResetConfirmMessage = userPasswordResetConfirmMessage;
+        User = user;
     }
 }

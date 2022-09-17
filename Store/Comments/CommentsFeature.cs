@@ -1,21 +1,20 @@
 ﻿using Fluxor;
 
-using OriinDic.Models;
+using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Comments
+namespace OriinDictionary7.Store.Comments;
+
+public class CommentsFeature : Feature<CommentsState>
 {
-    public class CommentsFeature : Feature<CommentsState>
-    {
-        public override string GetName() => "Comments";
+    public override string GetName() => "Comments";
 
-        protected override CommentsState GetInitialState() => new(
-            isLoading: false, searchPageNr: 0, itemsPerPage: 0, commentId: 0, translationId: 0,
-            token: string.Empty, statusCode: string.Empty,
-            comment: new Comment(),
-            rootObject: new RootObject<Comment>(),
-            deleteResponse: new DeletedObjectResponse(),
-            lastActionState: EActionState.Initializing);
+    protected override CommentsState GetInitialState() => new(
+        isLoading: false, searchPageNr: 0, itemsPerPage: 0, commentId: 0, translationId: 0,
+        token: string.Empty, statusCode: string.Empty,
+        comment: new Comment(),
+        rootObject: new RootObject<Comment>(),
+        deleteResponse: new DeletedObjectResponse(),
+        lastActionState: EActionState.Initializing);
 
 
-    }
 }

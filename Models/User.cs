@@ -1,18 +1,16 @@
 using System.Text.Json.Serialization;
 
-namespace OriinDic.Models
+namespace OriinDictionary7.Models;
+
+public record User : UserUpdate
 {
+    [JsonPropertyName("id")]
+    public long Id { get; set; }
+    [JsonPropertyName("is_superuser")]
+    public bool IsSuperuser { get; set; }
 
-    public record User : UserUpdate
+    public User()
     {
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-        [JsonPropertyName("is_superuser")]
-        public bool IsSuperuser { get; set; }
 
-        public User()
-        {
-
-        }
     }
 }

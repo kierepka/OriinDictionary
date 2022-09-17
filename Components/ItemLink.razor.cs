@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Components;
 
-using OriinDic.Models;
+using OriinDictionary7.Models;
 
-namespace OriinDic.Components
+namespace OriinDictionary7.Components;
+
+public partial class ItemLink
+
 {
-    public partial class ItemLink
+    [Parameter] public OriinLink? MyLink { get; set; }
 
-    {
-        [Parameter] public OriinLink? MyLink { get; set; }
-
-    }
 }

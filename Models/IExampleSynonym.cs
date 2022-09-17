@@ -1,8 +1,7 @@
-namespace OriinDic.Models
+namespace OriinDictionary7.Models;
+
+public interface IExampleSynonym
 {
-    public interface IExampleSynonym
-    {
-        // ReSharper disable once UnusedMemberInSuper.Global
-        public string Value { get; set; }
-    }
+    // ReSharper disable once UnusedMemberInSuper.Global
+    public string Value { get; set; }
 }

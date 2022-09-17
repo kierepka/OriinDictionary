@@ -1,16 +1,15 @@
 ﻿using System.Net;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersPasswordChangeResultAction
 {
-    public record UsersPasswordChangeResultAction
+    public HttpStatusCode StatusCode { get; } = HttpStatusCode.OK;
+
+    public UsersPasswordChangeResultAction(HttpStatusCode statusCode)
     {
-        public HttpStatusCode StatusCode { get; } = HttpStatusCode.OK;
 
-        public UsersPasswordChangeResultAction(HttpStatusCode statusCode)
-        {
+        StatusCode = statusCode;
 
-            StatusCode = statusCode;
-
-        }
     }
 }
