@@ -1,6 +1,7 @@
 ﻿
-using System.Net;
 using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Links
 {
@@ -12,7 +13,7 @@ namespace OriinDic.Store.Links
         public int SearchPageNr { get; }
         public long ItemsPerPage { get; }
         public bool IsLoading { get; }
-        
+
         public HttpStatusCode HttpStatusCode { get; }
         public long LinkId { get; }
         public OriinLink Link { get; } = new();
@@ -20,19 +21,19 @@ namespace OriinDic.Store.Links
         public DeletedObjectResponse DeleteResponse { get; } = new();
 
         public LinksState(
-            bool isLoading, 
-            int searchPageNr, 
-            long itemsPerPage, 
-            string token, 
+            bool isLoading,
+            int searchPageNr,
+            long itemsPerPage,
+            string token,
             HttpStatusCode httpStatusCode,
             long linkId,
             long baseTermId,
-            OriinLink link, 
-            RootObject<OriinLink> rootObject, 
-            DeletedObjectResponse deleteResponse, 
+            OriinLink link,
+            RootObject<OriinLink> rootObject,
+            DeletedObjectResponse deleteResponse,
             EActionState lastActionState)
         {
-            
+
             IsLoading = isLoading;
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
@@ -46,7 +47,7 @@ namespace OriinDic.Store.Links
             BaseTermId = baseTermId;
         }
 
-  
+
 
     }
 }

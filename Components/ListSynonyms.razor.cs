@@ -1,9 +1,12 @@
+using Blazorise;
+
+using Microsoft.AspNetCore.Components;
+
+using OriinDic.Models;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blazorise;
-using Microsoft.AspNetCore.Components;
-using OriinDic.Models;
 
 using Text = OriinDic.I18nText.Text;
 
@@ -34,7 +37,7 @@ namespace OriinDic.Components
             if (_validations is null) return;
             var result = await _validations.ValidateAll();
             if (!result) return;
-            var synonym = new Synonym {Value = _myValue};
+            var synonym = new Synonym { Value = _myValue };
             _synonyms.Add(synonym);
             _myValue = string.Empty;
 
@@ -44,7 +47,7 @@ namespace OriinDic.Components
 
         protected override async Task OnInitializedAsync()
         {
-            if (I18NText!=null) 
+            if (I18NText != null)
                 _myText = await I18NText.GetTextTableAsync<Text>(this);
         }
 

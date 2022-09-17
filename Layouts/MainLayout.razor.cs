@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 using Blazored.LocalStorage;
 
 using Blazorise;
@@ -7,6 +5,8 @@ using Blazorise;
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Helpers;
+
+using System.Threading.Tasks;
 
 using Text = OriinDic.I18nText.Text;
 

@@ -1,14 +1,14 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Translations;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 using Toolbelt.Blazor.SpeechSynthesis;
 
@@ -23,7 +23,7 @@ namespace OriinDic.Pages
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        [Inject] private IDispatcher? Dispatcher { get; set; }    
+        [Inject] private IDispatcher? Dispatcher { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private SpeechSynthesis? SpeechSynthesis { get; set; }
 
@@ -38,7 +38,7 @@ namespace OriinDic.Pages
             }
         }
 
-      
+
         private string TranslationLanguage
         {
             get
@@ -47,7 +47,8 @@ namespace OriinDic.Pages
                 if (TranslationsState?.Value?.BaseTranslation.Translation is null)
                 {
                     return LanguagesState is null ? Const.EnLangShortcut : LanguagesState.Value.GetLanguageName(TranslationLangId);
-                } else
+                }
+                else
                 {
                     return LanguagesState is null ? Const.EnLangShortcut : LanguagesState.Value.GetLanguageName(TranslationsState.Value.BaseTranslation.Translation.LanguageId);
                 }
@@ -60,7 +61,7 @@ namespace OriinDic.Pages
         {
             await base.OnInitializedAsync();
             if (MyText is null) return;
-            
+
             if (!LanguagesState?.Value.Languages.Any() ?? true)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
@@ -73,7 +74,7 @@ namespace OriinDic.Pages
             if (MyText is null) return;
             if (LocalStorage is null) return;
 
-            if (TranslationsState?.Value?.BaseTranslation.Translation is null) 
+            if (TranslationsState?.Value?.BaseTranslation.Translation is null)
             {
                 ShowAlert(MyText.SaveError);
                 return;
@@ -86,9 +87,9 @@ namespace OriinDic.Pages
 
             Dispatcher?.Dispatch(
                 new TranslationsAddAction(
-                    TranslationsState.Value.BaseTranslation.Translation, 
+                    TranslationsState.Value.BaseTranslation.Translation,
                     token.AuthToken,
-                    MyText.TranslationAdded  
+                    MyText.TranslationAdded
                     ));
 
 

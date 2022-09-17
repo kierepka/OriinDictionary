@@ -2,7 +2,7 @@
 
 namespace OriinDic.Store.BaseTerms
 {
-    public class BaseTermsFeature: Feature<BaseTermsState>
+    public class BaseTermsFeature : Feature<BaseTermsState>
     {
         public override string GetName() => "BaseTerms";
 

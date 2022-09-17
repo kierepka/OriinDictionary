@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Blazorise;
+﻿using Blazorise;
 
 using OriinDic.Helpers;
 using OriinDic.Models;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OriinDic.Store.Search
 {
@@ -159,7 +160,7 @@ namespace OriinDic.Store.Search
                     if (!searchItems.Contains(ltd))
                         searchItems.Add(ltd);
                 }
-            }                                       
+            }
             else
             {
                 TotalSearchItems = 0;

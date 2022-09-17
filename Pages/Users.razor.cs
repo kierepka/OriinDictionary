@@ -1,14 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Blazorise.DataGrid;
+
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Users;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OriinDic.Pages
 {
@@ -112,7 +116,8 @@ namespace OriinDic.Pages
                 user.TranslatingLanguages = tranLang ?? user.TranslatingLanguages;
 
                 //user.CoordinatingLanguages = Convert.ToBoolean(e.Values["Assistant"]);
-            } catch
+            }
+            catch
             {
                 return;
             }
@@ -154,15 +159,15 @@ namespace OriinDic.Pages
             if (_selectedUser is null) return;
             if (selectableLanguage.Selected)
             {
-                if (_selectedUser.TranslatingLanguages.Contains((int) selectableLanguage.Id))
+                if (_selectedUser.TranslatingLanguages.Contains((int)selectableLanguage.Id))
                     return;
 
-                _selectedUser.TranslatingLanguages.Add((int) selectableLanguage.Id);
+                _selectedUser.TranslatingLanguages.Add((int)selectableLanguage.Id);
             }
             else
             {
-                if (_selectedUser.TranslatingLanguages.Contains((int) selectableLanguage.Id))
-                    _selectedUser.TranslatingLanguages.Remove((int) selectableLanguage.Id);
+                if (_selectedUser.TranslatingLanguages.Contains((int)selectableLanguage.Id))
+                    _selectedUser.TranslatingLanguages.Remove((int)selectableLanguage.Id);
             }
 
             StateHasChanged();
@@ -175,14 +180,14 @@ namespace OriinDic.Pages
 
             if (selectableLanguage.Selected)
             {
-                if (_selectedUser.CoordinatingLanguages.Contains((int) selectableLanguage.Id))
+                if (_selectedUser.CoordinatingLanguages.Contains((int)selectableLanguage.Id))
                     return;
-                _selectedUser.CoordinatingLanguages.Add((int) selectableLanguage.Id);
+                _selectedUser.CoordinatingLanguages.Add((int)selectableLanguage.Id);
             }
             else
             {
-                if (_selectedUser.CoordinatingLanguages.Contains((int) selectableLanguage.Id))
-                    _selectedUser.CoordinatingLanguages.Remove((int) selectableLanguage.Id);
+                if (_selectedUser.CoordinatingLanguages.Contains((int)selectableLanguage.Id))
+                    _selectedUser.CoordinatingLanguages.Remove((int)selectableLanguage.Id);
             }
 
             StateHasChanged();

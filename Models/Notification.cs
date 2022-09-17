@@ -11,7 +11,7 @@ namespace OriinDic.Models
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
         private string Text { get; set; }
 
-        
+
         public Notification(string text)
         {
             if (string.IsNullOrWhiteSpace(text))

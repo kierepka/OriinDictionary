@@ -1,11 +1,11 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 
 using Fluxor;
 
 using OriinDic.Store.Languages;
+
+using System.Net.Http;
+using System.Threading.Tasks;
 
 
 namespace OriinDic.Store

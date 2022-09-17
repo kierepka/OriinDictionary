@@ -12,11 +12,11 @@
 
         public string DataLoadedMessage { get; init; } = string.Empty;
 
-        public TranslationsFetchDataAction(string searchText, 
-                long baseTermLangId, 
-                long langId, 
-                int searchPageNr, 
-                long itemsPerPage, 
+        public TranslationsFetchDataAction(string searchText,
+                long baseTermLangId,
+                long langId,
+                int searchPageNr,
+                long itemsPerPage,
                 bool current,
                 string dataLoadedMessage)
         {
@@ -29,6 +29,6 @@
             DataLoadedMessage = dataLoadedMessage;
         }
 
-        
+
     }
 }

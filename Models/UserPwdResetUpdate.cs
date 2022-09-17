@@ -9,20 +9,20 @@ namespace OriinDic.Models
         [JsonPropertyName("new_password")]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         [Required]
-        [DataType( DataType.Password )]
+        [DataType(DataType.Password)]
         public string NewPassword { get; set; } = string.Empty;
 
         [JsonPropertyName("re_new_password")]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
-        
+
         [Required]
-        [DataType( DataType.Password )]
-        [Compare( "NewPassword" )]
+        [DataType(DataType.Password)]
+        [Compare("NewPassword")]
         public string ReNewPassword { get; set; } = string.Empty;
-        
+
         [JsonPropertyName("token")]
         [Required]
-        [DataType( DataType.Text )]
+        [DataType(DataType.Text)]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Token { get; set; } = string.Empty;
 
@@ -30,7 +30,7 @@ namespace OriinDic.Models
         [Required]
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string UserId { get; set; } = string.Empty;
-        
+
         public UserPwdResetUpdate()
         {
 

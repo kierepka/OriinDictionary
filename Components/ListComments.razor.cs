@@ -1,11 +1,14 @@
+using Blazorise;
+
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+
+using OriinDic.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Blazorise;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using OriinDic.Models;
 
 using Text = OriinDic.I18nText.Text;
 
@@ -32,7 +35,7 @@ namespace OriinDic.Components
         private async Task OnAddObject()
         {
             if (validations is null) return;
-            
+
             if (await validations.ValidateAll())
             {
 

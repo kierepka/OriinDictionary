@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Links
 {
@@ -10,7 +11,7 @@ namespace OriinDic.Store.Links
         public RootObject<OriinLink> RootObject { get; } = new();
         public HttpStatusCode HttpStatusCode { get; }
 
-        public LinksDeleteResultAction(DeletedObjectResponse delteResponse, 
+        public LinksDeleteResultAction(DeletedObjectResponse delteResponse,
             RootObject<OriinLink> rootObject, HttpStatusCode httpStatusCode)
         {
             DelteResponse = delteResponse;

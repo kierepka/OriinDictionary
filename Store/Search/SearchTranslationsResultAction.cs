@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Search
 {

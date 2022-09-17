@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Users
 {
@@ -7,7 +8,7 @@ namespace OriinDic.Store.Users
     {
         public User User { get; } = new();
         public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
-        
+
         public UsersUpdateResultAction(User user, HttpStatusCode resultCode)
         {
             User = user;

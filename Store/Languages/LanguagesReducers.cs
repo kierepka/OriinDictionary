@@ -13,15 +13,15 @@ namespace OriinDic.Store.Languages
 
         [ReducerMethod]
         public static LanguagesState ReduceFetchDataResultAction(LanguagesState state, LanguagesFetchDataResultAction action) =>
-            new(isLoading:false, 
-                               languages: action.Languages, 
+            new(isLoading: false,
+                               languages: action.Languages,
                                lastActionState: EActionState.FetchedData);
 
 
         [ReducerMethod]
         public static LanguagesState ReduceStoreLocalDataResultAction(LanguagesState state, LanguagesFetchDataStoreResultAction action) =>
-            new(isLoading: false, 
-                               languages: action.Languages, 
+            new(isLoading: false,
+                               languages: action.Languages,
                                lastActionState: EActionState.LocalDataStored);
     }
 }

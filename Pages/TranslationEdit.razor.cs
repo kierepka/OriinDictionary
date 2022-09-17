@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Threading.Tasks;
-
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
@@ -11,6 +8,9 @@ using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Translations;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 using Toolbelt.Blazor.SpeechSynthesis;
 
@@ -115,13 +115,13 @@ namespace OriinDic.Pages
             if (TranslationsState?.Value?.Translation == null) return;
 
             if (MyText is null) return;
-             
+
             comment.TranslationId = TranslationsState.Value.Translation.Id;
 
             if (LocalStorage is not null)
                 comment.User = Func.GetCurrentUser(LocalStorage);
 
-            
+
             Dispatcher?.Dispatch(
                     new TranslationsCommentAddAction(
                         comment, _token.AuthToken,
@@ -139,7 +139,7 @@ namespace OriinDic.Pages
                 return;
             }
             Dispatcher?.Dispatch(
-                new TranslationsApproveAction(TranslationId, _token.AuthToken, 
+                new TranslationsApproveAction(TranslationId, _token.AuthToken,
                     MyText.TranslationSaved));
 
         }
@@ -152,7 +152,7 @@ namespace OriinDic.Pages
                 return;
             }
             Dispatcher?.Dispatch(
-                new TranslationsUpdateAction(TranslationId, 
+                new TranslationsUpdateAction(TranslationId,
                     TranslationsState.Value.Translation,
                     _token.AuthToken,
                     MyText.TranslationSaved));

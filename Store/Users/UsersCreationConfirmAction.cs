@@ -7,7 +7,7 @@ namespace OriinDic.Store.Users
         public string Token { get; } = string.Empty;
         public UserPwdResetUpdate User { get; } = new();
         public string UserPasswordResetConfirmMessage { get; } = string.Empty;
-        
+
         public UsersCreationConfirmAction(
             UserPwdResetUpdate user, string token, string userPasswordResetConfirmMessage)
         {

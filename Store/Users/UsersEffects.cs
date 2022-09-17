@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Blazorise.Snackbar;
+
+using Fluxor;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Notifications;
+
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazorise.Snackbar;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Users
 {
@@ -118,7 +121,7 @@ namespace OriinDic.Store.Users
         {
             var returnCode = HttpStatusCode.OK;
             HttpResponseMessage? response = null;
-            
+
             try
             {
                 response = await _httpClient.PostAsJsonAsync(
@@ -147,7 +150,7 @@ namespace OriinDic.Store.Users
         {
             var returnCode = HttpStatusCode.OK;
             HttpResponseMessage? response = null;
-            
+
             try
             {
                 response = await _httpClient.PostAsJsonAsync(
@@ -198,7 +201,7 @@ namespace OriinDic.Store.Users
                     new NotificationAction(action.UserPasswordResetConfirmMessage, SnackbarColor.Success));
         }
 
-        
+
 
         [EffectMethod]
         public async Task HandlePasswordChangeAction(UsersPasswordChangeAction action, IDispatcher dispatcher)
@@ -228,8 +231,8 @@ namespace OriinDic.Store.Users
                 dispatcher.Dispatch(
                     new NotificationAction(action.UserPasswordChangeMessage, SnackbarColor.Success));
         }
-        
-        
+
+
         [EffectMethod]
         public async Task HandleDeleteDataAction(UsersDeleteAction action, IDispatcher dispatcher)
         {
@@ -389,12 +392,12 @@ namespace OriinDic.Store.Users
                     returnCode = HttpStatusCode.BadRequest;
                 }
             }
-            
+
             dispatcher.Dispatch(
                 new UsersUpdateResultAction(
                     user: returnData ?? new User(),
                     resultCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.UserUpdatedMessage, SnackbarColor.Success));

@@ -1,6 +1,6 @@
 ﻿namespace OriinDic.Store.Search
 {
-    
+
     public record SearchTranslationsAction
     {
 
@@ -28,6 +28,6 @@
             SearchTranslationMessage = searchTranslationMessage;
         }
 
-        
+
     }
 }

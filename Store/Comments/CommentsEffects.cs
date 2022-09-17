@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Blazorise.Snackbar;
+
+using Fluxor;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Notifications;
+
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazorise.Snackbar;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Comments
 {
@@ -177,7 +180,7 @@ namespace OriinDic.Store.Comments
                 new CommentsFetchDataResultAction(
                     userResult ?? new RootObject<Comment>(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.CommentsLoadedMessage, SnackbarColor.Success));
@@ -205,7 +208,7 @@ namespace OriinDic.Store.Comments
             dispatcher.Dispatch(new CommentsFetchForTranslationResultAction(
                 returnData ?? new RootObject<Comment>(),
                 httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.FetchedTranslationMessage, SnackbarColor.Success));

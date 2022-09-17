@@ -1,8 +1,6 @@
 ﻿using OriinDic.Models;
-using OriinDic.Pages;
 
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace OriinDic.Helpers
 {
@@ -21,7 +19,7 @@ namespace OriinDic.Helpers
         private const string ApiDomain = "https://slownik.edenu.pl:8000/";
 #endif
 
-        
+
         private const string ApiVersion = "api/v1/";
         private const string ApiDomainVersion = ApiDomain + ApiVersion;
         private const string ApiNoVersion = "api/";
@@ -45,7 +43,7 @@ namespace OriinDic.Helpers
         internal const string UserCreationConfirm = AddUser + "activation/";
 
 
-        internal static readonly List<Language> BaseLanguagesList  = new()
+        internal static readonly List<Language> BaseLanguagesList = new()
         {
             new Language { Code = PlLangShortcut, Id = PlLangId, Name = PlLangName, SpecialCharacters = PlSpecialChars}
         };
@@ -62,7 +60,7 @@ namespace OriinDic.Helpers
         internal const string FemaleGenderVal = "F";
         internal const string MaleGenderVal = "M";
         internal const string NoGenderVal = "-";
-        
+
         internal const string PaginationBackName = "prev";
         internal const string PaginationNextName = "next";
 
@@ -101,12 +99,12 @@ namespace OriinDic.Helpers
 
         internal const string CurrentTranslations = "CurrentTranslations";
 
-        
+
         internal const string PrimaryColor = "#0288D1";
         internal const string ThemeIsEnabled = "ThemeIsEnabled";
         internal const string ThemeIsRounded = "ThemeIsRounded";
         internal const string ThemePrimaryColor = "ThemePrimaryColor";
-        
+
 
         /// <summary>
         ///     How many items per page
@@ -121,7 +119,7 @@ namespace OriinDic.Helpers
 
         internal const string RolesEditors = RoleTranslator + ", " + RoleCoordinator + ", " + RoleSuperUser;
         internal const string LinksAndComments = RolesEditors + ", " + RoleAssistant;
-        internal const string RolesBaseEditors = RoleSuperUser;     
+        internal const string RolesBaseEditors = RoleSuperUser;
         internal const string RolesUsersEditors = RoleCoordinator + ", " + RoleSuperUser;
         internal const string EnLangSpeechCode = "en-GB";
         internal const string DeLangSpeechCode = "de-DE";

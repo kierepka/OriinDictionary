@@ -1,13 +1,14 @@
-using System.Threading.Tasks;
-
 using Blazorise.DataGrid;
 
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Links;
+
+using System.Threading.Tasks;
 
 namespace OriinDic.Pages
 {
@@ -37,7 +38,7 @@ namespace OriinDic.Pages
             ReadLocalSettings();
             Dispatcher?.Dispatch(
                 new LinksDeleteAction(
-                    linkId: oriinLink.Id, 
+                    linkId: oriinLink.Id,
                     token: _token,
                     deleteLinkMessage: MyText?.Deleted ?? string.Empty));
 
@@ -51,7 +52,7 @@ namespace OriinDic.Pages
             ReadLocalSettings();
             Dispatcher?.Dispatch(
                 new LinksFetchDataAction(
-                    searchPageNr: e.Page, 
+                    searchPageNr: e.Page,
                     itemsPerPage: _itemsPerPage,
                     linkFetchedMessage: MyText?.Loaded ?? string.Empty));
 

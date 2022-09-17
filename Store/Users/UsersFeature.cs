@@ -1,9 +1,10 @@
-﻿using System.Net;
-using Fluxor;
+﻿using Fluxor;
+
+using System.Net;
 
 namespace OriinDic.Store.Users
 {
-    public class UsersFeature: Feature<UsersState>
+    public class UsersFeature : Feature<UsersState>
     {
         public override string GetName() => "Users";
 
@@ -12,7 +13,7 @@ namespace OriinDic.Store.Users
             isLoading: false,
             itemsPerPage: 0,
             searchPageNr: 0,
-            userId: 0, 
+            userId: 0,
             token: string.Empty,
             statusCode: HttpStatusCode.OK,
             user: new Models.User(),

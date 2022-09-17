@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
-using Fluxor;
+﻿using Fluxor;
+
 using Newtonsoft.Json;
+
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace OriinDic.Helpers
 {
@@ -18,7 +20,7 @@ namespace OriinDic.Helpers
             Store = store;
             Debug.WriteLine(nameof(InitializeAsync));
             return Task.CompletedTask;
-            
+
         }
 
         public override void AfterInitializeAllMiddlewares()

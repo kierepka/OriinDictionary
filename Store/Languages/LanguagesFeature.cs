@@ -1,6 +1,8 @@
-﻿using System;
-using Fluxor;
+﻿using Fluxor;
+
 using OriinDic.Models;
+
+using System;
 
 namespace OriinDic.Store.Languages
 {
@@ -12,6 +14,6 @@ namespace OriinDic.Store.Languages
         {
             //TODO: dodać zczytywanie z localdata
             return new(false, Array.Empty<Language>(), EActionState.Initialized);
-        } 
+        }
     }
 }

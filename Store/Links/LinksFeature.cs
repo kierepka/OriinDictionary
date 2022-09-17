@@ -1,10 +1,12 @@
-﻿using System.Net;
-using Fluxor;
+﻿using Fluxor;
+
 using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Links
 {
-    public class LinksFeature: Feature<LinksState>
+    public class LinksFeature : Feature<LinksState>
     {
         public override string GetName() => "Links";
 

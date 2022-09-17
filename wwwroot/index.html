@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>SŁOWNIK WIEDZY DUCHOWEJ z miasta Oriin</title>
     <base href="/" />
 
@@ -25,13 +25,7 @@
 </head>
 
 <body>
-    <app>
-        <div>
-            <p>
-                [EN]Loading first page... Please wait.<br />
-                [PL]Wczutuję pierwszą stronę... Proszę czekać.<br />
-            </p>
-        </div>
+    <div id="app">
         <div class="sk-cube-grid">
             <div class="sk-cube sk-cube1"></div>
             <div class="sk-cube sk-cube2"></div>
@@ -43,9 +37,15 @@
             <div class="sk-cube sk-cube8"></div>
             <div class="sk-cube sk-cube9"></div>
         </div>
+        <div class="loading-progress-text">
+            <p>
+                [EN]Loading first page... Please wait.<br />
+                [PL]Wczutuję pierwszą stronę... Proszę czekać.<br />
+            </p>
+        </div>
+    </div>
 
 
-    </app>
 
     <!-- EXTENSIONS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -55,11 +55,12 @@
     <script src="_content/Blazorise/blazorise.js"></script>
     <script src="_content/Blazorise.Bulma/blazorise.bulma.js"></script>
     <script src="_content/Fluxor.Blazor.Web/scripts/index.js"></script>
-    
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+
+
 
     <script src="_framework/blazor.webassembly.js"></script>
 
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
 
 </html>

@@ -17,20 +17,20 @@ namespace OriinDic.Store.Comments
         public bool IsLoading { get; }
 
         public CommentsState(
-            bool isLoading, 
-            int searchPageNr, 
-            long itemsPerPage, 
-            long commentId, 
+            bool isLoading,
+            int searchPageNr,
+            long itemsPerPage,
+            long commentId,
             long translationId,
-            string token, 
-            string statusCode, 
-            Comment comment, 
+            string token,
+            string statusCode,
+            Comment comment,
             RootObject<Comment> rootObject,
             DeletedObjectResponse deleteResponse,
             EActionState lastActionState
             )
         {
-           
+
             IsLoading = isLoading;
             SearchPageNr = searchPageNr;
             ItemsPerPage = itemsPerPage;
@@ -43,6 +43,6 @@ namespace OriinDic.Store.Comments
             DeleteResponse = deleteResponse;
             LastActionState = lastActionState;
         }
-      
+
     }
 }

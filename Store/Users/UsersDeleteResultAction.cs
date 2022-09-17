@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Users
 {
@@ -7,7 +8,7 @@ namespace OriinDic.Store.Users
     {
         public DeletedObjectResponse DeleteResponse { get; init; } = new();
         public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
-        
+
         public UsersDeleteResultAction(DeletedObjectResponse deleteResponse, HttpStatusCode resultCode)
         {
             DeleteResponse = deleteResponse;

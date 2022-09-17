@@ -1,8 +1,11 @@
-﻿using System;
-using Blazorise;
+﻿using Blazorise;
+
 using Fluxor;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
+
+using System;
 
 namespace OriinDic.Store.Search
 {
@@ -30,7 +33,7 @@ namespace OriinDic.Store.Search
                 currentBaseLangPl: true,
                 buttonEnColor: Color.Secondary,
                 buttonPlColor: Color.Primary,
-                searchPageNr:1,
+                searchPageNr: 1,
                 totalSearchItems: 0,
                 totalPages: 0,
                 itemsPerPage: 0,

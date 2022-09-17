@@ -1,4 +1,4 @@
-﻿ using Fluxor;
+﻿using Fluxor;
 
 namespace OriinDic.Store.Translations
 {
@@ -290,7 +290,7 @@ namespace OriinDic.Store.Translations
                 baseTerm: state.BaseTerm,
                 resultCode: state.ResultCode,
                 links: state.Links,
-                comments: state.Comments,                
+                comments: state.Comments,
                 lastActionState: EActionState.FetchingForEdit);
 
         [ReducerMethod]

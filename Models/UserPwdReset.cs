@@ -5,8 +5,8 @@ namespace OriinDic.Models
 {
     public record UserPwdReset
     {
-        
-        
+
+
         [JsonPropertyName("email")]
         [Required]
         [EmailAddress]

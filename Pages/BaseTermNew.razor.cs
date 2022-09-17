@@ -1,10 +1,12 @@
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
 
-using OriinDic.Models;
 using OriinDic.Helpers;
-using Toolbelt.Blazor.SpeechSynthesis;
+using OriinDic.Models;
 using OriinDic.Store.BaseTerms;
+
+using Toolbelt.Blazor.SpeechSynthesis;
 
 namespace OriinDic.Pages
 {
@@ -16,8 +18,8 @@ namespace OriinDic.Pages
 
         [Inject]
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        private IState<BaseTermsState>? BaseTermsState { get; set; } 
-        
+        private IState<BaseTermsState>? BaseTermsState { get; set; }
+
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         [Inject] private IDispatcher? Dispatcher { get; set; }
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -51,8 +53,8 @@ namespace OriinDic.Pages
         {
             if (SpeechSynthesis is null) return;
             if (BaseTermsState?.Value?.BaseTerm is null) return;
-            
-                var utterance = new SpeechSynthesisUtterance
+
+            var utterance = new SpeechSynthesisUtterance
             {
                 Text = BaseTermsState?.Value?.BaseTerm.Name,
                 Lang = Const.PlLangSpeechCode, // BCP 47 language tag

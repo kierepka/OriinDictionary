@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Blazorise.Snackbar;
+
+using Fluxor;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Notifications;
+
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazorise.Snackbar;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.BaseTerms
 {
@@ -57,7 +60,7 @@ namespace OriinDic.Store.BaseTerms
                 new BaseTermsFetchDataResultAction(
                     translationResult ?? new RootObject<ResultBaseTranslation>(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.BaseTermFetchedMessage, SnackbarColor.Success));
@@ -76,19 +79,19 @@ namespace OriinDic.Store.BaseTerms
                 var response = await _httpClient.PostAsJsonAsync(
                     requestUri: $"{Const.BaseTerms}", baseTermAction.BaseTerm);
                 returnData = await response.Content.ReadFromJsonAsync<BaseTerm>();
-                
+
             }
             catch (Exception e)
             {
                 dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
                 returnCode = HttpStatusCode.BadRequest;
             }
-            
+
             dispatcher.Dispatch(
                 new BaseTermsAddResultAction(
                     returnData ?? new BaseTerm(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(baseTermAction.BaseTermAddedMessage, SnackbarColor.Success));
@@ -123,11 +126,11 @@ namespace OriinDic.Store.BaseTerms
                     returnData ?? new ResultBaseTranslation(),
                     links: userResult?.Results ?? new System.Collections.Generic.List<OriinLink>(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.BaseTermFetchedMessage, SnackbarColor.Success));
-          
+
         }
 
         [EffectMethod]
@@ -168,11 +171,11 @@ namespace OriinDic.Store.BaseTerms
                         returnData ?? new ResultBaseTranslation(),
                         links: userResult?.Results ?? new System.Collections.Generic.List<OriinLink>(),
                         httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.BaseTermFetchedMessage, SnackbarColor.Success));
-           
+
         }
 
         [EffectMethod]
@@ -193,7 +196,7 @@ namespace OriinDic.Store.BaseTerms
             {
                 dispatcher.Dispatch(
                     new NotificationAction(e.Message, SnackbarColor.Danger));
-                returnCode = HttpStatusCode.BadRequest;   
+                returnCode = HttpStatusCode.BadRequest;
             }
 
             try

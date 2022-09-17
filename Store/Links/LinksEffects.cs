@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Blazorise.Snackbar;
+
+using Fluxor;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Notifications;
+
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazorise.Snackbar;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Links
 {
@@ -35,7 +38,7 @@ namespace OriinDic.Store.Links
             {
                 returnData = await response.Content.ReadFromJsonAsync<OriinLink>() ?? new OriinLink();
                 returnCode = response.StatusCode;
-            } 
+            }
             catch (Exception e)
             {
                 dispatcher.Dispatch(new NotificationAction(e.Message, SnackbarColor.Danger));
@@ -43,7 +46,7 @@ namespace OriinDic.Store.Links
             }
 
             dispatcher.Dispatch(new LinksAddResultAction(returnData, returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.LinksAddedMessage, SnackbarColor.Success));
@@ -105,7 +108,7 @@ namespace OriinDic.Store.Links
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(scheme: "Token", action.Token);
 
-             
+
 
             try
             {
@@ -123,7 +126,7 @@ namespace OriinDic.Store.Links
                     delteResponse: returnObject ?? new DeletedObjectResponse(),
                     rootObject: userResult ?? new RootObject<OriinLink>(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.DeleteLinkMessage, SnackbarColor.Success));
@@ -154,7 +157,7 @@ namespace OriinDic.Store.Links
                 new LinksFetchForBaseTermResultAction(
                     rootObject: userResult ?? new RootObject<OriinLink>(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));
@@ -183,10 +186,10 @@ namespace OriinDic.Store.Links
                 new LinksFetchDataResultAction(
                     userResult ?? new RootObject<OriinLink>(),
                     httpStatusCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
-                    new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));       
+                    new NotificationAction(action.LinkFetchedMessage, SnackbarColor.Success));
         }
     }
 }

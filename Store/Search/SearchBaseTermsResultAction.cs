@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Search
 {
@@ -7,7 +8,7 @@ namespace OriinDic.Store.Search
     {
         public RootObject<ResultBaseTranslation> RootObject { get; } = new();
         public HttpStatusCode ReturnCode { get; }
-        
+
         public SearchBaseTermsResultAction(RootObject<ResultBaseTranslation> rootObject, HttpStatusCode returnCode)
         {
             RootObject = rootObject;

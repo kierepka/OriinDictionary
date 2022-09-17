@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using OriinDic.Models;
 
-using OriinDic.Models;
+using System.Collections.Generic;
+using System.Net;
 
 namespace OriinDic.Store.Translations
 {

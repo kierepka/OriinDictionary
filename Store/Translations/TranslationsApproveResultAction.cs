@@ -1,6 +1,5 @@
 ﻿using OriinDic.Models;
 
-using System.Collections.Generic;
 using System.Net;
 
 namespace OriinDic.Store.Translations

@@ -16,7 +16,7 @@ namespace OriinDic.Store.BaseTerms
                 baseTermId: state.BaseTermId,
                 itemsPerPage: state.ItemsPerPage,
                 searchText: state.SearchText,
-                token: baseTermAction.Token,                
+                token: baseTermAction.Token,
                 baseTermSlug: state.BaseTermSlug,
                 baseTerm: baseTermAction.BaseTerm,
                 rootObject: state.RootObject,
@@ -65,7 +65,7 @@ namespace OriinDic.Store.BaseTerms
                 links: state.Links,
                 lastActionState: EActionState.FetchingData);
 
-      
+
         [ReducerMethod]
         public static BaseTermsState ReduceFetchDataResultAction(BaseTermsState state, BaseTermsFetchDataResultAction action) =>
              new(

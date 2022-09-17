@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 
 using Blazorise;
 
 using Fluxor.Blazor.Web.Components;
 
 using Microsoft.AspNetCore.Components;
+
+using System.Threading.Tasks;
 
 namespace OriinDic.Components
 {
@@ -23,10 +23,10 @@ namespace OriinDic.Components
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         private Alert? MyAlert { get; set; }
 
-        protected override async Task OnInitializedAsync() 
+        protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            
+
             if (I18NText is not null)
                 MyText = await I18NText.GetTextTableAsync<I18nText.Text>(this);
 

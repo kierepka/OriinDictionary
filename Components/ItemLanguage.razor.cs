@@ -15,7 +15,7 @@ namespace OriinDic.Components
         void OnCheckedChanged(bool isChecked)
         {
             if (Language is null) return;
-            
+
             Language.Selected = isChecked;
             StatusChanged?.Invoke(Language);
         }

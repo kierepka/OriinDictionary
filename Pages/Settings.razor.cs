@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Threading.Tasks;
-
 using Blazorise;
 
 using Fluxor;
@@ -9,6 +6,9 @@ using Microsoft.AspNetCore.Components;
 
 using OriinDic.Helpers;
 using OriinDic.Store.Languages;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OriinDic.Pages
 {
@@ -116,7 +116,7 @@ namespace OriinDic.Pages
         {
             if (Theme is null)
                 return;
-            ThemeEnabled = value;                                                       
+            ThemeEnabled = value;
             Theme.Enabled = ThemeEnabled;
             Theme.ThemeHasChanged();
         }

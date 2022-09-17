@@ -28,11 +28,11 @@ namespace OriinDic.Models
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public string Name { get; set; } = string.Empty;
 
-        [JsonPropertyName("synonyms")] 
+        [JsonPropertyName("synonyms")]
         // ReSharper disable once MemberCanBePrivate.Global
         public List<string> Synonyms { get; set; } = new();
 
-        [JsonPropertyName("examples")] 
+        [JsonPropertyName("examples")]
         // ReSharper disable once MemberCanBePrivate.Global
         public List<string> Examples { get; set; } = new();
 
@@ -95,7 +95,7 @@ namespace OriinDic.Models
 
         public void CheckNulls()
         {
-            Definition ??=  string.Empty;
+            Definition ??= string.Empty;
             Examples ??= new List<string>();
             Synonyms ??= new List<string>();
             LastEditId ??= 0;

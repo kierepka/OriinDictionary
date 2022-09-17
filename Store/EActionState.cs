@@ -1,10 +1,10 @@
 ﻿namespace OriinDic.Store
 {
-    public enum EActionState: int
+    public enum EActionState : int
     {
         Adding,
         Added,
-        Anonymization,        
+        Anonymization,
         Anonymized,
         Deleting,
         Deleted,

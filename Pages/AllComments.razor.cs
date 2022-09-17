@@ -1,11 +1,14 @@
-using System;
-using System.Threading.Tasks;
 using Blazorise.DataGrid;
+
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Comments;
+
+using System.Threading.Tasks;
 
 
 namespace OriinDic.Pages
@@ -31,7 +34,7 @@ namespace OriinDic.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            ReadLocalSettings();            
+            ReadLocalSettings();
         }
 
         private void OnRowRemoved(Comment comment)

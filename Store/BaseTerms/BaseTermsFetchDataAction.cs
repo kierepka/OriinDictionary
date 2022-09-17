@@ -20,10 +20,10 @@ namespace OriinDic.Store.BaseTerms
         public EnumHasTranslations HasTranslations { get; }
         public string BaseTermFetchedMessage { get; }
 
-        public BaseTermsFetchDataAction( 
-            string searchText, long baseTermLangId, long translationLangId, 
+        public BaseTermsFetchDataAction(
+            string searchText, long baseTermLangId, long translationLangId,
             int searchPageNr, long itemsPerPage, bool current,
-            EnumHasTranslations hasTranslations, string token, string slug, 
+            EnumHasTranslations hasTranslations, string token, string slug,
             long baseTermId, string baseTermFetchedMessage)
         {
             SearchText = searchText;
@@ -39,6 +39,6 @@ namespace OriinDic.Store.BaseTerms
             HasTranslations = hasTranslations;
         }
 
-        
+
     }
 }

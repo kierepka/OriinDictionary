@@ -1,4 +1,5 @@
 ﻿using OriinDic.Models;
+
 using System.Collections.Generic;
 
 namespace OriinDic.Store.BaseTerms

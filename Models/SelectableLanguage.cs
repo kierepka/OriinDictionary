@@ -8,6 +8,6 @@
         public SelectableLanguage(Language language, bool selected)
             => (Id, Name, Code, SpecialCharacters, Selected) =
             (language.Id, language.Name, language.Code, language.SpecialCharacters, selected);
-        
+
     }
 }

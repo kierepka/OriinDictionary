@@ -12,7 +12,7 @@ namespace OriinDic.Store.Translations
         public TranslationsFetchBaseTermResultAction(ResultBaseTranslation baseTranslation, HttpStatusCode httpStatusCode)
         {
             BaseTranslation = baseTranslation;
-            ResultCode = httpStatusCode; 
+            ResultCode = httpStatusCode;
         }
     }
 }

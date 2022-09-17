@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Links
 {
@@ -7,7 +8,7 @@ namespace OriinDic.Store.Links
     {
         public OriinLink Link { get; } = new();
         public HttpStatusCode HttpStatusCode { get; }
-        public LinksAddResultAction(OriinLink link,  HttpStatusCode httpStatusCode)
+        public LinksAddResultAction(OriinLink link, HttpStatusCode httpStatusCode)
         {
             Link = link;
             HttpStatusCode = httpStatusCode;

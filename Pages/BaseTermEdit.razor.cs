@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Threading.Tasks;
-
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
@@ -11,6 +8,9 @@ using OriinDic.Models;
 using OriinDic.Store.BaseTerms;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Links;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 using Toolbelt.Blazor.SpeechSynthesis;
 
@@ -65,7 +65,7 @@ namespace OriinDic.Pages
             if (doLangFetch)
                 Dispatcher?.Dispatch(new LanguagesFetchDataAction(LocalStorage));
 
-           
+
 
             GetData();
 
@@ -108,8 +108,8 @@ namespace OriinDic.Pages
 
             Dispatcher?.Dispatch(
                 new LinksAddAction(
-                    link: link, 
-                    token: token, 
+                    link: link,
+                    token: token,
                     linksAddedMessage: MyText?.AddedLink ?? string.Empty));
 
 
@@ -176,7 +176,7 @@ namespace OriinDic.Pages
                         }
                     }
                 }
-               
+
                 return retHeader;
             }
         }

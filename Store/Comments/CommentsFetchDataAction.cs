@@ -12,8 +12,8 @@ namespace OriinDic.Store.Comments
 
         public CommentsFetchDataAction(string token, string commentsLoadedMessage)
             => (Token, SearchPageNr, ItemsPerPage, CommentsLoadedMessage) =
-                (token, 0, Const.DefaultItemsPerPage, commentsLoadedMessage); 
-        
+                (token, 0, Const.DefaultItemsPerPage, commentsLoadedMessage);
+
 
         public CommentsFetchDataAction(string token, int searchPageNr, long itemsPerPage, string commentsLoadedMessage)
         {
@@ -23,6 +23,6 @@ namespace OriinDic.Store.Comments
             CommentsLoadedMessage = commentsLoadedMessage;
         }
 
-        
+
     }
 }

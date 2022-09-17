@@ -12,7 +12,7 @@
             Token = token;
             DeleteLinkMessage = deleteLinkMessage;
             LinkId = linkId;
-          
+
         }
     }
 }

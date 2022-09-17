@@ -1,8 +1,9 @@
-﻿using System;
+﻿using OriinDic.Helpers;
+using OriinDic.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using OriinDic.Helpers;
-using OriinDic.Models;
 
 namespace OriinDic.Store.Languages
 {
@@ -23,9 +24,9 @@ namespace OriinDic.Store.Languages
 
         public Language GetLanguage(long langId)
 
-        { 
+        {
             var retValue = Languages.FirstOrDefault(l => l.Id == langId);
-            return retValue ?? new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };                
+            return retValue ?? new Language { Code = Const.PlLangShortcut, Id = Const.PlLangId, Name = Const.PlLangName, SpecialCharacters = Const.PlSpecialChars };
 
         }
 
@@ -37,13 +38,13 @@ namespace OriinDic.Store.Languages
             return lang is null ? Const.PlLangShortcut : lang.Name;
 
         }
-        
+
         public IEnumerable<Language> TranslationLanguages
         {
             get
             {
                 return
-                    Languages.Where(l => 
+                    Languages.Where(l =>
                         Const.BaseLanguagesList.All(l2 => l2.Id != l.Id)).ToList().AsReadOnly();
             }
         }

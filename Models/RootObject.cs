@@ -19,7 +19,7 @@ namespace OriinDic.Models
         public List<T> Results { get; set; }
         public RootObject()
         {
-            Results = new List<T>();            
+            Results = new List<T>();
         }
     }
 

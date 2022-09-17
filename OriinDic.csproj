@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 	<PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
-		<nullable>enable</nullable>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
 		<I18nTextFallBackLanguage>pl</I18nTextFallBackLanguage>
 		<Configurations>Debug;Release;DebugLocal;Docker</Configurations>
@@ -15,8 +16,8 @@
 		<NeutralLanguage>pl-PL</NeutralLanguage>
 		<SignAssembly>false</SignAssembly>
 		<DelaySign>false</DelaySign>
-    <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
-    <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
+		<BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+		<BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
 		<AssemblyOriginatorKeyFile>Oriin.pfx</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	<ItemGroup>
@@ -30,20 +31,16 @@
 		<PackageReference Include="Blazorise.Snackbar" Version="1.0.6" />
 
 		<PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.5.0-Beta1" />
-		
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.1.22427.2" />		
+
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.1.22427.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0-rc.1.22427.2" PrivateAssets="all" />
-    
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.0-rc.1.22427.2" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.0-rc.1.22427.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.0-rc.1.22427.2" />
-		
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
-		
-    <PackageReference Include="MudBlazor" Version="6.0.15" />
-		
-    <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.7" />
+
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
 		<PackageReference Include="System.Net.Http.Json" Version="7.0.0-rc.1.22426.10" />
-		
+
 		<PackageReference Include="Toolbelt.Blazor.I18nText" Version="12.0.0" />
 		<PackageReference Include="Toolbelt.Blazor.SpeechRecognition" Version="0.0.4.6-alpha" />
 		<PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="10.0.0" />

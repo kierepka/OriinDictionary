@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+
 using OriinDic.Models;
 
 namespace OriinDic.Store.Search
@@ -33,7 +34,7 @@ namespace OriinDic.Store.Search
                 lastActionState: EActionState.FetchingData);
 
 
-        
+
         [ReducerMethod]
         public static SearchState ReduceSearchBaseTermsResultAction(SearchState state, SearchBaseTermsResultAction action) =>
             new(

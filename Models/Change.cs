@@ -2,7 +2,7 @@
 
 namespace OriinDic.Models
 {
-    public record Change 
+    public record Change
     {
         [JsonPropertyName("after")]
         // ReSharper disable once UnusedMember.Global

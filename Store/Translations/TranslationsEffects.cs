@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Blazorise.Snackbar;
+
+using Fluxor;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Notifications;
+
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazorise.Snackbar;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Translations
 {
@@ -328,7 +331,7 @@ namespace OriinDic.Store.Translations
             };
             resBaseTransl.Translation.CheckNulls();
 
-            resBaseTransl.Translations ??= new System.Collections.Generic.List<Translation> {resBaseTransl.Translation};
+            resBaseTransl.Translations ??= new System.Collections.Generic.List<Translation> { resBaseTransl.Translation };
 
             dispatcher.Dispatch(
                 new TranslationsFetchBaseTermResultAction(

@@ -1,5 +1,4 @@
-﻿using System;
-using OriinDic.Models;
+﻿using OriinDic.Models;
 
 namespace OriinDic.Store.Translations
 {
@@ -11,7 +10,7 @@ namespace OriinDic.Store.Translations
         public string CommentAddedMessage { get; } = string.Empty;
         public long TranslationId { get; }
 
-        public TranslationsCommentAddAction(Comment comment, string token, 
+        public TranslationsCommentAddAction(Comment comment, string token,
             long translationId, string commentAddedMessage)
         {
             Token = token;
@@ -20,5 +19,5 @@ namespace OriinDic.Store.Translations
             CommentAddedMessage = commentAddedMessage;
         }
     }
-    
+
 }

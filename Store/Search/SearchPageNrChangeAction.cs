@@ -12,13 +12,13 @@
         public string NoResults { get; } = string.Empty;
         public string SearchTranslationMessage { get; }
 
-        public SearchPageNrChangeAction(string pageActionName, string searchText, long baseTermLangId, long translationLangId, 
+        public SearchPageNrChangeAction(string pageActionName, string searchText, long baseTermLangId, long translationLangId,
             long itemsPerPage, long searchPageNr, bool current, string noResults, string searchTranslationMessage)
         {
             PageActionName = pageActionName;
             SearchText = searchText;
             BaseTermLangId = baseTermLangId;
-            TranslationLangId = translationLangId;            
+            TranslationLangId = translationLangId;
             ItemsPerPage = itemsPerPage;
             SearchPageNr = searchPageNr;
             Current = current;

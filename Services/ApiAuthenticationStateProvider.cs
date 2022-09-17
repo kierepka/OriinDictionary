@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Blazored.LocalStorage;
+
+using Microsoft.AspNetCore.Components.Authorization;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
-
-using Microsoft.AspNetCore.Components.Authorization;
-
-using OriinDic.Helpers;
-using OriinDic.Models;
 
 namespace OriinDic.Services
 {
@@ -146,7 +146,7 @@ namespace OriinDic.Services
                 result.Add(new Claim(ClaimTypes.Role, Const.RoleCoordinator));
 
 
-            
+
             return result;
         }
     }

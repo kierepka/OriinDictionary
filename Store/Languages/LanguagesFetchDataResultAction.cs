@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Collections.Generic;
 
 namespace OriinDic.Store.Languages
 {

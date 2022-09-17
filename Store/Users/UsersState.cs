@@ -1,5 +1,6 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDic.Models;
+
+using System.Net;
 
 namespace OriinDic.Store.Users
 {
@@ -13,24 +14,24 @@ namespace OriinDic.Store.Users
         public User User { get; } = new();
         public HttpStatusCode StatusCode { get; } = HttpStatusCode.OK;
         public string Token { get; } = string.Empty;
-        public long UserId { get; }        
+        public long UserId { get; }
         public int SearchPageNr { get; }
         public long ItemsPerPage { get; }
         public bool IsLoading { get; }
-        
+
 
         public UsersState(
             bool isLoading,
             long itemsPerPage,
-            int searchPageNr,             
-            long userId, 
-            string token, 
+            int searchPageNr,
+            long userId,
+            string token,
             HttpStatusCode statusCode,
             User user,
             RootObject<User> rootObject,
             UserUpdate userUpdate,
             DeletedObjectResponse deleteResponse,
-            UserAdd userAdd, 
+            UserAdd userAdd,
             EActionState lastActionState)
         {
             LastActionState = EActionState.Initializing;
@@ -48,6 +49,6 @@ namespace OriinDic.Store.Users
             LastActionState = lastActionState;
         }
 
-    
+
     }
 }

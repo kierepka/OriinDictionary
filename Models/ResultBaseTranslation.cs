@@ -12,7 +12,7 @@ namespace OriinDic.Models
         [JsonPropertyName("translation")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Translation? Translation { get; set; }
-        
+
         [JsonPropertyName("translations")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         // ReSharper disable once CollectionNeverQueried.Global

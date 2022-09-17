@@ -1,8 +1,10 @@
 using Blazorise;
 using Blazorise.Snackbar;
+
 using Fluxor;
-using Fluxor.Blazor.Web.Components;
+
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Store.Notifications;
 
 using System;
@@ -10,14 +12,15 @@ using System.Threading.Tasks;
 
 namespace OriinDic.Components
 {
-    public partial class PageHeader      : IDisposable
+    public partial class PageHeader : IDisposable
     {
 
         [Inject] private IActionSubscriber? ActionSubscriber { get; set; }
 
         private string _currentAlertText = string.Empty;
 
-        [Parameter] public string CurrentAlertText
+        [Parameter]
+        public string CurrentAlertText
         {
             get => _currentAlertText;
             set
@@ -57,7 +60,7 @@ namespace OriinDic.Components
                     action.Text,
                     color: action.SnackbarColor,
                     options: null)!;
-                    
+
             });
             return base.OnInitializedAsync();
         }

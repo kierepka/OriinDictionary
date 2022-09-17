@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
-
 using Microsoft.AspNetCore.Components;
 
 using OriinDic.Models;
+
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OriinDic.Components
 {
@@ -17,15 +17,15 @@ namespace OriinDic.Components
         [Parameter] public EventCallback<string> OnKeyCallback { get; set; }
 
         [Parameter] public bool KeyboardVisible { get; set; }
-        
+
 
         private IEnumerable<List<string>> GetSpecialChars()
         {
-            
+
             List<List<string>> returnList = new();
             if (MyLanguage is null) return returnList;
             if (string.IsNullOrEmpty(MyLanguage.SpecialCharacters)) return returnList;
-            
+
 
             if (MyLanguage.SpecialCharacters.Contains(';'))
             {
@@ -36,7 +36,7 @@ namespace OriinDic.Components
             {
                 returnList.Add(MyLanguage!.SpecialCharacters!.Split(",").ToList());
             }
-          
+
             return returnList;
         }
     }

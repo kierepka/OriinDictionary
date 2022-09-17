@@ -1,14 +1,15 @@
-using System.Linq;
-using System.Threading.Tasks;
-
 using Fluxor;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Store.Languages;
 using OriinDic.Store.Users;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OriinDic.Pages
 {
@@ -21,11 +22,11 @@ namespace OriinDic.Pages
         [Inject] private IState<LanguagesState>? LanguagesState { get; set; }
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        [Inject]  private IDispatcher? Dispatcher { get; set; }
+        [Inject] private IDispatcher? Dispatcher { get; set; }
 
         private User User { get; } = new();
         private bool IsSuperUser { get; set; }
-   
+
         [Parameter] public long UserId { get; set; }
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -45,11 +46,11 @@ namespace OriinDic.Pages
                 token = LocalStorage.GetItem<Token>(Const.TokenKey);
             }
 
-            if (token != null) 
+            if (token != null)
                 Dispatcher?.Dispatch(
                     new UsersFetchOneAction(
-                        userId: UserId, 
-                        token.AuthToken, 
+                        userId: UserId,
+                        token.AuthToken,
                         userFetchedMessage: MyText?.Loaded ?? string.Empty));
 
             if (AuthenticationStateProvider is not null)

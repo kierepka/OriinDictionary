@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using OriinDic.Models;
 
-using OriinDic.Models;
+using System.Collections.Generic;
+using System.Net;
 
 namespace OriinDic.Store.Translations
 {
@@ -29,21 +29,21 @@ namespace OriinDic.Store.Translations
 
 
         public TranslationsState(
-            bool current, 
-            bool isLoading, 
-            string searchText, 
-            string token, 
+            bool current,
+            bool isLoading,
+            string searchText,
+            string token,
             long translationId,
             long baseTermId,
-            long baseTermLangId, 
+            long baseTermLangId,
             long langId,
             long itemsPerPage,
-            int searchPageNr,             
+            int searchPageNr,
             RootObject<ResultBaseTranslation> rootObject,
             ResultBaseTranslation baseTranslation,
             Translation translation,
-            BaseTerm baseTerm, 
-            List<OriinLink> links, 
+            BaseTerm baseTerm,
+            List<OriinLink> links,
             List<Comment> comments,
             HttpStatusCode resultCode,
             EActionState lastActionState)

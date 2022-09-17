@@ -7,8 +7,8 @@ namespace OriinDic.Store.Users
         public string Token { get; } = string.Empty;
         public User User { get; } = new();
         public string UserAnonymizedMessage { get; } = string.Empty;
-        
-        public UsersAnonymizeAction(User user, string token,  string userAnonymizedMessage)
+
+        public UsersAnonymizeAction(User user, string token, string userAnonymizedMessage)
         {
             Token = token;
             UserAnonymizedMessage = userAnonymizedMessage;

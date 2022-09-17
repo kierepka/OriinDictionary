@@ -1,15 +1,19 @@
 
-using Microsoft.AspNetCore.Components;
-using OriinDic.Models;
-using System.Threading.Tasks;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Store.Languages;
-using OriinDic.Store.Search;
-using System.Linq;
-using System;
 using Blazorise;
 using Blazorise.DataGrid;
+
+using Fluxor;
+
+using Microsoft.AspNetCore.Components;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Languages;
+using OriinDic.Store.Search;
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OriinDic.Pages
 {
@@ -168,7 +172,7 @@ namespace OriinDic.Pages
 
             var currLang1Id = _currentLanguage1.Id;
             var currLang2Id = Const.EnLangId;
-            
+
             if (_currentLanguage2 is not null)
                 currLang2Id = _currentLanguage2.Id;
 

@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Blazorise.Snackbar;
+
+using Fluxor;
+
+using OriinDic.Helpers;
+using OriinDic.Models;
+using OriinDic.Store.Notifications;
+
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Blazorise.Snackbar;
-using Fluxor;
-using OriinDic.Helpers;
-using OriinDic.Models;
-using OriinDic.Store.Notifications;
 
 namespace OriinDic.Store.Search
 {
@@ -80,7 +83,7 @@ namespace OriinDic.Store.Search
 
             dispatcher.Dispatch(new SearchBaseTermsResultAction(translationResult,
                 returnCode: returnCode));
-            
+
             if (returnCode != HttpStatusCode.BadRequest)
                 dispatcher.Dispatch(
                     new NotificationAction(action.SearchBaseTermMessage, SnackbarColor.Success));

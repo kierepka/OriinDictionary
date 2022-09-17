@@ -1,13 +1,16 @@
-using System;
-using System.Threading.Tasks;
-
 using Blazorise;
+
 using Fluxor;
+
 using Microsoft.AspNetCore.Components;
+
 using OriinDic.Helpers;
 using OriinDic.Models;
 using OriinDic.Services;
 using OriinDic.Store.Users;
+
+using System;
+using System.Threading.Tasks;
 
 namespace OriinDic.Pages
 {
@@ -26,7 +29,7 @@ namespace OriinDic.Pages
 
         [Parameter]
         public string PageRoute { get; set; } = string.Empty;
-        
+
         private UserPwdResetUpdate User { get; set; } = new UserPwdResetUpdate();
 
         private string UserId = string.Empty;
@@ -67,10 +70,11 @@ namespace OriinDic.Pages
         protected override void OnParametersSet()
         {
             if (PageRoute is null) return;
-            
+
             var s = PageRoute.Split('/');
 
-            if (s.Length == 2) {
+            if (s.Length == 2)
+            {
                 UserId = s[0];
                 Token = s[1];
             }
