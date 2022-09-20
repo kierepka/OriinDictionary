@@ -1,32 +1,28 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-
-using Blazored.LocalStorage;
+﻿using Blazored.LocalStorage;
 
 using Fluxor;
 
-using OriinDic.Store.Languages;
+using OriinDictionary7.Store.Languages;
 
 
-namespace OriinDic.Store
+namespace OriinDictionary7.Store;
+
+public class StoreInitializedEffect : Effect<StoreInitializedAction>
 {
-    public class StoreInitializedEffect : Effect<StoreInitializedAction>
+    private readonly HttpClient _httpClient;
+    private readonly ISyncLocalStorageService _localStorage;
+
+    public StoreInitializedEffect(HttpClient httpClient, ISyncLocalStorageService localStorage)
     {
-        private readonly HttpClient _httpClient;
-        private readonly ISyncLocalStorageService _localStorage;
-
-        public StoreInitializedEffect(HttpClient httpClient, ISyncLocalStorageService localStorage)
-        {
-            _httpClient = httpClient;
-            _localStorage = localStorage;
-        }
-
-        public override Task HandleAsync(StoreInitializedAction action, IDispatcher dispatcher)
-        {
-            dispatcher.Dispatch(new LanguagesFetchDataAction(_localStorage));
-            //dispatcher.Dispatch(new LanguagesFetchDataAction());
-            return Task.CompletedTask;
-        }
-
+        _httpClient = httpClient;
+        _localStorage = localStorage;
     }
+
+    public override Task HandleAsync(StoreInitializedAction action, IDispatcher dispatcher)
+    {
+        dispatcher.Dispatch(new LanguagesFetchDataAction(_localStorage));
+        //dispatcher.Dispatch(new LanguagesFetchDataAction());
+        return Task.CompletedTask;
+    }
+
 }

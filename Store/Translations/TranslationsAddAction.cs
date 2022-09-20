@@ -1,18 +1,17 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Translations
+namespace OriinDictionary7.Store.Translations;
+
+public record TranslationsAddAction
 {
-    public record TranslationsAddAction
-    {
-        public string Token { get; } = string.Empty;
-        public string DataAddedMessage { get; } = string.Empty;
-        public Translation Translation { get; } = new();
+    public string Token { get; } = string.Empty;
+    public string DataAddedMessage { get; } = string.Empty;
+    public Translation Translation { get; } = new();
 
-        public TranslationsAddAction(Translation translation, string token, string dataAddedMessage)
-        {
-            Token = token;
-            DataAddedMessage = dataAddedMessage;
-            Translation = translation;
-        }
+    public TranslationsAddAction(Translation translation, string token, string dataAddedMessage)
+    {
+        Token = token;
+        DataAddedMessage = dataAddedMessage;
+        Translation = translation;
     }
 }

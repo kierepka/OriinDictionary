@@ -1,16 +1,16 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Links
+using System.Net;
+
+namespace OriinDictionary7.Store.Links;
+
+public record LinksAddResultAction
 {
-    public record LinksAddResultAction
+    public OriinLink Link { get; } = new();
+    public HttpStatusCode HttpStatusCode { get; }
+    public LinksAddResultAction(OriinLink link, HttpStatusCode httpStatusCode)
     {
-        public OriinLink Link { get; } = new();
-        public HttpStatusCode HttpStatusCode { get; }
-        public LinksAddResultAction(OriinLink link,  HttpStatusCode httpStatusCode)
-        {
-            Link = link;
-            HttpStatusCode = httpStatusCode;
-        }
+        Link = link;
+        HttpStatusCode = httpStatusCode;
     }
 }

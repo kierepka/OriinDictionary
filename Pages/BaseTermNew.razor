@@ -1,5 +1,5 @@
 ﻿@page "/addbaseterm"
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 <PageHeader IsLoading="@(BaseTermsState?.Value.IsLoading ?? false)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.HeaderBaseTermNew" />
 
@@ -9,9 +9,9 @@
         <AuthorizeView Roles="@Const.RolesBaseEditors">
             <Authorized>
                 @if (BaseTermsState?.Value?.BaseTerm is not null)
-                {
+            {
 
-                    <Card Margin="Margin.Is4.OnY">
+                <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
                             <CardTitle>[@BaseTermLanguage]@BaseTermsState.Value.BaseTerm.Name</CardTitle>
                         </CardHeader>
@@ -83,7 +83,7 @@
 
                         </CardFooter>
                     </Card>
-                }
+            }
             </Authorized>
             <NotAuthorized>
                 <RedirectToLogin />

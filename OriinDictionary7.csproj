@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="i18ntext\Text.en.json" />
+    <Content Remove="i18ntext\Text.pl-PL.json" />
+    <Content Remove="i18ntext\Text.pl.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="i18ntext\Text.en.json" />
+    <AdditionalFiles Include="i18ntext\Text.pl-PL.json" />
+    <AdditionalFiles Include="i18ntext\Text.pl.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.3.0-preview.1" />
+    <PackageReference Include="Blazorise.Bulma" Version="1.0.6" />
+    <PackageReference Include="Blazorise.Components" Version="1.0.6" />
+    <PackageReference Include="Blazorise.DataGrid" Version="1.0.6" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.6" />
+    <PackageReference Include="Blazorise.Sidebar" Version="1.0.6" />
+    <PackageReference Include="Blazorise.Snackbar" Version="1.0.6" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.5.0-Beta1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.0-rc.1.22427.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-rc.1.22427.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="7.0.0-rc.1.22427.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.0-rc.1.22427.2" PrivateAssets="all" />
+    <PackageReference Include="Toolbelt.Blazor.I18nText" Version="12.0.0" />
+    <PackageReference Include="Toolbelt.Blazor.SpeechRecognition" Version="0.0.4.6-alpha" />
+    <PackageReference Include="Toolbelt.Blazor.SpeechSynthesis" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+</Project>

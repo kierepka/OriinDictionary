@@ -1,4 +1,4 @@
-@using OriinDic.Helpers
+﻿@using OriinDictionary7.Helpers
 <Fluxor.Blazor.Web.StoreInitializer />
 <Blazorise.ThemeProvider Theme="@_theme">
     <Router AppAssembly="@typeof(Program).Assembly">
@@ -43,36 +43,36 @@
         </NotFound>
     </Router>
 </Blazorise.ThemeProvider>
-@code{
+@code {
 
     private readonly Theme _theme = new()
-    {
-        BarOptions = new ThemeBarOptions
         {
-            HorizontalHeight = "64px"
-        },
-        BreakpointOptions = new ThemeBreakpointOptions(),
-        ColorOptions = new ThemeColorOptions
-        {
-            Primary = Const.PrimaryColor,
+            BarOptions = new ThemeBarOptions
+            {
+                HorizontalHeight = "64px"
+            },
+            BreakpointOptions = new ThemeBreakpointOptions(),
+            ColorOptions = new ThemeColorOptions
+            {
+                Primary = Const.PrimaryColor,
 
-        },
-        BackgroundOptions = new ThemeBackgroundOptions
-        {
-            Primary = Const.PrimaryColor,
-        },
-        TextColorOptions = new ThemeTextColorOptions
-        {
-            Primary = Const.PrimaryColor,
-        },
+            },
+            BackgroundOptions = new ThemeBackgroundOptions
+            {
+                Primary = Const.PrimaryColor,
+            },
+            TextColorOptions = new ThemeTextColorOptions
+            {
+                Primary = Const.PrimaryColor,
+            },
 
-        InputOptions = new ThemeInputOptions
-        {
-            CheckColor = Const.PrimaryColor,
-            Color = Const.PrimaryColor,
-            SliderColor = Const.PrimaryColor,
-        },
-        Enabled = true,
-        IsRounded = true
-    };
+            InputOptions = new ThemeInputOptions
+            {
+                CheckColor = Const.PrimaryColor,
+                Color = Const.PrimaryColor,
+                SliderColor = Const.PrimaryColor,
+            },
+            Enabled = true,
+            IsRounded = true
+        };
 }

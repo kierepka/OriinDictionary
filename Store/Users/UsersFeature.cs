@@ -1,25 +1,25 @@
-﻿using System.Net;
-using Fluxor;
+﻿using Fluxor;
 
-namespace OriinDic.Store.Users
+using System.Net;
+
+namespace OriinDictionary7.Store.Users;
+
+public class UsersFeature : Feature<UsersState>
 {
-    public class UsersFeature: Feature<UsersState>
-    {
-        public override string GetName() => "Users";
+    public override string GetName() => "Users";
 
 
-        protected override UsersState GetInitialState() => new(
-            isLoading: false,
-            itemsPerPage: 0,
-            searchPageNr: 0,
-            userId: 0, 
-            token: string.Empty,
-            statusCode: HttpStatusCode.OK,
-            user: new Models.User(),
-            rootObject: new Models.RootObject<Models.User>(),
-            userUpdate: new Models.UserUpdate(),
-            deleteResponse: new Models.DeletedObjectResponse(),
-            userAdd: new Models.UserAdd(),
-            lastActionState: EActionState.Initializing);
-    }
+    protected override UsersState GetInitialState() => new(
+        isLoading: false,
+        itemsPerPage: 0,
+        searchPageNr: 0,
+        userId: 0,
+        token: string.Empty,
+        statusCode: HttpStatusCode.OK,
+        user: new Models.User(),
+        rootObject: new Models.RootObject<Models.User>(),
+        userUpdate: new Models.UserUpdate(),
+        deleteResponse: new Models.DeletedObjectResponse(),
+        userAdd: new Models.UserAdd(),
+        lastActionState: EActionState.Initializing);
 }

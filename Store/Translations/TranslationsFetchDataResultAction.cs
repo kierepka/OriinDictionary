@@ -1,17 +1,16 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
 using System.Net;
 
-namespace OriinDic.Store.Translations
+namespace OriinDictionary7.Store.Translations;
+
+public class TranslationsFetchDataResultAction
 {
-    public class TranslationsFetchDataResultAction
+    public RootObject<ResultBaseTranslation> RootObject { get; init; } = new();
+    public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
+    public TranslationsFetchDataResultAction(RootObject<ResultBaseTranslation> rootObject, HttpStatusCode httpStatusCode)
     {
-        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new();
-        public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
-        public TranslationsFetchDataResultAction(RootObject<ResultBaseTranslation> rootObject, HttpStatusCode httpStatusCode)
-        {
-            RootObject = rootObject;
-            ResultCode = httpStatusCode;
-        }
+        RootObject = rootObject;
+        ResultCode = httpStatusCode;
     }
 }

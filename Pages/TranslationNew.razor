@@ -1,6 +1,6 @@
 ﻿@page "/addtranslation/{BaseTermId:long}/{TranslationLangId:long}"
 @attribute [Authorize(Roles = Const.RolesEditors)]
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 
 <PageHeader IsLoading="@(TranslationsState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="" />
@@ -13,12 +13,12 @@
 else
 {
     @if (TranslationsState?.Value?.BaseTranslation?.Translation is null)
-    {
-        <a href="/">@MyText?.NoData</a>
-    }
-    else
-    {
-        <Row>
+{
+    <a href="/">@MyText?.NoData</a>
+}
+else
+{
+    <Row>
             <Column>
                 <h1>@MyText?.AddTranslation</h1>
                 <Card Margin="Margin.Is4.OnY">
@@ -72,13 +72,13 @@ else
                     </CardFooter>
                 </Card>
                 @if (TranslationsState?.Value?.BaseTranslation?.BaseTerm is null)
-                {
-                    <a href="/">Base term @MyText?.NoData !</a>
-                }
-                else
-                {
+            {
+                <a href="/">Base term @MyText?.NoData !</a>
+            }
+            else
+            {
 
-                    <Card Margin="Margin.Is4.OnY">
+                <Card Margin="Margin.Is4.OnY">
                         <CardHeader>
                             <CardTitle>[@BaseTermLanguage]@TranslationsState.Value.BaseTranslation.BaseTerm.Name</CardTitle>
                         </CardHeader>
@@ -99,32 +99,32 @@ else
                                 <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermExamples</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.Is10">
                                     @if (TranslationsState.Value.BaseTranslation.BaseTerm.Examples is null)
+                                {
+                                    <Label>@MyText?.NoData</Label>
+                                }
+                                else
+                                {
+                                    @foreach (var example in TranslationsState.Value.BaseTranslation.BaseTerm.Examples)
                                     {
-                                        <Label>@MyText?.NoData</Label>
+                                        <Label>@example</Label>
                                     }
-                                    else
-                                    {
-                                        @foreach (var example in TranslationsState.Value.BaseTranslation.BaseTerm.Examples)
-                                        {
-                                            <Label>@example</Label>
-                                        }
-                                    }
+                                }
                                 </FieldBody>
                             </Field>
                             <Field Horizontal="true">
                                 <FieldLabel ColumnSize="ColumnSize.Is2">@MyText?.BaseTermSynonyms</FieldLabel>
                                 <FieldBody ColumnSize="ColumnSize.Is10">
                                     @if (TranslationsState.Value.BaseTranslation.BaseTerm.Synonyms is null)
+                                {
+                                    <Label>@MyText?.NoData</Label>
+                                }
+                                else
+                                {
+                                    @foreach (var synonym in TranslationsState.Value.BaseTranslation.BaseTerm.Synonyms)
                                     {
-                                        <Label>@MyText?.NoData</Label>
+                                        <Label>@synonym</Label>
                                     }
-                                    else
-                                    {
-                                        @foreach (var synonym in TranslationsState.Value.BaseTranslation.BaseTerm.Synonyms)
-                                        {
-                                            <Label>@synonym</Label>
-                                        }
-                                    }
+                                }
                                 </FieldBody>
                             </Field>
                             <Field Horizontal="true">
@@ -153,8 +153,8 @@ else
                             </Field>
                         </CardFooter>
                     </Card>
-                }
+            }
             </Column>
         </Row>
-    }
+}
 }

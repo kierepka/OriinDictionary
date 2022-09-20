@@ -1,17 +1,17 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+using System.Net;
+
+namespace OriinDictionary7.Store.Users;
+
+public record UsersDeleteResultAction
 {
-    public record UsersDeleteResultAction
+    public DeletedObjectResponse DeleteResponse { get; init; } = new();
+    public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+
+    public UsersDeleteResultAction(DeletedObjectResponse deleteResponse, HttpStatusCode resultCode)
     {
-        public DeletedObjectResponse DeleteResponse { get; init; } = new();
-        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
-        
-        public UsersDeleteResultAction(DeletedObjectResponse deleteResponse, HttpStatusCode resultCode)
-        {
-            DeleteResponse = deleteResponse;
-            ResultCode = resultCode;
-        }
+        DeleteResponse = deleteResponse;
+        ResultCode = resultCode;
     }
 }

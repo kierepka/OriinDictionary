@@ -1,23 +1,22 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersUpdateAction
 {
-    public record UsersUpdateAction
-    {
 
-        public long UserId { get; }
-        public UserUpdate User { get; } = new();
-        public string Token { get; } = string.Empty;
-        public string UserUpdatedMessage { get; } = string.Empty;
-        
-        public UsersUpdateAction(long userId, UserUpdate user, string token, string userUpdatedMessage)
-        {
-            UserId = userId;
-            User = user;
-            Token = token;
-            UserUpdatedMessage = userUpdatedMessage;
-            
-        }
+    public long UserId { get; }
+    public UserUpdate User { get; } = new();
+    public string Token { get; } = string.Empty;
+    public string UserUpdatedMessage { get; } = string.Empty;
+
+    public UsersUpdateAction(long userId, UserUpdate user, string token, string userUpdatedMessage)
+    {
+        UserId = userId;
+        User = user;
+        Token = token;
+        UserUpdatedMessage = userUpdatedMessage;
 
     }
+
 }

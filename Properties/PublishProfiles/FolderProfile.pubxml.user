@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\GitHub\OriinDictionary7\bin\Release\net7.0\browser-wasm\publish\</_PublishTargetUrl>
+    <History>True|2022-09-17T18:11:49.1663370Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

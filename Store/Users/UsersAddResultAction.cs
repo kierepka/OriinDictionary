@@ -1,18 +1,18 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+using System.Net;
+
+namespace OriinDictionary7.Store.Users;
+
+public record UsersAddResultAction
 {
-    public record UsersAddResultAction
-    {
-        public User User { get; } = new();
-        
-        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+    public User User { get; } = new();
 
-        public UsersAddResultAction(User user, HttpStatusCode resultCode)
-        {
-            User = user;
-            ResultCode = resultCode;
-        }
+    public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+
+    public UsersAddResultAction(User user, HttpStatusCode resultCode)
+    {
+        User = user;
+        ResultCode = resultCode;
     }
 }

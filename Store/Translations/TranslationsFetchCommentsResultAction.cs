@@ -1,20 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using OriinDictionary7.Models;
+
 using System.Net;
 
-using OriinDic.Models;
+namespace OriinDictionary7.Store.Translations;
 
-namespace OriinDic.Store.Translations
+public class TranslationsFetchCommentsResultAction
 {
-    public class TranslationsFetchCommentsResultAction
+    public List<Comment> Comments { get; init; } = new();
+
+    public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
+
+    public TranslationsFetchCommentsResultAction(List<Comment> comments, HttpStatusCode httpStatusCode)
     {
-        public List<Comment> Comments { get; init; } = new();
-
-        public HttpStatusCode ResultCode { get; init; } = HttpStatusCode.BadRequest;
-
-        public TranslationsFetchCommentsResultAction(List<Comment> comments, HttpStatusCode httpStatusCode)
-        {
-            Comments = comments;
-            ResultCode = httpStatusCode;
-        }
+        Comments = comments;
+        ResultCode = httpStatusCode;
     }
 }

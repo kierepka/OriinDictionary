@@ -16,8 +16,8 @@
         <Addons>
 
             @if (_showOptionForBaseTerms)
-            {
-                <Addon AddonType="AddonType.Start">
+        {
+            <Addon AddonType="AddonType.Start">
                     <Dropdown>
                         <DropdownToggle Color="Color.Primary">
                             @MyText?.LinkTranslation
@@ -34,12 +34,12 @@
                     </Dropdown>
                 </Addon>
 
-            }
-            else
-            {
-                <AddonLabel>@MyText?.Approved</AddonLabel>
-                <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
-            }
+        }
+        else
+        {
+            <AddonLabel>@MyText?.Approved</AddonLabel>
+            <Check TValue="bool" @bind-Checked="@_currentTranslations"></Check>
+        }
 
             <Addon AddonType="AddonType.Body">
                 <TextEdit Placeholder="@MyText?.Search" Text="@SearchText"
@@ -55,13 +55,13 @@
 
                         <DropdownMenu>
                             @if (LanguagesState is not null)
+                        {
+                            @foreach (var l in Helpers.Const.BaseLanguagesList)
                             {
-                                @foreach (var l in Helpers.Const.BaseLanguagesList)
-                                {
-                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
-                                    <DropdownDivider />
-                                }
+                                <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
+                                <DropdownDivider />
                             }
+                        }
                         </DropdownMenu>
                     </Dropdown>
                 </Buttons>
@@ -85,13 +85,13 @@
                         <DropdownToggle Color="Color.Primary" IsSplit="true" />
                         <DropdownMenu>
                             @if (LanguagesState is not null)
+                        {
+                            @foreach (var l in LanguagesState.Value.TranslationLanguages)
                             {
-                                @foreach (var l in LanguagesState.Value.TranslationLanguages)
-                                {
-                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
-                                    <DropdownDivider />
-                                }
+                                <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem2(l))">@l.Name</DropdownItem>
+                                <DropdownDivider />
                             }
+                        }
 
                         </DropdownMenu>
                     </Dropdown>
@@ -107,8 +107,8 @@
         </Addons>
 
         @if (SearchState?.Value.SearchItems is not null)
-        {
-            <DataGrid TItem="SearchItem"
+    {
+        <DataGrid TItem="SearchItem"
                       Data="SearchState?.Value.SearchItems"
                       ReadData="@OnReadData"
                       ShowPager="false"
@@ -129,37 +129,37 @@
                         <DisplayTemplate Context="ctx1">
 
                             @{
-                                var locDic = ctx1 as SearchItem;
-                                if (string.IsNullOrEmpty(locDic.BaseName))
-                                {
-                                    <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
+                            var locDic = ctx1 as SearchItem;
+                            if (string.IsNullOrEmpty(locDic.BaseName))
+                            {
+                                <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
                                             Type="ButtonType.Link" To="/addbaseterm" Block="true">
                                         <ChildContent>
                                             <Icon Name="@("fa-scroll")" />&nbsp;@MyText?.AddBase
                                         </ChildContent>
                                     </Button>
-                                }
-                                else
-                                {
-                                    <Tooltip Text="@locDic.BaseNameToolTip">
+                            }
+                            else
+                            {
+                                <Tooltip Text="@locDic.BaseNameToolTip">
 
                                         <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
                                                 Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
                                             <Icon Name="@("fa-scroll")" />&nbsp;"@locDic.BaseName"
                                         </Button>
                                     </Tooltip>
-                                }
                             }
+                        }
                         </DisplayTemplate>
                     </DataGridColumn>
                     <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TranslationTitle">
                         <DisplayTemplate Context="ctx2">
 
                             @{
-                                var locDic = ctx2 as SearchItem;
-                                if (string.IsNullOrEmpty(locDic.TranslateName))
-                                {
-                                    <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
+                            var locDic = ctx2 as SearchItem;
+                            if (string.IsNullOrEmpty(locDic.TranslateName))
+                            {
+                                <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
                                             Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}/{CurrentLanguage2Id}")" Block="true">
                                         <ChildContent>
 
@@ -167,22 +167,22 @@
                                         </ChildContent>
                                     </Button>
 
-                                }
-                                else
-                                {
-                                    <Tooltip Text="@locDic.TranslateNameToolTip">
+                            }
+                            else
+                            {
+                                <Tooltip Text="@locDic.TranslateNameToolTip">
                                         <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
                                                 Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
                                             <Icon Name="@("fa-language")" />&nbsp;"@locDic.TranslateName"
                                         </Button>
                                     </Tooltip>
-                                }
                             }
+                        }
                         </DisplayTemplate>
                     </DataGridColumn>
                 </DataGridColumns>
             </DataGrid>
-        }
+    }
 
     </Authorized>
 
@@ -204,19 +204,19 @@
 
                         <DropdownMenu>
                             @if (LanguagesState is not null)
+                        {
+                            @foreach (var l in Helpers.Const.BaseLanguagesList)
                             {
-                                @foreach (var l in Helpers.Const.BaseLanguagesList)
-                                {
-                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem3(l))">@l.Name</DropdownItem>
-                                    <DropdownDivider />
-                                }
-
-                                @foreach (var l in LanguagesState.Value.TranslationLanguages)
-                                {
-                                    <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem3(l))">@l.Name</DropdownItem>
-                                    <DropdownDivider />
-                                }
+                                <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem3(l))">@l.Name</DropdownItem>
+                                <DropdownDivider />
                             }
+
+                            @foreach (var l in LanguagesState.Value.TranslationLanguages)
+                            {
+                                <DropdownItem TValue="long" Value="@l.Id" Clicked="@(_ => ClickedDropdownItem3(l))">@l.Name</DropdownItem>
+                                <DropdownDivider />
+                            }
+                        }
                         </DropdownMenu>
                     </Dropdown>
                 </Buttons>
@@ -251,53 +251,53 @@
                 <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TermTitle">
                     <DisplayTemplate Context="ctx1na">
                         @{
-                            var locDic = ctx1na as SearchItem;
-                            if (string.IsNullOrEmpty(locDic.BaseName))
-                            {
-                                <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
+                        var locDic = ctx1na as SearchItem;
+                        if (string.IsNullOrEmpty(locDic.BaseName))
+                        {
+                            <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
                                         Type="ButtonType.Link" To="/addbaseterm" Block="true">
                                     <ChildContent>
                                         <Icon Name="@("fa-scroll")" />&nbsp;@MyText?.NoBaseTermName
                                     </ChildContent>
                                 </Button>
-                            }
-                            else
-                            {
-                                <Tooltip Text="@locDic.BaseNameToolTip">
+                        }
+                        else
+                        {
+                            <Tooltip Text="@locDic.BaseNameToolTip">
 
                                     <Button Color="@(SearchState?.Value.ButtonPlColor ?? Color.Primary)"
                                             Type="ButtonType.Link" To="@($"/editbaseterm/{locDic.BaseTermSlug}")" Block="true">
                                         <Icon Name="@("fa-scroll")" />&nbsp;"@locDic.BaseName"
                                     </Button>
                                 </Tooltip>
-                            }
                         }
+                    }
                     </DisplayTemplate>
                 </DataGridColumn>
                 <DataGridColumn TItem="SearchItem" Field="@nameof(SearchItem.BaseName)" Caption="@MyText?.TranslationTitle">
                     <DisplayTemplate Context="ctx2na">
 
                         @{
-                            var locDic = ctx2na as SearchItem;
-                            if (string.IsNullOrEmpty(locDic.TranslateName))
-                            {
-                                <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
+                        var locDic = ctx2na as SearchItem;
+                        if (string.IsNullOrEmpty(locDic.TranslateName))
+                        {
+                            <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
                                         Type="ButtonType.Link" To="@($"/addtranslation/{locDic.BaseTermId}")" Block="true">
                                     <ChildContent>
                                         <Icon Name="@("fa-language")" />&nbsp;@MyText?.NoTranslationName
                                     </ChildContent>
                                 </Button>
-                            }
-                            else
-                            {
-                                <Tooltip Text="@locDic.TranslateNameToolTip">
+                        }
+                        else
+                        {
+                            <Tooltip Text="@locDic.TranslateNameToolTip">
                                     <Button Color="@(SearchState?.Value.ButtonEnColor ?? Color.Light)"
                                             Type="ButtonType.Link" To="@($"/edittranslation/{locDic.TranslateId}")" Block="true">
                                         <Icon Name="@("fa-language")" />&nbsp;"@locDic.TranslateName"
                                     </Button>
                                 </Tooltip>
-                            }
                         }
+                    }
                     </DisplayTemplate>
                 </DataGridColumn>
             </DataGridColumns>

@@ -1,15 +1,14 @@
-﻿namespace OriinDic.Store.Users
+﻿namespace OriinDictionary7.Store.Users;
+
+public record UsersDeleteAction
 {
-    public record UsersDeleteAction
+    public string Token { get; } = string.Empty;
+    public long UserId { get; }
+    public string UserDeleteMessage { get; } = string.Empty;
+    public UsersDeleteAction(long userId, string token, string userDeleteMessage)
     {
-        public string Token { get; } = string.Empty;
-        public long UserId { get; }
-        public string UserDeleteMessage { get; } = string.Empty;
-        public UsersDeleteAction(long userId, string token, string userDeleteMessage)
-        {
-            Token = token;
-            UserDeleteMessage = userDeleteMessage;
-            UserId = userId;
-        }
+        Token = token;
+        UserDeleteMessage = userDeleteMessage;
+        UserId = userId;
     }
 }

@@ -1,6 +1,6 @@
 ﻿@page "/user/{UserId:long}"
 @attribute [Authorize]
-@using OriinDic.Helpers
+@using OriinDictionary7.Helpers
 @inherits DicBasePage
 
 <PageHeader IsLoading="@(UserState?.Value.IsLoading ?? true)" CurrentAlertText="@CurrentAlert" LoadingText="@MyText?.Loading" HeaderText="@MyText?.HeaderUser" />
@@ -50,56 +50,56 @@
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.Language</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (LanguagesState is not null)
-                        {
-                            <Blazorise.Text Weight="TextWeight.Bold">
+                    {
+                        <Blazorise.Text Weight="TextWeight.Bold">
                                 @((LanguagesState.Value).GetLanguageName(User.LanguageId ?? Const.PlLangId))
                             </Blazorise.Text>
-                        }
+                    }
                     </FieldBody>
                 </Field>
                 <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.TranslatingLanguages</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
+                    {
+                        <Blazorise.Text Weight="TextWeight.Bold">@MyText?.SuperUserHasAll</Blazorise.Text>
+                    }
+                    else
+                    {
+                        @if (LanguagesState is not null)
                         {
-                            <Blazorise.Text Weight="TextWeight.Bold">@MyText?.SuperUserHasAll</Blazorise.Text>
-                        }
-                        else
-                        {
-                            @if (LanguagesState is not null)
-                            {
 
-                                @foreach (var langT in LanguagesState.Value.Languages)
-                                {
-                                    <Switch TValue="bool" Checked="@(User.TranslatingLanguages?.Contains((int)langT.Id) ?? false)"
+                            @foreach (var langT in LanguagesState.Value.Languages)
+                            {
+                                <Switch TValue="bool" Checked="@(User.TranslatingLanguages?.Contains((int)langT.Id) ?? false)"
                                             ReadOnly="true">@langT.Name</Switch>
-                                }
                             }
                         }
+                    }
                     </FieldBody>
                 </Field>
                 <Field Horizontal="true">
                     <FieldLabel ColumnSize="ColumnSize.Is3">@MyText?.CoordinatingLanguages</FieldLabel>
                     <FieldBody ColumnSize="ColumnSize.Is9">
                         @if (IsSuperUser)
-                        {
-                            <Blazorise.Text Weight="TextWeight.Bold">
+                    {
+                        <Blazorise.Text Weight="TextWeight.Bold">
                                 @MyText?.SuperUserHasAll
                             </Blazorise.Text>
-                        }
-                        else
+                    }
+                    else
+                    {
+
+                        @if (LanguagesState is not null)
                         {
-
-                            @if (LanguagesState is not null)
+                            @foreach (var langC in LanguagesState.Value.Languages)
                             {
-                                @foreach (var langC in LanguagesState.Value.Languages)
-                                {
-                                    <Switch TValue="bool" Checked="@(User.CoordinatingLanguages?.Contains((int)langC.Id) ?? false)"
+                                <Switch TValue="bool" Checked="@(User.CoordinatingLanguages?.Contains((int)langC.Id) ?? false)"
                                             ReadOnly="true">@langC.Name</Switch>
-                                }
                             }
-
                         }
+
+                    }
                     </FieldBody>
                 </Field>
 

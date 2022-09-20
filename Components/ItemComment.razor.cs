@@ -1,14 +1,13 @@
 
 using Microsoft.AspNetCore.Components;
 
-using OriinDic.Models;
+using OriinDictionary7.Models;
 
-namespace OriinDic.Components
+namespace OriinDictionary7.Components;
+
+public partial class ItemComment
+
 {
-    public partial class ItemComment
+    [Parameter] public Comment? MyComment { get; set; }
 
-    {
-        [Parameter] public Comment? MyComment { get; set; }
-
-    }
 }

@@ -1,16 +1,16 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Search
+using System.Net;
+
+namespace OriinDictionary7.Store.Search;
+
+public class SearchTranslationsResultAction
 {
-    public class SearchTranslationsResultAction
-    {
-        public RootObject<ResultBaseTranslation> RootObject { get; init; } = new();
+    public RootObject<ResultBaseTranslation> RootObject { get; init; } = new();
 
-        public SearchTranslationsResultAction(RootObject<ResultBaseTranslation> rootObject,
-            HttpStatusCode httpStatusCode)
-        {
-            RootObject = rootObject;
-        }
+    public SearchTranslationsResultAction(RootObject<ResultBaseTranslation> rootObject,
+        HttpStatusCode httpStatusCode)
+    {
+        RootObject = rootObject;
     }
 }

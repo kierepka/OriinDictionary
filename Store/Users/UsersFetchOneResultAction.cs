@@ -1,16 +1,16 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+using System.Net;
+
+namespace OriinDictionary7.Store.Users;
+
+public record UsersFetchOneResultAction
 {
-    public record UsersFetchOneResultAction
+    public User User { get; } = new();
+    public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
+    public UsersFetchOneResultAction(User user, HttpStatusCode resultCode)
     {
-        public User User { get; } = new();
-        public HttpStatusCode ResultCode { get; } = HttpStatusCode.BadRequest;
-        public UsersFetchOneResultAction(User user, HttpStatusCode resultCode)
-        {
-            User = user;
-            ResultCode = resultCode;
-        }
+        User = user;
+        ResultCode = resultCode;
     }
 }

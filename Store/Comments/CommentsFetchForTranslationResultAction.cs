@@ -1,17 +1,17 @@
-﻿using System.Net;
-using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Comments
+using System.Net;
+
+namespace OriinDictionary7.Store.Comments;
+
+public class CommentsFetchForTranslationResultAction
 {
-    public class CommentsFetchForTranslationResultAction
-    {
-        public RootObject<Comment> RootObject { get; } = new();
-        public HttpStatusCode HttpStatusCode { get; }
+    public RootObject<Comment> RootObject { get; } = new();
+    public HttpStatusCode HttpStatusCode { get; }
 
-        public CommentsFetchForTranslationResultAction(RootObject<Comment> rootObject, HttpStatusCode httpStatusCode)
-        {
-            RootObject = rootObject;
-            HttpStatusCode = httpStatusCode;
-        }
+    public CommentsFetchForTranslationResultAction(RootObject<Comment> rootObject, HttpStatusCode httpStatusCode)
+    {
+        RootObject = rootObject;
+        HttpStatusCode = httpStatusCode;
     }
 }

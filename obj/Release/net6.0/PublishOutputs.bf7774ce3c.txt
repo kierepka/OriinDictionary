@@ -1,0 +1,2 @@
+D:\GitHub\OriinDictionary\obj\Release\net6.0\browser-wasm\PubTmp\Out\libman.json
+D:\GitHub\OriinDictionary\obj\Release\net6.0\browser-wasm\PubTmp\Out\web.config

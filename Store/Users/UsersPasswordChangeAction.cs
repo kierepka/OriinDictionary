@@ -1,18 +1,17 @@
-﻿using OriinDic.Models;
+﻿using OriinDictionary7.Models;
 
-namespace OriinDic.Store.Users
+namespace OriinDictionary7.Store.Users;
+
+public record UsersPasswordChangeAction
 {
-    public record UsersPasswordChangeAction
+    public string Token { get; } = string.Empty;
+    public UserPwdUpdate User { get; } = new();
+    public string UserPasswordChangeMessage { get; } = string.Empty;
+
+    public UsersPasswordChangeAction(UserPwdUpdate user, string token, string userPasswordChangeMessage)
     {
-        public string Token { get; } = string.Empty;
-        public UserPwdUpdate User { get; } = new();
-        public string UserPasswordChangeMessage { get; } = string.Empty;
-        
-        public UsersPasswordChangeAction(UserPwdUpdate user, string token, string userPasswordChangeMessage)
-        {
-            Token = token;
-            UserPasswordChangeMessage = userPasswordChangeMessage;
-            User = user;
-        }
+        Token = token;
+        UserPasswordChangeMessage = userPasswordChangeMessage;
+        User = user;
     }
 }
