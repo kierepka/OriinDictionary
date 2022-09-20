@@ -15,56 +15,57 @@ using OriinDic.Helpers;
 using Toolbelt.Blazor.I18nText;
 using AuthenticationStateProvider = OriinDic.Services.ApiAuthenticationStateProvider;
 
-namespace OriinDic
+namespace OriinDic;
+
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            
-
-            builder.Services
-                .AddI18nText(options =>
-                {
-                    options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
-                })
-                .AddBlazorise()                       
-                .AddBulmaProviders()
-                .AddFontAwesomeIcons();
-            
-            builder.Services.AddScoped(sp => 
-                new HttpClient
-                {
-                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-                });
-
-            builder.Services.AddBlazoredLocalStorage();
-            builder.Services.AddScoped<AuthenticationStateProvider>();
-            builder.Services.AddScoped<Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>(provider =>
-                provider.GetRequiredService<AuthenticationStateProvider>());
-            builder.Services.AddScoped<IAuthService, AuthService>();
-            builder.Services.AddOptions();
-            builder.Services.AddAuthorizationCore();
-            #if DEBUG
-            builder.Services.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Debug));
-            #endif 
-            builder.Services.AddSpeechSynthesis();
-            
-            builder.Services.AddFluxor(o => o
-                .ScanAssemblies(typeof(Program).Assembly)
-                .UseReduxDevTools()
-                .AddMiddleware<LoggingMiddleware>()
-                .UseRouting());
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        
 
 
-            builder.RootComponents.Add<App>("app");
 
-            var host = builder.Build();
+        builder.RootComponents.Add<App>("app");
+        ConfigureServices(builder.Services, builder.HostEnvironment.BaseAddress);
 
-       
+        await builder.Build().RunAsync();
+    }
+    private static void ConfigureServices(IServiceCollection services, string baseAddress)
+    {
 
-            await host.RunAsync();
-        }
+
+        services
+            .AddI18nText(options =>
+            {
+                options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
+            })
+            .AddBlazorise()
+            .AddBulmaProviders()
+            .AddFontAwesomeIcons();
+
+        services.AddScoped(sp =>
+            new HttpClient
+            {
+                BaseAddress = new Uri(baseAddress)
+            });
+
+        services.AddBlazoredLocalStorage();
+        services.AddScoped<AuthenticationStateProvider>();
+        services.AddScoped<Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>(provider =>
+            provider.GetRequiredService<AuthenticationStateProvider>());
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddOptions();
+        services.AddAuthorizationCore();
+#if DEBUG
+        services.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Debug));
+#endif
+        services.AddSpeechSynthesis();
+
+        services.AddFluxor(o => o
+            .ScanAssemblies(typeof(Program).Assembly)
+            .UseReduxDevTools()
+            .AddMiddleware<LoggingMiddleware>()
+            .UseRouting());
     }
 }
