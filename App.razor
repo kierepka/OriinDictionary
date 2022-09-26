@@ -5,9 +5,9 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    @if (!context?.User?.Identity?.IsAuthenticated ?? false)
+                    @if (!context.User.Identity?.IsAuthenticated ?? false)
                     {
-                        <RedirectToLogin />
+                        <RedirectToLogin/>
                     }
                     else
                     {
@@ -31,7 +31,7 @@
                     <p>Trwa łączenie się z serwerem - komunikat za chwilę zniknie.</p>
                 </Authorizing>
             </AuthorizeRouteView>
-            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
         </Found>
         <NotFound>
             <CascadingAuthenticationState>

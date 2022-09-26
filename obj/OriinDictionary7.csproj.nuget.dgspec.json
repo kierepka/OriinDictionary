@@ -44,6 +44,69 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.3.0-preview.1, )"
+            },
+            "Blazorise.Bulma": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            },
+            "Blazorise.Components": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            },
+            "Blazorise.DataGrid": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            },
+            "Blazorise.Icons.FontAwesome": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            },
+            "Blazorise.Sidebar": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            },
+            "Blazorise.Snackbar": {
+              "target": "Package",
+              "version": "[1.0.6, )"
+            },
+            "Fluxor.Blazor.Web.ReduxDevTools": {
+              "target": "Package",
+              "version": "[5.5.0-Beta1, )"
+            },
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[7.0.0-rc.1.22427.2, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[7.0.0-rc.1.22427.2, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
+              "target": "Package",
+              "version": "[7.0.0-rc.1.22427.2, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0-rc.1.22427.2, )"
+            },
+            "Toolbelt.Blazor.I18nText": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Toolbelt.Blazor.SpeechRecognition": {
+              "target": "Package",
+              "version": "[0.0.4.6-alpha, )"
+            },
+            "Toolbelt.Blazor.SpeechSynthesis": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +118,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[7.0.0-rc.1.22426.10, 7.0.0-rc.1.22426.10]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100-rc.1.22431.12\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
