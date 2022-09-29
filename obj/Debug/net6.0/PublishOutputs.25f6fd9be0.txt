@@ -1,0 +1,2 @@
+D:\GitHub\OriinDictionary\bin\Debug\net6.0\publish\libman.json
+D:\GitHub\OriinDictionary\bin\Debug\net6.0\publish\web.config

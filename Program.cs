@@ -22,24 +22,23 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services
-           .AddI18nText(options =>
-           {
-               options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
-           })
-           .AddBlazorise()
-           .AddBulmaProviders()
-           .AddFontAwesomeIcons();
+    .AddI18nText(options =>
+    {
+        options.PersistanceLevel = PersistanceLevel.SessionAndLocal;
+    })
+    .AddBlazorise()
+    .AddBulmaProviders()
+    .AddFontAwesomeIcons();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+
 builder.Services.AddBlazoredLocalStorage();
-//builder.Services.AddScoped<AuthenticationStateProvider>();
-builder.Services.AddScoped(provider =>
-    provider.GetRequiredService<AuthenticationStateProvider>());
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
 
 #if DEBUG
 builder.Services.AddLogging(loggingBuilder => loggingBuilder.SetMinimumLevel(LogLevel.Debug));

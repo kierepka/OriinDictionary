@@ -4,6 +4,8 @@ VisualStudioVersion = 17.4.32912.340
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriinDictionary7", "OriinDictionary7.csproj", "{63767B62-1147-4D8E-A432-758D6E8A7034}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrinDictionaryTest", "OrinDictionaryTest\OrinDictionaryTest.csproj", "{DEBE2BDB-9BEB-4571-9134-562E99ECDDD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{63767B62-1147-4D8E-A432-758D6E8A7034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63767B62-1147-4D8E-A432-758D6E8A7034}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63767B62-1147-4D8E-A432-758D6E8A7034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEBE2BDB-9BEB-4571-9134-562E99ECDDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEBE2BDB-9BEB-4571-9134-562E99ECDDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEBE2BDB-9BEB-4571-9134-562E99ECDDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEBE2BDB-9BEB-4571-9134-562E99ECDDD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
