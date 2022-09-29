@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "58JIiYG9yM4K13hVFbszz/biP2TysHo6+16PImsFjW8J82djFcMvZW0UmBsznPQcyLOaBINTPdbHFcWtSB1OLw==",
+  "dgSpecHash": "3A0rYRsEX6tstvrxmtlRrGSQ2MBev5YHXk1Y9IKYH2DlM81oCUBi9BW9ELqMOiZWCwnJPdhY65cgKxsyTJfDWQ==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\OriinDictionary\\OriinDictionary7.csproj",
   "expectedPackageFiles": [
@@ -48,8 +48,7 @@
     "C:\\Users\\mateu\\.nuget\\packages\\system.text.json\\7.0.0-rc.1.22426.10\\system.text.json.7.0.0-rc.1.22426.10.nupkg.sha512",
     "C:\\Users\\mateu\\.nuget\\packages\\toolbelt.blazor.i18ntext\\12.0.0\\toolbelt.blazor.i18ntext.12.0.0.nupkg.sha512",
     "C:\\Users\\mateu\\.nuget\\packages\\toolbelt.blazor.speechrecognition\\0.0.4.6-alpha\\toolbelt.blazor.speechrecognition.0.0.4.6-alpha.nupkg.sha512",
-    "C:\\Users\\mateu\\.nuget\\packages\\toolbelt.blazor.speechsynthesis\\10.0.0\\toolbelt.blazor.speechsynthesis.10.0.0.nupkg.sha512",
-    "C:\\Users\\mateu\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.0-rc.1.22426.10\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.0-rc.1.22426.10.nupkg.sha512"
+    "C:\\Users\\mateu\\.nuget\\packages\\toolbelt.blazor.speechsynthesis\\10.0.0\\toolbelt.blazor.speechsynthesis.10.0.0.nupkg.sha512"
   ],
   "logs": []
 }
